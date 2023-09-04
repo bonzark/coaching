@@ -8,12 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import React from "react";
-import { PrimaryBtn } from "../components/primaryBtn";
+import React, { useState } from "react";
+import { MainModal } from "../components/MainModal";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import { FormModal } from "./FormModal";
 
 const HeroBanner = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
+      <FormModal open={open} handleClose={handleClose} />
       <Box
         sx={{
           backgroundImage: "url('./heroBg.jpg')",
@@ -71,7 +77,7 @@ const HeroBanner = () => {
                 />
               </ListItem>
             </List>
-            <PrimaryBtn>
+            <PrimaryBtn onClick={handleOpen}>
               <span>DOWNLOAD NOW FOR FREE</span>
               Gain Awareness Of Your Creation in less than 30 days
             </PrimaryBtn>
