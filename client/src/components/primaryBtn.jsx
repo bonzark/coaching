@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 export const PrimaryBtn = (props) => {
+  console.log();
   return (
     <>
       <Button
@@ -17,6 +18,7 @@ export const PrimaryBtn = (props) => {
           fontSize: "12px",
           lineHeight: "16px",
         }}
+        {...props}
       >
         {props.children}
       </Button>
