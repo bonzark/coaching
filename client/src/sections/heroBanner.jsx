@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import React, { useState } from "react";
-import { MainModal } from "../components/MainModal";
 import { PrimaryBtn } from "../components/PrimaryBtn";
-import { FormModal } from "./FormModal";
+import FormModal from "./FormModal";
 
 const listItems = [
   {
