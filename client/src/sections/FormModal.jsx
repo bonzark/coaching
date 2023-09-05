@@ -1,95 +1,80 @@
-import { Box, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { MainModal } from "../components/MainModal";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { PrimaryBtn } from "../components/PrimaryBtn";
-import { InputBox } from "../components/InputBox";
-import { useSnackbar } from "notistack";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useSnackbar } from 'notistack';
+import { useFormik } from 'formik';
+import { Box, Typography } from '@mui/material';
+import { MainModal } from '../components/MainModal';
+import { PrimaryBtn } from '../components/PrimaryBtn';
+import { InputBox } from '../components/InputBox';
+import { login, register } from '../services/auth.service';
+import { setToken, setUserDetails } from '../utils/auth';
+import { validationLoginSchema, validationRegisterSchema } from '../utils/validation';
 
-const validationSchema = yup.object({
-  name: yup.string("Enter your email").required("Email is required"),
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string()
-    .trim()
-    .min(8, "Password must be at least 8 characters")
-    .matches(/\d/, "Password must contain at least one digit")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    .matches(
-      /[!@#$%^&*(),.?":{}|<>]/,
-      "Password must contain at least one special character"
-    ),
-});
-
-export const FormModal = ({ open, handleClose }) => {
+const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [logingForm, setLogingForm] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
     },
-    validationSchema: validationSchema,
+    validationSchema: !logingForm ? validationRegisterSchema : validationLoginSchema,
     onSubmit: (values) => {
       if (logingForm) {
-        axios
-          .post("http://localhost:4000/auth/login", values)
-          .then(function (response) {
-            console.log(response);
-            enqueueSnackbar(response.data, { variant: "success" });
+        const data = {
+          email: values.email,
+          password: values.password,
+        };
+        login(data)
+          .then((res) => {
+            enqueueSnackbar(res?.data?.message, { variant: 'success' });
+            setToken(res?.data?.token);
+            setUserDetails(res?.data?.user);
             handleClose();
           })
-          .catch(function (error) {
+          .catch((error) => {
             enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
-              variant: "error",
+              variant: 'error',
+            });
+          });
+      } else {
+        register(values)
+          .then((res) => {
+            enqueueSnackbar(res?.data?.message, { variant: 'success' });
+            handleClose();
+          })
+          .catch((error) => {
+            enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
+              variant: 'error',
             });
           });
       }
-      axios
-        .post("http://localhost:4000/auth/register", values)
-        .then(function (response) {
-          console.log(response);
-          enqueueSnackbar(response.data, { variant: "success" });
-          handleClose();
-        })
-        .catch(function (error) {
-          enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
-            variant: "error",
-          });
-        });
     },
   });
 
   return (
     <MainModal open={open} handleClose={handleClose}>
       <Typography
-        component={"h4"}
+        component={'h4'}
         sx={{
-          fontSize: "26px",
-          fontWeight: "600",
-          textAlign: "center",
-          color: "#671d63",
-          marginBottom: "10px",
+          fontSize: '26px',
+          fontWeight: '600',
+          textAlign: 'center',
+          color: '#671d63',
+          marginBottom: '10px',
         }}
       >
-        {logingForm ? "Log In" : "Register"}
+        {logingForm ? 'Log In' : 'Register'}
       </Typography>
       <Typography
-        component={"p"}
+        component={'p'}
         sx={{
-          fontSize: "16px",
-          fontWeight: "400",
-          textAlign: "center",
-          color: "#000",
-          marginBottom: "10px",
+          fontSize: '16px',
+          fontWeight: '400',
+          textAlign: 'center',
+          color: '#000',
+          marginBottom: '10px',
         }}
       >
         Enter Your Details Below To Access The Guide
@@ -133,16 +118,16 @@ export const FormModal = ({ open, handleClose }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <PrimaryBtn fullWidth type="submit">
-            {logingForm ? "Log In" : "Register"}
+            {logingForm ? 'Log In' : 'Register'}
           </PrimaryBtn>
 
-          <Typography sx={{ textAlign: "center", mt: "20px" }}>
-            {logingForm ? "Don't have account? " : "Already Registered? "}
+          <Typography sx={{ textAlign: 'center', mt: '20px' }}>
+            {logingForm ? "Don't have account? " : 'Already Registered? '}
             <span
-              style={{ cursor: "pointer", color: "#671d63" }}
+              style={{ cursor: 'pointer', color: '#671d63' }}
               onClick={() => setLogingForm(!logingForm)}
             >
-              {logingForm ? "Register." : "Log In."}
+              {logingForm ? 'Register.' : 'Log In.'}
             </span>
           </Typography>
         </form>
@@ -150,3 +135,5 @@ export const FormModal = ({ open, handleClose }) => {
     </MainModal>
   );
 };
+
+export default FormModal;

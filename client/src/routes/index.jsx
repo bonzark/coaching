@@ -1,23 +1,18 @@
-import React from "react";
-import { Route, Router, Routes } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
-import { FormModal } from "../sections/FormModal";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from '../pages/dashboard/dashboard';
+import PrivateRoute from './PrivateRoute';
+import Home from '../pages/home/home';
 
 const Routers = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route element={<PrivateRoute />}>
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Route>
 
-        {/* Private Routes */}
-        <PrivateRoute path="/dashboard" element={<Dashboard />} />
-
-        {/* 404 Route */}
-        <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
     </Router>
