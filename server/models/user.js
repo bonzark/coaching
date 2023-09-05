@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
   isVerified: Boolean,
   verificationToken: String,
   resetToken: String,
+  sessions: [
+    {
+      date: Date,
+      time: String,
+      price: Number,
+      isFirstSessionFree: Boolean,
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
