@@ -16,7 +16,12 @@ export const PrimaryBtn = (props) => {
           borderRadius: "5px",
           padding: "25px",
           fontSize: "12px",
+          border: "1px solid transparent",
           lineHeight: "16px",
+          ":hover": {
+            color: "#671d63",
+            border: "1px solid #671d63",
+          },
         }}
         {...props}
       >
