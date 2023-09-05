@@ -29,7 +29,7 @@ const validationSchema = yup.object({
 
 export const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [logingForm, setLogingForm] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -39,6 +39,20 @@ export const FormModal = ({ open, handleClose }) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      if (logingForm) {
+        axios
+          .post("http://localhost:4000/auth/login", values)
+          .then(function (response) {
+            console.log(response);
+            enqueueSnackbar(response.data, { variant: "success" });
+            handleClose();
+          })
+          .catch(function (error) {
+            enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
+              variant: "error",
+            });
+          });
+      }
       axios
         .post("http://localhost:4000/auth/register", values)
         .then(function (response) {
@@ -66,7 +80,7 @@ export const FormModal = ({ open, handleClose }) => {
           marginBottom: "10px",
         }}
       >
-        {loggedIn ? "Log In" : "Register"}
+        {logingForm ? "Log In" : "Register"}
       </Typography>
       <Typography
         component={"p"}
@@ -82,7 +96,7 @@ export const FormModal = ({ open, handleClose }) => {
       </Typography>
       <Box>
         <form onSubmit={formik.handleSubmit}>
-          {!loggedIn && (
+          {!logingForm && (
             <InputBox
               fullWidth
               id="name"
@@ -119,16 +133,16 @@ export const FormModal = ({ open, handleClose }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <PrimaryBtn fullWidth type="submit">
-            {loggedIn ? "Log In" : "Register"}
+            {logingForm ? "Log In" : "Register"}
           </PrimaryBtn>
 
           <Typography sx={{ textAlign: "center", mt: "20px" }}>
-            {loggedIn ? "Don't have account? " : "Already Registered? "}
+            {logingForm ? "Don't have account? " : "Already Registered? "}
             <span
               style={{ cursor: "pointer", color: "#671d63" }}
-              onClick={() => setLoggedIn(!loggedIn)}
+              onClick={() => setLogingForm(!logingForm)}
             >
-              {loggedIn ? "Register." : "Log In."}
+              {logingForm ? "Register." : "Log In."}
             </span>
           </Typography>
         </form>
