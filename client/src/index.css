@@ -11,7 +11,7 @@ body {
 }
 
 .about-img {
-    width: 100px;
+    max-width: 200px;
 
     @media (max-width:968px) {
         width: 60px;
@@ -20,17 +20,4 @@ body {
     @media (max-width: 768px) {
         width: 45px;
     }
-}
-
-.about-us {
-    background-color: #CBDBF2;
-}
-
-.inner {
-    clip-path: ellipse(49.5% 69% at 50% 56%);
-}
-
-.inner2 {
-    clip-path: ellipse(51.5% 83% at 50% 56%);
-    background-color: #CBD6EE;
 }
