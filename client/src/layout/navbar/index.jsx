@@ -15,16 +15,36 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import FormModal from "../../sections/FormModal";
+import { getAuthToken } from "../../utils/auth";
 
 const Navbar = () => {
-  const drawerWidth = 240;
+  const drawerWidth = 300;
   const navItems = [
-    "Our Coaches",
-    "Events",
-    "Healing",
-    "Online Courses",
-    "Caoaching",
-    "Talk with Brandi",
+    {
+      name: "Our Coaches",
+      link: "/",
+    },
+    {
+      name: "Events",
+      link: "/",
+    },
+    {
+      name: "Healing",
+      link: "/",
+    },
+    {
+      name: "Online Courses",
+      link: "/online-courses",
+    },
+    {
+      name: "Caoaching",
+      link: "/",
+    },
+    {
+      name: "Talk with Brandi",
+      link: "/",
+    },
   ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -32,11 +52,18 @@ const Navbar = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const isLoggedIn = !!getAuthToken();
+
+  console.log("isLoggedIn", isLoggedIn);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography component={"p"} href="/" sx={{ my: 2 }}>
-        <Link style={{ color: "#671d63", textDecoration: "none" }} to={"/"}>
-          MUI
+        <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
+          LOGOIPSUM
         </Link>
       </Typography>
       <Divider />
@@ -44,7 +71,7 @@ const Navbar = () => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.name} to={item.link} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -55,7 +82,7 @@ const Navbar = () => {
           sx={{
             backgroundColor: "#671d63",
             color: "white",
-            width: "130px",
+            minWidth: "130px",
             margin: "0 auto",
             fontWeight: "bolder",
             border: "1px solid transparent",
@@ -68,30 +95,52 @@ const Navbar = () => {
         >
           Contact us
         </Button>
-        <Button
-          variant="outlined"
-          sx={{
-            color: "#671d63",
-            backgroundColor: "white",
-            width: "130px",
-            margin: "0 auto",
-            fontWeight: "bolder",
-            border: "1px solid #671d63",
-            ":hover": {
-              backgroundColor: "#671d63",
-              color: "white",
-              border: "1px solid transparent",
-            },
-          }}
-        >
-          Login
-        </Button>
+        {isLoggedIn ? (
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#671d63",
+              backgroundColor: "white",
+              minWidth: "130px",
+              margin: "0 auto",
+              fontWeight: "bolder",
+              border: "1px solid #671d63",
+              ":hover": {
+                backgroundColor: "#671d63",
+                color: "white",
+                border: "1px solid transparent",
+              },
+            }}
+          >
+            My Account
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#671d63",
+              backgroundColor: "white",
+              minWidth: "130px",
+              margin: "0 auto",
+              fontWeight: "bolder",
+              border: "1px solid #671d63",
+              ":hover": {
+                backgroundColor: "#671d63",
+                color: "white",
+                border: "1px solid transparent",
+              },
+            }}
+          >
+            Login
+          </Button>
+        )}
       </Box>
     </Box>
   );
 
   return (
     <>
+      <FormModal open={open} handleClose={handleClose} />
       <Box sx={{ display: "flex" }}>
         <AppBar
           component="nav"
@@ -130,8 +179,13 @@ const Navbar = () => {
             </Typography>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item) => (
-                <Button key={item} sx={{ color: "#671d63", fontWeight: "600" }}>
-                  {item}
+                <Button
+                  key={item}
+                  to={item.link}
+                  component={Link}
+                  sx={{ color: "#671d63", fontWeight: "600" }}
+                >
+                  {item.name}
                 </Button>
               ))}
             </Box>
@@ -149,30 +203,55 @@ const Navbar = () => {
                   color: "#671d63",
                   border: "1px solid #671d63",
                 },
+                marginRight: "10px",
                 display: { xs: "none", md: "block" },
               }}
             >
               Contact us
             </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#671d63",
-                backgroundColor: "white",
-                marginLeft: "10px",
-                fontWeight: "bolder",
-                fontSize: { xs: "8px", md: "12px", lg: "15px" },
-                border: "1px solid #671d63",
-                ":hover": {
-                  backgroundColor: "#671d63",
-                  color: "white",
-                  border: "1px solid transparent",
-                },
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              Login
-            </Button>
+            {isLoggedIn ? (
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#671d63",
+                  backgroundColor: "white",
+                  minWidth: "130px",
+                  margin: "0 auto",
+                  fontWeight: "bolder",
+                  border: "1px solid #671d63",
+                  ":hover": {
+                    backgroundColor: "#671d63",
+                    color: "white",
+                    border: "1px solid transparent",
+                  },
+                  display: { xs: "none", md: "block" },
+                }}
+                component={Link}
+                to="/dashboard"
+              >
+                My Account
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#671d63",
+                  backgroundColor: "white",
+                  width: "130px",
+                  margin: "0 auto",
+                  fontWeight: "bolder",
+                  border: "1px solid #671d63",
+                  ":hover": {
+                    backgroundColor: "#671d63",
+                    color: "white",
+                    border: "1px solid transparent",
+                  },
+                  display: { xs: "none", md: "block" },
+                }}
+              >
+                Login
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
         <nav>

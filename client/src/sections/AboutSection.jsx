@@ -18,28 +18,6 @@ const AboutSection = () => {
         minHeight: "100vh",
         position: "relative",
         paddingBottom: "5rem",
-        // "&:before": {
-        //   backgroundImage: 'url("./curve1-left.png")',
-        //   content: '""',
-        //   width: "100%",
-        //   height: "100%",
-        //   position: "absolute",
-        //   top: 0,
-        //   left: 0,
-        //   zIndex: 0,
-        //   backgroundRepeat: "no-repeat",
-        // },
-        // "&:after": {
-        //   backgroundImage: 'url("./curve1-right.png")',
-        //   content: '""',
-        //   width: "400px",
-        //   height: "100%",
-        //   position: "absolute",
-        //   top: 0,
-        //   right: 0,
-        //   zIndex: 0,
-        //   backgroundRepeat: "no-repeat",
-        // },
       }}
     >
       <Box className="about-us" sx={{ position: "relative", zIndex: 1 }}>
