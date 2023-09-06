@@ -44,7 +44,6 @@ const SuccessStories = ({ title, content }) => {
           <Box
             sx={{
               width: { md: "40%", xs: "100%" },
-              height: "100%",
               margin: { xs: "0 auto", md: 0 },
             }}
           >
@@ -54,7 +53,7 @@ const SuccessStories = ({ title, content }) => {
               style={{
                 objectFit: "cover",
                 width: "100%",
-                height: "auto",
+                height: "100%",
               }}
             />
           </Box>

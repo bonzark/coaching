@@ -2,7 +2,9 @@ import { Box, Button, Typography } from "@mui/material";
 
 const News = () => {
   return (
-    <Box sx={{ padding: "5rem", backgroundColor: "#f2effb" }}>
+    <Box
+      sx={{ padding: { xs: "2rem", md: "5rem" }, backgroundColor: "#f2effb" }}
+    >
       <Box sx={{ maxWidth: "1500px", mx: "auto" }}>
         <Box
           sx={{
@@ -11,6 +13,7 @@ const News = () => {
             alignItems: "center",
             justifyContent: "center",
             paddingBottom: "70px",
+            flexDirection: { xs: "column", lg: "row" },
           }}
         >
           <Typography
@@ -21,10 +24,12 @@ const News = () => {
               fontFamily: "'Abril FatFace',sans-serif",
               maxWidth: "592px",
               position: "relative",
-              paddingRight: "70px",
-              marginRight: "45px",
+              paddingRight: { lg: "70px" },
+              marginBottom: { xs: "40px", lg: 0 },
+              marginRight: { xs: "10px", lg: "45px" },
+              lineHeight: "60px",
               "&:after": {
-                content: "''",
+                content: { lg: "''" },
                 position: "absolute",
                 right: 0,
                 top: 0,
@@ -52,11 +57,16 @@ const News = () => {
         <Box
           sx={{
             background: "url('./news.jpg')",
-            padding: "4rem 5rem",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            padding: { xs: "3rem 2rem", md: "4rem 5rem" },
             borderRadius: "30px",
           }}
         >
-          <Box sx={{ maxWidth: "55%", textAlign: "center" }}>
+          <Box
+            sx={{ maxWidth: { lg: "100%", xl: "55%" }, textAlign: "center" }}
+          >
             <Typography
               varient="h4"
               sx={{
@@ -70,7 +80,7 @@ const News = () => {
             <Typography
               varient="h1"
               sx={{
-                fontSize: "4rem",
+                fontSize: { xs: "2.5rem", sm: "4rem" },
                 fontWeight: 900,
                 color: "#fff",
                 lineHeight: "70px",
