@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import FormModal from "../../sections/FormModal";
+import { getAuthToken } from "../../utils/auth";
 
 const Navbar = () => {
   const drawerWidth = 240;
@@ -31,6 +33,13 @@ const Navbar = () => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const isLoggedIn = !!getAuthToken();
+
+  console.log("isLoggedIn", isLoggedIn);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -68,30 +77,52 @@ const Navbar = () => {
         >
           Contact us
         </Button>
-        <Button
-          variant="outlined"
-          sx={{
-            color: "#671d63",
-            backgroundColor: "white",
-            width: "130px",
-            margin: "0 auto",
-            fontWeight: "bolder",
-            border: "1px solid #671d63",
-            ":hover": {
-              backgroundColor: "#671d63",
-              color: "white",
-              border: "1px solid transparent",
-            },
-          }}
-        >
-          Login
-        </Button>
+        {isLoggedIn ? (
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#671d63",
+              backgroundColor: "white",
+              width: "130px",
+              margin: "0 auto",
+              fontWeight: "bolder",
+              border: "1px solid #671d63",
+              ":hover": {
+                backgroundColor: "#671d63",
+                color: "white",
+                border: "1px solid transparent",
+              },
+            }}
+          >
+            My Account
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#671d63",
+              backgroundColor: "white",
+              width: "130px",
+              margin: "0 auto",
+              fontWeight: "bolder",
+              border: "1px solid #671d63",
+              ":hover": {
+                backgroundColor: "#671d63",
+                color: "white",
+                border: "1px solid transparent",
+              },
+            }}
+          >
+            Login
+          </Button>
+        )}
       </Box>
     </Box>
   );
 
   return (
     <>
+      <FormModal open={open} handleClose={handleClose} />
       <Box sx={{ display: "flex" }}>
         <AppBar
           component="nav"
@@ -149,30 +180,53 @@ const Navbar = () => {
                   color: "#671d63",
                   border: "1px solid #671d63",
                 },
+                marginRight: "10px",
                 display: { xs: "none", md: "block" },
               }}
             >
               Contact us
             </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#671d63",
-                backgroundColor: "white",
-                marginLeft: "10px",
-                fontWeight: "bolder",
-                fontSize: { xs: "8px", md: "12px", lg: "15px" },
-                border: "1px solid #671d63",
-                ":hover": {
-                  backgroundColor: "#671d63",
-                  color: "white",
-                  border: "1px solid transparent",
-                },
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              Login
-            </Button>
+            {isLoggedIn ? (
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#671d63",
+                  backgroundColor: "white",
+                  minWidth: "130px",
+                  margin: "0 auto",
+                  fontWeight: "bolder",
+                  border: "1px solid #671d63",
+                  ":hover": {
+                    backgroundColor: "#671d63",
+                    color: "white",
+                    border: "1px solid transparent",
+                  },
+                }}
+                component={Link}
+                to="/dashboard"
+              >
+                My Account
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#671d63",
+                  backgroundColor: "white",
+                  width: "130px",
+                  margin: "0 auto",
+                  fontWeight: "bolder",
+                  border: "1px solid #671d63",
+                  ":hover": {
+                    backgroundColor: "#671d63",
+                    color: "white",
+                    border: "1px solid transparent",
+                  },
+                }}
+              >
+                Login
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
         <nav>
