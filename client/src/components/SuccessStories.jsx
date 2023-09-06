@@ -3,7 +3,7 @@ import { Box, Typography, Paper } from "@mui/material";
 
 const SuccessStories = ({ title, content }) => {
   return (
-    <Box sx={{ py: 8, position: "relative" }}>
+    <Box classname="successStoryCard" sx={{ py: 8, position: "relative" }}>
       <Box
         component={"div"}
         sx={{ mx: { xs: "50px", lg: "225px" } }}
