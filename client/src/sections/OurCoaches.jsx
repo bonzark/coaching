@@ -132,8 +132,9 @@ const OurCoaches = () => {
             },
           }}
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <CoachCarouselCard
+              key={index}
               title={item.title}
               subtitle={item.subtitle}
               imgSrc={item.imgSrc}
@@ -145,12 +146,11 @@ const OurCoaches = () => {
           variant="outlined"
           sx={{
             color: "#671d63",
-            backgroundColor: "white",
             margin: "20px auto",
             fontWeight: "bolder",
             border: "none",
             backgroundColor: "#EFE6EF",
-            ":hover": {
+            "&:hover": {
               backgroundColor: "#671d63",
               color: "white",
               border: "none",

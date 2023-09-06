@@ -96,8 +96,12 @@ const CarouselCard = () => {
           Success Stories
         </Typography>
         <Carousel>
-          {items.map((item) => (
-            <SuccessStories content={item.content} title={item.title} />
+          {items.map((item, index) => (
+            <SuccessStories
+              key={index}
+              content={item.content}
+              title={item.title}
+            />
           ))}
         </Carousel>
       </Box>

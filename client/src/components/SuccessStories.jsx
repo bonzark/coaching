@@ -15,9 +15,9 @@ const SuccessStories = ({ title, content }) => {
             width: "100%",
             position: "relative",
             display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
-            alignItems: "center",
+            // alignItems: "center",
             backgroundColor: "white",
           }}
         >
@@ -41,13 +41,23 @@ const SuccessStories = ({ title, content }) => {
           >
             ”
           </Typography>
-          <img
-            src="./successStories.jpg"
-            alt="story image"
-            width={"35%"}
-            style={{ objectFit: "cover" }}
-          />
-          <Box sx={{ width: { xs: "100%", sm: "60%" }, px: { xs: 3, sm: 5 } }}>
+          <Box
+            sx={{
+              width: { md: "40%", xs: "100%" },
+              margin: { xs: "0 auto", md: 0 },
+            }}
+          >
+            <img
+              src="./successStories.jpg"
+              alt="story image"
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </Box>
+          <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
             <Typography
               variant="h5"
               sx={{
@@ -69,7 +79,7 @@ const SuccessStories = ({ title, content }) => {
                 fontSize: { xs: "15px", sm: "20px" },
                 lineHeight: { xs: "20px", sm: "30px" },
                 px: { xs: "0.5rem", sm: "2rem" },
-                pb: { xs: "0.5rem", sm: "0" }
+                pb: { xs: "0.5rem", sm: "0" },
               }}
             >
               {content}

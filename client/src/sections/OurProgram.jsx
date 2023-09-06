@@ -137,8 +137,9 @@ const OurProgram = () => {
             },
           }}
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <ProgramCard
+              key={index}
               btnText={item.btnText}
               title={item.title}
               imgSrc={item.imgSrc}
