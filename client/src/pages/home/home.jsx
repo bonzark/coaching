@@ -9,6 +9,7 @@ const Home = () => {
     <>
       <HeroBanner />
       <AboutSection />
+      <OurCoaches />
       <CarouselCard />
       <OfferSection />
     </>
