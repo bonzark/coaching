@@ -14,9 +14,9 @@ const Home = () => {
       <HeroBanner />
       <AboutSection />
       <OurCoaches />
+      <News />
       <OurProgram />
       <CarouselCard />
-      <News />
       <OfferSection />
       <FreeMeditation />
     </>
