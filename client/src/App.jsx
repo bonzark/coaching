@@ -1,14 +1,9 @@
-import './App.css';
-import Navbar from './layout/navbar';
-import Routers from './routes';
+import "./App.css";
+import Navbar from "./layout/navbar";
+import Routers from "./routes";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <Routers />
-    </>
-  );
+  return <Routers />;
 }
 
 export default App;
