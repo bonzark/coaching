@@ -1,16 +1,8 @@
 import "./App.css";
-import Navbar from "./layout/navbar";
-import Services from "./sections/Services";
-import HeroBanner from "./sections/heroBanner";
+import Routers from "./routes";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <HeroBanner />
-      <Services/>
-    </>
-  );
+  return <Routers />;
 }
 
 export default App;
