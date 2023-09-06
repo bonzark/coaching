@@ -115,7 +115,6 @@ const News = () => {
             </Typography>
             <Button
               variant="contained"
-              color="success"
               sx={{
                 backgroundColor: "#f6ce3b",
                 color: "#000",
@@ -123,6 +122,10 @@ const News = () => {
                 fontWeight: 900,
                 padding: "15px 50px",
                 borderRadius: "500px",
+                transition: "all 300ms linear",
+                "&:hover": {
+                  backgroundColor: "#fedf6c",
+                },
               }}
             >
               RSVP NOW
