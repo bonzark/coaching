@@ -13,31 +13,36 @@ const images = [
 
 const AboutSection = () => {
   return (
-    <Box sx={{
-      minHeight: "100vh", position: "relative", "&:before": {
-        backgroundImage: 'url("./curve1-left.png")',
-        content: '""',
-        width: "100%",
-        height: "100%",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        zIndex: 0,
-        backgroundRepeat: "no-repeat"
-      }, "&:after": {
-        backgroundImage: 'url("./curve1-right.png")',
-        content: '""',
-        width: "400px",
-        height: "100%",
-        position: "absolute",
-        top: 0,
-        right: 0,
-        zIndex: 0,
-        backgroundRepeat: "no-repeat"
-      }
-    }}>
-
-      <Box className="about-us" sx={{ position: "relative", zIndex: 1 }} >
+    <Box
+      sx={{
+        minHeight: "100vh",
+        position: "relative",
+        paddingBottom: "5rem",
+        // "&:before": {
+        //   backgroundImage: 'url("./curve1-left.png")',
+        //   content: '""',
+        //   width: "100%",
+        //   height: "100%",
+        //   position: "absolute",
+        //   top: 0,
+        //   left: 0,
+        //   zIndex: 0,
+        //   backgroundRepeat: "no-repeat",
+        // },
+        // "&:after": {
+        //   backgroundImage: 'url("./curve1-right.png")',
+        //   content: '""',
+        //   width: "400px",
+        //   height: "100%",
+        //   position: "absolute",
+        //   top: 0,
+        //   right: 0,
+        //   zIndex: 0,
+        //   backgroundRepeat: "no-repeat",
+        // },
+      }}
+    >
+      <Box className="about-us" sx={{ position: "relative", zIndex: 1 }}>
         <Box
           sx={{
             height: "100%",
@@ -56,9 +61,15 @@ const AboutSection = () => {
                 component={"div"}
                 sx={{
                   display: "flex",
+                  flexWrap: "wrap",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  padding: "100px 15px",
+                  padding: {
+                    xs: "30px 15px",
+                    sm: "50px 15px",
+                    md: "80px 15px",
+                    lg: "100px 15px",
+                  },
                 }}
               >
                 {images?.map((imageUrl) => {
@@ -92,7 +103,7 @@ const AboutSection = () => {
                     xl: "600px",
                   },
                   width: { xs: "300px", sm: "400px", xl: "600px" },
-                  margin: { sm: "0 auto", md: "0 0 0 auto" },
+                  margin: { xs: "0 auto", md: "0 0 0 auto" },
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -210,15 +221,23 @@ const AboutSection = () => {
                   Become a Master Creator.
                 </Typography>
               </Typography>
-              <PrimaryBtn>
-                <span>Access Now For Free</span>
-                <Typography component="p">Instant Download</Typography>
-              </PrimaryBtn>
+              <Box
+                sx={{
+                  display: { xs: "flex", md: "block" },
+                  justifyContent: { xs: "center" },
+                  width: { xs: "100%" },
+                }}
+              >
+                <PrimaryBtn>
+                  <span>Access Now For Free</span>
+                  <Typography component="p">Instant Download</Typography>
+                </PrimaryBtn>
+              </Box>
             </Grid>
           </Grid>
         </Box>
       </Box>
-    </Box >
+    </Box>
   );
 };
 
