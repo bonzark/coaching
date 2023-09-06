@@ -6,7 +6,10 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 const Footer = () => {
   return (
     <Box
-      sx={{ backgroundColor: "#eaedfc", padding: { md: "5rem", xs: "1rem" } }}
+      sx={{
+        backgroundColor: "#e5e9f8",
+        padding: { md: "5rem", xs: "1rem" },
+      }}
     >
       <Box
         sx={{
