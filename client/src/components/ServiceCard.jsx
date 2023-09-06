@@ -4,6 +4,7 @@ import {
   CardMedia,
   Typography,
   CardActions,
+  Box,
 } from "@mui/material";
 import React from "react";
 import { PrimaryBtn } from "./PrimaryBtn";
@@ -20,18 +21,25 @@ const ServiceCard = (props) => {
           height: "100%",
         }}
       >
-        <CardMedia
+        <Box
           sx={{
-            transition: "transform 0.2s ease-in-out",
-            "&:hover": {
-              transform: " scale(1.1)",
-            },
+            overflow: "hidden",
+            height: "400px",
           }}
-          component="img"
-          alt="Crad Image"
-          height="400"
-          src={props.image}
-        />
+        >
+          <CardMedia
+            sx={{
+              transition: "transform 0.6s ease-in-out",
+              "&:hover": {
+                transform: " scale(1.1)",
+              },
+            }}
+            component="img"
+            alt="Crad Image"
+            height="400"
+            src={props.image}
+          />
+        </Box>
         <CardContent
           sx={{
             maxWidth: "100%",
