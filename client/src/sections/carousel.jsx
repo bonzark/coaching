@@ -33,7 +33,6 @@ const items = [
 const CarouselCard = () => {
   return (
     <Box
-      className="carouselSuccess"
       sx={{
         minHeight: "100vh",
         position: "relative",
@@ -64,8 +63,8 @@ const CarouselCard = () => {
     >
       <Box
         sx={{
-          background: "linear-gradient(#EFE6EF, #F1E2F0)",
-          py: { xs: 40, md: 35 },
+          // background: "linear-gradient(#EFE6EF, #F1E2F0)",
+          // py: { xs: 40, md: 35 },
         }}
       >
         <Typography
