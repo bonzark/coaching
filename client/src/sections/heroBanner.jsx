@@ -63,7 +63,7 @@ const HeroBanner = () => {
           sx={{
             minHeight: "100vh",
             display: "flex",
-            alignItems: "center",
+            alignItems: { xs: "end", md: "center" },
             position: "relative",
             zIndex: 1,
           }}
@@ -71,8 +71,7 @@ const HeroBanner = () => {
           <Box
             sx={{
               width: { xs: "auto  ", md: "50%" },
-              position: { xs: "absolute", md: "relative" },
-              bottom: { xs: "110px", md: "auto" },
+              paddingBottom: { xs: "100px", md: 0 },
             }}
           >
             <Typography

@@ -9,6 +9,7 @@ import Dashboard from "../pages/dashboard/dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/home/home";
 import Navbar from "../layout/navbar";
+import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
 
 const Routers = () => {
@@ -23,6 +24,7 @@ const Routers = () => {
         </Route>
         <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
