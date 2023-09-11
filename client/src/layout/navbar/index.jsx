@@ -69,7 +69,7 @@ const Navbar = () => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
               <ListItemText primary={item.name} to={item.link} />
             </ListItemButton>
@@ -180,7 +180,7 @@ const Navbar = () => {
             <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item) => (
                 <Button
-                  key={item}
+                  key={item.name}
                   to={item.link}
                   component={Link}
                   sx={{ color: "#671d63", fontWeight: "600" }}
