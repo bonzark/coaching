@@ -1,6 +1,6 @@
 import React from "react";
 import HeroBanner from "../../sections/heroBanner";
-import CarouselCard from "../../sections/carousel";
+import SuccessCarousel from "../../sections/SuccessCarousel";
 import AboutSection from "../../sections/AboutSection";
 import FreeMeditation from "../../sections/FreeMeditation";
 import News from "../../sections/news";
@@ -16,7 +16,7 @@ const Home = () => {
       <OurCoaches />
       <News />
       <OurProgram />
-      <CarouselCard />
+      <SuccessCarousel />
       <OfferSection />
       <FreeMeditation />
     </>
