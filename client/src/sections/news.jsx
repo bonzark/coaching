@@ -19,7 +19,12 @@ const News = () => {
           <Typography
             varient="h1"
             sx={{
-              fontSize: "3.5rem",
+              fontSize: {
+                xs: "2rem",
+                sm: "2.5rem",
+                md: "3rem",
+                lg: "3.5rem",
+              },
               color: "#671d63",
               fontFamily: "'Abril FatFace',sans-serif",
               maxWidth: "592px",
@@ -27,7 +32,7 @@ const News = () => {
               paddingRight: { lg: "70px" },
               marginBottom: { xs: "40px", lg: 0 },
               marginRight: { xs: "10px", lg: "45px" },
-              lineHeight: "60px",
+              lineHeight: { xs: "35px", sm: "45px", md: "50px", lg: "60px" },
               "&:after": {
                 content: { lg: "''" },
                 position: "absolute",
@@ -44,7 +49,7 @@ const News = () => {
           <Typography
             varient="p"
             sx={{
-              fontSize: "1.5rem",
+              fontSize: { xs: "0.9rem", md: "1.5rem" },
               maxWidth: "605px",
               color: "#444",
             }}
@@ -70,7 +75,7 @@ const News = () => {
             <Typography
               varient="h4"
               sx={{
-                fontSize: "2rem",
+                fontSize: { xs: "1rem", md: "2rem" },
                 fontWeight: 800,
                 color: "#fff",
               }}
@@ -80,10 +85,10 @@ const News = () => {
             <Typography
               varient="h1"
               sx={{
-                fontSize: { xs: "2.5rem", sm: "4rem" },
+                fontSize: { xs: "2.5rem", md: "4rem" },
                 fontWeight: 900,
                 color: "#fff",
-                lineHeight: "70px",
+                lineHeight: { xs: "45px", md: "70px" },
                 marginBottom: "15px",
                 fontFamily: "'Oswald', sans-serif",
               }}
@@ -93,9 +98,9 @@ const News = () => {
             <Typography
               varient="h6"
               sx={{
-                fontSize: "1.7rem",
+                fontSize: { xs: "0.8rem", md: "1.7rem" },
                 fontWeight: 200,
-                letterSpacing: "8px",
+                letterSpacing: { xs: "4px", md: "8px" },
                 color: "#fff",
                 marginBottom: "20px",
               }}
@@ -105,7 +110,7 @@ const News = () => {
             <Typography
               varient="h5"
               sx={{
-                fontSize: "1.5rem",
+                fontSize: { xs: "0.9rem", md: "1.5rem" },
                 fontWeight: 800,
                 color: "#fff",
                 marginBottom: "20px",
@@ -118,9 +123,9 @@ const News = () => {
               sx={{
                 backgroundColor: "#f6ce3b",
                 color: "#000",
-                fontSize: "1.2rem",
+                fontSize: { xs: "0.8rem", md: "1.2rem" },
                 fontWeight: 900,
-                padding: "15px 50px",
+                padding: { xs: "10px 30px", md: "15px 50px" },
                 borderRadius: "500px",
                 transition: "all 300ms linear",
                 "&:hover": {
