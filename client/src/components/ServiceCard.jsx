@@ -25,6 +25,7 @@ const ServiceCard = (props) => {
           sx={{
             overflow: "hidden",
             height: "400px",
+            width: "100%",
           }}
         >
           <CardMedia

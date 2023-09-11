@@ -132,8 +132,9 @@ const OurCoaches = () => {
             },
           }}
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <CoachCarouselCard
+              key={index}
               title={item.title}
               subtitle={item.subtitle}
               imgSrc={item.imgSrc}
