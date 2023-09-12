@@ -1,5 +1,5 @@
 import { Box, Link, Typography } from "@mui/material";
-import EventTemplate from "../../components/eventTemplate";
+import EventTemplate from "../../components/EventTemplate";
 
 const Event = () => {
   return (
