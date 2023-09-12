@@ -13,7 +13,7 @@ export const PrimaryBtn = (props) => {
         span: { display: "block", fontSize: "16px" },
         color: "#fff",
         borderRadius: "5px",
-        padding: { xs: "10px", md: "25px" },
+        padding: { xs: "10px", md: "18px 25px" },
         fontSize: "12px",
         border: "1px solid transparent",
         lineHeight: "16px",

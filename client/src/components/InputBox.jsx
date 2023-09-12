@@ -5,7 +5,7 @@ export const InputBox = (props) => {
   return (
     <TextField
       sx={{
-        margin: "10px 0",
+        margin: "0 0 20px 0",
         "& label.Mui-focused": {
           color: "#671d63",
         },
