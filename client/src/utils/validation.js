@@ -16,7 +16,8 @@ export const validationRegisterSchema = yup.object({
     .matches(
       /[!@#$%^&*(),.?":{}|<>]/,
       "Password must contain at least one special character"
-    ),
+    )
+    .required("Password is required"),
 });
 
 export const validationLoginSchema = yup.object({
@@ -34,5 +35,6 @@ export const validationLoginSchema = yup.object({
     .matches(
       /[!@#$%^&*(),.?":{}|<>]/,
       "Password must contain at least one special character"
-    ),
+    )
+    .required("Password is required"),
 });
