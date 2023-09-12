@@ -8,13 +8,13 @@ const OfferSection = () => {
       container
       sx={{
         height: "max-content",
-        justifyContent: { sm: "space-around", md: "space-evenly" },
+        justifyContent: { xs: "space-around", md: "center" },
         alignItems: { sm: "center" },
         padding: "2rem",
         backgroundColor: "#E6D7ED",
       }}
     >
-      <Grid item xs={12} md={5} sx={{ order: { xs: 2, md: 1 } }}>
+      <Grid item xs={12} md={5} lg={6} sx={{ order: { xs: 2, md: 1 } }}>
         <Typography
           sx={{
             fontSize: { xs: "20px", md: "34px" },
@@ -29,28 +29,31 @@ const OfferSection = () => {
           Live A Life Of Abundance, Attract Endless Happiness And Fulfilment...
         </Typography>
         <PrimaryBtn>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Aceess Now For Free
-          </Typography>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Instant Download.
-          </Typography>
+          <Box sx={{ padding: "0 40px" }}>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Aceess Now For Free
+            </Typography>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Instant Download.
+            </Typography>
+          </Box>
         </PrimaryBtn>
       </Grid>
       <Grid
         item
         xs={12}
         md={5}
+        lg={3}
         sx={{
           order: { xs: 1, md: 2 },
           justifyContent: { sm: "flex-start", md: "center" },
