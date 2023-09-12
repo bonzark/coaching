@@ -1,5 +1,5 @@
-import { Button } from '@mui/material';
-import React from 'react';
+import { Button } from "@mui/material";
+import React from "react";
 
 export const PrimaryBtn = (props) => {
   return (
@@ -8,16 +8,17 @@ export const PrimaryBtn = (props) => {
         backgroundColor: "#671d63",
         display: "flex",
         flexDirection: "column",
+        width: props.fullWidth ? "100%" : { xs: "100%", sm: "max-content" },
         gap: "5px",
         span: { display: "block", fontSize: "16px" },
         color: "#fff",
         borderRadius: "5px",
-        padding: "25px",
+        padding: { xs: "10px", md: "25px" },
         fontSize: "12px",
         border: "1px solid transparent",
         lineHeight: "16px",
         ":hover": {
-          color: "#671d63",
+          color: "#671d63 !important",
           border: "1px solid #671d63",
         },
       }}

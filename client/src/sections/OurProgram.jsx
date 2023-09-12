@@ -38,29 +38,32 @@ const OurProgram = () => {
     <Box
       sx={{
         background: "linear-gradient(#D7CCE4, #DCD9F0)",
+        py: "100px",
+        px: { xs: "25px", sm: "30px" },
       }}
     >
       <Box
         sx={{ textAlign: "center", display: "flex", flexDirection: "column" }}
       >
         <Typography
+          className="borderTitle"
           variant="span"
           sx={{
+            position: "relative",
             fontSize: { xs: "32px", sm: "48px" },
             color: "#671d63",
-            lineHeight: "50px",
+            lineHeight: "48px",
             fontFamily: "'Abril FatFace', sans-serif",
-            content: '""',
-            position: "relative",
-            zIndex: "9999",
+            display: "flex",
+            marginBottom: { xs: "30px", md: "50px" },
+            justifyContent: "center",
             "::before": {
               position: "absolute",
-              top: "80px",
+              bottom: { xs: "-18px", md: "-27px" },
               content: `""`,
               height: "3px",
-              width: "120px",
-              backgroundColor: "black",
-              marginX: "72px",
+              width: "110px",
+              backgroundColor: "#671d63",
             },
           }}
         >
@@ -71,17 +74,16 @@ const OurProgram = () => {
           variant="span"
           sx={{
             fontSize: { xs: "16px", sm: "22px" },
-            color: "#797696",
             lineHeight: "30px",
-            paddingTop: "50px",
-            paddingBottom: "20px",
+            paddingTop: "20px",
+            paddingBottom: { sm: "15px", md: "20px" },
           }}
         >
           Are You Ready To Take Control Of Your Life and Manifest The Life You
           Truly Desire?
         </Typography>
       </Box>
-      <Box sx={{ mx: "50px" }}>
+      <Box sx={{ mx: { sx: "25px", md: "45px", lg: "130px" } }}>
         <Carousel
           sx={{ margin: "30px" }}
           additionalTransfrom={0}
@@ -114,10 +116,18 @@ const OurProgram = () => {
             desktop: {
               breakpoint: {
                 max: 3000,
-                min: 1024,
+                min: 976,
               },
               items: 2,
               partialVisibilityGutter: 20,
+            },
+            tablet: {
+              breakpoint: {
+                max: 976,
+                min: 464,
+              },
+              items: 2,
+              partialVisibilityGutter: 30,
             },
             mobile: {
               breakpoint: {
@@ -126,14 +136,6 @@ const OurProgram = () => {
               },
               items: 1,
               partialVisibilityGutter: 10,
-            },
-            tablet: {
-              breakpoint: {
-                max: 1024,
-                min: 464,
-              },
-              items: 2,
-              partialVisibilityGutter: 30,
             },
           }}
         >
