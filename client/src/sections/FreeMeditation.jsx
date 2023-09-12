@@ -6,49 +6,35 @@ import {
   InputAdornment,
   Paper,
 } from "@mui/material";
+import { useFormik } from "formik";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { PrimaryBtn } from "../components/PrimaryBtn";
+import { validationEmail } from "../utils/validation";
 
 const FreeMeditation = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    enableReinitialize: true,
+    validationSchema: validationEmail,
+    onSubmit: (values) => {
+      console.log(" Free Meditation :", values);
+    },
+  });
+
   return (
     <Box
       sx={{
         mx: "auto",
-        my: "150px",
-        position: "relative",
-        zIndex: "9999",
-        "&:before": {
-          backgroundImage: 'url("./curve3_top.png")',
-          backgroundPosition: "top center",
-          content: '""',
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          zIndex: 0,
-          backgroundRepeat: "no-repeat",
-        },
-        "&:after": {
-          backgroundImage: 'url("./curve3_bottom.png")',
-          backgroundPosition: "bottom center",
-          content: '""',
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          top: "205px",
-          left: 0,
-          zIndex: "-1",
-          backgroundRepeat: "no-repeat",
-        },
+        padding: "6rem 0",
+        backgroundColor: "#f9f6f9",
       }}
     >
       <Box
         sx={{
-          paddingTop: 22,
           marginInline: "auto",
           width: "100%",
-          backgroundColor: "#f9f6f9",
         }}
       >
         <Typography
@@ -77,7 +63,7 @@ const FreeMeditation = () => {
           Sign up with us to receive free meditation
         </Typography>
         <Box sx={{ mx: "auto" }}>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <Paper
               sx={{
                 backgroundColor: "white",
@@ -92,7 +78,11 @@ const FreeMeditation = () => {
                 id="email"
                 name="email"
                 type="email"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 required={true}
+                error={formik.touched.name && Boolean(formik.errors.name)}
                 sx={{
                   paddingY: "20px",
                   paddingX: "5px",

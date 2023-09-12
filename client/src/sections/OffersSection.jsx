@@ -10,7 +10,7 @@ const OfferSection = () => {
         height: "max-content",
         justifyContent: { xs: "space-around", md: "center" },
         alignItems: { sm: "center" },
-        padding: "2rem",
+        padding: "4rem 2rem",
         backgroundColor: "#E6D7ED",
       }}
     >
@@ -48,7 +48,7 @@ const OfferSection = () => {
             </Typography>
           </Box>
         </PrimaryBtn>
-      </Grid>
+      </Grid >
       <Grid
         item
         xs={12}
@@ -75,11 +75,11 @@ const OfferSection = () => {
               height: "100%",
               objectFit: "cover",
             }}
-            alt=""
+            alt="#"
           />
         </Box>
       </Grid>
-    </Grid>
+    </Grid >
   );
 };
 
