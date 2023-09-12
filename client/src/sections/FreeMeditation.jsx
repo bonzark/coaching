@@ -4,7 +4,6 @@ import {
   InputBase,
   Typography,
   InputAdornment,
-  FormControl,
   Paper,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -78,14 +77,7 @@ const FreeMeditation = () => {
           Sign up with us to receive free meditation
         </Typography>
         <Box sx={{ mx: "auto" }}>
-          <FormControl
-            sx={{
-              width: "100%",
-              mx: "auto",
-              py: "18px",
-            }}
-            variant="outlined"
-          >
+          <form>
             <Paper
               sx={{
                 backgroundColor: "white",
@@ -97,6 +89,10 @@ const FreeMeditation = () => {
               }}
             >
               <InputBase
+                id="email"
+                name="email"
+                type="email"
+                required={true}
                 sx={{
                   paddingY: "20px",
                   paddingX: "5px",
@@ -108,6 +104,7 @@ const FreeMeditation = () => {
                 endAdornment={
                   <InputAdornment position="end">
                     <PrimaryBtn
+                      type="submit"
                       sx={{
                         background: "linear-gradient(#f2d9de, #793473)",
                         color: "white",
@@ -122,7 +119,7 @@ const FreeMeditation = () => {
                 }
               />
             </Paper>
-          </FormControl>
+          </form>
         </Box>
       </Box>
     </Box>
