@@ -17,7 +17,6 @@ const SuccessStories = ({ title, content, imgSrc }) => {
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
-            // alignItems: "center",
             backgroundColor: "white",
           }}
         >
@@ -77,8 +76,8 @@ const SuccessStories = ({ title, content, imgSrc }) => {
                 lineHeight: { xs: "22px", sm: "30px" },
                 textTransform: "capitalize",
                 fontFamily: "'Abril FatFace', sans-serif",
-                px: { xs: "0.5rem", lg: "3rem" },
-                my: "15px",
+                px: { xs: "1rem", md: "2rem", lg: "3rem" },
+                my: { xs: "8px", md: "10px", lg: "15px" },
               }}
             >
               {title}
@@ -89,8 +88,8 @@ const SuccessStories = ({ title, content, imgSrc }) => {
                 color: "#575757",
                 fontSize: { xs: "15px", sm: "23px" },
                 lineHeight: { xs: "20px", sm: "28px" },
-                px: { xs: "0.5rem", lg: "3rem" },
-                pb: { xs: "0.5rem", sm: "0" },
+                px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
+                mb: { xs: "8px", md: "10px", lg: "15px" },
               }}
             >
               {content}
