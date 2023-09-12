@@ -27,7 +27,7 @@ const Navbar = () => {
     },
     {
       name: "Events",
-      link: "/",
+      link: "/events",
     },
     {
       name: "Healing",
