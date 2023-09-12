@@ -8,13 +8,13 @@ const OfferSection = () => {
       container
       sx={{
         height: "max-content",
-        justifyContent: { sm: "space-around", md: "space-evenly" },
+        justifyContent: { sm: "space-around", md: "space-evenly", lg: "flex-end" },
         alignItems: { sm: "center" },
-        padding: "2rem",
+        padding: "4rem 2rem",
         backgroundColor: "#E6D7ED",
       }}
     >
-      <Grid item xs={12} md={5} sx={{ order: { xs: 2, md: 1 } }}>
+      <Grid item xs={12} md={5} sx={{ order: { xs: 2, md: 1 }, paddingRight: { md: "25px" } }}>
         <Typography
           sx={{
             fontSize: { xs: "20px", md: "34px" },
@@ -29,22 +29,24 @@ const OfferSection = () => {
           Live A Life Of Abundance, Attract Endless Happiness And Fulfilment...
         </Typography>
         <PrimaryBtn>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Aceess Now For Free
-          </Typography>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Instant Download.
-          </Typography>
+          <Box sx={{ padding: { sm: "0 40px" } }}>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Aceess Now For Free
+            </Typography>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Instant Download.
+            </Typography>
+          </Box>
         </PrimaryBtn>
       </Grid>
       <Grid
@@ -72,7 +74,7 @@ const OfferSection = () => {
               height: "100%",
               objectFit: "cover",
             }}
-            alt=""
+            alt="#"
           />
         </Box>
       </Grid>
