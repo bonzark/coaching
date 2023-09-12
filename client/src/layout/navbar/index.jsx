@@ -54,10 +54,12 @@ const Navbar = () => {
 
   const isLoggedIn = !!getAuthToken();
 
-  console.log("isLoggedIn", isLoggedIn);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (formik) => {
+    setOpen(false);
+    formik.resetForm();
+  };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -248,6 +250,7 @@ const Navbar = () => {
                   },
                   display: { xs: "none", md: "block" },
                 }}
+                onClick={handleOpen}
               >
                 Login
               </Button>

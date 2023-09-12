@@ -34,7 +34,10 @@ const listItems = [
 const HeroBanner = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (resetForm) => {
+    setOpen(false);
+    resetForm();
+  };
   return (
     <>
       <FormModal open={open} handleClose={handleClose} />

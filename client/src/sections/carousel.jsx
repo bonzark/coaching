@@ -62,10 +62,12 @@ const CarouselCard = () => {
       }}
     >
       <Box
-        sx={{
-          // background: "linear-gradient(#EFE6EF, #F1E2F0)",
-          // py: { xs: 40, md: 35 },
-        }}
+        sx={
+          {
+            // background: "linear-gradient(#EFE6EF, #F1E2F0)",
+            // py: { xs: 40, md: 35 },
+          }
+        }
       >
         <Typography
           className="borderTitle"
