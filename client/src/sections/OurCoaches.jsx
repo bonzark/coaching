@@ -7,29 +7,29 @@ import CoachCarouselCard from "../components/CoachCarouselCard";
 const OurCoaches = () => {
   const items = [
     {
-      title: "Joan Deo",
-      subtitle: "Accelerated Learning Coach",
-      imgSrc: "./Coach1.jpg",
+      title: "HELEN",
+      subtitle: "Anxiety UK Approved Therapist",
+      imgSrc: "./HELEN.jpg",
     },
     {
-      title: "Joan Deo",
+      title: "Brandi",
+      subtitle: "A spiritual mentor",
+      imgSrc: "./Brandi.jpg",
+    },
+    {
+      title: "Sarah",
+      subtitle: "An Energy Healer",
+      imgSrc: "./Sarah.jpg",
+    },
+    {
+      title: "Jacqueline",
+      subtitle: "Minset Coach And Intuitive Healer",
+      imgSrc: "./Jacqueline.jpg",
+    },
+    {
+      title: "Rita",
       subtitle: "Accelerated Learning Coach",
       imgSrc: "./Coach2.jpg",
-    },
-    {
-      title: "Joan Deo",
-      subtitle: "Accelerated Learning Coach",
-      imgSrc: "./Coach1.jpg",
-    },
-    {
-      title: "Joan Deo",
-      subtitle: "Accelerated Learning Coach",
-      imgSrc: "./Coach2.jpg",
-    },
-    {
-      title: "Joan Deo",
-      subtitle: "Accelerated Learning Coach",
-      imgSrc: "./Coach1.jpg",
     },
   ];
 
@@ -155,10 +155,10 @@ const OurCoaches = () => {
               color: "white",
               border: "none",
             },
-            display: { xs: "none", md: "block" },
+            display: "block",
           }}
         >
-          SEE ALL PROGRAMS
+          SEE ALL COACHES
         </Button>
       </Box>
     </>
