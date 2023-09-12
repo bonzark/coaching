@@ -11,6 +11,7 @@ import Home from "../pages/home/home";
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
+import CoachDetail from "../pages/coachDetail/coachDetail";
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/online-courses" element={<OnlineCourses />} />
+        <Route exact path="/coaching-with-rita" element={<CoachDetail />} />
         <Route element={<PrivateRoute />}>
           <Route exact path="/dashboard" element={<Dashboard />} />
         </Route>
