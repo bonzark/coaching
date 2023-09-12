@@ -8,7 +8,7 @@ export const PrimaryBtn = (props) => {
         backgroundColor: "#671d63",
         display: "flex",
         flexDirection: "column",
-        width: { xs: "100%", sm: "max-content" },
+        width: props.fullWidth ? "100%" : { xs: "100%", sm: "max-content" },
         gap: "5px",
         span: { display: "block", fontSize: "16px" },
         color: "#fff",

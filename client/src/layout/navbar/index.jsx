@@ -52,18 +52,20 @@ const Navbar = () => {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    formik.resetForm();
+  };
   const [colorChange, setColorchange] = React.useState(false);
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
       setColorchange(true);
-    }
-    else {
+    } else {
       setColorchange(false);
     }
   };
-  window.addEventListener('scroll', changeNavbarColor);
+  window.addEventListener("scroll", changeNavbarColor);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -143,7 +145,11 @@ const Navbar = () => {
           component="nav"
           sx={{
             background: colorChange ? "white" : "transparent",
-            boxShadow: colorChange ? { lg: '#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px' } : "none",
+            boxShadow: colorChange
+              ? {
+                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+                }
+              : "none",
             zIndex: "99999",
           }}
         >
@@ -174,7 +180,13 @@ const Navbar = () => {
                 LOGOIPSUM
               </Link>
             </Typography>
-            <Box sx={{ display: { xs: "none", md: "flex" }, gap: { md: "5px", lg: "15px" }, marginRight: { md: "15px" } }}>
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                gap: { md: "5px", lg: "15px" },
+                marginRight: { md: "15px" },
+              }}
+            >
               {navItems.map((item) => (
                 <Button
                   key={item.name}
@@ -184,7 +196,7 @@ const Navbar = () => {
                     color: "#671d63",
                     fontWeight: "600",
                     textAlign: "center",
-                    padding: 0
+                    padding: 0,
                   }}
                 >
                   {item.name}
@@ -230,6 +242,7 @@ const Navbar = () => {
                   },
                   display: { xs: "none", md: "block" },
                 }}
+                onClick={handleOpen}
               >
                 Login
               </Button>
@@ -256,7 +269,7 @@ const Navbar = () => {
             {drawer}
           </Drawer>
         </nav>
-      </Box >
+      </Box>
     </>
   );
 };
