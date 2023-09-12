@@ -14,41 +14,14 @@ const FreeMeditation = () => {
     <Box
       sx={{
         mx: "auto",
-        my: "150px",
-        position: "relative",
-        zIndex: "9999",
-        "&:before": {
-          backgroundImage: 'url("./curve3_top.png")',
-          backgroundPosition: "top center",
-          content: '""',
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          zIndex: 0,
-          backgroundRepeat: "no-repeat",
-        },
-        "&:after": {
-          backgroundImage: 'url("./curve3_bottom.png")',
-          backgroundPosition: "bottom center",
-          content: '""',
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          top: "205px",
-          left: 0,
-          zIndex: "-1",
-          backgroundRepeat: "no-repeat",
-        },
+        padding: "6rem 0",
+        backgroundColor: "#f9f6f9",
       }}
     >
       <Box
         sx={{
-          paddingTop: 22,
           marginInline: "auto",
           width: "100%",
-          backgroundColor: "#f9f6f9",
         }}
       >
         <Typography
