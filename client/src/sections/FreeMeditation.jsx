@@ -77,7 +77,7 @@ const FreeMeditation = () => {
           Sign up with us to receive free meditation
         </Typography>
         <Box sx={{ mx: "auto" }}>
-          <form onSubmit="submit">
+          <form>
             <Paper
               sx={{
                 backgroundColor: "white",
@@ -92,7 +92,7 @@ const FreeMeditation = () => {
                 id="email"
                 name="email"
                 type="email"
-                required="true"
+                required={true}
                 sx={{
                   paddingY: "20px",
                   paddingX: "5px",
