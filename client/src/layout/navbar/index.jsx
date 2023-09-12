@@ -110,6 +110,8 @@ const Navbar = () => {
                 border: "1px solid transparent",
               },
             }}
+            component={Link}
+            to="/dashboard"
           >
             My Account
           </Button>
@@ -129,6 +131,7 @@ const Navbar = () => {
                 border: "1px solid transparent",
               },
             }}
+            onClick={handleOpen}
           >
             Login
           </Button>
