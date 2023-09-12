@@ -65,8 +65,7 @@ const AboutSection = () => {
             <Grid
               item
               xs={12}
-              md={6}
-              lg={5}
+              md={5}
               sx={{
                 display: "flex",
                 justifyContent: "flex-start",
@@ -199,18 +198,10 @@ const AboutSection = () => {
                   Become a Master Creator.
                 </Typography>
               </Typography>
-              <Box
-                sx={{
-                  display: { xs: "flex", md: "block" },
-                  justifyContent: { xs: "center" },
-                  width: { xs: "100%" },
-                }}
-              >
-                <PrimaryBtn>
-                  <span>Access Now For Free</span>
-                  <Typography component="p">Instant Download</Typography>
-                </PrimaryBtn>
-              </Box>
+              <PrimaryBtn>
+                <span>Access Now For Free</span>
+                <Typography component="p">Instant Download</Typography>
+              </PrimaryBtn>
             </Grid>
           </Grid>
         </Box>
