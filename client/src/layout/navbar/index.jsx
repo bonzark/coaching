@@ -30,19 +30,15 @@ const Navbar = () => {
       link: "/",
     },
     {
-      name: "Healing",
+      name: "Coaching With Rita",
       link: "/",
     },
     {
-      name: "Online Courses",
-      link: "/online-courses",
-    },
-    {
-      name: "Caoaching",
+      name: "Become Your Creator",
       link: "/",
     },
     {
-      name: "Talk with Brandi",
+      name: "Contact Us",
       link: "/",
     },
   ];
@@ -54,10 +50,20 @@ const Navbar = () => {
 
   const isLoggedIn = !!getAuthToken();
 
-  console.log("isLoggedIn", isLoggedIn);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [colorChange, setColorchange] = React.useState(false);
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    }
+    else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -71,30 +77,21 @@ const Navbar = () => {
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
-              <ListItemText primary={item.name} to={item.link} />
+              <Button
+                component={Link}
+                to={item.link}
+                sx={{
+                  color: "#673d67",
+                  margin: "0 auto",
+                }}
+              >
+                {item.name}
+              </Button>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Box sx={{ display: "grid", gap: "20px" }}>
-        <Button
-          variant="outlined"
-          sx={{
-            backgroundColor: "#671d63",
-            color: "white",
-            minWidth: "130px",
-            margin: "0 auto",
-            fontWeight: "bolder",
-            border: "1px solid transparent",
-            ":hover": {
-              backgroundColor: "transparent",
-              color: "#671d63",
-              border: "1px solid #671d63",
-            },
-          }}
-        >
-          Contact us
-        </Button>
         {isLoggedIn ? (
           <Button
             variant="outlined"
@@ -145,9 +142,9 @@ const Navbar = () => {
         <AppBar
           component="nav"
           sx={{
-            background: "transparent",
-            boxShadow: "none",
-            backdropFilter: "blur(2px)",
+            background: colorChange ? "white" : "transparent",
+            boxShadow: colorChange ? { lg: '#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px' } : "none",
+            zIndex: "99999",
           }}
         >
           <Toolbar>
@@ -177,38 +174,23 @@ const Navbar = () => {
                 LOGOIPSUM
               </Link>
             </Typography>
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: { md: "5px", lg: "15px" }, marginRight: { md: "15px" } }}>
               {navItems.map((item) => (
                 <Button
                   key={item.name}
                   to={item.link}
                   component={Link}
-                  sx={{ color: "#671d63", fontWeight: "600" }}
+                  sx={{
+                    color: "#671d63",
+                    fontWeight: "600",
+                    textAlign: "center",
+                    padding: 0
+                  }}
                 >
                   {item.name}
                 </Button>
               ))}
             </Box>
-            <Button
-              variant="outlined"
-              sx={{
-                backgroundColor: "#671d63",
-                color: "white",
-                fontWeight: "bolder",
-                fontSize: { xs: "8px", md: "12px", lg: "15px" },
-                border: "1px solid transparent",
-                width: { sm: "130px", lg: "auto" },
-                ":hover": {
-                  backgroundColor: "transparent",
-                  color: "#671d63",
-                  border: "1px solid #671d63",
-                },
-                marginRight: "10px",
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              Contact us
-            </Button>
             {isLoggedIn ? (
               <Button
                 variant="outlined"
@@ -274,7 +256,7 @@ const Navbar = () => {
             {drawer}
           </Drawer>
         </nav>
-      </Box>
+      </Box >
     </>
   );
 };

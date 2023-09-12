@@ -19,7 +19,7 @@ const Footer = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "2px solid #671d63",
+          borderBottom: "1px solid #671d63",
           gap: "30px",
           flexWrap: "wrap",
         }}
@@ -255,6 +255,25 @@ const Footer = () => {
             </Box>
           </Box>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          paddingTop: { xs: "1rem", md: "3rem" },
+          textAlign: { xs: "left", md: "center" },
+          maxWidth: "1500px",
+          margin: "0 auto",
+        }}
+      >
+        <Typography
+          varient="span"
+          sx={{
+            color: "#671d63",
+            lineHeight: "1.5rem",
+            fontSize: "1.2rem",
+          }}
+        >
+          Become Your Creator - 2023 All rights reserved - Privacy - Terms
+        </Typography>
       </Box>
     </Box>
   );
