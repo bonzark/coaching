@@ -65,7 +65,7 @@ const HeroBanner = () => {
       >
         <Container
           sx={{
-            minHeight: { xs: "80vh", md: "100%" },
+            minHeight: { xs: "100vh", md: "100%" },
             display: "flex",
             alignItems: { xs: "end", md: "center" },
             position: "relative",
