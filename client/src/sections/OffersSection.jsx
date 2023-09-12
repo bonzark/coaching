@@ -7,13 +7,14 @@ const OfferSection = () => {
     <Grid
       container
       sx={{
-        height: "750px",
-        justifyContent: { sm: "space-around", md: "space-evenly" },
+        height: "max-content",
+        justifyContent: { sm: "space-around", md: "space-evenly", lg: "flex-end" },
         alignItems: { sm: "center" },
-        padding: { xs: "35px 20px", sm: "50px 0", height: "max-content" },
+        padding: "4rem 2rem",
+        backgroundColor: "#E6D7ED",
       }}
     >
-      <Grid item xs={12} sm={6} lg={5} sx={{ order: { xs: 2, sm: 1 } }}>
+      <Grid item xs={12} md={5} sx={{ order: { xs: 2, md: 1 }, paddingRight: { md: "25px" } }}>
         <Typography
           sx={{
             fontSize: { xs: "20px", md: "34px" },
@@ -28,37 +29,39 @@ const OfferSection = () => {
           Live A Life Of Abundance, Attract Endless Happiness And Fulfilment...
         </Typography>
         <PrimaryBtn>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Aceess Now For Free
-          </Typography>
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { fontWeight: 900 },
-            }}
-          >
-            Instant Download.
-          </Typography>
+          <Box sx={{ padding: { sm: "0 40px" } }}>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Aceess Now For Free
+            </Typography>
+            <Typography
+              component={"span"}
+              sx={{
+                fontSize: { fontWeight: 900 },
+              }}
+            >
+              Instant Download.
+            </Typography>
+          </Box>
         </PrimaryBtn>
       </Grid>
       <Grid
         item
         xs={12}
-        sm={5}
-        lg={4}
+        md={5}
         sx={{
-          order: { xs: 1, sm: 2 },
+          order: { xs: 1, md: 2 },
           justifyContent: { sm: "flex-start", md: "center" },
           display: { xs: "grid", sm: "block" },
         }}
       >
         <Box
           sx={{
+            margin: { xs: "0 auto", md: "0" },
             width: { xs: "275px", md: "400px", lg: "450px" },
             height: { xs: "275px", md: "400px", lg: "450px" },
           }}
@@ -71,7 +74,7 @@ const OfferSection = () => {
               height: "100%",
               objectFit: "cover",
             }}
-            alt=""
+            alt="#"
           />
         </Box>
       </Grid>

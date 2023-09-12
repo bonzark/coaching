@@ -43,3 +43,20 @@ export const cradData = [
       "Feeling light, energised with a sense of clarity is what you walk away with! A unique combination of nature, mindfulness, yoga and healing will bring you back to your natural self.",
   },
 ];
+
+export const ourProgramsData = [
+  {
+    id: "1",
+    imgSrc: "/program.jpg",
+    title: "Experience a World of Endless Potential: Join Talks With Brandi",
+    contentProg: [
+      "Experience a World of Endless Potential: Join Brandi on a Journey of Remarkable Dialogue Interstellar Connections Beauty Insights and Spiritual Enlightenment!",
+      " Brandi a renowned manifestation expert suggests several powerful techniques to help individuals manifest their desires effectively.",
+      " By aligning their thoughts emotions and actions with this elevated state individuals can expedite the manifestation process and experience transformative leaps in their lives.",
+      " Brandi will also unveil the secrets to flawless makeup techniques helping you unleash your inner radiance.",
+    ],
+    linkText: "Know More About Brandi",
+    btnText1: "Access Now For Free ",
+    btnText2: " Instant Download",
+  },
+];

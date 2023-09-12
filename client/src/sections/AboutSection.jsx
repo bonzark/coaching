@@ -10,6 +10,7 @@ const AboutSection = () => {
         minHeight: "100vh",
         display: "grid",
         padding: "2rem",
+        background: "linear-gradient(#DCD9F0,#ffffff)"
       }}
     >
       <Box>
@@ -40,7 +41,7 @@ const AboutSection = () => {
                   xl: "600px",
                 },
                 width: { xs: "275px", sm: "375px", md: "400px", xl: "600px" },
-                margin: { md: "0 0 0 auto" },
+                margin: { xs: "0 auto", md: "0 0 0 auto" },
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -175,7 +176,6 @@ const AboutSection = () => {
                   Access Now For Free
                 </Typography>
                 <Typography sx={{ fontSize: "16px", fontWeight: 900 }}>
-                  {" "}
                   Instant Download
                 </Typography>
               </Box>

@@ -27,7 +27,7 @@ const Navbar = () => {
     },
     {
       name: "Events",
-      link: "/",
+      link: "/events",
     },
     {
       name: "Coaching With Rita",
@@ -43,20 +43,20 @@ const Navbar = () => {
     },
   ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [colorChange, setColorchange] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const isLoggedIn = !!getAuthToken();
-
-  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     setOpen(false);
     formik.resetForm();
   };
-  const [colorChange, setColorchange] = React.useState(false);
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
@@ -150,8 +150,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-                }
+                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+              }
               : "none",
             zIndex: "99999",
           }}
@@ -164,7 +164,7 @@ const Navbar = () => {
               onClick={handleDrawerToggle}
               sx={{
                 mr: 2,
-                display: { md: "none" },
+                display: { md: "none", xs: mobileOpen ? "none" : "" },
                 backgroundColor: "#671d63",
               }}
             >

@@ -30,36 +30,12 @@ const items = [
   },
 ];
 
-const CarouselCard = () => {
+const SuccessCarousel = () => {
   return (
     <Box
       sx={{
         position: "relative",
         zIndex: "5",
-        // "&:before": {
-        //   backgroundImage: 'url("./curve2_top.png")',
-        //   backgroundPosition: "top center",
-        //   content: '""',
-        //   width: "100%",
-        //   height: "100%",
-        //   position: "absolute",
-        //   top: 0,
-        //   left: 0,
-        //   zIndex: 0,
-        //   backgroundRepeat: "no-repeat",
-        // },
-        // "&:after": {
-        //   backgroundImage: 'url("./curve2_bottom.png")',
-        //   backgroundPosition: "top center",
-        //   content: '""',
-        //   width: "100%",
-        //   height: "100%",
-        //   position: "absolute",
-        //   top: "650px",
-        //   left: 0,
-        //   zIndex: 0,
-        //   backgroundRepeat: "no-repeat",
-        // },
       }}
     >
       <Box
@@ -109,4 +85,4 @@ const CarouselCard = () => {
   );
 };
 
-export default CarouselCard;
+export default SuccessCarousel;

@@ -39,14 +39,14 @@ export const validationLoginSchema = yup.object({
     .required("Password is required"),
 });
 
-// export const validationEmail = yup.object({
-//   email: yup
-//     .string("Enter your email")
-//     .email("Enter a valid email")
-//     .required("Email is required")
-//     .matches(
-//       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-//       "Email must contain @"
-//     )
-//     .required("Please enter a valid email"),
-// });
+export const validationEmail = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required")
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      "Email must contain @"
+    )
+    .required("Please enter a valid email"),
+});
