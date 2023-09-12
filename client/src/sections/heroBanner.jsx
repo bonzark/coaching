@@ -43,9 +43,10 @@ const HeroBanner = () => {
       <FormModal open={open} handleClose={handleClose} />
       <Box
         sx={{
-          backgroundImage: "url('./heroBg.JPG')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundImage: "url('./heroBg.jpg')",
+          backgroundSize: { xs: "100%", md: "85%" },
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: { xs: "center top", md: "140% center" },
           position: "relative",
           "::after": {
             content: "' '",
@@ -53,8 +54,8 @@ const HeroBanner = () => {
             width: "100%",
             height: "100%",
             background: {
-              xs: "linear-gradient(0, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0) 100%)",
-              md: "linear-gradient(90deg, rgba(255,255,255,1) 11%, rgba(255,255,255,0) 100%)",
+              xs: "linear-gradient(0, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 66%)",
+              md: "linear-gradient(90deg, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 60%)",
             },
             zIndex: 0,
             top: 0,
@@ -64,17 +65,23 @@ const HeroBanner = () => {
       >
         <Container
           sx={{
-            minHeight: "100vh",
+            minHeight: { xs: "80vh", md: "100%" },
             display: "flex",
             alignItems: { xs: "end", md: "center" },
             position: "relative",
             zIndex: 1,
           }}
+          maxWidth="xl"
         >
           <Box
             sx={{
-              width: { xs: "auto  ", md: "50%" },
-              paddingBottom: { xs: "100px", md: 0 },
+              width: { xs: "auto  ", md: "45%", lg: "40%" },
+              padding: {
+                xs: "0 0 50px 0",
+                md: "100px 0",
+                lg: "200px 0",
+                xl: "300px 0",
+              },
             }}
           >
             <Typography
