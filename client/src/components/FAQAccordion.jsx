@@ -5,15 +5,11 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
-    borderBottom: 0,
-  },
   "&:before": {
     display: "none",
   },
@@ -40,7 +36,7 @@ const AccordionSummary = styled((props) => (
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
+  // borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
 const FAQAccordion = ({ data }) => {
@@ -51,33 +47,45 @@ const FAQAccordion = ({ data }) => {
   };
 
   return (
-    <Box>
-      {data.map((item, index) => (
-        <Accordion
-          expanded={expanded === `panel${index + 1}`}
-          onChange={handleChange(`panel${index + 1}`)}
-          key={index}
-          sx={{
-            border: "none",
-            borderTop: "1px solid #671d63",
-          }}
-        >
-          <AccordionSummary
-            aria-controls="panel1d-content"
-            id={`panel${index + 1}d-header`}
+    <Container
+      sx={{
+        padding: "4rem 2rem",
+      }}
+    >
+      <Box
+        sx={{
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow:
+            "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+        }}
+      >
+        {data.map((item, index) => (
+          <Accordion
+            expanded={expanded === `panel${index + 1}`}
+            onChange={handleChange(`panel${index + 1}`)}
+            key={index}
             sx={{
-              backgroundColor: "#f2effb",
-              color: "#671d63",
+              border: "none",
             }}
           >
-            <Typography>{item.summary}</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ backgroundColor: "#671d63", color: "#fff" }}>
-            <Typography>{item.details}</Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </Box>
+            <AccordionSummary
+              aria-controls="panel1d-content"
+              id={`panel${index + 1}d-header`}
+              sx={{
+                backgroundColor: "#f9f6f9",
+                color: "#671d63",
+              }}
+            >
+              <Typography>{item.summary}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ backgroundColor: "#fff", color: "#000" }}>
+              <Typography>{item.details}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Box>
+    </Container>
   );
 };
 
