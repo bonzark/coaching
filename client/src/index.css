@@ -23,8 +23,15 @@ body {
 }
 
 .css-1m9128y {
-  width: 83% !important;
+  margin: 0 -225px;
   text-align: right !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .css-1m9128y {
+    margin: 0 -50px;
+    text-align: right !important;
+  }
 }
 
 .css-1abc02a {

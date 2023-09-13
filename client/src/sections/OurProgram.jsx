@@ -12,6 +12,7 @@ const OurProgram = () => {
         display: "grid",
         paddingX: { xs: "1rem", md: "5rem", lg: "10rem" },
         paddingY: "50px",
+        background: "linear-gradient(#fff, #DCD9F0)"
       }}
     >
       <Box>
