@@ -50,3 +50,16 @@ export const validationEmail = yup.object({
     )
     .required("Please enter a valid email"),
 });
+
+export const validationContact = yup.object({
+  fullname: yup.string("Enter your full name").required("Name is required"),
+  contact: yup
+    .string("Enter your contact number")
+    .matches(/^(\+\d{1,3}[- ]?)?\d{10}$/, "Invalid contact number")
+    .required("Contact number is required"),
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  message: yup.string("Enter a message").required("Message is required"),
+});
