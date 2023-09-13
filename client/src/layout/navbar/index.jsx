@@ -31,7 +31,7 @@ const Navbar = () => {
     },
     {
       name: "Coaching With Rita",
-      link: "/",
+      link: "/coaching-with-rita",
     },
     {
       name: "Become Your Creator",
@@ -150,8 +150,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-              }
+                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+                }
               : "none",
             zIndex: "99999",
           }}
