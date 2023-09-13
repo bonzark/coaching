@@ -3,7 +3,7 @@ import React from "react";
 import { aboutTemplateData } from "../utils/constant";
 import AboutTemplate from "../components/AboutTemplate";
 
-const AboutSection = ({}) => {
+const AboutSection = ({ }) => {
   const aboutTemplate1Data = aboutTemplateData.find(
     (item) => item.id === "Rita"
   );

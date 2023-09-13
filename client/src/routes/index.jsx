@@ -11,9 +11,11 @@ import Home from "../pages/home/home";
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
+import BecomeYourCreator from "../pages/becomeYourCreater/becomeYourCreater"
+import WealthCreationSection from "../pages/../sections/WealthCreation"
 import CoachDetail from "../pages/coachDetail/coachDetail";
+import Contact from "../pages/contact/contact"
 import Event from "../pages/event/event";
-import BecomeYourCreator from "../pages/becomeYourCreater/becomeYourCreater";
 
 const Routers = () => {
   return (
@@ -28,7 +30,13 @@ const Routers = () => {
           path="/become-your-creator"
           element={<BecomeYourCreator />}
         />
+        <Route
+          exact
+          path="/wealth-creation"
+          element={<WealthCreationSection />}
+        />
         <Route exact path="/events" element={<Event />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route element={<PrivateRoute />}>
           <Route exact path="/dashboard" element={<Dashboard />} />
         </Route>

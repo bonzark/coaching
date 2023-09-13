@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import FormModal from "../../sections/FormModal";
 import { getAuthToken } from "../../utils/auth";
+import { navItems } from "../../utils/constant";
 
 const Navbar = () => {
   const drawerWidth = 300;
@@ -39,7 +40,7 @@ const Navbar = () => {
     },
     {
       name: "Contact Us",
-      link: "/",
+      link: "/contact",
     },
   ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -150,8 +151,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-                }
+                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+              }
               : "none",
             zIndex: "99999",
           }}

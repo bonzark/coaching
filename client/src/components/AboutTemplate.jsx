@@ -39,12 +39,13 @@ const AboutTemplate = (props) => {
               sx={{
                 height: {
                   xs: "275px",
-                  sm: "375px",
-                  md: "400px",
-                  xl: "600px",
+                  sm: "350px",
+                  md: "375px",
+                  lg: "500px",
+                  xl: "600px"
                 },
-                width: { xs: "275px", sm: "375px", md: "400px", xl: "600px" },
-                margin: { xs: "0 auto", md: "0 0 0 auto" },
+                width: { xs: "275px", sm: "350px", md: "375px", lg: "500px", xl: "600px" },
+                margin: { xs: "0 auto", lg: "0 0 0 auto" },
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -67,6 +68,7 @@ const AboutTemplate = (props) => {
             </Box>
           </Grid>
           <Grid
+            item
             xs={12}
             md={6}
             lg={6}
@@ -132,7 +134,7 @@ const AboutTemplate = (props) => {
           </Grid>
         </Grid>
       </Box>
-    </Box>
+    </Box >
   );
 };
 
