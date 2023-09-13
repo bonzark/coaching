@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Details</title>
+    <style>
+      body {
+        padding: 2rem;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      h1 {
+        text-transform: uppercase;
+        text-align: center;
+        color: #671d63;
+        margin-bottom: 2rem;
+      }
+      p {
+        font-weight: 100;
+        line-height: 20px;
+      }
+      .box {
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px #00000030;
+      }
+      h3 {
+        min-width: 80px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 15px;
+      }
+      .row:nth-child(odd) {
+        background-color: #f2effb;
+      }
+      .row:nth-child(even) {
+        background-color: #671d63;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>A new inquery has arrived!</h1>
+    <div class="box">
+      <div class="row">
+        <h3>Name</h3>
+        <p>Lorem, ipsum dolor.</p>
+      </div>
+      <div class="row">
+        <h3>Email</h3>
+        <p>Lorem@ipsum.dolor</p>
+      </div>
+      <div class="row">
+        <h3>Contact</h3>
+        <p>+1 1231231231</p>
+      </div>
+      <div class="row">
+        <h3>Message</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor labore,
+          eaque, pariatur suscipit vero ipsum soluta cum ullam aperiam tenetur
+          perspiciatis sit, ad ex ea?
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
