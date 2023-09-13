@@ -14,7 +14,7 @@ const OurProgram = ({}) => {
         minHeight: "100vh",
         display: "grid",
         paddingX: { lg: "10rem" },
-        paddingY: "50px",
+        background: "linear-gradient(#DCD9F0,#ffffff)",
       }}
     >
       <Box>

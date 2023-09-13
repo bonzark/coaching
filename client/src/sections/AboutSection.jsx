@@ -13,7 +13,7 @@ const AboutSection = ({}) => {
       sx={{
         minHeight: "100vh",
         display: "grid",
-        paddingY: "50px",
+        background: "linear-gradient(#DCD9F0,#ffffff)",
       }}
     >
       <Box>

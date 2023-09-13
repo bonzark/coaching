@@ -74,3 +74,26 @@ export const aboutTemplateData = [
     reverse: false,
   },
 ];
+
+export const footerItems = [
+  {
+    name: "Our Coaching",
+    href: "/",
+  },
+  {
+    name: "Events",
+    href: "/events",
+  },
+  {
+    name: "Coaching With Rita",
+    href: "/",
+  },
+  {
+    name: "Become Your Creator",
+    href: "/",
+  },
+  {
+    name: "Contact Us",
+    href: "/",
+  },
+];
