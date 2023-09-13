@@ -1,13 +1,14 @@
 import React from "react";
 import { Box, Typography, Paper } from "@mui/material";
 
-const SuccessStories = ({ title, content, imgSrc }) => {
+const SuccessStories = ({ title, content, imgSrc, reverse }) => {
   return (
     <Box sx={{ paddingTop: 6, position: "relative" }}>
       <Box
         component={"div"}
         sx={{ mx: { xs: "50px", lg: "225px" } }}
         key={title}
+        className="story"
       >
         <Paper
           elevation={3}
@@ -15,7 +16,7 @@ const SuccessStories = ({ title, content, imgSrc }) => {
             width: "100%",
             position: "relative",
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", md: !reverse ? "row" : "row-reverse" },
             justifyContent: "space-between",
             backgroundColor: "white",
           }}
