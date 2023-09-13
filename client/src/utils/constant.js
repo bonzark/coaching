@@ -44,19 +44,33 @@ export const cradData = [
   },
 ];
 
-export const ourProgramsData = [
+export const aboutTemplateData = [
   {
-    id: "1",
-    imgSrc: "/program.jpg",
-    title: "Experience a World of Endless Potential: Join Talks With Brandi",
-    contentProg: [
-      "Experience a World of Endless Potential: Join Brandi on a Journey of Remarkable Dialogue Interstellar Connections Beauty Insights and Spiritual Enlightenment!",
-      " Brandi a renowned manifestation expert suggests several powerful techniques to help individuals manifest their desires effectively.",
-      " By aligning their thoughts emotions and actions with this elevated state individuals can expedite the manifestation process and experience transformative leaps in their lives.",
-      " Brandi will also unveil the secrets to flawless makeup techniques helping you unleash your inner radiance.",
+    id: "Rita",
+    image: "/about.JPG",
+    title: "Hi, I'm Rita",
+    content: [
+      "Hi, My Name is Rita S A de Castro and I'm your mindset, sprituality, and energy reader & coach.",
+      "I help people transform their lives and live with purpose because everyone has the power to create the life they desire.",
+      "In this<strong> Become Your Creator Guide, </strong> my goal will be to turn you into a master creator of your own life by helping depict the reasons why you've been failing at manifesting the life your truly desire and how to fix that.",
+      "You'll also be able to see significant results <strong>in just 30 days or even less!</strong>",
+      "Start living the life you desire. Click below to download your <strong>Free</strong> copy and <strong>Become a Master Creator.</strong>",
+    ],
+    linkText: "Know More About Rita",
+    reverse: true,
+  },
+  {
+    id: "Brandi",
+    image: "/program.jpg",
+    title: "Hi, I'm Brandi",
+    content: [
+      "Experience a World of Endless Potential: Join Talks With Brandi",
+      "Join Brandi on a Journey of Remarkable Dialogue Interstellar Connections Beauty Insights and Spiritual Enlightenment!",
+      "Brandi a renowned manifestation expert suggests several powerful techniques to help individuals manifest their desires effectively.",
+      "By aligning their thoughts emotions and actions with this elevated state individuals can expedite the manifestation process and experience transformative leaps in their lives.",
+      "Brandi will also unveil the secrets to flawless makeup techniques helping you unleash your inner radiance.",
     ],
     linkText: "Know More About Brandi",
-    btnText1: "Access Now For Free ",
-    btnText2: " Instant Download",
+    reverse: false,
   },
 ];
