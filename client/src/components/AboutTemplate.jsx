@@ -4,6 +4,8 @@ import { PrimaryBtn } from "./PrimaryBtn";
 import { Link } from "react-router-dom";
 
 const AboutTemplate = (props) => {
+  const { reverse, image, linkText, content, title, id } = props;
+
   return (
     <Box
       sx={{
@@ -19,7 +21,7 @@ const AboutTemplate = (props) => {
             width: "100%",
             height: "100%",
             display: "flex",
-            flexDirection: props.reverse ? "row" : "row-reverse",
+            flexDirection: reverse ? "row" : "row-reverse",
             justifyContent: "space-around",
           }}
         >
@@ -56,9 +58,10 @@ const AboutTemplate = (props) => {
                   height: "100%",
                   objectFit: "cover",
                   borderRadius: "50%",
-                  objectPosition: "top center",
+                  objectPosition:
+                    id === "become-your-creator" ? "80% top" : "top center",
                 }}
-                src={props.image}
+                src={image}
                 alt="about"
               />
             </Box>
@@ -96,9 +99,9 @@ const AboutTemplate = (props) => {
                 },
               }}
             >
-              {props.title}
+              {title}
             </Typography>
-            {props.content?.map((paragraph, index) => (
+            {content?.map((paragraph, index) => (
               <Typography
                 key={index}
                 sx={{ fontSize: { xs: "16px", md: "20px" } }}
@@ -114,7 +117,7 @@ const AboutTemplate = (props) => {
                 fontSize: "16px",
               }}
             >
-              {props.linkText}
+              {linkText}
             </Typography>
             <PrimaryBtn>
               <Box sx={{ padding: "0 40px" }}>

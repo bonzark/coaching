@@ -35,7 +35,7 @@ const Navbar = () => {
     },
     {
       name: "Become Your Creator",
-      link: "/",
+      link: "/become-your-creator",
     },
     {
       name: "Contact Us",

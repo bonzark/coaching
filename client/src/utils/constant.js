@@ -73,6 +73,19 @@ export const aboutTemplateData = [
     linkText: "Know More About Brandi",
     reverse: false,
   },
+  {
+    id: "become-your-creator",
+    image: "/heroBg.jpg",
+    title: "Become Your Creator",
+    content: [
+      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
+      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
+      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
+      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
+      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+    ],
+    reverse: true,
+  },
 ];
 
 export const footerItems = [
@@ -95,5 +108,44 @@ export const footerItems = [
   {
     name: "Contact Us",
     href: "/",
+  },
+];
+
+export const lineUpsData = [
+  {
+    quentity: "1",
+    title: "Masterclass",
+    content:
+      "Join us for an empowering session on manifestation, mindset, personal development, or spirituality. We have a fantastic mix of live guest experts and pre-recorded classes hosted by the incredible Rita and/or Lilian. ",
+  },
+  {
+    quentity: "1",
+    title: " Monthly Themed Goal Setting Session:",
+    content:
+      "Monthly Themed Goal Setting Session: Dive deep into setting and achieving your goals with our special monthly theme. Get ready to unlock your full potential and make your dreams a reality.",
+  },
+  {
+    quentity: "1",
+    title: "Get It Done Session",
+    content:
+      "Need some motivation to take action? Look no further! Those sessions are designed to provide you with the much-needed motivation to take action and accomplish your goals. Whether you're struggling to start a new project, complete a daunting task, or simply lacking the drive to get things done, our session is here to ignite that spark within you.",
+  },
+  {
+    quentity: "1",
+    title: "Digital Download",
+    content:
+      "Enhance your personal growth journey with our exclusive digital downloads. Each month, you'll receive a valuable resource such as a workbook, EFT video, hypnosis session, or meditation guide.",
+  },
+  {
+    quentity: "1",
+    title: "Live Session with Rita",
+    content:
+      "Enjoy an extra live session led by the incredible Rita herself. Dive even deeper into the topics that matter most to you and receive personalized guidance from a true expert.",
+  },
+  {
+    quentity: "3",
+    title: "Live Sessions with Our Lead Coaches",
+    content:
+      "Our team of lead coaches is here to support you every step of the way. With three additional live sessions per month, you'll gain valuable insights, tips, and guidance from experienced professionals.",
   },
 ];
