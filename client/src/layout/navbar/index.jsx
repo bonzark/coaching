@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import FormModal from "../../sections/FormModal";
 import { getAuthToken } from "../../utils/auth";
+import { navItems } from "../../utils/constant";
 
 const Navbar = () => {
   const drawerWidth = 300;
