@@ -1,3 +1,30 @@
+export const navItems = [
+  {
+    name: "Our Coaches",
+    link: "/",
+  },
+  {
+    name: "Events",
+    link: "/events",
+  },
+  {
+    name: "Wealth Creation",
+    link: "/wealth-creation"
+  },
+  {
+    name: "Coaching With Rita",
+    link: "/",
+  },
+  {
+    name: "Become Your Creator",
+    link: "/",
+  },
+  {
+    name: "Contact Us",
+    link: "/",
+  },
+];
+
 export const cradData = [
   {
     id: "1",
@@ -71,6 +98,10 @@ export const footerItems = [
     href: "/events",
   },
   {
+    name: "Wealth Creation",
+    href: "/wealth-creation"
+  },
+  {
     name: "Coaching With Rita",
     href: "/",
   },
@@ -81,5 +112,29 @@ export const footerItems = [
   {
     name: "Contact Us",
     href: "/",
+  },
+];
+
+export const wealthCardItems = [
+  {
+    title: "Harmonizing Your Energy",
+    description:
+      "Immerse yourself in a transformative 2-part video series that will align your vibrations with the frequency of abundance.",
+    imageUrl: "/card_3.png",
+    reverse: false
+  },
+  {
+    title: "Conscious Awakening",
+    description:
+      "Unlock your innate potential and tap into the power of conscious awareness, allowing you to manifest your desires effortlessly.",
+    imageUrl: "/card_1.jpg",
+    reverse: true
+  },
+  {
+    title: "Elevate and Manifest: The Ultimate Energy Transformation Technique",
+    description:
+      "Revitalize your energy field and harmonize it with your deepest aspirations, paving the way for boundless abundance",
+    imageUrl: "/card_5.png",
+    reverse: false
   },
 ];
