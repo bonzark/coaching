@@ -13,15 +13,15 @@ export const navItems = [
   },
   {
     name: "Coaching With Rita",
-    link: "/",
+    link: "/coaching-with-rita",
   },
   {
     name: "Become Your Creator",
-    link: "/",
+    link: "/become-your-creator",
   },
   {
     name: "Contact Us",
-    link: "/",
+    link: "/contact",
   },
 ];
 
