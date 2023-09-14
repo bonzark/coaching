@@ -152,3 +152,18 @@ export const wealthCardItems = [
     reverse: false
   },
 ];
+
+export const sidebarItems = [
+  {
+    name: "Sessions",
+    path: "/sessions"
+  },
+  {
+    name: "Previous Sessions",
+    path: "/previous-sessions"
+  },
+  {
+    name: "Upcoming Sessions",
+    path: "/upcoming-sessions"
+  }
+]

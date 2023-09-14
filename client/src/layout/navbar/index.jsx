@@ -17,32 +17,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import FormModal from "../../sections/FormModal";
 import { getAuthToken } from "../../utils/auth";
-import { navItems } from "../../utils/constant";
+import { navItems, sidebarItems } from "../../utils/constant";
+import CommonDropdown from "../../components/DropDown";
 
 const Navbar = () => {
   const drawerWidth = 300;
-  const navItems = [
-    {
-      name: "Our Coaches",
-      link: "/",
-    },
-    {
-      name: "Events",
-      link: "/events",
-    },
-    {
-      name: "Coaching With Rita",
-      link: "/",
-    },
-    {
-      name: "Become Your Creator",
-      link: "/",
-    },
-    {
-      name: "Contact Us",
-      link: "/contact",
-    },
-  ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -69,7 +48,7 @@ const Navbar = () => {
   window.addEventListener("scroll", changeNavbarColor);
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
       <Typography component={"p"} href="/" sx={{ my: 2 }}>
         <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
           LOGOIPSUM
@@ -78,7 +57,7 @@ const Navbar = () => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
+          <ListItem key={item.name} disablePadding onClick={handleDrawerToggle} >
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
               <Button
                 component={Link}
@@ -96,26 +75,9 @@ const Navbar = () => {
       </List>
       <Box sx={{ display: "grid", gap: "20px" }}>
         {isLoggedIn ? (
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#671d63",
-              backgroundColor: "white",
-              minWidth: "130px",
-              margin: "0 auto",
-              fontWeight: "bolder",
-              border: "1px solid #671d63",
-              ":hover": {
-                backgroundColor: "#671d63",
-                color: "white",
-                border: "1px solid transparent",
-              },
-            }}
-            component={Link}
-            to="/dashboard"
-          >
-            My Account
-          </Button>
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            <CommonDropdown dropdownItems={sidebarItems} handleDrawerToggle={handleDrawerToggle} />
+          </Box>
         ) : (
           <Button
             variant="outlined"
@@ -151,8 +113,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-                }
+                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+              }
               : "none",
             zIndex: "99999",
           }}
@@ -208,27 +170,9 @@ const Navbar = () => {
               ))}
             </Box>
             {isLoggedIn ? (
-              <Button
-                variant="outlined"
-                sx={{
-                  color: "#671d63",
-                  backgroundColor: "white",
-                  minWidth: "130px",
-                  margin: "0 auto",
-                  fontWeight: "bolder",
-                  border: "1px solid #671d63",
-                  ":hover": {
-                    backgroundColor: "#671d63",
-                    color: "white",
-                    border: "1px solid transparent",
-                  },
-                  display: { xs: "none", md: "block" },
-                }}
-                component={Link}
-                to="/dashboard"
-              >
-                My Account
-              </Button>
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                <CommonDropdown dropdownItems={sidebarItems} handleDrawerToggle={handleDrawerToggle} />
+              </Box>
             ) : (
               <Button
                 variant="outlined"
