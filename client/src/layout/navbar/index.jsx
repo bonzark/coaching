@@ -49,11 +49,16 @@ const Navbar = () => {
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>
-      <Typography component={"p"} href="/" sx={{ my: 2 }}>
-        <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
-          LOGOIPSUM
-        </Link>
-      </Typography>
+      <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
+        <img
+          src="./logo.png"
+          alt="logo"
+          style={{
+            maxWidth: "100px",
+            height: "auto",
+          }}
+        />
+      </Link>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -119,7 +124,7 @@ const Navbar = () => {
                   lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
                 }
               : "none",
-            zIndex: "99999",
+            zIndex: "2",
           }}
         >
           <Toolbar>
@@ -136,19 +141,21 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h5"
-              component="div"
+            <Box
               sx={{
-                flexGrow: 1,
                 display: { xs: "none", md: "block" },
-                color: "#673d63",
+                marginRight: { xs: 0, md: "auto" },
               }}
             >
-              <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
-                LOGOIPSUM
-              </Link>
-            </Typography>
+              <img
+                src="./logo.png"
+                alt="logo"
+                style={{
+                  maxWidth: "100px",
+                  height: "auto",
+                }}
+              />
+            </Box>
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
