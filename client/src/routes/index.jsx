@@ -13,7 +13,6 @@ import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
 import Event from "../pages/event/event";
 import Contact from "../pages/contact/contact";
-import WealthCreationSection from "../sections/WealthCreation";
 import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 
