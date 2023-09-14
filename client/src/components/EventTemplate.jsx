@@ -7,7 +7,7 @@ const EventTemplate = ({ image, children }) => {
     <Box
       sx={{
         margin: { xs: "5rem 1rem", sm: "5rem 2rem" },
-        boxShadow: "0 5px 12px 2px #00000020",
+        boxShadow: "0 5px 12px 2px #00000019",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         borderRadius: "10px",
