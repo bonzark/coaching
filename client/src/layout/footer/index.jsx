@@ -31,23 +31,16 @@ const Footer = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               gap: "15px",
               paddingBottom: "30px",
             }}
           >
-            <img src="./logo.png" alt="logo" />
-            <Typography
-              component={Link}
-              to={"/"}
-              sx={{
-                color: "#671d63",
-                fontSize: { md: "4rem", xs: "2rem" },
-                margin: 0,
-              }}
-            >
-              LOGOIPSUM
-            </Typography>
+            <img
+              src="./logo.png"
+              alt="logo"
+              style={{ maxWidth: "150px", height: "auto" }}
+            />
           </Box>
           <Typography
             varient="p"
