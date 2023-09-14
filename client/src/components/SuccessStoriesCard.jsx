@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Box, Typography, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
+import { PrimaryBtn } from "./PrimaryBtn";
 
 const SuccessStories = ({
   id,
@@ -60,7 +61,11 @@ const SuccessStories = ({
           <Box
             sx={{
               width: { md: "35%", xs: "100%" },
-              height: { md: "auto", sm: "550px", xs: "350px" },
+              height: {
+                md: "auto",
+                sm: "550px",
+                xs: "350px",
+              },
               margin: {
                 xs: isDetailPage ? "0 auto" : "2px auto",
                 md: isDetailPage ? "10px auto" : 0,
@@ -121,7 +126,7 @@ const SuccessStories = ({
                     {para}
                   </Typography>
                 ))
-              : descriptionArr?.slice(0, 3).map((para) => (
+              : descriptionArr?.slice(0, 4).map((para) => (
                   <Fragment key={para}>
                     <Typography
                       variant="h6"
@@ -146,18 +151,13 @@ const SuccessStories = ({
                     paddingY: "10px",
                   }}
                 >
-                  <Link
+                  <PrimaryBtn
+                    component={Link}
                     to={`/ourCoachesDetail/${id}`}
                     state={{ name: id }}
-                    style={{
-                      color: "#671D63",
-                      textDecoration: "none",
-                      border: "1px solid #671D63",
-                      padding: "3px 12px",
-                    }}
                   >
                     Read More...
-                  </Link>
+                  </PrimaryBtn>
                 </Box>
               ) : null
             ) : null}
