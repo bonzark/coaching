@@ -12,26 +12,7 @@ import React, { useState } from "react";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 
-const listItems = [
-  {
-    name: "Learn why you've been unsuccessful at manifesting the life you want and What to do about it Fix your manifestation methods and learn how to become your creator the proper way",
-    key: 1,
-  },
-  {
-    name: "Become Conscious Aware Of Your Creation in Less Than 30 Days",
-    key: 2,
-  },
-  {
-    name: "Ditch all the theories and practices that just don t work",
-    key: 3,
-  },
-  {
-    name: "Be able to attract endless opportunities, relationships and wealth with minimal but effective effort",
-    key: 4,
-  },
-];
-
-const HeroBanner = () => {
+const HeroBanner = ({ title, imageUrl, header, listItems }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = (resetForm) => {
@@ -92,7 +73,7 @@ const HeroBanner = () => {
                 fontFamily: "'Abril Fatface', cursive",
               }}
             >
-              Discover what is blocking you from
+              {title}
             </Typography>
             <Typography
               component={"p"}
@@ -105,10 +86,10 @@ const HeroBanner = () => {
                 fontFamily: "'Abril Fatface', cursive",
               }}
             >
-              Manifesting and living life you desire !
+              {header}
             </Typography>
             <List>
-              {listItems.map((item) => {
+              {listItems?.map((item) => {
                 return (
                   <ListItem sx={{ padding: "0" }} key={item.key}>
                     <ListItemIcon sx={{ minWidth: "30px" }}>
@@ -116,7 +97,7 @@ const HeroBanner = () => {
                     </ListItemIcon>
                     <ListItemText
                       sx={{ fontWeight: "600" }}
-                      primary={item.name}
+                      primary={item?.name}
                     />
                   </ListItem>
                 );

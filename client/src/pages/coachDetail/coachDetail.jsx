@@ -1,8 +1,8 @@
 import React from "react";
-import AboutSection from "../../sections/AboutSection";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
 import HeroBanner from "../../sections/heroBanner";
+import { heroListItems } from "../../utils/constant";
 
 const CoachDetail = () => {
   const accordionData = [
@@ -34,8 +34,12 @@ const CoachDetail = () => {
   ];
   return (
     <>
-      {/* <AboutSection /> */}
-      <HeroBanner />
+      <HeroBanner
+        header={"Discover what is blocking you from"}
+        title={"Manifesting and living life you desire !"}
+        imageUrl={""}
+        listItems={heroListItems}
+      />
       <SuccessCarousel />
       <FAQAccordion data={accordionData} />
     </>
