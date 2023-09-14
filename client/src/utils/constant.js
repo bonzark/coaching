@@ -336,7 +336,7 @@ export const becomeYourCreatorList = [
     key: 2,
   },
   {
-    name: "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
+    name: "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way.",
     key: 3,
   },
   {
