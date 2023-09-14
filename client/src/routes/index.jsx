@@ -12,6 +12,7 @@ import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
 import Event from "../pages/event/event";
+import Contact from "../pages/contact/contact";
 import WealthCreationSection from "../sections/WealthCreation";
 import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
@@ -30,6 +31,7 @@ const Routers = () => {
           element={<WealthCreationSection />}
         />
         <Route exact path="/events" element={<Event />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route element={<PrivateRoute />}>
           <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
           <Route exact path="/dashboard" element={<Dashboard />} />

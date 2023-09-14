@@ -21,6 +21,28 @@ import { navItems } from "../../utils/constant";
 
 const Navbar = () => {
   const drawerWidth = 300;
+  const navItems = [
+    {
+      name: "Our Coaches",
+      link: "/",
+    },
+    {
+      name: "Events",
+      link: "/events",
+    },
+    {
+      name: "Coaching With Rita",
+      link: "/",
+    },
+    {
+      name: "Become Your Creator",
+      link: "/",
+    },
+    {
+      name: "Contact Us",
+      link: "/contact",
+    },
+  ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -129,8 +151,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-              }
+                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+                }
               : "none",
             zIndex: "99999",
           }}
