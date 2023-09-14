@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getSessions } from '../../services/session.service';
+import React, { useEffect, useState } from "react";
+import { getSessions } from "../../services/session.service";
 
 const Dashboard = () => {
   const [sessions, setSessions] = useState([]);
@@ -9,15 +9,16 @@ const Dashboard = () => {
         setSessions(res?.data?.sessions);
       })
       .catch((err) => {
-        console.log('err', err);
+        console.log("err", err);
       });
   };
 
   useEffect(() => {
     getSessionsList();
+    console.log("sessions :", sessions);
   }, []);
 
-  return <div>Dashboard</div>;
+  return <div>{/* <Sidebar /> */}</div>;
 };
 
 export default Dashboard;

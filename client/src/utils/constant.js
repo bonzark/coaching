@@ -153,6 +153,20 @@ export const wealthCardItems = [
   },
 ];
 
+export const sidebarItems = [
+  {
+    name: "Sessions",
+    path: "/sessions"
+  },
+  {
+    name: "Previous Sessions",
+    path: "/previous-sessions"
+  },
+  {
+    name: "Upcoming Sessions",
+    path: "/upcoming-sessions"
+  }
+]
 export const coachesData = [
   {
     id: "1",
