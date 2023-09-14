@@ -36,13 +36,13 @@ const Footer = () => {
               paddingBottom: "30px",
             }}
           >
-            <link to="/">
+            <Link to="/">
               <img
                 src="./logo.png"
                 alt="logo"
                 style={{ maxWidth: "150px", height: "auto" }}
               />
-            </link>
+            </Link>
           </Box>
           <Typography
             varient="p"
