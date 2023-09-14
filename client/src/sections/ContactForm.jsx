@@ -3,8 +3,11 @@ import { useFormik } from "formik";
 import { InputBox } from "../components/InputBox";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 import { validationContact } from "../utils/validation";
+import { contact } from "../services/contact.service";
+import { useSnackbar } from "notistack";
 
 const ContactForm = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const formik = useFormik({
     initialValues: {
       fullname: "",
@@ -15,7 +18,33 @@ const ContactForm = () => {
     enableReinitialize: true,
     validationSchema: validationContact,
     onSubmit: (values) => {
-      console.log("Contact submited.", values);
+      const data = {
+        name: values.fullname,
+        email: values.email,
+        contactNo: values.contact,
+        message: values.message,
+      };
+      contact(data)
+        .then((res) => {
+          if (res.status === 200) {
+            enqueueSnackbar(res.data, {
+              variant: "success",
+            });
+          } else {
+            enqueueSnackbar(res.message, {
+              variant: "warning",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log("ERROR:", error);
+          enqueueSnackbar(
+            "Oops! Something went wrong. Please try again later.",
+            {
+              variant: "error",
+            }
+          );
+        });
     },
   });
 

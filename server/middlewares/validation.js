@@ -60,17 +60,7 @@ const validateContact = [
     .withMessage("Contact number is required")
     .matches(/^(\+\d{1,3}[- ]?)?\d{10}$/)
     .withMessage("Invalid contact number"),
-  body("email")
-    .trim()
-    .isEmail()
-    .withMessage("Invalid email")
-    .custom(async (value) => {
-      const existingUser = await User.findOne({ email: value });
-      if (existingUser) {
-        throw new Error("Email already registered");
-      }
-      return true;
-    }),
+  body("email").trim().isEmail().withMessage("Invalid email"),
   body("message").trim().notEmpty().withMessage("Message is required"),
 ];
 
