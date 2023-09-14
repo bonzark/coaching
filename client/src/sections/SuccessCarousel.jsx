@@ -30,7 +30,7 @@ const items = [
   },
 ];
 
-const CarouselCard = () => {
+const SuccessCarousel = () => {
   return (
     <Box
       sx={{
@@ -85,4 +85,4 @@ const CarouselCard = () => {
   );
 };
 
-export default CarouselCard;
+export default SuccessCarousel;

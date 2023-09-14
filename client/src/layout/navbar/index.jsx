@@ -22,7 +22,6 @@ import CommonDropdown from "../../components/DropDown";
 
 const Navbar = () => {
   const drawerWidth = 300;
-
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -58,7 +57,7 @@ const Navbar = () => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding onClick={handleDrawerToggle} >
+          <ListItem key={item.name} disablePadding onClick={handleDrawerToggle}>
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
               <Button
                 component={Link}
@@ -77,7 +76,10 @@ const Navbar = () => {
       <Box sx={{ display: "grid", gap: "20px" }}>
         {isLoggedIn ? (
           <Box sx={{ display: { xs: "block", md: "none" } }}>
-            <CommonDropdown dropdownItems={sidebarItems} handleDrawerToggle={handleDrawerToggle} />
+            <CommonDropdown
+              dropdownItems={sidebarItems}
+              handleDrawerToggle={handleDrawerToggle}
+            />
           </Box>
         ) : (
           <Button
@@ -114,8 +116,8 @@ const Navbar = () => {
             background: colorChange ? "white" : "transparent",
             boxShadow: colorChange
               ? {
-                lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
-              }
+                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+                }
               : "none",
             zIndex: "99999",
           }}
@@ -172,7 +174,10 @@ const Navbar = () => {
             </Box>
             {isLoggedIn ? (
               <Box sx={{ display: { xs: "none", md: "block" } }}>
-                <CommonDropdown dropdownItems={sidebarItems} handleDrawerToggle={handleDrawerToggle} />
+                <CommonDropdown
+                  dropdownItems={sidebarItems}
+                  handleDrawerToggle={handleDrawerToggle}
+                />
               </Box>
             ) : (
               <Button

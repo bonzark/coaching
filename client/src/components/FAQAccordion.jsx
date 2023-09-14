@@ -52,6 +52,32 @@ const FAQAccordion = ({ data }) => {
         padding: "4rem 2rem",
       }}
     >
+      <Typography
+        className="borderTitle"
+        variant="span"
+        sx={{
+          position: "relative",
+          fontSize: { xs: "32px", sm: "48px" },
+          color: "#671d63",
+          lineHeight: "50px",
+          fontFamily: "'Abril FatFace', sans-serif",
+          display: "flex",
+          marginBottom: { xs: "50px", md: "75px" },
+          justifyContent: { xs: "center", md: "flex-start" },
+          marginRight: { xs: "0px", md: "230px" },
+          "::before": {
+            position: "absolute",
+            bottom: { xs: "-18px", md: "-25px" },
+            color: "black",
+            content: `""`,
+            height: "3px",
+            width: "50px",
+            backgroundColor: "#000",
+          },
+        }}
+      >
+        FAQs
+      </Typography>
       <Box
         sx={{
           borderRadius: "12px",
