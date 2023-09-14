@@ -22,6 +22,7 @@ import CommonDropdown from "../../components/DropDown";
 
 const Navbar = () => {
   const drawerWidth = 300;
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
