@@ -13,6 +13,8 @@ import Footer from "../layout/footer";
 import OnlineCourses from "../pages/onlineCourses/onlineCourses";
 import Event from "../pages/event/event";
 import WealthCreationSection from "../sections/WealthCreation";
+import AllCoaches from "../pages/ourCoaches/ourCoaches";
+import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 
 const Routers = () => {
   return (
@@ -20,10 +22,16 @@ const Routers = () => {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/our-coaches" element={<AllCoaches />} />
         <Route exact path="/online-courses" element={<OnlineCourses />} />
-        <Route exact path="/wealth-creation" element={<WealthCreationSection />} />
+        <Route
+          exact
+          path="/wealth-creation"
+          element={<WealthCreationSection />}
+        />
         <Route exact path="/events" element={<Event />} />
         <Route element={<PrivateRoute />}>
+          <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route path="*" element={<Navigate to="/not-found" />} />

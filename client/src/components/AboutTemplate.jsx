@@ -1,5 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
 import { PrimaryBtn } from "./PrimaryBtn";
 import { Link } from "react-router-dom";
 
@@ -64,6 +64,7 @@ const AboutTemplate = (props) => {
             </Box>
           </Grid>
           <Grid
+            item
             xs={12}
             md={6}
             lg={6}

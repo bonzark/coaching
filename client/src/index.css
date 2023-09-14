@@ -41,3 +41,13 @@ body {
 .css-hn784z {
   display: none;
 }
+
+.coachesImg {
+  background-position: cover;
+}
+
+@media screen and (max-width: 1200px) {
+  .coachesImg {
+    background-position: top !important;
+  }
+}
