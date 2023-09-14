@@ -16,8 +16,6 @@ import WealthCreationSection from "../pages/../sections/WealthCreation";
 import CoachDetail from "../pages/coachDetail/coachDetail";
 import Contact from "../pages/contact/contact";
 import Event from "../pages/event/event";
-import Contact from "../pages/contact/contact";
-import WealthCreationSection from "../sections/WealthCreation";
 import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 
