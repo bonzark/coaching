@@ -21,28 +21,7 @@ import { navItems } from "../../utils/constant";
 
 const Navbar = () => {
   const drawerWidth = 300;
-  const navItems = [
-    {
-      name: "Our Coaches",
-      link: "/",
-    },
-    {
-      name: "Events",
-      link: "/events",
-    },
-    {
-      name: "Coaching With Rita",
-      link: "/",
-    },
-    {
-      name: "Become Your Creator",
-      link: "/",
-    },
-    {
-      name: "Contact Us",
-      link: "/contact",
-    },
-  ];
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
