@@ -7,12 +7,17 @@ import News from "../../sections/news";
 import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
-import FAQAccordion from "../../components/FAQAccordion";
+import { heroListItems } from "../../utils/constant";
 
 const Home = () => {
   return (
     <>
-      <HeroBanner />
+      <HeroBanner
+        header={"Discover what is blocking you from"}
+        title={"Manifesting and living life you desire !"}
+        imageUrl={""}
+        listItems={heroListItems}
+      />
       <AboutSection />
       <OurCoaches />
       <News />

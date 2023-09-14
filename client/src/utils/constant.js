@@ -306,3 +306,45 @@ export const coachesData = [
     reverse: true,
   },
 ];
+
+export const heroListItems = [
+  {
+    name: "Learn why you've been unsuccessful at manifesting the life you want and What to do about it Fix your manifestation methods and learn how to become your creator the proper way",
+    key: 1,
+  },
+  {
+    name: "Become Conscious Aware Of Your Creation in Less Than 30 Days",
+    key: 2,
+  },
+  {
+    name: "Ditch all the theories and practices that just don t work",
+    key: 3,
+  },
+  {
+    name: "Be able to attract endless opportunities, relationships and wealth with minimal but effective effort",
+    key: 4,
+  },
+];
+
+export const becomeYourCreatorList = [
+  {
+    name: "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
+    key: 1,
+  },
+  {
+    name: "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
+    key: 2,
+  },
+  {
+    name: "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
+    key: 3,
+  },
+  {
+    name: "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
+    key: 4,
+  },
+  {
+    name: "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+    key: 5,
+  },
+];
