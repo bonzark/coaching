@@ -2,6 +2,7 @@ import React from "react";
 import AboutSection from "../../sections/AboutSection";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
+import HeroBanner from "../../sections/heroBanner";
 
 const CoachDetail = () => {
   const accordionData = [
@@ -33,7 +34,8 @@ const CoachDetail = () => {
   ];
   return (
     <>
-      <AboutSection />
+      {/* <AboutSection /> */}
+      <HeroBanner />
       <SuccessCarousel />
       <FAQAccordion data={accordionData} />
     </>
