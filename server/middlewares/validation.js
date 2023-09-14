@@ -52,6 +52,18 @@ const validatePassword = [
     .withMessage("Password must contain at least one special character"),
 ];
 
+const validateContact = [
+  body("name").trim().notEmpty().withMessage("Username is required"),
+  body("contactNo")
+    .trim()
+    .notEmpty()
+    .withMessage("Contact number is required")
+    .matches(/^(\+\d{1,3}[- ]?)?\d{10}$/)
+    .withMessage("Invalid contact number"),
+  body("email").trim().isEmail().withMessage("Invalid email"),
+  body("message").trim().notEmpty().withMessage("Message is required"),
+];
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -65,5 +77,6 @@ module.exports = {
   validateRegistration,
   validateEmail,
   validatePassword,
+  validateContact,
   validate,
 };

@@ -17,50 +17,38 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import FormModal from "../../sections/FormModal";
 import { getAuthToken } from "../../utils/auth";
+import { navItems, sidebarItems } from "../../utils/constant";
+import CommonDropdown from "../../components/DropDown";
 
 const Navbar = () => {
   const drawerWidth = 300;
-  const navItems = [
-    {
-      name: "Our Coaches",
-      link: "/",
-    },
-    {
-      name: "Events",
-      link: "/events",
-    },
-    {
-      name: "Healing",
-      link: "/",
-    },
-    {
-      name: "Online Courses",
-      link: "/online-courses",
-    },
-    {
-      name: "Caoaching",
-      link: "/",
-    },
-    {
-      name: "Talk with Brandi",
-      link: "/",
-    },
-  ];
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [colorChange, setColorchange] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const isLoggedIn = !!getAuthToken();
-
-  console.log("isLoggedIn", isLoggedIn);
-  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setOpen(false);
+    formik.resetForm();
+  };
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener("scroll", changeNavbarColor);
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
       <Typography component={"p"} href="/" sx={{ my: 2 }}>
         <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
           LOGOIPSUM
@@ -69,51 +57,30 @@ const Navbar = () => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
+          <ListItem key={item.name} disablePadding onClick={handleDrawerToggle}>
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
-              <ListItemText primary={item.name} to={item.link} />
+              <Button
+                component={Link}
+                to={item.link}
+                sx={{
+                  color: "#673d67",
+                  margin: "0 auto",
+                }}
+              >
+                {item.name}
+              </Button>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Box sx={{ display: "grid", gap: "20px" }}>
-        <Button
-          variant="outlined"
-          sx={{
-            backgroundColor: "#671d63",
-            color: "white",
-            minWidth: "130px",
-            margin: "0 auto",
-            fontWeight: "bolder",
-            border: "1px solid transparent",
-            ":hover": {
-              backgroundColor: "transparent",
-              color: "#671d63",
-              border: "1px solid #671d63",
-            },
-          }}
-        >
-          Contact us
-        </Button>
         {isLoggedIn ? (
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#671d63",
-              backgroundColor: "white",
-              minWidth: "130px",
-              margin: "0 auto",
-              fontWeight: "bolder",
-              border: "1px solid #671d63",
-              ":hover": {
-                backgroundColor: "#671d63",
-                color: "white",
-                border: "1px solid transparent",
-              },
-            }}
-          >
-            My Account
-          </Button>
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            <CommonDropdown
+              dropdownItems={sidebarItems}
+              handleDrawerToggle={handleDrawerToggle}
+            />
+          </Box>
         ) : (
           <Button
             variant="outlined"
@@ -130,6 +97,7 @@ const Navbar = () => {
                 border: "1px solid transparent",
               },
             }}
+            onClick={handleOpen}
           >
             Login
           </Button>
@@ -145,9 +113,13 @@ const Navbar = () => {
         <AppBar
           component="nav"
           sx={{
-            background: "transparent",
-            boxShadow: "none",
-            backdropFilter: "blur(2px)",
+            background: colorChange ? "white" : "transparent",
+            boxShadow: colorChange
+              ? {
+                  lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
+                }
+              : "none",
+            zIndex: "99999",
           }}
         >
           <Toolbar>
@@ -158,7 +130,7 @@ const Navbar = () => {
               onClick={handleDrawerToggle}
               sx={{
                 mr: 2,
-                display: { md: "none" },
+                display: { md: "none", xs: mobileOpen ? "none" : "" },
                 backgroundColor: "#671d63",
               }}
             >
@@ -177,60 +149,36 @@ const Navbar = () => {
                 LOGOIPSUM
               </Link>
             </Typography>
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                gap: { md: "5px", lg: "15px" },
+                marginRight: { md: "15px" },
+              }}
+            >
               {navItems.map((item) => (
                 <Button
                   key={item.name}
                   to={item.link}
                   component={Link}
-                  sx={{ color: "#671d63", fontWeight: "600" }}
+                  sx={{
+                    color: "#671d63",
+                    fontWeight: "600",
+                    textAlign: "center",
+                    padding: 0,
+                  }}
                 >
                   {item.name}
                 </Button>
               ))}
             </Box>
-            <Button
-              variant="outlined"
-              sx={{
-                backgroundColor: "#671d63",
-                color: "white",
-                fontWeight: "bolder",
-                fontSize: { xs: "8px", md: "12px", lg: "15px" },
-                border: "1px solid transparent",
-                width: { sm: "130px", lg: "auto" },
-                ":hover": {
-                  backgroundColor: "transparent",
-                  color: "#671d63",
-                  border: "1px solid #671d63",
-                },
-                marginRight: "10px",
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              Contact us
-            </Button>
             {isLoggedIn ? (
-              <Button
-                variant="outlined"
-                sx={{
-                  color: "#671d63",
-                  backgroundColor: "white",
-                  minWidth: "130px",
-                  margin: "0 auto",
-                  fontWeight: "bolder",
-                  border: "1px solid #671d63",
-                  ":hover": {
-                    backgroundColor: "#671d63",
-                    color: "white",
-                    border: "1px solid transparent",
-                  },
-                  display: { xs: "none", md: "block" },
-                }}
-                component={Link}
-                to="/dashboard"
-              >
-                My Account
-              </Button>
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                <CommonDropdown
+                  dropdownItems={sidebarItems}
+                  handleDrawerToggle={handleDrawerToggle}
+                />
+              </Box>
             ) : (
               <Button
                 variant="outlined"
@@ -248,6 +196,7 @@ const Navbar = () => {
                   },
                   display: { xs: "none", md: "block" },
                 }}
+                onClick={handleOpen}
               >
                 Login
               </Button>

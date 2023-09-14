@@ -15,7 +15,7 @@ export const MainModal = ({ open, handleClose, children }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          width: { xs: "240px", md: "400px" },
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 5,

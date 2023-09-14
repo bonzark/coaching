@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { Link } from "react-router-dom";
+import { footerItems } from "../../utils/constant";
 
 const Footer = () => {
   return (
@@ -19,7 +21,7 @@ const Footer = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "2px solid #671d63",
+          borderBottom: "1px solid #671d63",
           gap: "30px",
           flexWrap: "wrap",
         }}
@@ -36,7 +38,8 @@ const Footer = () => {
           >
             <img src="./logo.png" alt="logo" />
             <Typography
-              variant="h1"
+              component={Link}
+              to={"/"}
               sx={{
                 color: "#671d63",
                 fontSize: { md: "4rem", xs: "2rem" },
@@ -82,46 +85,23 @@ const Footer = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Our Coaches
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Events
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Healing
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Online Course
-            </Typography>
+            {footerItems?.map((item) => {
+              return (
+                <Typography
+                  key={item.name}
+                  component={Link}
+                  to={item.href}
+                  sx={{
+                    color: "#671d63",
+                    lineHeight: "1.5rem",
+                    fontSize: "1.2rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              );
+            })}
           </Box>
         </Box>
         <Box>
@@ -145,46 +125,23 @@ const Footer = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Our Coaches
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Events
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Healing
-            </Typography>
-            <Typography
-              varient="span"
-              sx={{
-                color: "#671d63",
-                lineHeight: "1.5rem",
-                fontSize: "1.2rem",
-              }}
-            >
-              Online Course
-            </Typography>
+            {footerItems?.map((item) => {
+              return (
+                <Typography
+                  key={item.name}
+                  component={Link}
+                  to={item.href}
+                  sx={{
+                    color: "#671d63",
+                    lineHeight: "1.5rem",
+                    fontSize: "1.2rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              );
+            })}
           </Box>
         </Box>
         <Box sx={{ marginTop: "2rem", alignSelf: "start" }}>
@@ -221,7 +178,9 @@ const Footer = () => {
                 border: "1px solid #671d63",
               }}
             >
-              <FacebookRoundedIcon sx={{ fontSize: "2rem" }} />
+              <FacebookRoundedIcon
+                sx={{ fontSize: "2rem", cursor: "pointer" }}
+              />
             </Box>
             <Box
               sx={{
@@ -236,7 +195,7 @@ const Footer = () => {
                 border: "1px solid #671d63",
               }}
             >
-              <TwitterIcon sx={{ fontSize: "2rem" }} />
+              <TwitterIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
             </Box>
             <Box
               sx={{
@@ -251,10 +210,29 @@ const Footer = () => {
                 border: "1px solid #671d63",
               }}
             >
-              <InstagramIcon sx={{ fontSize: "2rem" }} />
+              <InstagramIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
             </Box>
           </Box>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          paddingTop: { xs: "1rem", md: "3rem" },
+          textAlign: { xs: "left", md: "center" },
+          maxWidth: "1500px",
+          margin: "0 auto",
+        }}
+      >
+        <Typography
+          varient="span"
+          sx={{
+            color: "#671d63",
+            lineHeight: "1.5rem",
+            fontSize: "1.2rem",
+          }}
+        >
+          Become Your Creator - 2023 All rights reserved - Privacy - Terms
+        </Typography>
       </Box>
     </Box>
   );

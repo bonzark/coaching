@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
-import { useSnackbar } from 'notistack';
-import { useFormik } from 'formik';
-import { Box, Typography } from '@mui/material';
-import { MainModal } from '../components/MainModal';
-import { PrimaryBtn } from '../components/PrimaryBtn';
-import { InputBox } from '../components/InputBox';
-import { login, register } from '../services/auth.service';
-import { setToken, setUserDetails } from '../utils/auth';
-import { validationLoginSchema, validationRegisterSchema } from '../utils/validation';
+import React, { useState } from "react";
+import { useSnackbar } from "notistack";
+import { useFormik } from "formik";
+import { Box, Typography } from "@mui/material";
+import { MainModal } from "../components/MainModal";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import { InputBox } from "../components/InputBox";
+import { login, register } from "../services/auth.service";
+import { setToken, setUserDetails } from "../utils/auth";
+import {
+  validationLoginSchema,
+  validationRegisterSchema,
+} from "../utils/validation";
 
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
-  const [logingForm, setLogingForm] = useState(false);
+  const [logingForm, setLogingForm] = useState(true);
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      email: "",
+      password: "",
     },
-    validationSchema: !logingForm ? validationRegisterSchema : validationLoginSchema,
+    enableReinitialize: true,
+    validationSchema: !logingForm
+      ? validationRegisterSchema
+      : validationLoginSchema,
     onSubmit: (values) => {
       if (logingForm) {
         const data = {
@@ -28,25 +34,25 @@ const FormModal = ({ open, handleClose }) => {
         };
         login(data)
           .then((res) => {
-            enqueueSnackbar(res?.data?.message, { variant: 'success' });
+            enqueueSnackbar(res?.data?.message, { variant: "success" });
             setToken(res?.data?.token);
             setUserDetails(res?.data?.user);
-            handleClose();
+            handleClose(formik.resetForm());
           })
           .catch((error) => {
             enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
-              variant: 'error',
+              variant: "error",
             });
           });
       } else {
         register(values)
           .then((res) => {
-            enqueueSnackbar(res?.data?.message, { variant: 'success' });
-            handleClose();
+            enqueueSnackbar(res?.data?.message, { variant: "success" });
+            handleClose(formik.resetForm());
           })
           .catch((error) => {
             enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
-              variant: 'error',
+              variant: "error",
             });
           });
       }
@@ -56,25 +62,25 @@ const FormModal = ({ open, handleClose }) => {
   return (
     <MainModal open={open} handleClose={handleClose}>
       <Typography
-        component={'h4'}
+        component={"h4"}
         sx={{
-          fontSize: '26px',
-          fontWeight: '600',
-          textAlign: 'center',
-          color: '#671d63',
-          marginBottom: '10px',
+          fontSize: "26px",
+          fontWeight: "600",
+          textAlign: "center",
+          color: "#671d63",
+          marginBottom: "10px",
         }}
       >
-        {logingForm ? 'Log In' : 'Register'}
+        {logingForm ? "Log In" : "Register"}
       </Typography>
       <Typography
-        component={'p'}
+        component={"p"}
         sx={{
-          fontSize: '16px',
-          fontWeight: '400',
-          textAlign: 'center',
-          color: '#000',
-          marginBottom: '10px',
+          fontSize: "16px",
+          fontWeight: "400",
+          textAlign: "center",
+          color: "#000",
+          marginBottom: "10px",
         }}
       >
         Enter Your Details Below To Access The Guide
@@ -118,16 +124,20 @@ const FormModal = ({ open, handleClose }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <PrimaryBtn fullWidth type="submit">
-            {logingForm ? 'Log In' : 'Register'}
+            {logingForm ? "Log In" : "Register"}
           </PrimaryBtn>
 
-          <Typography sx={{ textAlign: 'center', mt: '20px' }}>
-            {logingForm ? "Don't have account? " : 'Already Registered? '}
+          <Typography sx={{ textAlign: "center", mt: "20px" }}>
+            {logingForm ? "Don't have account? " : "Already Registered? "}
             <span
-              style={{ cursor: 'pointer', color: '#671d63' }}
-              onClick={() => setLogingForm(!logingForm)}
+              style={{ cursor: "pointer", color: "#671d63" }}
+              onClick={() => {
+                console.log("formik", formik);
+                formik.resetForm();
+                setLogingForm(!logingForm);
+              }}
             >
-              {logingForm ? 'Register.' : 'Log In.'}
+              {logingForm ? "Register." : "Log In."}
             </span>
           </Typography>
         </form>
