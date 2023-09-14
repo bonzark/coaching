@@ -1,6 +1,6 @@
 const contactTemplate = ({ name, email, contactNo, message }) => {
   const formattedMessage =
-    "<p style='padding: 12px; text-align: justify; background-color: #fbfaff; margin: 0; border: 1px solid #671d63; border-radius: 8px; font-size: 1rem; line-height: 1; '>" +
+    "<p style='padding: 12px; text-align: justify; background-color: #fbfaff; margin: 0; border: 1px solid #671d63; border-radius: 8px; font-size: 1rem; line-height: 1.4; '>" +
     message.replace(/(?:\r\n|\r|\n)/g, "<br/>") +
     "</p>";
 
