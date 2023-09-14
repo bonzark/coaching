@@ -156,7 +156,7 @@ export const wealthCardItems = [
 export const coachesData = [
   {
     id: "1",
-    imageUrl: "/coach1.jpg",
+    imageUrl: "/HELEN.jpg",
     coachName: "Helen",
     description: [
       "Welcome my name is Helen.",
