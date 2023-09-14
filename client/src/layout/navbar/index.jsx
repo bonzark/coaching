@@ -48,7 +48,7 @@ const Navbar = () => {
 
   const drawer = (
     <Box sx={{ textAlign: "center" }}>
-      <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
+      <Link to="/">
         <img
           src="./logo.png"
           alt="logo"
@@ -146,14 +146,16 @@ const Navbar = () => {
                 marginRight: { xs: 0, md: "auto" },
               }}
             >
-              <img
-                src="./logo.png"
-                alt="logo"
-                style={{
-                  maxWidth: "100px",
-                  height: "auto",
-                }}
-              />
+              <Link to="/">
+                <img
+                  src="./logo.png"
+                  alt="logo"
+                  style={{
+                    maxWidth: "100px",
+                    height: "auto",
+                  }}
+                />
+              </Link>
             </Box>
             <Box
               sx={{
