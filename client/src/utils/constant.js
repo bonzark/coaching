@@ -118,7 +118,7 @@ export const aboutTemplateData = [
 export const footerItems = [
   {
     name: "Our Coaching",
-    href: "/",
+    href: "/our-coaches",
   },
   {
     name: "Events",
@@ -130,15 +130,15 @@ export const footerItems = [
   },
   {
     name: "Coaching With Rita",
-    href: "/",
+    href: "/coaching-with-rita",
   },
   {
     name: "Become Your Creator",
-    href: "/",
+    href: "/become-your-creator",
   },
   {
     name: "Contact Us",
-    href: "/",
+    href: "/contact",
   },
 ];
 
