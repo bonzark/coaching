@@ -75,6 +75,12 @@ const Navbar = () => {
               <Button
                 component={Link}
                 to={item.link}
+                onClick={() => {
+                  window.scroll({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
                 sx={{
                   color: "#673d67",
                   margin: "0 auto",
@@ -159,6 +165,12 @@ const Navbar = () => {
                 <img
                   src="./logo.png"
                   alt="logo"
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                   style={{
                     maxWidth: "100px",
                     height: "auto",
@@ -178,6 +190,12 @@ const Navbar = () => {
                   key={item.name}
                   to={item.link}
                   component={Link}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                   sx={{
                     color: "#cecece",
                     fontWeight: "600",
