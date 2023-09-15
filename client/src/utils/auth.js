@@ -1,17 +1,20 @@
 export const setToken = (token) => {
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
 };
 
 export const setUserDetails = (details) => {
-  localStorage.setItem('user', JSON.stringify(details));
+  localStorage.setItem("user", JSON.stringify(details));
 };
 
 export const getAuthToken = () => {
-  return localStorage.getItem('token');
+  const token = localStorage.getItem("token")
+    ? localStorage.getItem("token")
+    : null;
+  return token;
 };
 
 export const removeAuthToken = () => {
-  localStorage.removeItem('authToken');
+  localStorage.removeItem("authToken");
 };
 
 // Function to check if the user is authenticated

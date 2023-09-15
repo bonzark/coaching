@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const sessionSchema = new mongoose.Schema({
-  user: {
+  coach: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'Coach', // Reference to the coach (user) who created the session
     required: true,
   },
   date: {
@@ -18,11 +18,21 @@ const sessionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  isFirstSessionFree: {
-    type: Boolean,
-    default: true,
+  title: {
+    type: String,
+    required: true,
   },
+  details: {
+    type: String,
+    required: true,
+  },
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', // Reference to the User model
+    },
+  ],
 });
 
-const Session = mongoose.model("Session", sessionSchema);
+const Session = mongoose.model('Session', sessionSchema);
 module.exports = Session;

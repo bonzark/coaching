@@ -3,11 +3,11 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-y: scroll !important;
 }
 
 .about-wrapper {
   background: #c6d7ec;
-  /* clip-path: circle(85% at 50% 50%); */
 }
 
 .about-img {

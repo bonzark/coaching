@@ -24,12 +24,20 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const isLoggedIn = !!getAuthToken();
+  React.useEffect(() => {
+    if (getAuthToken() === null) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  }, [getAuthToken()]);
+
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => {
@@ -82,6 +90,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <Box sx={{ display: { xs: "block", md: "none" } }}>
             <CommonDropdown
+              isMobile={mobileOpen}
               dropdownItems={sidebarItems}
               handleDrawerToggle={handleDrawerToggle}
             />
@@ -189,6 +198,7 @@ const Navbar = () => {
                 <CommonDropdown
                   dropdownItems={sidebarItems}
                   handleDrawerToggle={handleDrawerToggle}
+                  logout={() => setIsLoggedIn(false)}
                 />
               </Box>
             ) : (
