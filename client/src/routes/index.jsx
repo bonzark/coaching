@@ -18,6 +18,7 @@ import Contact from "../pages/contact/contact";
 import Event from "../pages/event/event";
 import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
+import SessionsPage from "../pages/Sessions";
 
 const Routers = () => {
   return (
@@ -40,9 +41,10 @@ const Routers = () => {
         />
         <Route exact path="/events" element={<Event />} />
         <Route exact path="/contact" element={<Contact />} />
-                <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
           <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="/sessions" element={<SessionsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
