@@ -36,6 +36,11 @@ const FormModal = ({ open, handleClose }) => {
               enqueueSnackbar(res?.response?.data?.errors[0].msg, {
                 variant: 'error',
               });
+            } else if (res.response.status === 401) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.message, {
+                variant: 'error',
+              });
             } else {
               setIsLogin(false);
               enqueueSnackbar(res?.data?.message, { variant: 'success' });
@@ -53,20 +58,25 @@ const FormModal = ({ open, handleClose }) => {
       } else {
         register(values)
           .then((res) => {
-            if (res?.response?.data?.errors && res?.response?.data?.errors.length > 0) {
+            if (res?.status === 201) {
               setIsLogin(false);
-              enqueueSnackbar(res?.response?.data?.errors[0].msg, {
+              enqueueSnackbar(res?.data, { variant: 'success' });
+              handleClose(formik.resetForm());
+            } else if (res?.response?.data?.error) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
                 variant: 'error',
               });
-            } else {
+            } else if (res.response.status === 401) {
               setIsLogin(false);
-              enqueueSnackbar(res?.data?.message, { variant: 'success' });
-              handleClose(formik.resetForm());
+              enqueueSnackbar(res?.response?.data?.message, {
+                variant: 'error',
+              });
             }
           })
           .catch((error) => {
             setIsLogin(false);
-            enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
+            enqueueSnackbar(error?.response?.data?.error, {
               variant: 'error',
             });
           });

@@ -73,7 +73,7 @@ export const cradData = [
 
 export const aboutTemplateData = [
   {
-    id: "Rita",
+    id: "rita",
     image: "/about.JPG",
     title: "Hi, I'm Rita",
     content: [
@@ -87,17 +87,16 @@ export const aboutTemplateData = [
     reverse: true,
   },
   {
-    id: "Brandi",
+    id: "brandi",
     image: "/program.jpg",
-    title: "Hi, I'm Brandi",
+    title: "Become your creator",
     content: [
-      "Experience a World of Endless Potential: Join Talks With Brandi",
-      "Join Brandi on a Journey of Remarkable Dialogue Interstellar Connections Beauty Insights and Spiritual Enlightenment!",
-      "Brandi a renowned manifestation expert suggests several powerful techniques to help individuals manifest their desires effectively.",
-      "By aligning their thoughts emotions and actions with this elevated state individuals can expedite the manifestation process and experience transformative leaps in their lives.",
-      "Brandi will also unveil the secrets to flawless makeup techniques helping you unleash your inner radiance.",
+      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
+      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
+      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
+      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
+      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
     ],
-    linkText: "Know More About Brandi",
     reverse: false,
   },
   {

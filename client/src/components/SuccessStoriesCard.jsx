@@ -17,7 +17,7 @@ const SuccessStories = ({
     <Box sx={{ paddingTop: 6, position: "relative" }}>
       <Box
         component={"div"}
-        sx={{ mx: { xs: "50px", lg: "225px" } }}
+        sx={{ mx: { xs: "20px", md: "50px", lg: "225px" } }}
         key={title}
         className="story"
       >
@@ -43,14 +43,14 @@ const SuccessStories = ({
                 top: { xs: "-30px", lg: "-48px" },
                 right: !reverse ? "0.9rem" : null,
                 left: reverse ? "0.9rem" : null,
-                fontSize: { xs: "35px", md: "120px" },
+                fontSize: { xs: "45px", sm: "55px", md: "85px" },
                 fontWeight: "bold",
                 color: "#671d63",
-                lineHeight: { xs: "35px", md: "120px" },
+                // lineHeight: { xs: "30px", sm: "35px", md: "85px", lg: "120px" },
                 backgroundColor: "#f8e3c4",
                 borderRadius: "50%",
-                width: { xs: "20px", md: "70px" },
-                height: { xs: "20px", md: "70px" },
+                width: { xs: "40px", md: "55px" },
+                height: { xs: "40px", md: "55px" },
                 padding: "10px",
                 textAlign: "center",
               }}
