@@ -7,12 +7,17 @@ import {
   MenuItem,
   Link,
   Box,
+  Typography,
+  CircularProgress,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CommonDropdown = ({ dropdownItems, handleDrawerToggle }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen(!open);
@@ -21,7 +26,15 @@ const CommonDropdown = ({ dropdownItems, handleDrawerToggle }) => {
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
-    handleDrawerToggle()
+    handleDrawerToggle();
+  };
+
+  const logOutHandler = async () => {
+    setLoggingOut(true);
+    localStorage.clear();
+    setLoggingOut(false);
+    setOpen(false);
+    navigate("/");
   };
 
   return (
@@ -31,12 +44,12 @@ const CommonDropdown = ({ dropdownItems, handleDrawerToggle }) => {
         onClick={handleClick}
         sx={{
           backgroundColor: "transparent",
-          color: "#671d63",
-          border: "1px solid transparent",
+          color: "#fff",
+          border: "1px solid #fff",
           minWidth: "132px",
           ":hover": {
-            backgroundColor: "#671d63",
-            color: "white",
+            backgroundColor: "#fff",
+            color: "#671d63",
             border: "1px solid #671d63",
           },
         }}
@@ -89,6 +102,27 @@ const CommonDropdown = ({ dropdownItems, handleDrawerToggle }) => {
                   </Link>
                 </MenuItem>
               ))}
+              {!loggingOut && (
+                <Button
+                  onClick={logOutHandler}
+                  sx={{
+                    color: "#671d63",
+                    border: "1px solid #fff",
+                    padding: "5px 5",
+                    margin: "0 8px",
+                    ":hover": { backgroundColor: "#671d63", color: "white" },
+                  }}
+                >
+                  Logout
+                </Button>
+              )}
+
+              {loggingOut && (
+                <>
+                  <CircularProgress color="secondary" />
+                  <Typography>Logging out...</Typography>
+                </>
+              )}
             </Menu>
           </Paper>
         )}
