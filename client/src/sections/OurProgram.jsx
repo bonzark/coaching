@@ -5,7 +5,7 @@ import AboutTemplate from "../components/AboutTemplate";
 
 const OurProgram = ({}) => {
   const aboutTemplate2Data = aboutTemplateData.find(
-    (item) => item.id === "Brandi"
+    (item) => item.id === "brandi"
   );
 
   return (

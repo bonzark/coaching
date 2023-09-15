@@ -73,7 +73,7 @@ export const cradData = [
 
 export const aboutTemplateData = [
   {
-    id: "Rita",
+    id: "rita",
     image: "/about.JPG",
     title: "Hi, I'm Rita",
     content: [
@@ -87,7 +87,7 @@ export const aboutTemplateData = [
     reverse: true,
   },
   {
-    id: "Brandi",
+    id: "brandi",
     image: "/program.jpg",
     title: "Become your creator",
     content: [
