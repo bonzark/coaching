@@ -47,14 +47,15 @@ const Navbar = () => {
   window.addEventListener("scroll", changeNavbarColor);
 
   const drawer = (
-    <Box sx={{ textAlign: "center" }}>
-      <Link to="/">
+    <Box>
+      <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
         <img
           src="./logo.png"
           alt="logo"
           style={{
             maxWidth: "100px",
             height: "auto",
+            margin: "auto",
           }}
         />
       </Link>
@@ -117,7 +118,7 @@ const Navbar = () => {
         <AppBar
           component="nav"
           sx={{
-            background: colorChange ? "white" : "transparent",
+            background: !colorChange ? "#873785" : "#671d63",
             boxShadow: colorChange
               ? {
                   lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
@@ -135,7 +136,6 @@ const Navbar = () => {
               sx={{
                 mr: 2,
                 display: { md: "none", xs: mobileOpen ? "none" : "" },
-                backgroundColor: "#671d63",
               }}
             >
               <MenuIcon />
@@ -170,10 +170,14 @@ const Navbar = () => {
                   to={item.link}
                   component={Link}
                   sx={{
-                    color: "#671d63",
+                    color: "#cecece",
                     fontWeight: "600",
                     textAlign: "center",
                     padding: 0,
+                    transition: "all 0.2s linear",
+                    ":hover": {
+                      color: "white",
+                    },
                   }}
                 >
                   {item.name}
@@ -194,13 +198,12 @@ const Navbar = () => {
                   color: "#671d63",
                   backgroundColor: "white",
                   width: "130px",
-                  margin: "0 auto",
                   fontWeight: "bolder",
                   border: "1px solid #671d63",
                   ":hover": {
                     backgroundColor: "#671d63",
                     color: "white",
-                    border: "1px solid transparent",
+                    border: "1px solid #fff",
                   },
                   display: { xs: "none", md: "block" },
                 }}
