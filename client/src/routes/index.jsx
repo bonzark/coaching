@@ -40,7 +40,7 @@ const Routers = () => {
         />
         <Route exact path="/events" element={<Event />} />
         <Route exact path="/contact" element={<Contact />} />
-        <Route element={<PrivateRoute />}>
+                <Route element={<PrivateRoute />}>
           <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
         </Route>
