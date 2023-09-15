@@ -15,7 +15,7 @@ const Home = () => {
       <HeroBanner
         header={"Discover what is blocking you from"}
         title={"Manifesting and living life you desire !"}
-        imageUrl={""}
+        imageUrl="./heroBg.jpg"
         listItems={heroListItems}
       />
       <AboutSection />

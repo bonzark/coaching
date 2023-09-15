@@ -16,7 +16,7 @@ const contactController = [
 
       await sendEmail(emailOptions);
 
-      res.status(201).send("Message sent successfully.");
+      res.status(200).send("Yay! Your message was sent successfully!");
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "An error occurred" });

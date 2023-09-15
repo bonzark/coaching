@@ -62,6 +62,7 @@ const BecomeYourCreator = () => {
       <HeroBanner
         header={"Become Your Creator"}
         listItems={becomeYourCreatorList}
+        imageUrl="./heroBg.jpg"
       />
       <Box sx={{ padding: "2rem" }}>
         <Box

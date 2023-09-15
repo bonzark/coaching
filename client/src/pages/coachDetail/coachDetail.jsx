@@ -32,13 +32,21 @@ const CoachDetail = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
     },
   ];
+
+  const btnText = (
+    <>
+      <span>Book Session</span>
+    </>
+  );
+
   return (
     <>
       <HeroBanner
         header={"Discover what is blocking you from"}
         title={"Manifesting and living life you desire !"}
-        imageUrl={""}
+        imageUrl="heroBg.jpg"
         listItems={heroListItems}
+        buttonText={btnText}
       />
       <SuccessCarousel />
       <FAQAccordion data={accordionData} />

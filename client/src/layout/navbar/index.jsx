@@ -47,12 +47,18 @@ const Navbar = () => {
   window.addEventListener("scroll", changeNavbarColor);
 
   const drawer = (
-    <Box sx={{ textAlign: "center" }}>
-      <Typography component={"p"} href="/" sx={{ my: 2 }}>
-        <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
-          LOGOIPSUM
-        </Link>
-      </Typography>
+    <Box>
+      <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
+        <img
+          src="./logo.png"
+          alt="logo"
+          style={{
+            maxWidth: "100px",
+            height: "auto",
+            margin: "auto",
+          }}
+        />
+      </Link>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -112,13 +118,13 @@ const Navbar = () => {
         <AppBar
           component="nav"
           sx={{
-            background: colorChange ? "white" : "transparent",
+            background: !colorChange ? "#873785" : "#671d63",
             boxShadow: colorChange
               ? {
                   lg: "#32325d3f 0px 50px 100px -20px, #0000004c 0px 30px 60px -30px",
                 }
               : "none",
-            zIndex: "99999",
+            zIndex: "2",
           }}
         >
           <Toolbar>
@@ -130,24 +136,27 @@ const Navbar = () => {
               sx={{
                 mr: 2,
                 display: { md: "none", xs: mobileOpen ? "none" : "" },
-                backgroundColor: "#671d63",
               }}
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h5"
-              component="div"
+            <Box
               sx={{
-                flexGrow: 1,
                 display: { xs: "none", md: "block" },
-                color: "#673d63",
+                marginRight: { xs: 0, md: "auto" },
               }}
             >
-              <Link to="/" style={{ color: "#671d63", textDecoration: "none" }}>
-                LOGOIPSUM
+              <Link to="/">
+                <img
+                  src="./logo.png"
+                  alt="logo"
+                  style={{
+                    maxWidth: "100px",
+                    height: "auto",
+                  }}
+                />
               </Link>
-            </Typography>
+            </Box>
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -161,10 +170,14 @@ const Navbar = () => {
                   to={item.link}
                   component={Link}
                   sx={{
-                    color: "#671d63",
+                    color: "#cecece",
                     fontWeight: "600",
                     textAlign: "center",
                     padding: 0,
+                    transition: "all 0.2s linear",
+                    ":hover": {
+                      color: "white",
+                    },
                   }}
                 >
                   {item.name}
@@ -185,13 +198,12 @@ const Navbar = () => {
                   color: "#671d63",
                   backgroundColor: "white",
                   width: "130px",
-                  margin: "0 auto",
                   fontWeight: "bolder",
                   border: "1px solid #671d63",
                   ":hover": {
                     backgroundColor: "#671d63",
                     color: "white",
-                    border: "1px solid transparent",
+                    border: "1px solid #fff",
                   },
                   display: { xs: "none", md: "block" },
                 }}

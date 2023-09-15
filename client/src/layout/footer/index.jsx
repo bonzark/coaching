@@ -20,9 +20,9 @@ const Footer = () => {
           margin: "0 auto",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: { xs: "flex-start", md: "space-between" },
           borderBottom: "1px solid #671d63",
-          gap: "30px",
+          gap: { xs: "15px", md: "30px" },
           flexWrap: "wrap",
         }}
       >
@@ -31,23 +31,18 @@ const Footer = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               gap: "15px",
               paddingBottom: "30px",
             }}
           >
-            <img src="./logo.png" alt="logo" />
-            <Typography
-              component={Link}
-              to={"/"}
-              sx={{
-                color: "#671d63",
-                fontSize: { md: "4rem", xs: "2rem" },
-                margin: 0,
-              }}
-            >
-              LOGOIPSUM
-            </Typography>
+            <Link to="/">
+              <img
+                src="./logo.png"
+                alt="logo"
+                style={{ maxWidth: "150px", height: "auto" }}
+              />
+            </Link>
           </Box>
           <Typography
             varient="p"
@@ -71,7 +66,7 @@ const Footer = () => {
               color: "#671d63",
               fontSize: "1.2rem",
               fontWeight: 900,
-              paddingBottom: "30px",
+              paddingBottom: { xs: "10px", md: "30px" },
               margin: 0,
             }}
           >
@@ -90,6 +85,12 @@ const Footer = () => {
                 <Typography
                   key={item.name}
                   component={Link}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                   to={item.href}
                   sx={{
                     color: "#671d63",
@@ -104,47 +105,7 @@ const Footer = () => {
             })}
           </Box>
         </Box>
-        <Box>
-          <Typography
-            variant="h3"
-            sx={{
-              color: "#671d63",
-              fontSize: "1.2rem",
-              fontWeight: 900,
-              paddingBottom: "30px",
-              margin: 0,
-            }}
-          >
-            QUICK LINKS
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "start",
-              justifyContent: "flex-start",
-            }}
-          >
-            {footerItems?.map((item) => {
-              return (
-                <Typography
-                  key={item.name}
-                  component={Link}
-                  to={item.href}
-                  sx={{
-                    color: "#671d63",
-                    lineHeight: "1.5rem",
-                    fontSize: "1.2rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  {item.name}
-                </Typography>
-              );
-            })}
-          </Box>
-        </Box>
-        <Box sx={{ marginTop: "2rem", alignSelf: "start" }}>
+        <Box sx={{ marginTop: { xs: "1rem", md: "2rem" }, alignSelf: "start" }}>
           <Typography
             variant="h3"
             sx={{
@@ -237,5 +198,7 @@ const Footer = () => {
     </Box>
   );
 };
+
+// const Footer = () => {};
 
 export default Footer;

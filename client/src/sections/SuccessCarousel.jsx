@@ -35,7 +35,6 @@ const SuccessCarousel = () => {
     <Box
       sx={{
         position: "relative",
-        zIndex: "5",
       }}
     >
       <Box
