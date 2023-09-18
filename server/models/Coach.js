@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const coachSchema = new mongoose.Schema({
   firstName: {
@@ -17,7 +17,16 @@ const coachSchema = new mongoose.Schema({
   about: {
     type: String,
   },
+  intro: {
+    type: String,
+    required: true,
+  },
+  Image: {
+    data: Buffer,
+    contentType: String,
+    title: String,
+  },
   // Other fields specific to coaches can be added here, such as certifications, specialties, etc.
 });
 
-module.exports = mongoose.model('Coach', coachSchema);
+module.exports = mongoose.model("Coach", coachSchema);
