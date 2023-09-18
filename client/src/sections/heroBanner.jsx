@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { PrimaryBtn } from '../components/PrimaryBtn';
 import FormModal from './FormModal';
 import { getAuthToken } from '../utils/auth';
@@ -61,9 +61,9 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
               width: { xs: 'auto  ', md: '40%', lg: '35%' },
               padding: {
                 xs: '0 0 50px 0',
-                md: '100px 0',
-                lg: '200px 0',
-                xl: '300px 0',
+                md: '100px 50px',
+                lg: '200px 75px',
+                xl: '300px 100px',
               },
             }}
           >
@@ -73,7 +73,7 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
                 sx={{
                   fontSize: { xs: '15px', md: '22px' },
                   fontWeight: 'normal',
-                  fontFamily: "'Abril Fatface', cursive",
+                  fontFamily: "'montserrat', cursive",
                 }}
               >
                 {title}
@@ -88,7 +88,7 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
                   fontWeight: 'normal',
                   lineHeight: { xs: '27px', md: '36px', lg: '62px' },
                   textTransform: 'capitalize',
-                  fontFamily: "'Abril Fatface', cursive",
+                  fontFamily: "'montserrat', cursive",
                 }}
               >
                 {header}
@@ -117,7 +117,7 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
               <PrimaryBtn onClick={handleOpen}>
                 {' '}
                 <>
-                  <span>DOWNLOAD NOW FOR FREE</span>
+                  <span>Book your free reading now</span>
                   Gain Awareness Of Your Creation in less than 30 days
                 </>
               </PrimaryBtn>

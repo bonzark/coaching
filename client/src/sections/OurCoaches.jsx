@@ -48,7 +48,7 @@ const OurCoaches = () => {
           fontSize: { xs: "32px", sm: "48px" },
           color: "#671d63",
           lineHeight: "48px",
-          fontFamily: "'Abril FatFace', sans-serif",
+          fontFamily: "'montserrat', sans-serif",
           display: "flex",
           marginBottom: "75px",
           justifyContent: "center",
@@ -156,6 +156,7 @@ const OurCoaches = () => {
             border: "none",
           },
           display: "block",
+          
         }}
       >
         SEE ALL COACHES

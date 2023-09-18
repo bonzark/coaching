@@ -16,7 +16,6 @@ const Home = () => {
         header={"Discover what is blocking you from"}
         title={"Manifesting and living life you desire !"}
         imageUrl="./heroBg.jpg"
-        listItems={heroListItems}
       />
       <AboutSection />
       <OurCoaches />

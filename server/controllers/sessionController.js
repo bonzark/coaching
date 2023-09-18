@@ -2,6 +2,15 @@ const { validate } = require('../middlewares/validation');
 const Session = require('../models/session');
 const User = require('../models/user');
 
+//TODO: Session booking req body
+
+//BookedSessions
+const requestBody = {
+  userId,
+  coachId,
+  price,
+  bookingDateTime,
+}
 // Function to book a coaching session
 exports.bookSession = async (req, res) => {
   try {

@@ -13,7 +13,9 @@ exports.createCoach = [
         firstName,
         lastName,
         email,
-        about,
+        about // full desc,
+        //TOOD: intro //short desc
+        //TOOD: img //short desc
         // Add other coach-specific fields here
       });
 

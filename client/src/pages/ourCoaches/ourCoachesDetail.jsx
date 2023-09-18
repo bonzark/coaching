@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { coachesData } from "../../utils/constant";
 import SuccessStories from "../../components/SuccessStoriesCard";
-import HeroBanner from "../../sections/heroBanner";
+import SingleCoachDetail from "../../sections/SingleCoachDetail";
 
 const OurCoachesDetail = () => {
   const location = useLocation();
@@ -14,13 +14,10 @@ const OurCoachesDetail = () => {
   console.log(data.description);
   return (
     <>
-      <HeroBanner
-        header={`Meet Our Coach ${data?.coachName}`}
-        description={`${data?.description[0]} ${data?.description[1]}`}
-        imageUrl="./heroBg.jpg"
-      />
+      
       <Box
         sx={{
+          margin: "5vh 0",
           paddingY: "80px",
           position: "relative",
           background: "linear-gradient(#DCD9F0,#ffffff)",
@@ -33,7 +30,7 @@ const OurCoachesDetail = () => {
               margin: "0 auto",
               textAlign: "center",
               fontSize: { xs: "25px", md: "40px" },
-              fontFamily: "'Abril FatFace', sans-seri",
+              fontFamily: "'montserrat', sans-seri",
               color: "#671D63",
             }}
           >
@@ -44,7 +41,7 @@ const OurCoachesDetail = () => {
                 margin: "0 auto",
                 textAlign: "center",
                 fontSize: { xs: "25px", md: "40px" },
-                fontFamily: "'Abril FatFace', sans-seri",
+                fontFamily: "'montserrat', sans-seri",
                 color: "#671D63",
                 position: "relative",
                 "::before": {
@@ -62,13 +59,11 @@ const OurCoachesDetail = () => {
             </Typography>
           </Typography>
         </Typography>
-        <SuccessStories
+        <SingleCoachDetail
           id={data?.id}
-          title={data?.coachName}
+          name={data?.coachName}
           imgSrc={`${data?.imageUrl}`}
           descriptionArr={data?.description}
-          isDetailPage={true}
-          wholeContent={true}
         />
       </Box>
     </>

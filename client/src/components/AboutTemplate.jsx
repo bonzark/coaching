@@ -89,7 +89,7 @@ const AboutTemplate = (props) => {
                 position: 'relative',
                 color: '#671d63',
                 fontSize: { xs: '30px', md: '42px' },
-                fontFamily: "'Abril Fatface', cursive",
+                fontFamily: "'montserrat', cursive",
                 '::before': {
                   position: 'absolute',
                   bottom: '0',

@@ -18,6 +18,39 @@ const coachSchema = new mongoose.Schema({
     type: String,
   },
   // Other fields specific to coaches can be added here, such as certifications, specialties, etc.
+
+  //TODO: 
 });
 
 module.exports = mongoose.model('Coach', coachSchema);
+
+
+
+// {
+//   "coach": {
+//       "name",
+//       "img",
+//       "...",
+//       "AvailableTimeFrom",
+//       "AvailableTimeTo",
+      
+//       "sessions": [{
+//           "name": "group session",
+//           "price": "50$",
+//           "des",
+//           "createdDate",
+//           "ModifiedDate",
+//           coachId:
+//       }]
+//   }
+// }
+
+
+// {
+//   "bookSessions": {
+//       userId,
+//       sessionId,
+//       createdDate,
+//       paymentStatus: "PENDING"  --> "SUCC" | "FAILED"
+//   }
+// }

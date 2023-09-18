@@ -101,7 +101,7 @@ export const aboutTemplateData = [
   },
   {
     id: "become-your-creator",
-    image: "/heroBg.jpg",
+    image: "/becomeYourCreator.jpeg",
     title: "Become Your Creator",
     content: [
       "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
@@ -192,7 +192,7 @@ export const wealthCardItems = [
     description:
       "Unlock your innate potential and tap into the power of conscious awareness, allowing you to manifest your desires effortlessly.",
     imageUrl: "/card_1.jpg",
-    reverse: true,
+    reverse: false,
   },
   {
     title: "Elevate and Manifest: The Ultimate Energy Transformation Technique",
@@ -269,7 +269,7 @@ export const coachesData = [
       "Through my work with this alien race, I have come to understand that their purpose is to assist humanity in embodying the divine feminine energy within us all. They remind us of the importance of nurturing ourselves and each other, finding balance in both our masculine and feminine aspects. They encourage us to embrace our emotions, honor our intuition, and find harmony within the ever-changing tides of life.",
       "So, dear beautiful angels, if you ever feel drawn to explore the depths of your soul, to embrace your intuition, and to connect with the profound wisdom of the alien race I channel, I am here to guide you on this transformative journey. Together, we will unlock the mysteries of the universe and discover the infinite possibilities that lie within us all.",
     ],
-    reverse: true,
+    reverse: false,
   },
   {
     id: "3",
@@ -302,7 +302,7 @@ export const coachesData = [
       "I am truly grateful for the opportunity to touch lives and make a positive impact on the world. Each day, I wake up with a renewed sense of purpose, eager to empower others and witness their transformation. So, to all you beautiful souls out there, I invite you to join me on this journey of self-discovery, growth, and empowerment. Together, we can create a world where love, acceptance, and personal fulfilment thrive.",
       "Ultimately, my purpose is to empower others to transform their lives and strive towards their highest potential.",
     ],
-    reverse: true,
+    reverse: false,
   },
 ];
 

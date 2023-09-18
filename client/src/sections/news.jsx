@@ -26,7 +26,7 @@ const News = () => {
                 lg: "3.5rem",
               },
               color: "#671d63",
-              fontFamily: "'Abril FatFace',sans-serif",
+              fontFamily: "'montserrat',sans-serif",
               maxWidth: "592px",
               position: "relative",
               paddingRight: { lg: "70px" },

@@ -53,7 +53,8 @@ const ContactForm = () => {
   return (
     <Box
       sx={{
-        padding: '4rem 2rem',
+        padding: '3rem 2rem',
+        margin: '5rem auto',
         boxShadow: '0 0 15px 0px #00000020',
         borderRadius: '15px',
         overflow: 'hidden',
@@ -66,12 +67,13 @@ const ContactForm = () => {
         <Typography
           varient="h1"
           sx={{
-            fontFamily: "'Abril Fatface',cursive",
+            fontFamily: "'montserrat',cursive",
             color: '#671d63',
             fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
             fontWeight: 500,
             textAlign: 'center',
-            marginBottom: '2rem',
+            lineHeight: '2.5rem',
+            marginBottom: '3rem',
           }}
         >
           Contact Us

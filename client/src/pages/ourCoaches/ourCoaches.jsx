@@ -1,6 +1,6 @@
 import React from "react";
 import OurCoachesCard from "../../components/OurCoachesCard";
-import HeroBanner from "../../sections/heroBanner";
+import PageBanner from "../../sections/PageBanner";
 
 const AllCoaches = () => {
   const desc = [
@@ -23,10 +23,9 @@ const AllCoaches = () => {
   ];
   return (
     <>
-      <HeroBanner
-        header="Know more about our coaches"
-        listItems={desc}
-        imageUrl="./heroBg.jpg"
+      <PageBanner
+        heading="Know more about our coaches"
+        imgSrc="./coach.jpg"
       />
       <OurCoachesCard />
     </>

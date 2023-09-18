@@ -43,7 +43,7 @@ const FreeMeditation = () => {
             fontSize: { xs: "32px", sm: "48px" },
             color: "#671d63",
             lineHeight: "48px",
-            fontFamily: "'Abril FatFace', sans-serif",
+            fontFamily: "'montserrat', sans-serif",
             display: "flex",
             justifyContent: "center",
           }}

@@ -26,12 +26,13 @@ const sessionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  users: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Reference to the User model
-    },
-  ],
+  //TODO: Move to booked session
+  // users: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'User', // Reference to the User model
+  //   },
+  // ],
 });
 
 const Session = mongoose.model('Session', sessionSchema);

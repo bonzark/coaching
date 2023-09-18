@@ -7,7 +7,7 @@ export const PrimaryBtn = (props) => {
       sx={{
         backgroundColor: '#671d63',
         display: 'flex',
-        flexDirection: props.row ? 'row' : 'column',
+        flexDirection: 'column',
         alignItems: 'center',
         width: props.fullWidth ? '100%' : { xs: '100%', sm: 'max-content' },
         gap: '20px',
@@ -15,7 +15,7 @@ export const PrimaryBtn = (props) => {
         color: '#fff',
         borderRadius: '5px',
         padding: { xs: '10px', md: '18px 25px' },
-        fontSize: '12px',
+        fontSize: '1rem',
         border: '1px solid transparent',
         lineHeight: '16px',
         ':hover': {
@@ -26,6 +26,7 @@ export const PrimaryBtn = (props) => {
           color: '#fff',
           backgroundColor: '#3b0d39',
         },
+        fontFamily: 'Poppins'
       }}
       {...props}
     >

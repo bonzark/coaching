@@ -19,7 +19,7 @@ const OfferSection = () => {
           sx={{
             fontSize: { xs: "20px", md: "34px" },
             color: "#671d63",
-            fontFamily: '"Abril Fatface", sans-serif',
+            fontFamily: '"montserrat", sans-serif',
             fontWeight: 100,
             margin: { xs: "auto", sm: "0" },
             padding: "16px 0",

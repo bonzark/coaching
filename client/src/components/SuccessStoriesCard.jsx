@@ -33,6 +33,7 @@ const SuccessStories = ({
             },
             justifyContent: "space-between",
             backgroundColor: "white",
+            paddingBottom: "5vh"
           }}
         >
           {!descriptionArr ? (
@@ -61,6 +62,7 @@ const SuccessStories = ({
           <Box
             sx={{
               width: { md: "35%", xs: "100%" },
+              maxHeight: "350px",
               height: {
                 md: "auto",
                 sm: "550px",
@@ -80,7 +82,7 @@ const SuccessStories = ({
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </Box>
@@ -103,7 +105,7 @@ const SuccessStories = ({
                 color: !isDetailPage ? "#414141" : "#671D63",
                 lineHeight: { xs: "22px", sm: "30px" },
                 textTransform: "capitalize",
-                fontFamily: "'Abril FatFace', sans-serif",
+                fontFamily: "'montserrat', sans-serif",
                 px: { xs: "1rem", md: "2rem", lg: "3rem" },
                 my: { xs: "8px", md: "10px", lg: "15px" },
               }}
@@ -126,7 +128,7 @@ const SuccessStories = ({
                     {para}
                   </Typography>
                 ))
-              : descriptionArr?.slice(0, 4).map((para) => (
+              : descriptionArr?.slice(0, 2).map((para) => (
                   <Fragment key={para}>
                     <Typography
                       variant="h6"
@@ -155,6 +157,7 @@ const SuccessStories = ({
                     component={Link}
                     to={`/ourCoachesDetail/${id}`}
                     state={{ name: id }}
+                    
                   >
                     Read More...
                   </PrimaryBtn>
