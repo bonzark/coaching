@@ -6,9 +6,21 @@ exports.createCoach = [
   validate,
   async (req, res) => {
     try {
-      const { firstName, lastName, email, about, intro } = req.body;
-      console.log("FILE::", req.file);
-      const { originalname, buffer } = req.file;
+      const {
+        firstName,
+        lastName,
+        email,
+        about,
+        intro,
+        availableFrom,
+        availableTo,
+        availableDays,
+        oneToOnePrice,
+        groupPrice,
+      } = req.body;
+
+      console.log("req.file", req.file);
+      const imageUrl = `${process.env.BASE_URL}/public/uploads/${req.file.originalname}`; // Assuming the image is saved in a 'uploads' directory
 
       // Create a new coach
       const coach = new Coach({
@@ -17,11 +29,14 @@ exports.createCoach = [
         email,
         about,
         intro,
-        image: {
-          data: buffer,
-          contentType: "image/*",
-          title: originalname,
+        availableFrom,
+        availableTo,
+        availableDays,
+        sessionFees: {
+          oneToOnePrice,
+          groupPrice,
         },
+        image: imageUrl,
         // Add other coach-specific fields here
       });
 

@@ -3,20 +3,12 @@ const router = express.Router();
 const coachController = require("../controllers/coachController");
 const multer = require("multer");
 const { validateCoach } = require("../middlewares/validation");
-
-// Multer setup for file upload
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = require("../middlewares/imageUpload");
 
 // Route to create a new coach
 router.get("/list", coachController.getCoachList);
 
-router.post(
-  "/create",
-  validateCoach,
-  upload.single("image"),
-  coachController.createCoach
-);
+router.post("/create", upload.single("image"), coachController.createCoach);
 
 router.put("/update/:coachId", validateCoach, coachController.updateCoach);
 
