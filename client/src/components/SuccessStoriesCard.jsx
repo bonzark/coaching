@@ -24,7 +24,7 @@ const SuccessStories = ({
         <Paper
           elevation={3}
           sx={{
-            width: "100%",
+            width: "90%",
             position: "relative",
             display: "flex",
             flexDirection: {
@@ -33,7 +33,8 @@ const SuccessStories = ({
             },
             justifyContent: "space-between",
             backgroundColor: "white",
-            paddingBottom: "5vh"
+            padding: "2.5rem 1.5rem",
+            margin: "0 auto",
           }}
         >
           {!descriptionArr ? (
@@ -157,7 +158,6 @@ const SuccessStories = ({
                     component={Link}
                     to={`/ourCoachesDetail/${id}`}
                     state={{ name: id }}
-                    
                   >
                     Read More...
                   </PrimaryBtn>
