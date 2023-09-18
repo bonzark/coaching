@@ -205,16 +205,20 @@ export const wealthCardItems = [
 
 export const sidebarItems = [
   {
-    name: "Sessions",
-    path: "/sessions",
+    name: "Dashboard",
+    path: "/dashboard",
   },
   {
-    name: "Previous Sessions",
-    path: "/previous-sessions",
+    name: "Session",
+    path: "/session",
   },
   {
-    name: "Upcoming Sessions",
-    path: "/upcoming-sessions",
+    name: "Subscription",
+    path: "/subscription",
+  },
+  {
+    name: "Previous Purchases",
+    path: "/previous-purchases",
   },
 ];
 export const coachesData = [
@@ -390,3 +394,51 @@ export const sessionsData = [
     isCompleted: true,
   },
 ];
+
+export const sessionData = [
+  {
+    title: "Yoga Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Rita",
+    date: "18/9/2023",
+    price: 100,
+  },
+  {
+    title: "Therapy Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Brandi",
+    date: "18/9/2023",
+    price: 159,
+  },
+  {
+    title: "Welth Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Prayag",
+    date: "18/9/2023",
+    price: 179,
+  }
+];
+
+export const subscriptionData = [
+  {
+    title: "Starter Plan",
+    price: "$9.99/month",
+    description: "Access to basic features and content",
+    locked: ["Feature 1 (Locked)", "Feature 2 (Locked)", "Feature 3 (Locked)"],
+    unlocked: ["Feature 4", "Feature 5", "Feature 6"],
+  },
+  {
+    title: "Intermediate Plan",
+    price: "$19.99/month",
+    description: "Access to intermediate features and content, plus premium support",
+    locked: ["Feature A (Locked)", "Feature B (Locked)", "Feature C (Locked)"],
+    unlocked: ["Feature X", "Feature Y", "Feature Z"],
+  },
+  {
+    title: "Pro-Level Plan",
+    price: "$29.99/month",
+    description: "Access to advanced features and content, premium support, and exclusive content",
+    locked: ["Advanced Feature I (Locked)", "Advanced Feature II (Locked)"],
+    unlocked: ["Premium Feature A", "Premium Feature B", "Premium Feature C"],
+  }
+]

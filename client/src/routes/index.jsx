@@ -43,6 +43,7 @@ const Routers = () => {
         <Route exact path="/contact" element={<Contact />} />
         <Route element={<PrivateRoute />}>
           <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
+          <Route path="/session" element={<SessionsPage />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route path="/sessions" element={<SessionsPage />} />
         </Route>
