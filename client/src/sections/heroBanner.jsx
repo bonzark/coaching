@@ -20,6 +20,7 @@ const HeroBanner = ({
   listItems,
   buttonText,
   description,
+  buttonClick,
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -135,7 +136,9 @@ const HeroBanner = ({
                 </>
               </PrimaryBtn>
             ) : (
-              buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>
+              buttonText && (
+                <PrimaryBtn onClick={buttonClick}>{buttonText}</PrimaryBtn>
+              )
             )}
           </Box>
         </Container>

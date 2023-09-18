@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
 import HeroBanner from "../../sections/heroBanner";
 import { heroListItems } from "../../utils/constant";
+import BookSession from "../../components/bookSessionModel";
 
 const CoachDetail = () => {
+  const [showBookingModel, setShowBookingModel] = useState(false);
+
   const accordionData = [
     {
       summary: "Collapsible Group Item #1",
@@ -33,20 +36,21 @@ const CoachDetail = () => {
     },
   ];
 
-  const btnText = (
-    <>
-      <span>Book Session</span>
-    </>
-  );
+  const btnText = <span>Book Session</span>;
 
   return (
     <>
+      <BookSession
+        open={showBookingModel}
+        handleClose={() => setShowBookingModel(false)}
+      />
       <HeroBanner
         header={"Discover what is blocking you from"}
         title={"Manifesting and living life you desire !"}
         imageUrl="heroBg.jpg"
         listItems={heroListItems}
         buttonText={btnText}
+        buttonClick={() => setShowBookingModel(true)}
       />
       <SuccessCarousel />
       <FAQAccordion data={accordionData} />
