@@ -347,3 +347,46 @@ export const becomeYourCreatorList = [
     key: 5,
   },
 ];
+
+export const sessionsData = [
+  {
+    name: "Yoga for Beginners",
+    description: "Start your yoga journey with this beginner-friendly session.",
+    sessionImg: "./card_1.jpg",
+    isCompleted: false,
+  },
+  {
+    name: "Strength Training Workshop",
+    description: "Learn effective strength training exercises and techniques.",
+    sessionImg: "./card_2.png",
+    isCompleted: true,
+  },
+  {
+    name: "Pilates for Core Strength",
+    description:
+      "Improve your core strength and flexibility with Pilates exercises.",
+    sessionImg: "./card_3.png",
+    isCompleted: false,
+  },
+  {
+    name: "HIIT Workout Intensive",
+    description:
+      "High-Intensity Interval Training for a powerful fitness routine.",
+    sessionImg: "./card_4.png",
+    isCompleted: true,
+  },
+  {
+    name: "Meditation and Mindfulness",
+    description:
+      "Relax your mind and reduce stress through meditation and mindfulness.",
+    sessionImg: "./card_5.png",
+    isCompleted: false,
+  },
+  {
+    name: "HIIT Workout Intensive",
+    description:
+      "High-Intensity Interval Training for a powerful fitness routine.",
+    sessionImg: "./card_6.png",
+    isCompleted: true,
+  },
+];
