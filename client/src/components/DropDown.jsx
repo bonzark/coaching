@@ -41,14 +41,15 @@ const CommonDropdown = ({
   const logOutHandler = async () => {
     setLoggingOut(true);
     localStorage.clear();
-    setLoggingOut(false);
+    setLoggingOut(true);
+    handleClose();
     logout();
     setOpen(false);
     navigate("/");
   };
 
   return (
-    <Box sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "left" }}>
       {!isMobile && (
         <Button
           variant="contained"
@@ -148,36 +149,51 @@ const CommonDropdown = ({
           )}
         </Popper>
       ) : (
-        <Box sx={{ width: "250px", margin: "0 auto" }}>
+        <Box sx={{ width: "250px", margin: "0 auto", textAlign: "center" }}>
           <Accordion
-            sx={{ border: "none", boxShadow: "none", width: "fit-contnet" }}
+            sx={{
+              border: "none",
+              boxShadow: "none",
+              width: "250px",
+              margin: "0 auto",
+              textAlign: "center",
+            }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               sx={{
-                width: "max-content",
-                paddingLeft: "15px",
+                width: "150px",
+                margin: "0 auto",
                 textAlign: "center",
               }}
               id="panel1a-header"
             >
-              <Typography>My Account</Typography>
+              <Typography
+                sx={{
+                  color: "#673d67",
+                  width: "150px",
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                My Account
+              </Typography>
             </AccordionSummary>
-            <Box sx={{ width: "fit-content" }}>
+            <Box sx={{ width: "fit-content", textAlign: "left" }}>
               {dropdownItems?.map((item) => {
                 return (
                   <AccordionDetails
                     key={item?.name}
                     sx={{
-                      width: "fit-contnet",
+                      width: "215px",
                       textAlign: "center",
-                      padding: "5px 10px",
-                      height: "15px",
+                      minHeight: "27px",
+                      paddingBottom: "10px",
                     }}
                   >
                     <Typography
-                      sx={{ textDecoration: "none" }}
+                      sx={{ textDecoration: "none", color: "#673d67" }}
                       component={NavLink}
                       to={item?.path}
                     >
@@ -187,6 +203,26 @@ const CommonDropdown = ({
                 );
               })}
             </Box>
+            {!loggingOut && (
+              <Button
+                onClick={logOutHandler}
+                sx={{
+                  color: "#673d67",
+                  border: "1px solid #fff",
+                  margin: "0 8px",
+                  ":hover": { backgroundColor: "#671d63", color: "white" },
+                }}
+              >
+                Logout
+              </Button>
+            )}
+
+            {loggingOut && (
+              <>
+                <CircularProgress color="secondary" />
+                <Typography>Logging out...</Typography>
+              </>
+            )}
           </Accordion>
         </Box>
       )}

@@ -3,17 +3,14 @@ const User = require('../models/user');
 
 const validateRegistration = [
   body('name').trim().notEmpty().withMessage('Username is required'),
-  body('email')
-    .trim()
-    .isEmail()
-    .withMessage('Invalid email')
-    .custom(async (value) => {
-      const existingUser = await User.findOne({ email: value });
-      if (existingUser) {
-        throw new Error('Email already registered');
-      }
-      return true;
-    }),
+  body('email').trim().isEmail().withMessage('Invalid email'),
+  // .custom(async (value) => {
+  //   const existingUser = await User.findOne({ email: value });
+  //   if (existingUser) {
+  //     throw new Error('Email already registered');
+  //   }
+  //   return true;
+  // })
   body('password')
     .trim()
     .isLength({ min: 8 })

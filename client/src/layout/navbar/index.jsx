@@ -42,7 +42,6 @@ const Navbar = () => {
 
   const handleClose = () => {
     setOpen(false);
-    formik.resetForm();
   };
 
   const changeNavbarColor = () => {

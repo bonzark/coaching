@@ -4,7 +4,7 @@ import { PrimaryBtn } from './PrimaryBtn';
 import { Link } from 'react-router-dom';
 
 const AboutTemplate = (props) => {
-  const { reverse, image, linkText, content, title, id } = props;
+  const { reverse, image, linkText, content, title, id, to } = props;
 
   return (
     <Box
@@ -110,7 +110,7 @@ const AboutTemplate = (props) => {
               ></Typography>
             ))}
             <Typography
-              to={'know-more'}
+              to={to}
               component={Link}
               sx={{
                 color: '#671d63',
