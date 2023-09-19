@@ -1,18 +1,32 @@
 import React from "react";
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SellIcon from "@mui/icons-material/Sell";
 
-const SessionCard = ({ title, detail, coachName, price, date, time }) => {
+const SessionCard = ({
+  title,
+  detail,
+  coachName,
+  price,
+  date,
+  time,
+  sessionImg,
+}) => {
   return (
     <Card
       sx={{
-        padding: "1.2rem 1.75rem",
-        minHeight: "100%",
+        height: "100%",
         justifyContent: "space-between",
-        boxShadow: "#3c40434c 0px 1px 2px 0px, #3c404326 0px 2px 6px 2px",
+        boxShadow: "#3c40434c 0px 1px 2px 0px, #3c404326 0px 2px 6px 2px ",
         borderRadius: "8px",
         transition: "transform 0.2s ease-in-out",
         "&:hover": {
@@ -20,14 +34,19 @@ const SessionCard = ({ title, detail, coachName, price, date, time }) => {
         },
       }}
     >
+      {sessionImg && (
+        <CardMedia
+          component="img"
+          height="250"
+          image={sessionImg}
+          alt={sessionImg}
+        />
+      )}
       <CardContent
         sx={{
-          display: "grid",
-          gap: "8px",
-          height: "100%",
-          justifyContent: "space-between",
-          padding: "0px !important",
-          alignItems: "center",
+          height: sessionImg ? "calc(100% - 250px)" : "100%",
+          marginTop: sessionImg ? "8px" : 0,
+          padding: "10px 15px !important",
         }}
       >
         <Box
@@ -59,7 +78,7 @@ const SessionCard = ({ title, detail, coachName, price, date, time }) => {
             <Typography
               component={"span"}
               sx={{
-                fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                fontSize: { xs: "15px", sm: "20px" },
                 color: "#671d63",
               }}
             >
@@ -70,7 +89,7 @@ const SessionCard = ({ title, detail, coachName, price, date, time }) => {
         <Typography
           variant="body2"
           sx={{
-            fontSize: { xs: "15px", sm: "20px", md: "25px" },
+            fontSize: { xs: "15px", sm: "20px" },
             mb: { xs: 1, md: 2 },
           }}
         >

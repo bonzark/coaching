@@ -2,8 +2,8 @@
 
 body {
   margin: 0;
-  padding: 0;
-  overflow-y: scroll !important;
+  padding: 0 !important;
+  overflow: auto !important;
 }
 
 .about-wrapper {

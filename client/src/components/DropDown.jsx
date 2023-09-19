@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const CommonDropdown = ({
   dropdownItems,
@@ -79,7 +80,7 @@ const CommonDropdown = ({
           sx={{
             zIndex: (theme) => theme.zIndex.tooltip,
             " .MuiPaper-root": {
-              background: "red",
+              background: "#671d61",
             },
           }}
         >
@@ -103,8 +104,9 @@ const CommonDropdown = ({
                   elevation: 0,
                   sx: {
                     width: 250,
-                    marginTop: 2,
-                    color: "#fff",
+                    marginTop: "26px",
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px !important",
                   },
                 }}
                 {...TransitionProps}
@@ -130,11 +132,15 @@ const CommonDropdown = ({
                     sx={{
                       color: "#671d63",
                       border: "1px solid #fff",
-                      padding: "5px 5",
+                      padding: "5pxs",
                       margin: "0 8px",
-                      ":hover": { backgroundColor: "#671d63", color: "white" },
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      ":hover": { color: "#673d61" },
                     }}
                   >
+                    <LogoutIcon sx={{ p: "5px" }} />
                     Logout
                   </Button>
                 )}
@@ -207,14 +213,19 @@ const CommonDropdown = ({
             {!loggingOut && (
               <Button
                 onClick={logOutHandler}
+                variant="text"
                 sx={{
                   color: "#673d67",
-                  border: "1px solid #fff",
+                  border: "1px solid #671d61",
                   margin: "0 8px",
-                  ":hover": { backgroundColor: "#671d63", color: "white" },
+                  padding: "8px 12px",
+                  ":hover": {
+                    background: "transparent",
+                  },
                 }}
               >
-                Logout
+                <LogoutIcon sx={{ pr: "10px" }} />
+                <Typography>Logout</Typography>
               </Button>
             )}
 
