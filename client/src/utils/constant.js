@@ -199,16 +199,20 @@ export const wealthCardItems = [
 
 export const sidebarItems = [
   {
-    name: "Sessions",
-    path: "/sessions",
+    name: "Dashboard",
+    path: "/dashboard",
   },
   {
-    name: "Previous Sessions",
-    path: "/previous-sessions",
+    name: "Session",
+    path: "/session",
   },
   {
-    name: "Upcoming Sessions",
-    path: "/upcoming-sessions",
+    name: "Subscription",
+    path: "/subscription",
+  },
+  {
+    name: "Previous Purchases",
+    path: "/previous-purchases",
   },
 ];
 export const coachesData = [
@@ -341,3 +345,120 @@ export const becomeYourCreatorList = [
     key: 5,
   },
 ];
+
+export const sessionsData = [
+  {
+    title: "Yoga for Beginners",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description: "Start your yoga journey with this beginner-friendly session.",
+    // sessionImg: "./card_1.jpg",
+    isCompleted: false,
+  },
+  {
+    title: "Strength Training Workshop",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description: "Learn effective strength training exercises and techniques.",
+    // sessionImg: "./card_2.png",
+    isCompleted: true,
+  },
+  {
+    title: "Pilates for Core Strength",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description:
+      "Improve your core strength and flexibility with Pilates exercises.",
+    // sessionImg: "./card_3.png",
+    isCompleted: false,
+  },
+  {
+    title: "Body Workout Intensive",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description:
+      "High-Intensity Interval Training for a powerful fitness routine.",
+    // sessionImg: "./card_4.png",
+    isCompleted: true,
+  },
+  {
+    title: "Meditation and Mindfulness",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description:
+      "Relax your mind and reduce stress through meditation and mindfulness.",
+    // sessionImg: "./card_5.png",
+    isCompleted: false,
+  },
+  {
+    title: "HIIT Workout Intensive",
+    coachName: "Rita",
+    price: 149,
+    date: '20/9/2023',
+    time: "9:00 a.m.",
+    description:
+      "High-Intensity Interval Training for a powerful fitness routine.",
+    // sessionImg: "./card_6.png",
+    isCompleted: true,
+  },
+];
+
+export const sessionData = [
+  {
+    title: "Yoga Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Rita",
+    date: "18/9/2023",
+    time: "9:30 a.m",
+    price: 100,
+  },
+  {
+    title: "Therapy Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Brandi",
+    date: "18/9/2023",
+    time: "9:30 a.m",
+    price: 159,
+  },
+  {
+    title: "Welth Session",
+    detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
+    coachName: "Rita",
+    date: "18/9/2023",
+    time: "9:30 a.m",
+    price: 179,
+  }
+];
+
+export const subscriptionData = [
+  {
+    title: "Starter Plan",
+    price: "$9.99/month",
+    description: "Access to basic features and content (Free & Recomanded)",
+    unlocked: ["Feature 1 ", "Feature 2 ", "Feature 3 "],
+    locked: ["Feature 4", "Feature 5", "Feature 6"],
+  },
+  {
+    title: "Intermediate Plan",
+    price: "$19.99/month",
+    description: "Access to intermediate features and content, plus premium support",
+    unlocked: ["Feature A ", "Feature B ", "Feature C ", "Feature D"],
+    locked: ["Feature X", "Feature Y",],
+  },
+  {
+    title: "Pro-Level Plan",
+    price: "$29.99/month",
+    description: "Access to advanced features and content, premium support, and exclusive content",
+    unlocked: ["Feature III", "Feature Iv", "Feature V", "Feature VI", "Advanced Feature I ", "Advanced Feature II ",],
+  }
+]

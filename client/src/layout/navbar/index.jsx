@@ -36,6 +36,9 @@ const Navbar = () => {
     } else {
       setIsLoggedIn(true);
     }
+    if (window.innerWidth < 768) {
+      setMobileOpen(false);
+    }
   }, [getAuthToken()]);
 
   const handleOpen = () => setOpen(true);
@@ -92,6 +95,12 @@ const Navbar = () => {
               <Button
                 component={Link}
                 to={item.link}
+                onClick={() => {
+                  window.scroll({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
                 sx={{
                   color: "#673d67",
                   margin: "0 auto",
@@ -151,6 +160,7 @@ const Navbar = () => {
                 }
               : "none",
             zIndex: "2",
+            padding: "0 !important",
           }}
         >
           <Box
@@ -199,7 +209,6 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -212,6 +221,12 @@ const Navbar = () => {
                   key={item.name}
                   to={item.link}
                   component={Link}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                   sx={{
                     color: "#cecece",
                     fontWeight: "600",

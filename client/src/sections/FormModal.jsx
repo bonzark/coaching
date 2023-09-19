@@ -175,7 +175,6 @@ const FormModal = ({ open, handleClose }) => {
             <span
               style={{ cursor: "pointer", color: "#671d63" }}
               onClick={() => {
-                console.log("formik", formik);
                 formik.resetForm();
                 setLogingForm(!logingForm);
               }}

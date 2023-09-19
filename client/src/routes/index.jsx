@@ -19,6 +19,7 @@ import Event from "../pages/event/event";
 import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 import SmoothScroll from "../components/shared/SmoothScroll";
+import SessionsPage from "../pages/Sessions";
 
 const Routers = () => {
   return (
@@ -47,7 +48,9 @@ const Routers = () => {
               path="/ourCoachesDetail/:id"
               element={<OurCoachesDetail />}
             />
+            <Route path="/session" element={<SessionsPage />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route path="/sessions" element={<SessionsPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>

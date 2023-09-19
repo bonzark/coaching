@@ -18,9 +18,7 @@ const FreeMeditation = () => {
     },
     enableReinitialize: true,
     validationSchema: validationEmail,
-    onSubmit: (values) => {
-      console.log(" Free Meditation :", values);
-    },
+    onSubmit: (values) => {},
   });
 
   return (
