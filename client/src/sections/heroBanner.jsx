@@ -41,7 +41,7 @@ const HeroBanner = ({
             alignItems: { xs: "end", md: "center" },
             position: "relative",
             zIndex: 1,
-            paddingTop: "3rem",
+            paddingTop: "3.5rem",
             minHeight: { lg: "100vh", xl: "auto" },
           }}
           maxWidth="false"
@@ -50,6 +50,7 @@ const HeroBanner = ({
             sx={{
               maxWidth: { xs: "auto  ", md: "100%", lg: "40%" },
               paddingX: { xs: "10px", md: "100px", lg: "10px" },
+              paddingY: { xl: "50px" },
             }}
           >
             {title && (
@@ -59,7 +60,7 @@ const HeroBanner = ({
                   fontSize: { xs: "15px", md: "22px" },
                   fontWeight: "700",
                   fontFamily: "'montserrat', cursive",
-                  margin: "1rem 0",
+                  margin: "0.5rem 0",
                 }}
               >
                 {title}
@@ -72,7 +73,7 @@ const HeroBanner = ({
                   fontSize: { xs: "22px", md: "30px", lg: "38px" },
                   color: "#671d63",
                   fontWeight: "500",
-                  lineHeight: { xs: "27px", md: "36px", lg: "55px" },
+                  lineHeight: { xs: "27px", md: "36px", lg: "40px" },
                   textTransform: "capitalize",
                   fontFamily: "'montserrat', cursive",
                   margin: "1rem 0",
@@ -133,7 +134,7 @@ const HeroBanner = ({
             <img
               src={imageUrl}
               alt="hero banner image"
-              style={{ maxWidth: "100%" }}
+              style={{ maxWidth: "110%" }}
             />
           </Box>
         </Box>
