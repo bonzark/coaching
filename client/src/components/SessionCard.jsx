@@ -111,9 +111,10 @@ const SessionCard = ({
               fontSize: { xs: "15px", sm: "20px", md: "25px" },
               display: "flex",
               alignItems: "center",
+              gap: "5px",
             }}
           >
-            <CalendarMonthIcon sx={{ color: "#671d63" }} />
+            <CalendarMonthIcon sx={{ color: "#671d63", width: "25px" }} />
             <Typography
               sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
             >
@@ -144,7 +145,7 @@ const SessionCard = ({
               gap: "5px",
             }}
           >
-            <SellIcon sx={{ color: "#671d63" }} />
+            <SellIcon sx={{ color: "#671d63", width: "25px" }} />
             <Typography
               component={"span"}
               sx={{
@@ -161,7 +162,7 @@ const SessionCard = ({
               border: "1px solid #671d63",
               marginLeft: "auto",
               maxWidth: "fit-content",
-              fontSize: { xs: "8px", sm: "12px", md: "16px" },
+              fontSize: { xs: "12px", sm: "15px", md: "18px" },
             }}
           >
             Get Link

@@ -26,6 +26,7 @@ const Dashboard = () => {
             color: "#673d61",
             pl: "10px",
             fontSize: { xs: "33px", md: "42px" },
+            textTransform: "capitalize",
           }}
           component={"span"}
         >
@@ -85,7 +86,7 @@ const Dashboard = () => {
             textAlign: "center",
           }}
         >
-          Subsctiption Plans
+          Subscriptions Plans
         </Typography>
         <Grid
           container
