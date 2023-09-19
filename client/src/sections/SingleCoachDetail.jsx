@@ -1,67 +1,42 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
-import './css/singleCoachDetail.css';
+import { Box, Typography } from "@mui/material";
+
 const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
   return (
     <Box
-      component={"div"}
-      sx={{ mx: { xs: "20px", md: "50px", lg: "225px" } }}
-      className="story"
+      sx={{
+        maxWidth: "1200px",
+        margin: "2rem auto",
+        boxShadow: "0 3px 12px 1px #dfdfdf",
+        borderRadius: "8px",
+        overflow: "hidden",
+        padding: "1.5rem",
+        backgroundColor: "#fff",
+      }}
     >
-      <Paper
-        elevation={3}
+      <Box
         sx={{
-          width: "100%",
-          position: "relative",
+          float: { xs: "none", md: "right" },
+          margin: "1.2rem",
+          borderRadius: "8px",
+          overflow: "hidden",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          backgroundColor: "white",
-          paddingBottom: "5vh",
-          padding: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
-          margin: "5rem auto"
         }}
       >
-        <Grid container spacing={2}>
-            <Grid item xs ={8}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: { xs: "18px", sm: "28px" },
-                color: "#414141",
-                lineHeight: { xs: "22px", sm: "30px" },
-                textTransform: "capitalize",
-                fontFamily: "'montserrat', sans-serif",
-                my: { xs: "8px", md: "10px", lg: "15px" },
-              }}
-            >
-              {name}
-            </Typography>
-                {descriptionArr?.map((para, index) => (
-                  <Typography
-                    key={index}
-                    variant="h6"
-                    sx={{
-                      color: "#575757",
-                      fontSize: { xs: "15px", sm: "20px" },
-                      lineHeight: { xs: "20px", sm: "25px" },
-                      mb: { xs: "8px", md: "10px", lg: "15px" },
-                    }}
-                  >
-                    {para}
-                  </Typography>
-                ))}
-            </Grid>
-            <Grid item xs = {4}
-            sx={{
-              height: '50vh',
-              width: '25vw'
-            }}
-            >
-                <img src={imgSrc} alt="coach-img" className="coach-image" />
-            </Grid>
-        </Grid>
-      </Paper>
+        <img
+          src={imgSrc}
+          alt="coach"
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+        />
+      </Box>
+      <Typography paragraph>{name},</Typography>
+      {descriptionArr.map((para, index) => (
+        <Typography paragraph key={index} sx={{ textAlign: "justify" }}>
+          {para}
+        </Typography>
+      ))}
     </Box>
   );
 };

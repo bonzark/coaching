@@ -1,7 +1,6 @@
 import React from "react";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
-import HeroBanner from "../../sections/heroBanner";
 import { heroListItems } from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
@@ -53,11 +52,10 @@ const CoachDetail = () => {
         <Box
           sx={{
             display: "flex",
-            paddingX: { xs: "1rem", md: "0" },
             mx: "auto",
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: "10px 0 55px 10px",
+            padding: "0 35px 40px",
             flexDirection: { xs: "column", lg: "row" },
           }}
         >
@@ -74,9 +72,9 @@ const CoachDetail = () => {
               fontFamily: "'montserrat',sans-serif",
               maxWidth: "592px",
               position: "relative",
-              paddingRight: { lg: "70px" },
+              paddingRight: { lg: "20px" },
               marginBottom: { xs: "40px", lg: 0 },
-              marginRight: { xs: "10px", lg: "45px" },
+              marginRight: { lg: "45px" },
               lineHeight: { xs: "35px", sm: "45px", md: "50px", lg: "60px" },
               "&:after": {
                 content: { lg: "''" },
@@ -94,9 +92,11 @@ const CoachDetail = () => {
           <Typography
             varient="p"
             sx={{
-              fontSize: { xs: "0.9rem", md: "1.5rem" },
+              fontSize: { xs: "18px", md: "22px" },
               maxWidth: "605px",
-              color: "#444",
+              color: "#666",
+              fontWeight: 500,
+              textAlign: "justify",
             }}
           >
             What sets her apart from other mindset and spiritual coaches? Rita
@@ -106,45 +106,71 @@ const CoachDetail = () => {
           </Typography>
         </Box>
 
-        <Container>
+        <Container sx={{ padding: { xs: 0, sm: "0 30px" } }}>
           <Typography
             sx={{
-              color: "#575757",
-              fontSize: { xs: "15px", sm: "23px" },
-              lineHeight: { xs: "20px", sm: "28px" },
-              px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
               mb: { xs: "8px", md: "10px", lg: "15px" },
             }}
           >
             <List>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Why choose Rita as your coach? What sets her apart from other
                 mindset and spiritual coaches? Rita possesses an unparalleled
                 talent for tapping into the power of your energies and guiding
                 you towards the outcomes you desire. Her coaching style is truly
                 distinctive and unmatched.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 With a gentle yet assertive approach, Rita skillfully guides you
                 through a transformative journey of self-discovery and personal
                 growth. She intuitively understands your needs and desires,
                 bringing out the absolute best in you.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Rita's coaching style goes beyond mere external success; it
                 emphasizes creating a harmonious balance between your mind,
                 body, and spirit. Through her guidance, you will not only
                 achieve your desired outcomes but also experience profound
                 fulfillment and inner peace.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Rita's gift extends beyond mere fortune-telling; she comprehends
                 the deep-rooted desires and intentions that shape each
                 individual's journey. By sensing the energy shifts and patterns
                 within a person's aura, she can unlock glimpses of their destiny
                 and the potential roadblocks they may encounter along the way.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 But Rita's abilities do not stop there. She has honed her
                 expertise in mastering energy alterations, giving her the power
                 to influence and guide the energetic forces surrounding an
@@ -152,7 +178,13 @@ const CoachDetail = () => {
                 energies, Rita empowers individuals to reshape their own
                 destinies, manifesting a more positive and fulfilling future.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Whether it's breaking free from limiting beliefs, attracting
                 abundance, or finding love and happiness, Rita's mastery of
                 energy alterations allows her to assist individuals in aligning
@@ -161,7 +193,13 @@ const CoachDetail = () => {
                 person, she helps them overcome obstacles and create an
                 environment conducive to their goals and dreams.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Rita's clients find solace and guidance in her exceptional
                 abilities. She has helped countless individuals tap into their
                 true potential and manifest their deepest desires. With her
@@ -170,7 +208,13 @@ const CoachDetail = () => {
                 that can guide individuals towards a future filled with purpose,
                 abundance, and fulfillment.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Rita's remarkable ability to harness the power of your energies
                 is truly exceptional. She taps into the core of who you are,
                 uncovering hidden talents, strengths, and passions that you
@@ -178,7 +222,13 @@ const CoachDetail = () => {
                 your energy in alignment with your true purpose, resulting in
                 extraordinary results in all areas of your life.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Whether you seek personal growth, career advancement, or a
                 deeper connection with your inner self, Rita is the coach who
                 will lead you towards your desired outcomes. Her distinctive
@@ -186,14 +236,26 @@ const CoachDetail = () => {
                 you to overcome limitations, embrace your true potential, and
                 create a life that surpasses your wildest dreams.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 If you are ready to embark on a life-changing journey and unlock
                 the power within you, Rita is the guiding light you've been
                 searching for. With her unparalleled coaching style and
                 remarkable abilities, she helps you tap into your inner
                 greatness and manifest the life you truly deserve.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 With a track record of over 400 satisfied clients in just the
                 past three years, it is undeniable that Rita's coaching has had
                 a profound impact on their lives. Out of these numerous success
@@ -203,7 +265,13 @@ const CoachDetail = () => {
                 experience happier, more aligned, and with newfound success in
                 other areas of their lives.
               </ListItem>
-              <ListItem>
+              <ListItem
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  lineHeight: { xs: "24px", md: "28px" },
+                  textAlign: "justify",
+                }}
+              >
                 Rita's ability to guide individuals towards their desired
                 outcomes is truly remarkable. Her unique coaching approach
                 combines deep introspection with practical strategies, ensuring

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { AccordionDetails, Box, Typography } from "@mui/material";
-import {
-  aboutTemplateData,
-  lineUpsData,
-} from "../../utils/constant";
+import { aboutTemplateData, lineUpsData } from "../../utils/constant";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
@@ -56,10 +53,7 @@ const BecomeYourCreator = () => {
 
   return (
     <Box>
-      <PageBanner
-        heading={"Become Your Creator"}
-        imgSrc="./creator.jpg"
-      />
+      <PageBanner heading={"Become Your Creator"} imgSrc="./creator.jpg" />
       <Box sx={{ padding: "5rem" }}>
         <Box
           sx={{
@@ -158,7 +152,9 @@ const BecomeYourCreator = () => {
                 <Typography>{item?.title}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{item?.content}</Typography>
+                <Typography paragraph sx={{ textAlign: "justify" }}>
+                  {item?.content}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}

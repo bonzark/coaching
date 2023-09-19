@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
-import { useSnackbar } from 'notistack';
-import { useFormik } from 'formik';
-import { InputBox } from '../components/InputBox';
-import { PrimaryBtn } from '../components/PrimaryBtn';
-import { validationContact } from '../utils/validation';
-import { contact } from '../services/contact.service';
+import { useState } from "react";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import { useSnackbar } from "notistack";
+import { useFormik } from "formik";
+import { InputBox } from "../components/InputBox";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import { validationContact } from "../utils/validation";
+import { contact } from "../services/contact.service";
 
 const ContactForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [isSubmit, setIsSubmit] = useState(false);
   const formik = useFormik({
     initialValues: {
-      fullname: '',
-      contact: '',
-      email: '',
-      message: '',
+      fullname: "",
+      contact: "",
+      email: "",
+      message: "",
     },
     enableReinitialize: true,
     validationSchema: validationContact,
@@ -32,20 +32,23 @@ const ContactForm = () => {
           setIsSubmit(false);
           if (res.status === 200) {
             enqueueSnackbar(res.data, {
-              variant: 'success',
+              variant: "success",
             });
           } else {
             enqueueSnackbar(res.message, {
-              variant: 'warning',
+              variant: "warning",
             });
           }
           formik.resetForm();
         })
         .catch((error) => {
           setIsSubmit(false);
-          enqueueSnackbar('Oops! Something went wrong. Please try again later.', {
-            variant: 'error',
-          });
+          enqueueSnackbar(
+            "Oops! Something went wrong. Please try again later.",
+            {
+              variant: "error",
+            }
+          );
         });
     },
   });
@@ -53,14 +56,14 @@ const ContactForm = () => {
   return (
     <Box
       sx={{
-        padding: '3rem 2rem',
-        margin: '5rem auto',
-        boxShadow: '0 0 15px 0px #00000020',
-        borderRadius: '15px',
-        overflow: 'hidden',
-        backgroundColor: '#fff',
-        mx: 'auto',
-        maxWidth: '600px',
+        padding: { xs: "1.5rem 1rem", md: "3rem 2rem" },
+        margin: { xs: "4rem auto 0", md: "5rem auto" },
+        boxShadow: "0 0 15px 0px #00000020",
+        borderRadius: "15px",
+        overflow: "hidden",
+        backgroundColor: "#fff",
+        mx: "auto",
+        maxWidth: "600px",
       }}
     >
       <form onSubmit={formik.handleSubmit}>
@@ -68,12 +71,12 @@ const ContactForm = () => {
           varient="h1"
           sx={{
             fontFamily: "'montserrat',cursive",
-            color: '#671d63',
-            fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
+            color: "#671d63",
+            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
             fontWeight: 500,
-            textAlign: 'center',
-            lineHeight: '2.5rem',
-            marginBottom: '3rem',
+            textAlign: "center",
+            lineHeight: "2.5rem",
+            marginBottom: "3rem",
           }}
         >
           Contact Us
@@ -137,10 +140,17 @@ const ContactForm = () => {
           />
         </Box>
         <Box>
-          <PrimaryBtn fullWidth type="submit" disabled={isSubmit ? true : false} row>
+          <PrimaryBtn
+            fullWidth
+            type="submit"
+            disabled={isSubmit ? true : false}
+            row
+          >
             Send
             {isSubmit && (
-              <CircularProgress sx={{ color: '#fff', maxWidth: '20px', maxHeight: '20px' }} />
+              <CircularProgress
+                sx={{ color: "#fff", maxWidth: "20px", maxHeight: "20px" }}
+              />
             )}
           </PrimaryBtn>
         </Box>

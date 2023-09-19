@@ -1,6 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-// import Carousel from "react-material-ui-carousel";
 import Carousel from "react-multi-carousel";
 import CoachCarouselCard from "../components/CoachCarouselCard";
 
@@ -37,7 +36,7 @@ const OurCoaches = () => {
     <Box
       sx={{
         paddingY: "30px",
-        backgroundColor: "whitesmoke"
+        backgroundColor: "whitesmoke",
       }}
     >
       <Typography
@@ -50,12 +49,13 @@ const OurCoaches = () => {
           lineHeight: "48px",
           fontFamily: "'montserrat', sans-serif",
           display: "flex",
-          marginBottom: "75px",
+          marginTop: "30px",
+          marginBottom: { xs: "40px", md: "75px" },
           justifyContent: "center",
           "::before": {
-            position: "absolute",
-            bottom: "-40px",
             content: `""`,
+            position: "absolute",
+            bottom: { xs: "-10px", md: "-40px" },
             height: "3px",
             width: "110px",
             backgroundColor: "#671d63",
@@ -65,12 +65,15 @@ const OurCoaches = () => {
         Our Coaches
       </Typography>
       <Typography
+        paragraph
         sx={{
           fontSize: "20px",
           width: { md: "60%", xs: "90%" },
           mx: "auto",
           textAlign: "center",
           marginBottom: "50px",
+          textAlign: "justify",
+          textAlignLast: "center",
         }}
       >
         We brings you the world's best teachers in every category of your
@@ -156,7 +159,6 @@ const OurCoaches = () => {
             border: "none",
           },
           display: "block",
-          
         }}
       >
         SEE ALL COACHES

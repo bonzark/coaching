@@ -6,13 +6,12 @@ function App() {
   const theme = createTheme({
     typography: {
       fontFamily: "Poppins, sans-serif",
-      
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
-      <Routers />;
+      <Routers />
     </ThemeProvider>
   );
 }

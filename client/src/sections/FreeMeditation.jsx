@@ -57,7 +57,7 @@ const FreeMeditation = () => {
             textAlign: "center",
             color: "#2b2b2b",
             marginBottom: "10px",
-            paddingTop: "20px",
+            padding: "20px",
           }}
         >
           Sign up with us to receive free meditation

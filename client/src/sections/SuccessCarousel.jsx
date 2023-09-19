@@ -58,11 +58,11 @@ const SuccessCarousel = () => {
             marginLeft: { xs: "0px", md: "230px" },
             "::before": {
               position: "absolute",
-              bottom: { xs: "-18px", md: "-25px" },
+              bottom: { xs: "-12px", md: "-25px" },
               color: "black",
               content: `""`,
               height: "3px",
-              width: "110px",
+              width: "10vw",
               backgroundColor: "#000",
             },
           }}

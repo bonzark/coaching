@@ -1,14 +1,5 @@
-import React from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { wealthCardItems } from "../utils/constant";
-import SuccessStories from "../components/SuccessStoriesCard";
 import PageBanner from "./PageBanner";
 
 const WealthCreationSection = () => {
@@ -19,14 +10,14 @@ const WealthCreationSection = () => {
   return (
     <>
       <PageBanner imgSrc="./wealthCreation.jpg" heading="Wealth Creation" />
-      <Box sx={{ padding: { xs: "4rem 2rem" } }}>
+      <Box sx={{ margin: "4rem 2rem" }}>
         <Box
           sx={{
             display: "flex",
             mx: "auto",
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: "55px",
+            padding: "0 0 40px",
             flexDirection: { xs: "column", lg: "row" },
           }}
         >
@@ -43,9 +34,9 @@ const WealthCreationSection = () => {
               fontFamily: "'montserrat',sans-serif",
               maxWidth: "592px",
               position: "relative",
-              paddingRight: { lg: "70px" },
+              paddingRight: { lg: "20px" },
               marginBottom: { xs: "40px", lg: 0 },
-              marginRight: { xs: "10px", lg: "45px" },
+              marginRight: { lg: "45px" },
               lineHeight: { xs: "35px", sm: "45px", md: "50px", lg: "60px" },
               "&:after": {
                 content: { lg: "''" },
@@ -63,80 +54,55 @@ const WealthCreationSection = () => {
           <Typography
             varient="p"
             sx={{
-              fontSize: { xs: "0.9rem", md: "1.5rem" },
-              fontFamily: "Poppins",
+              fontSize: { xs: "18px", md: "22px" },
               maxWidth: "605px",
-              color: "#444",
+              color: "#666",
+              fontWeight: 500,
+              textAlign: "justify",
             }}
           >
             Activation, an extraordinary online course designed to guide you on
             your journey towards manifesting wealth and prosperity.
           </Typography>
         </Box>
-        <Grid container spacing={5}>
-          <Box
-            component={"div"}
-            sx={{
-              mx: { xs: "20px", md: "50px", lg: "225px" },
-              my: { xs: "20px", md: "50px", lg: "100px" },
-            }}
-            className="story"
-          >
-            <Typography></Typography>
-            <List>
-              {wealthCardItems.map((item) => (
-                <Grid key={item.title} item>
-                  <ListItem sx={{ padding: "1rem 2rem" }}>
-                    <ListItemText
-                      primary={item.title}
-                      secondary={item.description}
-                      primaryTypographyProps={{
-                        fontSize: { xs: "1.2rem", md: "2rem" },
-                        fontFamily: "Poppins",
-                        color: "#000",
-                      }}
-                      secondaryTypographyProps={{
-                        fontSize: { xs: "0.9rem", md: "1.2rem" },
-                        fontFamily: "Poppins",
-                        color: "#444",
-                      }}
-                    />
-                  </ListItem>
-                </Grid>
-              ))}
-            </List>
-            <Box sx={{ margin: "2rem auto" }}>
-              <Typography sx={{ fontSize: "1.5rem" }} variant="p">
-                To further enhance your manifestation journey, this package also
-                includes the invaluable &nbsp;
-              </Typography>
+        <Box>
+          {wealthCardItems.map((cardItem, index) => (
+            <Box key={index} sx={{ margin: "2.5rem 0" }}>
               <Typography
-                sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
-                variant="span"
+                variant="h6"
+                sx={{ fontSize: { xs: "1.4rem", md: "1.8rem" } }}
               >
-                &quot;Attracting Abundance Guided Meditation.&quot;
-              </Typography>
-              <br />
-              <br />
-              <Typography sx={{ fontSize: "1.5rem" }} variant="p">
-                For any inquiries or assistance, don't hesitate to reach out to
-                our dedicated team at
+                {cardItem.title}
               </Typography>
               <Typography
+                paragraph
                 sx={{
-                  fontSize: "1.5rem",
-                  fontWeight: "bold",
-                  // textDecoration: "underline",
-                  cursor: "pointer"
+                  color: "#222",
+                  fontSize: { xs: "1rem", md: "1.2rem" },
+                  textAlign: "justify",
                 }}
-                variant="span"
-                onClick={handleEmailClick}
               >
-                &nbsp; support@becomeyourcreator.com
+                {cardItem.description}
               </Typography>
             </Box>
-          </Box>
-        </Grid>
+          ))}
+          <Typography
+            paragraph
+            sx={{ fontSize: { xs: "1.1rem", md: "1.5rem" } }}
+          >
+            To further enhance your manifestation journey, this package also
+            includes the invaluable
+            <strong> "Attracting Abundance Guided Meditation."</strong>
+          </Typography>
+          <Typography
+            paragraph
+            sx={{ fontSize: { xs: "1.1rem", md: "1.5rem" } }}
+          >
+            For any inquiries or assistance, don't hesitate to reach out to our
+            dedicated team at
+            <strong> support@becomeyourcreator.com</strong>
+          </Typography>
+        </Box>
       </Box>
     </>
   );
