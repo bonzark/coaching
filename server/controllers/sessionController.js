@@ -42,8 +42,28 @@ exports.bookSession = async (req, res) => {
       (day) => day === dayName
     );
 
+    const conflictingCoachSession = await Session.findOne({
+      date: date,
+      time: time,
+      coach: coachId,
+    });
+
+    const conflictingUserSession = await Session.findOne({
+      date: date,
+      time: time,
+      user: userId,
+    });
+
     if (coachAvailability) {
-      if (coach.sessions.length === 0) {
+      if (conflictingCoachSession) {
+        return res.status(400).json({
+          error: `coach is not availabe on ${date}, ${time}. Please choose another slot`,
+        });
+      } else if (conflictingUserSession) {
+        return res.status(400).json({
+          error: `you have alredy booked session on ${date}, ${time}. Please choose another slot`,
+        });
+      } else {
         const session = new Session({
           coach: coachId,
           user: userId,
@@ -61,7 +81,9 @@ exports.bookSession = async (req, res) => {
 
         await session.save();
         coach.sessions.push(session);
+        user.sessions.push(session);
         coach.save();
+        user.save();
         return res
           .status(201)
           .json({ message: "Coaching session appoint successfully", session });
