@@ -2,8 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { coachesData } from "../../utils/constant";
-import SuccessStories from "../../components/SuccessStoriesCard";
-import HeroBanner from "../../sections/heroBanner";
+import SingleCoachDetail from "../../sections/SingleCoachDetail";
 
 const OurCoachesDetail = () => {
   const location = useLocation();
@@ -13,46 +12,48 @@ const OurCoachesDetail = () => {
 
   return (
     <>
-      <HeroBanner
-        header={`Meet Our Coach ${data?.coachName}`}
-        description={`${data?.description[0]} ${data?.description[1]}`}
-        imageUrl="./heroBg.jpg"
-      />
       <Box
         sx={{
-          paddingY: "80px",
-          position: "relative",
+          margin: "5vh 0",
+          padding: {
+            xs: "4rem 1rem 0",
+            sm: "4rem 2rem 0",
+            md: "4rem 3rem 0",
+          },
           background: "linear-gradient(#DCD9F0,#ffffff)",
         }}
       >
-        <Typography sx={{ display: "flex", gap: "5px" }}>
+        <Typography
+          variant="h1"
+          sx={{
+            textAlign: "center",
+            fontSize: {
+              xs: "1.5rem",
+              sm: "2rem",
+              md: "2.5rem",
+              lg: "3rem",
+            },
+          }}
+        >
           <Typography
-            component="span"
+            variant="span"
             sx={{
-              margin: "0 auto",
-              textAlign: "center",
-              fontSize: { xs: "25px", md: "40px" },
-              fontFamily: "'Abril FatFace', sans-seri",
+              fontFamily: "'montserrat', sans-seri",
               color: "#671D63",
             }}
           >
             Meet Our Coach &nbsp;
             <Typography
-              component="span"
+              variant="span"
               sx={{
-                margin: "0 auto",
-                textAlign: "center",
-                fontSize: { xs: "25px", md: "40px" },
-                fontFamily: "'Abril FatFace', sans-seri",
-                color: "#671D63",
                 position: "relative",
-                "::before": {
+                "&:after": {
+                  content: "''",
                   position: "absolute",
-                  margin: "0 auto",
-                  bottom: "0",
-                  content: `""`,
-                  height: "4px",
-                  width: { xs: "50px", md: "90px" },
+                  bottom: 0,
+                  left: "2%",
+                  width: "60%",
+                  height: "3px",
                   backgroundColor: "goldenrod",
                 },
               }}
@@ -61,13 +62,11 @@ const OurCoachesDetail = () => {
             </Typography>
           </Typography>
         </Typography>
-        <SuccessStories
+        <SingleCoachDetail
           id={data?.id}
-          title={data?.coachName}
+          name={data?.coachName}
           imgSrc={`${data?.imageUrl}`}
           descriptionArr={data?.description}
-          isDetailPage={true}
-          wholeContent={true}
         />
       </Box>
     </>

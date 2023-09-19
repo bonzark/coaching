@@ -16,13 +16,15 @@ const OfferSection = () => {
     >
       <Grid item xs={12} md={5} lg={6} sx={{ order: { xs: 2, md: 1 } }}>
         <Typography
+          paragraph
           sx={{
             fontSize: { xs: "20px", md: "34px" },
             color: "#671d63",
-            fontFamily: '"Abril Fatface", sans-serif',
+            fontFamily: '"montserrat", sans-serif',
             fontWeight: 100,
             margin: { xs: "auto", sm: "0" },
             padding: "16px 0",
+            textAlign: { xs: "justify", md: "left" },
           }}
         >
           Here's Your Chance To Start Getting Everything You'll Ever Need To
@@ -48,7 +50,7 @@ const OfferSection = () => {
             </Typography>
           </Box>
         </PrimaryBtn>
-      </Grid >
+      </Grid>
       <Grid
         item
         xs={12}
@@ -79,7 +81,7 @@ const OfferSection = () => {
           />
         </Box>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };
 

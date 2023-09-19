@@ -24,7 +24,7 @@ const SuccessStories = ({
         <Paper
           elevation={3}
           sx={{
-            width: "100%",
+            width: "90%",
             position: "relative",
             display: "flex",
             flexDirection: {
@@ -33,6 +33,8 @@ const SuccessStories = ({
             },
             justifyContent: "space-between",
             backgroundColor: "white",
+            padding: "2.5rem 1.5rem",
+            margin: "0 auto",
           }}
         >
           {!descriptionArr ? (
@@ -61,6 +63,7 @@ const SuccessStories = ({
           <Box
             sx={{
               width: { md: "35%", xs: "100%" },
+              maxHeight: "350px",
               height: {
                 md: "auto",
                 sm: "550px",
@@ -80,7 +83,7 @@ const SuccessStories = ({
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </Box>
@@ -103,7 +106,7 @@ const SuccessStories = ({
                 color: !isDetailPage ? "#414141" : "#671D63",
                 lineHeight: { xs: "22px", sm: "30px" },
                 textTransform: "capitalize",
-                fontFamily: "'Abril FatFace', sans-serif",
+                fontFamily: "'montserrat', sans-serif",
                 px: { xs: "1rem", md: "2rem", lg: "3rem" },
                 my: { xs: "8px", md: "10px", lg: "15px" },
               }}
@@ -126,16 +129,17 @@ const SuccessStories = ({
                     {para}
                   </Typography>
                 ))
-              : descriptionArr?.slice(0, 4).map((para) => (
+              : descriptionArr?.slice(0, 2).map((para) => (
                   <Fragment key={para}>
                     <Typography
-                      variant="h6"
+                      paragraph
                       sx={{
                         color: "#575757",
                         fontSize: { xs: "15px", sm: "20px" },
                         lineHeight: { xs: "20px", sm: "25px" },
                         px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
                         mb: { xs: "8px", md: "10px", lg: "15px" },
+                        textAlign: "justify",
                       }}
                     >
                       {para}
@@ -163,9 +167,10 @@ const SuccessStories = ({
             ) : null}
             {content && (
               <Typography
-                variant="h6"
+                paragraph
                 sx={{
                   color: "#575757",
+                  textAlign: "justify",
                   fontSize: { xs: "15px", sm: "23px" },
                   lineHeight: { xs: "20px", sm: "28px" },
                   px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },

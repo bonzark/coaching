@@ -44,7 +44,7 @@ const LineUpsCard = ({ title, content, quentity }) => {
             color: "#414141",
             lineHeight: { xs: "22px", sm: "30px" },
             textTransform: "capitalize",
-            fontFamily: "'Abril FatFace', sans-serif",
+            fontFamily: "'montserrat', sans-serif",
 
             my: { xs: "8px", md: "10px", lg: "15px" },
           }}

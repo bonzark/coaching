@@ -1,13 +1,13 @@
 import { Box, Link, Typography } from "@mui/material";
 import EventTemplate from "../../components/EventTemplate";
-import HeroBanner from "../../sections/heroBanner";
+import PageBanner from "../../sections/PageBanner";
 
 const Event = () => {
   return (
     <>
-      <HeroBanner
-        header="Checkout new events"
-        imageUrl="./heroBg.jpg"
+      <PageBanner
+        heading="Checkout new events"
+        imgSrc="./events.jpg"
         description="Join Rita on a transformative journey to align your energies, become conscious aware of your vibrational state, and empower yourself to consciously create by altering your energies."
       />
       <Box sx={{ maxWidth: "1500px", margin: "0 auto" }}>

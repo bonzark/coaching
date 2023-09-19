@@ -41,7 +41,7 @@ const FreeMeditation = () => {
             fontSize: { xs: "32px", sm: "48px" },
             color: "#671d63",
             lineHeight: "48px",
-            fontFamily: "'Abril FatFace', sans-serif",
+            fontFamily: "'montserrat', sans-serif",
             display: "flex",
             justifyContent: "center",
           }}
@@ -55,7 +55,7 @@ const FreeMeditation = () => {
             textAlign: "center",
             color: "#2b2b2b",
             marginBottom: "10px",
-            paddingTop: "20px",
+            padding: "20px",
           }}
         >
           Sign up with us to receive free meditation

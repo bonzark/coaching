@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import { Fragment } from "react";
-import "./styles.css";
 
 const EventTemplate = ({ image, children }) => {
   return (
@@ -20,9 +19,19 @@ const EventTemplate = ({ image, children }) => {
           maxHeight: { xs: "700px", md: "" },
           display: "flex",
           overflow: "hidden",
+          img: {
+            width: "100%",
+            height: "100%",
+            transition: "all 300ms linear",
+            objectFit: "cover",
+            objectPosition: "top",
+            "&:hover": {
+              transform: "scale(1.1) rotate(-2deg)",
+            },
+          },
         }}
       >
-        <img src={image} alt="poster" className="event-template-poster" />
+        <img src={image} alt="poster" />
       </Box>
       <Box
         sx={{

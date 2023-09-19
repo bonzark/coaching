@@ -58,17 +58,35 @@ const Navbar = () => {
 
   const drawer = (
     <Box>
-      <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
-        <img
-          src="./logo.png"
-          alt="logo"
-          style={{
-            maxWidth: "100px",
-            height: "auto",
-            margin: "auto",
+      <Box
+        sx={{
+          background: "linear-gradient(#DCD9F0,#ffffff)",
+          padding: "0.5rem",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            borderRadius: "100px",
+            overflow: "hidden",
+            maxWidth: "fit-content",
+            margin: "0rem auto",
+            border: "5px solid #fff",
           }}
-        />
-      </Link>
+        >
+          <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
+            <img
+              src="./becomeYourCreator.jpeg"
+              alt="logo"
+              style={{
+                maxWidth: "100px",
+                height: "auto",
+                margin: "auto",
+              }}
+            />
+          </Link>
+        </Box>
+      </Box>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -145,7 +163,40 @@ const Navbar = () => {
             padding: "0 !important",
           }}
         >
-          <Toolbar>
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              marginRight: { xs: 0, md: "auto" },
+              background: "linear-gradient(#DCD9F0,#ffffff)",
+              padding: "5px",
+              margin: "0.5rem 0 0 2rem",
+              borderRadius: "100px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
+            <Box sx={{ borderRadius: "50%", overflow: "hidden" }}>
+              <Link to="/" style={{ display: "flex" }}>
+                <img
+                  src="./becomeYourCreator.jpeg"
+                  alt="logo"
+                  style={{
+                    maxWidth: "100px",
+                    height: "auto",
+                  }}
+                />
+              </Link>
+            </Box>
+          </Box>
+          <Toolbar
+            sx={{
+              paddingLeft: "0 !important",
+              justifyContent: "flex-end",
+              maxWidth: "80%",
+              marginLeft: "auto",
+            }}
+          >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -158,29 +209,6 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Box
-              sx={{
-                display: { xs: "none", md: "block" },
-                marginRight: { xs: 0, md: "auto" },
-              }}
-            >
-              <Link to="/">
-                <img
-                  src="./logo.png"
-                  alt="logo"
-                  onClick={() => {
-                    window.scroll({
-                      top: 0,
-                      behavior: "smooth",
-                    });
-                  }}
-                  style={{
-                    maxWidth: "100px",
-                    height: "auto",
-                  }}
-                />
-              </Link>
-            </Box>
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },

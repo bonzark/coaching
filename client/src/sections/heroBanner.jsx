@@ -6,14 +6,21 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-} from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import React, { useEffect, useState } from 'react';
-import { PrimaryBtn } from '../components/PrimaryBtn';
-import FormModal from './FormModal';
-import { getAuthToken } from '../utils/auth';
+} from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useState } from "react";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import FormModal from "./FormModal";
+import { getAuthToken } from "../utils/auth";
 
-const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, description }) => {
+const HeroBanner = ({
+  title,
+  imageUrl,
+  header,
+  listItems,
+  buttonText,
+  description,
+}) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = (resetForm) => {
@@ -24,56 +31,35 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
   return (
     <>
       <FormModal open={open} handleClose={handleClose} />
-      <Box
-        sx={{
-          backgroundImage: `url(${imageUrl})`,
-          backgroundSize: { xs: '100%', md: '85%' },
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: { xs: 'center top', md: '140% center' },
-          position: 'relative',
-          '::after': {
-            content: "' '",
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            background: {
-              xs: 'linear-gradient(0, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 66%)',
-              md: 'linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 40%)',
-            },
-            zIndex: 0,
-            top: 0,
-            left: 0,
-          },
-        }}
-      >
-        <Container
+      <Box>
+        <Box
           sx={{
-            minHeight: { xs: '100vh' },
-            display: 'flex',
-            alignItems: { xs: 'end', md: 'center' },
-            position: 'relative',
+            display: "flex",
+            flexDirection: { xs: "column-reverse", lg: "row" },
+            alignItems: "flex-start",
+            gap: "22px",
+            alignItems: { xs: "end", md: "center" },
+            position: "relative",
             zIndex: 1,
+            paddingTop: "3rem",
+            minHeight: { lg: "100vh", xl: "auto" },
           }}
           maxWidth="false"
         >
           <Box
             sx={{
-              width: { xs: 'auto  ', md: '40%', lg: '35%' },
-              padding: {
-                xs: '0 0 50px 0',
-                md: '100px 0',
-                lg: '200px 0',
-                xl: '300px 0',
-              },
+              maxWidth: { xs: "auto  ", md: "100%", lg: "40%" },
+              paddingX: { xs: "10px", md: "100px", lg: "10px" },
             }}
           >
             {title && (
               <Typography
-                component={'h4'}
+                component={"h4"}
                 sx={{
-                  fontSize: { xs: '15px', md: '22px' },
-                  fontWeight: 'normal',
-                  fontFamily: "'Abril Fatface', cursive",
+                  fontSize: { xs: "15px", md: "22px" },
+                  fontWeight: "700",
+                  fontFamily: "'montserrat', cursive",
+                  margin: "1rem 0",
                 }}
               >
                 {title}
@@ -81,21 +67,25 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
             )}
             {header && (
               <Typography
-                component={'p'}
+                component={"p"}
                 sx={{
-                  fontSize: { xs: '22px', md: '30px', lg: '42px' },
-                  color: '#671d63',
-                  fontWeight: 'normal',
-                  lineHeight: { xs: '27px', md: '36px', lg: '62px' },
-                  textTransform: 'capitalize',
-                  fontFamily: "'Abril Fatface', cursive",
+                  fontSize: { xs: "22px", md: "30px", lg: "38px" },
+                  color: "#671d63",
+                  fontWeight: "500",
+                  lineHeight: { xs: "27px", md: "36px", lg: "55px" },
+                  textTransform: "capitalize",
+                  fontFamily: "'montserrat', cursive",
+                  margin: "1rem 0",
                 }}
               >
                 {header}
               </Typography>
             )}
             {description && (
-              <Typography variant="h6" sx={{ my: '1rem', textAlign: 'justify' }}>
+              <Typography
+                variant="h6"
+                sx={{ my: "1rem", textAlign: "justify" }}
+              >
                 {description}
               </Typography>
             )}
@@ -103,29 +93,50 @@ const HeroBanner = ({ title, imageUrl, header, listItems, buttonText, descriptio
               <List>
                 {listItems?.map((item) => {
                   return (
-                    <ListItem sx={{ padding: '0' }} key={item.key}>
-                      <ListItemIcon sx={{ minWidth: '30px' }}>
-                        <CheckCircleIcon sx={{ color: '#671d63' }} />
+                    <ListItem
+                      sx={{ padding: "0", alignItems: "flex-start" }}
+                      key={item.key}
+                    >
+                      <ListItemIcon
+                        sx={{ minWidth: "30px", paddingTop: "5px" }}
+                      >
+                        <CheckCircleIcon sx={{ color: "#671d63" }} />
                       </ListItemIcon>
-                      <ListItemText sx={{ fontWeight: '600' }} primary={item?.name} />
+                      <ListItemText
+                        sx={{
+                          fontWeight: "600",
+                          textAlign: "justify",
+                          fontSize: "1.2rem",
+                        }}
+                        primary={item?.name}
+                      />
                     </ListItem>
                   );
                 })}
               </List>
             )}
             {getAuthToken() === null ? (
-              <PrimaryBtn onClick={handleOpen}>
-                {' '}
-                <>
-                  <span>DOWNLOAD NOW FOR FREE</span>
-                  Gain Awareness Of Your Creation in less than 30 days
-                </>
-              </PrimaryBtn>
+              <Box sx={{ margin: "1rem 0" }}>
+                <PrimaryBtn onClick={handleOpen}>
+                  {" "}
+                  <>
+                    <span>DOWNLOAD NOW FOR FREE</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                </PrimaryBtn>
+              </Box>
             ) : (
               buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>
             )}
           </Box>
-        </Container>
+          <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
+            <img
+              src={imageUrl}
+              alt="hero banner image"
+              style={{ maxWidth: "100%" }}
+            />
+          </Box>
+        </Box>
       </Box>
     </>
   );

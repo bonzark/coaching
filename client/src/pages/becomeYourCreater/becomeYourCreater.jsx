@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import AboutTemplate from "../../components/AboutTemplate";
 import { AccordionDetails, Box, Typography } from "@mui/material";
-import {
-  aboutTemplateData,
-  becomeYourCreatorList,
-  lineUpsData,
-} from "../../utils/constant";
+import { aboutTemplateData, lineUpsData } from "../../utils/constant";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
-import HeroBanner from "../../sections/heroBanner";
+import PageBanner from "../../sections/PageBanner";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -19,7 +14,6 @@ const Accordion = styled((props) => (
     display: "none",
   },
 }));
-
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
@@ -59,12 +53,8 @@ const BecomeYourCreator = () => {
 
   return (
     <Box>
-      <HeroBanner
-        header={"Become Your Creator"}
-        listItems={becomeYourCreatorList}
-        imageUrl="./heroBg.jpg"
-      />
-      <Box sx={{ padding: "2rem" }}>
+      <PageBanner heading={"Become Your Creator"} imgSrc="./creator.jpg" />
+      <Box sx={{ padding: "5rem" }}>
         <Box
           sx={{
             display: "flex",
@@ -85,7 +75,7 @@ const BecomeYourCreator = () => {
                 lg: "3.5rem",
               },
               color: "#671d63",
-              fontFamily: "'Abril FatFace',sans-serif",
+              fontFamily: "'montserrat',sans-serif",
               maxWidth: "592px",
               position: "relative",
               paddingRight: { lg: "70px" },
@@ -162,7 +152,9 @@ const BecomeYourCreator = () => {
                 <Typography>{item?.title}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{item?.content}</Typography>
+                <Typography paragraph sx={{ textAlign: "justify" }}>
+                  {item?.content}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}
