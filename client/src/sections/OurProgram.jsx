@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { aboutTemplateData } from "../utils/constant";
-import AboutTemplate from "../components/AboutTemplate";
+import AboutTemplate2 from "../components/AboutTemplate2";
 
 const OurProgram = ({}) => {
   const aboutTemplate2Data = aboutTemplateData.find(
@@ -18,7 +18,7 @@ const OurProgram = ({}) => {
       }}
     >
       <Box>
-        <AboutTemplate
+        <AboutTemplate2
           reverse={aboutTemplate2Data.reverse}
           image={aboutTemplate2Data.image}
           title={aboutTemplate2Data.title}
