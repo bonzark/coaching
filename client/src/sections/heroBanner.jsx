@@ -134,7 +134,7 @@ const HeroBanner = ({
             <img
               src={imageUrl}
               alt="hero banner image"
-              style={{ maxWidth: "110%" }}
+              style={{ maxWidth: "100%" }}
             />
           </Box>
         </Box>
