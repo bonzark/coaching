@@ -19,10 +19,9 @@ const userSchema = new mongoose.Schema({
   resetToken: String,
   sessions: [
     {
-      date: Date,
-      time: String,
-      price: Number,
-      isFirstSessionFree: Boolean,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Session",
+      required: true,
     },
   ],
 });

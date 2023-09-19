@@ -1,21 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const sessionSchema = new mongoose.Schema({
+const sessionSchemaObj = {
   coach: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Coach', // Reference to the coach (user) who created the session
-    required: true,
-  },
-  date: {
-    type: Date,
-    required: true,
-  },
-  time: {
-    type: String,
+    ref: "coaches", // Reference to the coach (user) who created the session
     required: true,
   },
   price: {
     type: Number,
+    required: true,
+  },
+  sessionType: {
+    type: String,
+    enum: ["group", "oneToOne"],
     required: true,
   },
   title: {
@@ -26,13 +23,9 @@ const sessionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  users: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Reference to the User model
-    },
-  ],
-});
+};
 
-const Session = mongoose.model('Session', sessionSchema);
+const sessionSchema = new mongoose.Schema(sessionSchemaObj);
+
+const Session = mongoose.model("Session", sessionSchema);
 module.exports = Session;
