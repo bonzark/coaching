@@ -15,29 +15,32 @@ const Dashboard = () => {
     >
       <Typography
         sx={{
-          fontSize: { xs: "22px", sm: "30px", md: "35px", lg: "38px" },
-          fontWeight: "normal",
+          fontSize: { xs: "30px", md: "36px" },
+          marginTop: "15px",
+          color: "#673d61",
           fontFamily: "'Abril Fatface', cursive",
-          color: "#673D61",
+          textAlign: { xs: "center", md: "right" },
         }}
       >
         Welcome {user}
       </Typography>
+      <Typography
+        sx={{
+          fontSize: { xs: "20px", sm: "24px", md: "27px" },
+          marginTop: "15px",
+          color: "#673d61",
+          fontFamily: "'Abril Fatface', cursive",
+          textAlign: { xs: "center", md: "left" },
+        }}
+      >
+        Upcoming Sessions
+      </Typography>
       <Box>
-        <Typography
-          sx={{
-            fontSize: { xs: "12px", sm: "18px", md: "24px" },
-            marginTop: "15px",
-            color: "#673d61",
-          }}
-        >
-          Upcoming Sessios
-        </Typography>
         <Grid
           spacing={3}
           container
           sx={{
-            marginTop: { lg: "15px" },
+            marginTop: "0 !important",
             paddingBottom: "25px",
           }}
         >
@@ -48,6 +51,7 @@ const Dashboard = () => {
                 title={session?.title}
                 coachName={session?.coachName}
                 date={session?.date}
+                time={session?.time}
                 detail={session?.detail}
                 price={session?.price}
               />
@@ -55,26 +59,28 @@ const Dashboard = () => {
           ))}
         </Grid>
       </Box>
-      <Box sx={{ marginTop: "2rem" }}>
+      <Box>
         <Typography
           sx={{
-            fontSize: { xs: "12px", sm: "18px", md: "24px" },
+            fontSize: { xs: "20px", sm: "24px", md: "27px" },
             marginTop: "15px",
             color: "#673d61",
+            fontFamily: "'Abril Fatface', cursive",
+            textAlign: { xs: "center", md: "left" },
           }}
         >
-          Subscription Plans
+          Subsctiption Plans
         </Typography>
-        <Box
+        <Grid
+          container
           sx={{
-            display: "flex",
             justifyContent: "center",
             gap: "25px",
-            marginTop: { sm: "16px" },
+            marginTop: "30px",
           }}
         >
           {subscriptionData?.map((plan) => (
-            <Box>
+            <Grid sx={{ height: { xs: "100%", lg: "auto" } }} item>
               <SubscriptionCard
                 description={plan?.description}
                 title={plan?.title}
@@ -82,9 +88,9 @@ const Dashboard = () => {
                 locked={plan?.locked}
                 unlocked={plan?.unlocked}
               />
-            </Box>
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       </Box>
     </Box>
   );

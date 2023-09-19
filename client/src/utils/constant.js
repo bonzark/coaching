@@ -401,6 +401,7 @@ export const sessionData = [
     detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
     coachName: "Rita",
     date: "18/9/2023",
+    time: "9:30 a.m",
     price: 100,
   },
   {
@@ -408,13 +409,15 @@ export const sessionData = [
     detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
     coachName: "Brandi",
     date: "18/9/2023",
+    time: "9:30 a.m",
     price: 159,
   },
   {
     title: "Welth Session",
     detail: "Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.Start your yoga journey with this beginner-friendly session.",
-    coachName: "Prayag",
+    coachName: "Rita",
     date: "18/9/2023",
+    time: "9:30 a.m",
     price: 179,
   }
 ];
@@ -423,22 +426,21 @@ export const subscriptionData = [
   {
     title: "Starter Plan",
     price: "$9.99/month",
-    description: "Access to basic features and content",
-    locked: ["Feature 1 (Locked)", "Feature 2 (Locked)", "Feature 3 (Locked)"],
-    unlocked: ["Feature 4", "Feature 5", "Feature 6"],
+    description: "Access to basic features and content (Free & Recomanded)",
+    unlocked: ["Feature 1 ", "Feature 2 ", "Feature 3 "],
+    locked: ["Feature 4", "Feature 5", "Feature 6"],
   },
   {
     title: "Intermediate Plan",
     price: "$19.99/month",
     description: "Access to intermediate features and content, plus premium support",
-    locked: ["Feature A (Locked)", "Feature B (Locked)", "Feature C (Locked)"],
-    unlocked: ["Feature X", "Feature Y", "Feature Z"],
+    unlocked: ["Feature A ", "Feature B ", "Feature C ", "Feature D"],
+    locked: ["Feature X", "Feature Y",],
   },
   {
     title: "Pro-Level Plan",
     price: "$29.99/month",
     description: "Access to advanced features and content, premium support, and exclusive content",
-    locked: ["Advanced Feature I (Locked)", "Advanced Feature II (Locked)"],
-    unlocked: ["Premium Feature A", "Premium Feature B", "Premium Feature C"],
+    unlocked: ["Feature III", "Feature Iv", "Feature V", "Feature VI", "Advanced Feature I ", "Advanced Feature II ",],
   }
 ]
