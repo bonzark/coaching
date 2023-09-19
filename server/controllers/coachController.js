@@ -54,7 +54,7 @@ exports.createCoach = [
 
 exports.getCoachList = async (req, res) => {
   try {
-    const coaches = await Coach.find(); // Retrieve all coaches
+    const coaches = await Coach.find().populate("sessions"); // Retrieve all coaches
 
     return res.status(200).json({ coaches });
   } catch (error) {
@@ -124,7 +124,7 @@ exports.getCoachById = async (req, res) => {
     const { coachId } = req.params;
 
     // Find the coach by their ID
-    const coach = await Coach.findById(coachId);
+    const coach = await Coach.findById(coachId).populate("sessions");
 
     if (!coach) {
       return res.status(404).json({ error: "Coach not found" });

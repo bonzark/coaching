@@ -70,8 +70,6 @@ const validateCoach = [
 
 const validateSessionData = [
   body("coachId").isMongoId().withMessage("Invalid coachId"),
-  body("date").isISO8601().toDate().withMessage("Invalid date format"),
-  body("time").isString().notEmpty().withMessage("Time is required"),
   body("price").isNumeric().withMessage("Price must be a number"),
   body("title").isString().notEmpty().withMessage("Title is required"),
   body("details").isString().notEmpty().withMessage("Details are required"),
