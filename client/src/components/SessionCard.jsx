@@ -1,35 +1,29 @@
 import React from "react";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SellIcon from "@mui/icons-material/Sell";
 
-const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
-  const dateString = date;
-  const dateParts = dateString.split("/");
-  const dateOfSession = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-
-  const day = dateOfSession.getDate();
-  const month = dateOfSession.getMonth() + 1;
-  const year = dateOfSession.getFullYear();
-
+const SessionCard = ({ title, detail, coachName, price, date, time }) => {
   return (
     <Card
       sx={{
-        padding: "1rem 1.75rem",
+        padding: "1.2rem 1.75rem",
         minHeight: "100%",
         justifyContent: "space-between",
         boxShadow: "#3c40434c 0px 1px 2px 0px, #3c404326 0px 2px 6px 2px",
         borderRadius: "8px",
         transition: "transform 0.2s ease-in-out",
         "&:hover": {
-          transform: "scale(1.02)",
+          transform: "scale(1.015)",
         },
       }}
     >
       <CardContent
         sx={{
           display: "grid",
+          gap: "8px",
           height: "100%",
           justifyContent: "space-between",
           padding: "0px !important",
@@ -46,7 +40,7 @@ const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
           <Typography
             sx={{
               fontWeight: "bold",
-              fontSize: { xs: "10px", sm: "15px", md: "20px", lg: "25px" },
+              fontSize: { xs: "15px", sm: "20px", md: "25px" },
               mb: { xs: 1, md: 2 },
               color: "#671d63",
             }}
@@ -65,7 +59,7 @@ const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
             <Typography
               component={"span"}
               sx={{
-                fontSize: { xs: "10px", sm: "15px", md: "20px" },
+                fontSize: { xs: "15px", sm: "20px", md: "25px" },
                 color: "#671d63",
               }}
             >
@@ -76,7 +70,7 @@ const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
         <Typography
           variant="body2"
           sx={{
-            fontSize: { xs: "10px", sm: "15px", md: "20px" },
+            fontSize: { xs: "15px", sm: "20px", md: "25px" },
             mb: { xs: 1, md: 2 },
           }}
         >
@@ -84,32 +78,49 @@ const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
         </Typography>
         <Box
           sx={{
-            display: { xs: "grid", lg: "flex" },
-            gap: { lg: "25px" },
+            mb: { xs: 1, md: 2 },
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            flex: 1,
+            justifyContent: "space-between",
           }}
         >
-          <Box
+          <Typography
+            component={"span"}
             sx={{
-              mb: { xs: 1, md: 2 },
+              fontSize: { xs: "15px", sm: "20px", md: "25px" },
               display: "flex",
               alignItems: "center",
-              gap: "5px",
             }}
           >
             <CalendarMonthIcon sx={{ color: "#671d63" }} />
             <Typography
-              component={"span"}
-              sx={{
-                fontSize: { xs: "10px", sm: "15px", md: "20px" },
-              }}
+              sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
             >
-              {" " + day + "/" + month + "/" + year}
+              {date}
             </Typography>
-          </Box>
+          </Typography>
+          <Typography
+            component={"div"}
+            sx={{ display: "flex", alignItems: "center", gap: "5px" }}
+          >
+            <AccessTimeIcon sx={{ color: "#671d63" }} />
+            <Typography
+              sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+            >
+              {time}
+            </Typography>
+          </Typography>
+        </Box>
+        <Box
+          component={"div"}
+          sx={{ display: "flex", alignItems: "center", py: { xs: "10px" } }}
+        >
           <Box
             sx={{
-              mb: { xs: 1, md: 2 },
               display: "flex",
+              flex: 1,
               alignItems: "center",
               gap: "5px",
             }}
@@ -118,28 +129,28 @@ const YogaSessionCard = ({ title, detail, coachName, price, date }) => {
             <Typography
               component={"span"}
               sx={{
-                fontSize: { xs: "10px", sm: "15px", md: "20px" },
+                fontSize: { xs: "15px", sm: "20px", md: "25px" },
               }}
             >
               {"  $" + price}
             </Typography>
           </Box>
+          <Button
+            variant="outlineds"
+            sx={{
+              color: "#671d61",
+              border: "1px solid #671d63",
+              marginLeft: "auto",
+              maxWidth: "fit-content",
+              fontSize: { xs: "8px", sm: "12px", md: "16px" },
+            }}
+          >
+            Get Link
+          </Button>
         </Box>
-        <Button
-          variant="outlineds"
-          sx={{
-            color: "#671d61",
-            border: "1px solid #671d63",
-            marginLeft: "auto",
-            maxWidth: "fit-content",
-            fontSize: { xs: "8px", sm: "12px", md: "16px" },
-          }}
-        >
-          Get Link
-        </Button>
       </CardContent>
     </Card>
   );
 };
 
-export default YogaSessionCard;
+export default SessionCard;

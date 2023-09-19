@@ -22,9 +22,7 @@ export default function SelectSmall() {
   };
 
   const handleSelect = async (singleCoach) => {
-    console.log("single coach : ", singleCoach);
     const selectedSession = await getSessionsByCoachId(singleCoach?._id);
-    console.log("selectedSession : ", selectedSession);
     setSessions(selectedSession?.data?.sessions);
   };
 
@@ -52,12 +50,10 @@ export default function SelectSmall() {
             <em>None</em>
           </MenuItem>
           {coachList?.map((singleCoach) => {
-            // console.log("single Coach : ", singleCoach);
             return (
               <MenuItem
                 value={singleCoach?.firstName}
                 onClick={() => {
-                  console.log("Coach : ", singleCoach?.firstName);
                   setCurrentCoach(singleCoach);
                   handleSelect(singleCoach);
                   // getSessionsByCoachId(singleCoach?._id);

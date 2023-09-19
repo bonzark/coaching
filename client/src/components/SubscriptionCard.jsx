@@ -16,9 +16,10 @@ const SubscriptionCard = ({ title, price, description, locked, unlocked }) => {
   return (
     <Card
       sx={{
-        width: "300px",
+        width: "280px",
+        minWidth: "auto",
         margin: "auto",
-        borderRadius: "8px",
+        borderRadius: "12px",
         transition: "transform 0.2s ease-in-out",
         boxShadow:
           "rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px",
@@ -36,6 +37,7 @@ const SubscriptionCard = ({ title, price, description, locked, unlocked }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          textAlign: "center",
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
@@ -47,26 +49,38 @@ const SubscriptionCard = ({ title, price, description, locked, unlocked }) => {
         >
           {price}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
+        <Typography variant="body2" sx={{ mb: 2 }}>
           {description}
         </Typography>
         <List sx={{ mb: 1 }}>
           {unlocked?.map((advantage) => (
-            <ListItem key={advantage} disablePadding>
-              <ListItemIcon sx={{ minWidth: "30px" }}>
+            <ListItem
+              key={advantage}
+              disablePadding
+              sx={{ justifyContent: "center" }}
+            >
+              <ListItemIcon sx={{ minWidth: "30px", padding: "0" }}>
                 <CheckIcon color="success" />
               </ListItemIcon>
-              <ListItemText primary={advantage} />
+              <ListItemText
+                primary={advantage}
+                sx={{ width: "fit-content", flex: "none" }}
+              />
             </ListItem>
           ))}
-        </List>
-        <List dense>
           {locked?.map((feature) => (
-            <ListItem key={feature} disablePadding>
-              <ListItemIcon sx={{ minWidth: "30px" }}>
+            <ListItem
+              key={feature}
+              sx={{ justifyContent: "center" }}
+              disablePadding
+            >
+              <ListItemIcon sx={{ minWidth: "30px", padding: "0" }}>
                 <ClearIcon color="error" />
               </ListItemIcon>
-              <ListItemText primary={feature} />
+              <ListItemText
+                primary={feature}
+                sx={{ width: "fit-content", flex: "none" }}
+              />
             </ListItem>
           ))}
         </List>
@@ -75,7 +89,7 @@ const SubscriptionCard = ({ title, price, description, locked, unlocked }) => {
             color: "#671d61",
             border: "1px solid #671d63",
             maxWidth: "fit-content",
-            fontSize: { xs: "8px", sm: "12px", md: "16px" },
+            fontSize: { xs: "10px", sm: "15px", md: "18px" },
             margin: "0 auto",
           }}
         >

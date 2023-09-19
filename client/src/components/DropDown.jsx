@@ -112,7 +112,8 @@ const CommonDropdown = ({
                 {dropdownItems.map((item) => (
                   <MenuItem key={item.path} onClick={handleClose}>
                     <Link
-                      href={item.path}
+                      component={NavLink}
+                      to={item.path}
                       sx={{
                         width: "100%",
                         textDecoration: "none",
@@ -194,8 +195,8 @@ const CommonDropdown = ({
                   >
                     <Typography
                       sx={{ textDecoration: "none", color: "#673d67" }}
-                      component={NavLink}
-                      to={item?.path}
+                      component={Link}
+                      href={item?.path}
                     >
                       {item?.name}
                     </Typography>

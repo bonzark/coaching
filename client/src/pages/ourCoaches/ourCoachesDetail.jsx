@@ -11,7 +11,6 @@ const OurCoachesDetail = () => {
 
   const data = coachesData.find((coach) => coach.id === name);
 
-  console.log(data.description);
   return (
     <>
       <HeroBanner
