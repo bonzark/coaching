@@ -36,6 +36,9 @@ const Navbar = () => {
     } else {
       setIsLoggedIn(true);
     }
+    if (window.innerWidth < 768) {
+      setMobileOpen(false);
+    }
   }, [getAuthToken()]);
 
   const handleOpen = () => setOpen(true);
@@ -139,6 +142,7 @@ const Navbar = () => {
                 }
               : "none",
             zIndex: "2",
+            padding: "0 !important",
           }}
         >
           <Toolbar>
