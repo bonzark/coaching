@@ -58,7 +58,7 @@ const WealthCreationSection = () => {
               maxWidth: "605px",
               color: "#666",
               fontWeight: 500,
-              textAlign: { xs: "left", md: "justify" },
+              textAlign: { xs: "left", sm: "justify" },
             }}
           >
             Activation, an extraordinary online course designed to guide you on
@@ -79,7 +79,7 @@ const WealthCreationSection = () => {
                 sx={{
                   color: "#222",
                   fontSize: { xs: "1rem", md: "1.2rem" },
-                  textAlign: { xs: "left", md: "justify" },
+                  textAlign: { xs: "left", sm: "justify" },
                 }}
               >
                 {cardItem.description}

@@ -85,7 +85,7 @@ const HeroBanner = ({
             {description && (
               <Typography
                 variant="h6"
-                sx={{ my: "1rem", textAlign: { xs: "left", md: "justify" } }}
+                sx={{ my: "1rem", textAlign: { xs: "left", sm: "justify" } }}
               >
                 {description}
               </Typography>
@@ -106,7 +106,7 @@ const HeroBanner = ({
                       <ListItemText
                         sx={{
                           fontWeight: "600",
-                          textAlign: { xs: "left", md: "justify" },
+                          textAlign: { xs: "left", sm: "justify" },
                           fontSize: "1.2rem",
                         }}
                         primary={item?.name}

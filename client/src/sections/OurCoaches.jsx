@@ -72,7 +72,7 @@ const OurCoaches = () => {
           mx: "auto",
           textAlign: "center",
           marginBottom: "50px",
-          textAlign: { xs: "left", md: "justify" },
+          textAlign: { xs: "left", sm: "justify" },
           textAlignLast: "center",
         }}
       >

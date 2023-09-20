@@ -52,7 +52,7 @@ const News = () => {
               fontSize: { xs: "0.9rem", md: "1.5rem" },
               maxWidth: "605px",
               color: "#444",
-              textAlign: { xs: "left", md: "justify" },
+              textAlign: { xs: "left", sm: "justify" },
             }}
           >
             Here's Your Chance To Start Getting Everything You'll Ever Need To
