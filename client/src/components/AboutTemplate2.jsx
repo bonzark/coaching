@@ -114,7 +114,7 @@ const AboutTemplate2 = (props) => {
                 key={index}
                 sx={{
                   fontSize: { xs: "16px", md: "20px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
                 dangerouslySetInnerHTML={{ __html: paragraph }}
               ></Typography>

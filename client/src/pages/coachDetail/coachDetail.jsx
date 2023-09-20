@@ -96,7 +96,7 @@ const CoachDetail = () => {
               maxWidth: "605px",
               color: "#666",
               fontWeight: 500,
-              textAlign: "justify",
+              textAlign: { xs: "left", md: "justify" },
             }}
           >
             What sets her apart from other mindset and spiritual coaches? Rita
@@ -117,7 +117,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Why choose Rita as your coach? What sets her apart from other
@@ -130,7 +130,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 With a gentle yet assertive approach, Rita skillfully guides you
@@ -142,7 +142,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Rita's coaching style goes beyond mere external success; it
@@ -155,7 +155,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Rita's gift extends beyond mere fortune-telling; she comprehends
@@ -168,7 +168,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 But Rita's abilities do not stop there. She has honed her
@@ -182,7 +182,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Whether it's breaking free from limiting beliefs, attracting
@@ -197,7 +197,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Rita's clients find solace and guidance in her exceptional
@@ -212,7 +212,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Rita's remarkable ability to harness the power of your energies
@@ -226,7 +226,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Whether you seek personal growth, career advancement, or a
@@ -240,7 +240,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 If you are ready to embark on a life-changing journey and unlock
@@ -253,7 +253,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 With a track record of over 400 satisfied clients in just the
@@ -269,7 +269,7 @@ const CoachDetail = () => {
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
                   lineHeight: { xs: "24px", md: "28px" },
-                  textAlign: "justify",
+                  textAlign: { xs: "left", md: "justify" },
                 }}
               >
                 Rita's ability to guide individuals towards their desired
