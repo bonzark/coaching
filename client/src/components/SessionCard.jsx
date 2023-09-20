@@ -32,6 +32,7 @@ const SessionCard = ({
         "&:hover": {
           transform: "scale(1.015)",
         },
+        padding: "10px 20px",
       }}
     >
       {sessionImg && (
@@ -46,7 +47,7 @@ const SessionCard = ({
         sx={{
           height: sessionImg ? "calc(100% - 250px)" : "100%",
           marginTop: sessionImg ? "8px" : 0,
-          padding: "10px 15px !important",
+          display: "grid",
         }}
       >
         <Box

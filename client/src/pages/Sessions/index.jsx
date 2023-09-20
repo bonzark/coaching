@@ -3,34 +3,45 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Box, Grid, Typography } from "@mui/material";
+import { Backdrop, Box, Grid, OutlinedInput, Typography } from "@mui/material";
 
 import {
   getCoaches,
   getSessions,
   getSessionsByCoachId,
 } from "../../services/session.service";
-import { sessionsData } from "../../utils/constant";
 import SessionCard from "../../components/SessionCard";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function SelectSmall() {
+  const [sessionsIsLoading, setSessionsIsLoading] = useState(false);
+  const [filteredSessionsisLoading, setFilteredSessionsIsLoading] =
+    useState(false);
   const [coachList, setCoachList] = useState([]);
   const [currentCoach, setCurrentCoach] = useState("");
   const [sessions, setSessions] = useState([]);
+  const [filteredSessions, setFilteredSessions] = useState([]);
 
   const handleChange = (event) => {
     setCurrentCoach(event.target.value);
   };
 
-  const handleSelect = async (singleCoach) => {
-    const selectedSession = await getSessionsByCoachId(singleCoach?._id);
-    setSessions(selectedSession?.data?.sessions);
+  const handleSelect = async (coachId) => {
+    setSessionsIsLoading(true);
+    const filteredSessionsList = await getSessionsByCoachId(coachId);
+    setFilteredSessions(filteredSessionsList?.data?.sessions);
+    setSessionsIsLoading(false);
   };
 
   useEffect(() => {
     const getData = async () => {
+      setFilteredSessionsIsLoading(true);
       const coachesData = await getCoaches();
+      const sessionsList = await getSessions();
+      setSessions(sessionsList?.data?.sessions);
+      setFilteredSessions(sessionsList?.data?.sessions);
       setCoachList(coachesData?.data?.coaches);
+      setFilteredSessionsIsLoading(false);
     };
     getData();
   }, []);
@@ -55,7 +66,7 @@ export default function SelectSmall() {
           sx={{
             fontSize: { xs: "20px", sm: "27px", md: "32px" },
             color: "#673d61",
-            fontFamily: "'Abril Fatface', cursive",
+            fontFamily: "'montserrat', cursive",
             textAlign: { xs: "center", md: "left" },
           }}
         >
@@ -81,12 +92,16 @@ export default function SelectSmall() {
               labelId="demo-select-small-label"
               id="demo-select-small"
               value={currentCoach}
-              label="coach"
               onChange={handleChange}
+              input={<OutlinedInput label="Choose Your Coach" />}
               inputProps={{ MenuProps: { disableScrollLock: true } }}
-              disableScrollLock={true}
             >
-              <MenuItem value="">
+              <MenuItem
+                value={""}
+                onClick={() => {
+                  setFilteredSessions(sessions);
+                }}
+              >
                 <em>None</em>
               </MenuItem>
               {coachList?.map((singleCoach) => {
@@ -104,7 +119,7 @@ export default function SelectSmall() {
                     }}
                     onClick={() => {
                       setCurrentCoach(singleCoach);
-                      handleSelect(singleCoach);
+                      handleSelect(singleCoach?._id);
                       // getSessionsByCoachId(singleCoach?._id);
                     }}
                   >
@@ -117,55 +132,66 @@ export default function SelectSmall() {
         </Box>
       </Box>
       <Box>
-        {/* <Grid
-          container
-          spacing={2}
-          sx={{
-            display: !sessions?.length && "none",
-          }}
-        >
-          {sessions?.map((session) => {
-            console.log("Sessions: ", session);
-            return (
-              <Grid item xs={12} sm={6} md={3}>
-                <SessionCard
-                  key={session?._id}
-                  name={session?.firstName}
-                  description={session?.details}
-                />
-              </Grid>
-            );
-          })}
-        </Grid> */}
         <Grid
           spacing={3}
           container
           sx={{
-            marginTop: "0 !important",
+            margin: "0 !important",
             width: "100% !important",
           }}
         >
-          {sessionsData?.map((session) => (
-            <Grid
-              key={session?.title}
-              rowGap={"4px"}
-              item
-              xs={12}
-              md={6}
-              lg={4}
-              sx={{ margin: "0" }}
+          {filteredSessionsisLoading | sessionsIsLoading ? (
+            <Backdrop open={sessionsIsLoading}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "25px",
+                  padding: "15px 45px",
+                }}
+              >
+                <CircularProgress sx={{ color: "white" }} color="secondary" />
+                <Typography
+                  component="span"
+                  fontSize={"30px"}
+                  fontWeight={"bold"}
+                  color={"white"}
+                >
+                  Loading Sessions
+                </Typography>
+              </Box>
+            </Backdrop>
+          ) : filteredSessions?.length > 0 ? (
+            filteredSessions?.map((filteredSession) => {
+              return (
+                <Grid
+                  key={filteredSession?._id}
+                  rowGap={"4px"}
+                  item
+                  xs={12}
+                  md={6}
+                  lg={4}
+                  sx={{ margin: "0" }}
+                >
+                  <SessionCard
+                    coachName={filteredSession?.coach?.firstName}
+                    date={filteredSession?.date}
+                    time={filteredSession?.time}
+                    sessionImg={filteredSession?.coach?.coachImg}
+                    detail={filteredSession?.details}
+                    price={filteredSession?.price}
+                    title={filteredSession?.title}
+                  />
+                </Grid>
+              );
+            })
+          ) : (
+            <Typography
+              sx={{ color: "#671d63", fontSize: "45px", margin: "40px auto" }}
             >
-              <SessionCard
-                coachName={session?.coachName}
-                date={session?.date}
-                time={session?.time}
-                sessionImg={session?.sessionImg}
-                detail={session?.description}
-                price={session?.price}
-                title={session?.title}
-              />
-            </Grid>
-          ))}
+              No Sessions Found....
+            </Typography>
+          )}
         </Grid>
       </Box>
     </Box>
