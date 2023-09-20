@@ -36,7 +36,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
         <Typography
           paragraph
           key={index}
-          sx={{ textAlign: { xs: "left", md: "justify" } }}
+          sx={{ textAlign: { xs: "left", sm: "justify" } }}
         >
           {para}
         </Typography>

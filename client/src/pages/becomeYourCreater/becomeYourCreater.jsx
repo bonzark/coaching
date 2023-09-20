@@ -158,7 +158,7 @@ const BecomeYourCreator = () => {
               <AccordionDetails>
                 <Typography
                   paragraph
-                  sx={{ textAlign: { xs: "left", md: "justify" } }}
+                  sx={{ textAlign: { xs: "left", sm: "justify" } }}
                 >
                   {item?.content}
                 </Typography>

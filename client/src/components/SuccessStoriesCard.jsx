@@ -139,7 +139,7 @@ const SuccessStories = ({
                         lineHeight: { xs: "20px", sm: "25px" },
                         px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
                         mb: { xs: "8px", md: "10px", lg: "15px" },
-                        textAlign: { xs: "left", md: "justify" },
+                        textAlign: { xs: "left", sm: "justify" },
                       }}
                     >
                       {para}
@@ -170,7 +170,7 @@ const SuccessStories = ({
                 paragraph
                 sx={{
                   color: "#575757",
-                  textAlign: { xs: "left", md: "justify" },
+                  textAlign: { xs: "left", sm: "justify" },
                   fontSize: { xs: "15px", sm: "23px" },
                   lineHeight: { xs: "20px", sm: "28px" },
                   px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
