@@ -70,10 +70,9 @@ const OurCoaches = () => {
           fontSize: "20px",
           width: { md: "60%", xs: "90%" },
           mx: "auto",
-          textAlign: "center",
           marginBottom: "50px",
           textAlign: { xs: "left", sm: "justify" },
-          textAlignLast: "center",
+          textAlignLast: { xs: "left", sm: "center" },
         }}
       >
         We brings you the world's best teachers in every category of your

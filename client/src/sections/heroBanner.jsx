@@ -36,7 +36,6 @@ const HeroBanner = ({
           sx={{
             display: "flex",
             flexDirection: { xs: "column-reverse", lg: "row" },
-            alignItems: "flex-start",
             gap: "22px",
             alignItems: { xs: "end", md: "center" },
             position: "relative",
