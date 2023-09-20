@@ -13,7 +13,6 @@ const OurProgram = ({}) => {
       sx={{
         minHeight: "100vh",
         display: "grid",
-        paddingX: { lg: "10rem" },
         background: "linear-gradient(#DCD9F0,#ffffff)",
       }}
     >

@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { sessionData, subscriptionData } from "../../utils/constant";
 import SessionCard from "../../components/SessionCard";
 import SubscriptionCard from "../../components/SubscriptionCard";
+import { getBookedSessions, getSessions } from "../../services/session.service";
 
 const Dashboard = () => {
+  const [upcomingSessions, setUpcomingSessions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const bookedSessions = await getBookedSessions();
+      setUpcomingSessions(bookedSessions?.data?.bookedSessions);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
   const user = JSON.parse(localStorage.getItem("user"))?.name;
   return (
     <Box
@@ -17,7 +31,7 @@ const Dashboard = () => {
         sx={{
           fontSize: { xs: "33px", md: "42px" },
           marginTop: "15px",
-          fontFamily: "'Abril Fatface', cursive",
+          fontFamily: "'montserrat', cursive",
         }}
       >
         Welcome,
@@ -39,7 +53,7 @@ const Dashboard = () => {
             fontSize: { xs: "20px", sm: "25px", md: "30px" },
             marginTop: "15px",
             color: "#673d61",
-            fontFamily: "'Abril Fatface', cursive",
+            fontFamily: "'montserrat', cursive",
             textAlign: "center",
           }}
         >
@@ -54,7 +68,7 @@ const Dashboard = () => {
               paddingBottom: "25px",
             }}
           >
-            {sessionData?.map((session) => (
+            {/* {sessionData?.map((session) => (
               <Grid
                 sx={{ height: "100% !important" }}
                 item
@@ -72,7 +86,32 @@ const Dashboard = () => {
                   price={session?.price}
                 />
               </Grid>
-            ))}
+            ))} */}
+            {upcomingSessions?.map((session) => {
+              console.log("detail : ", session?.session?.details);
+              return (
+                <>
+                  <Grid
+                    key={session?._id}
+                    sx={{ height: "100% !important" }}
+                    item
+                    xs={12}
+                    sm={6}
+                    lg={4}
+                  >
+                    <SessionCard
+                      price={session?.session?.price}
+                      date={session?.date}
+                      time={session?.time}
+                      detail={session?.session?.details}
+                      coachName={session?.session?.coach?.firstName}
+                      title={session?.session?.title}
+                      sessionImg={session?.session?.coach?.image}
+                    />
+                  </Grid>
+                </>
+              );
+            })}
           </Grid>
         </Box>
       </Box>
@@ -82,7 +121,7 @@ const Dashboard = () => {
             fontSize: { xs: "20px", sm: "25px", md: "30px" },
             marginTop: "15px",
             color: "#673d61",
-            fontFamily: "'Abril Fatface', cursive",
+            fontFamily: "'montserrat', cursive",
             textAlign: "center",
           }}
         >
@@ -96,18 +135,23 @@ const Dashboard = () => {
             marginTop: "30px",
           }}
         >
-          {subscriptionData?.map((plan) => (
-            <Grid sx={{ height: { xs: "100%", lg: "auto" } }} item>
-              <SubscriptionCard
+          {subscriptionData?.map((plan) => {
+            return (
+              <Grid
+                sx={{ height: { xs: "100%", lg: "auto" } }}
+                item
                 key={plan?.price}
-                description={plan?.description}
-                title={plan?.title}
-                price={plan?.price}
-                locked={plan?.locked}
-                unlocked={plan?.unlocked}
-              />
-            </Grid>
-          ))}
+              >
+                <SubscriptionCard
+                  description={plan?.description}
+                  title={plan?.title}
+                  price={plan?.price}
+                  locked={plan?.locked}
+                  unlocked={plan?.unlocked}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
     </Box>
