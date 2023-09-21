@@ -36,17 +36,6 @@ const AccordionSummary = styled((props) => (
 const BecomeYourCreator = () => {
   const [expanded, setExpanded] = useState("panel1");
 
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = (resetForm) => {
-  //   setOpen(false);
-  //   resetForm();
-  // };
-
-  // const aboutTemplate1Data = aboutTemplateData.find(
-  //   (item) => item.id === "become-your-creator"
-  // );
-
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
