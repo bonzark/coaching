@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import CoachCarouselCard from "../components/CoachCarouselCard";
+import { NavLink } from "react-router-dom";
 
 const OurCoaches = () => {
   const items = [
@@ -70,7 +71,6 @@ const OurCoaches = () => {
           fontSize: "20px",
           width: { md: "60%", xs: "90%" },
           mx: "auto",
-          textAlign: "center",
           marginBottom: "50px",
           textAlign: "justify",
           textAlignLast: "center",
@@ -135,23 +135,30 @@ const OurCoaches = () => {
           },
         }}
       >
-        {items.map((item, index) => (
+        {items?.map((item) => (
           <CoachCarouselCard
-            key={index}
-            title={item.title}
-            subtitle={item.subtitle}
-            imgSrc={item.imgSrc}
+            key={item?.title}
+            title={item?.title}
+            subtitle={item?.subtitle}
+            imgSrc={item?.imgSrc}
           />
         ))}
       </Carousel>
 
-      <Button
-        variant="outlined"
+      <Link
+        component={NavLink}
+        to="/our-coaches"
+        variant="button"
         sx={{
           color: "#671d63",
+          width: "max-content",
+          textDecoration: "none",
           margin: "20px auto",
           fontWeight: "bolder",
           border: "none",
+          padding: "10px 20px",
+          borderRadius: "10px",
+          transition: "all 0.25s linear",
           backgroundColor: "#EFE6EF",
           "&:hover": {
             backgroundColor: "#671d63",
@@ -162,7 +169,7 @@ const OurCoaches = () => {
         }}
       >
         SEE ALL COACHES
-      </Button>
+      </Link>
     </Box>
   );
 };

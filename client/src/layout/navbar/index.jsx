@@ -31,12 +31,12 @@ const Navbar = () => {
   };
 
   React.useEffect(() => {
-    if (getAuthToken() === null) {
+    if (getAuthToken() === null || getAuthToken().length === 0) {
       setIsLoggedIn(false);
     } else {
       setIsLoggedIn(true);
     }
-    if (window.innerWidth < 768) {
+    if (window.innerWidth > 768) {
       setMobileOpen(false);
     }
   }, [getAuthToken()]);

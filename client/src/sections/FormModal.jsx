@@ -11,6 +11,7 @@ import {
   validationLoginSchema,
   validationRegisterSchema,
 } from "../utils/validation";
+import EventEmitter from "reactjs-eventemitter";
 
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -42,6 +43,7 @@ const FormModal = ({ open, handleClose }) => {
               setToken(res?.data?.token);
               setUserDetails(res?.data?.user);
               handleClose(formik.resetForm());
+              EventEmitter.dispatch("loginSuccess", true);
             } else if (
               res?.response?.data?.errors &&
               res?.response?.data?.errors.length > 0

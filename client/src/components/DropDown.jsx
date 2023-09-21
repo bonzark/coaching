@@ -41,6 +41,7 @@ const CommonDropdown = ({
 
   const logOutHandler = async () => {
     setLoggingOut(true);
+    localStorage.removeItem("token");
     localStorage.clear();
     setLoggingOut(true);
     handleClose();
