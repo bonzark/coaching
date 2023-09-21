@@ -28,12 +28,11 @@ const PageBanner = ({
             top: 0,
             left: 0,
           },
-          marginTop: { xs: "55px", md: "0" },
+          marginTop: { xs: "40px", md: "0" },
         }}
       >
         <Container
           sx={{
-            minHeight: { xs: "25vh", md: "70vh" },
             display: "flex",
             alignItems: "center",
             position: "relative",
@@ -44,10 +43,10 @@ const PageBanner = ({
             sx={{
               width: { xs: "100%  ", md: "100%", lg: "100%" },
               padding: {
-                xs: "0 0 50px 0",
-                md: "100px 50px",
-                lg: "200px 75px",
-                xl: "300px 100px",
+                xs: "120px 20px 90px",
+                sm: "130px 50px 100px",
+                md: "170px 50px 140px",
+                lg: "210px 75px 200px",
               },
             }}
           >
