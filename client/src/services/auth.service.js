@@ -1,5 +1,5 @@
-import axios from 'axios';
-import baseUrl from '../api/api';
+import axios from "axios";
+import baseUrl from "../api/api";
 
 const login = (values) => {
   return axios
@@ -23,4 +23,15 @@ const register = (values) => {
     });
 };
 
-export { login, register };
+const requestReset = (value) => {
+  return axios
+    .post(`${baseUrl}/auth/request-password-reset`, value)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export { login, register, requestReset };
