@@ -3,6 +3,7 @@ const Coach = require("../models/Coach");
 const BookedSession = require("../models/bookedSession");
 const Session = require("../models/session");
 const User = require("../models/user");
+const axios = require("axios");
 
 exports.bookSession = async (req, res) => {
   try {
@@ -113,6 +114,37 @@ exports.getAllSessions = async (req, res) => {
   try {
     const sessions = await Session.find().populate("coach");
     return res.status(200).json({ sessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.scheduledEventsCalendly = async (req, res) => {
+  try {
+    const options = {
+      method: "GET",
+      url: "https://api.calendly.com/scheduled_events",
+      params: {
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+      },
+    };
+
+    // Example: Fetch upcoming events
+    axios
+      .request(options)
+      .then(function (response) {
+        return res.status(200).json(response.data);
+      })
+      .catch(function (error) {
+        return res.status(500).json(error);
+      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
