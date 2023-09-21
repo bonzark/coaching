@@ -25,9 +25,8 @@ const HeroBanner = ({
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleClose = (resetForm) => {
+  const handleClose = () => {
     setOpen(false);
-    resetForm();
   };
 
   useEffect(() => {
@@ -159,7 +158,6 @@ const HeroBanner = ({
                 </PrimaryBtn>
               )
             )}
-            {isLoggedIn && buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>}
           </Box>
           <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
             <img

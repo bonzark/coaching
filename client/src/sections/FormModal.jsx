@@ -47,7 +47,8 @@ const FormModal = ({ open, handleClose }) => {
               enqueueSnackbar(res?.data?.message, { variant: "success" });
               setToken(res?.data?.token);
               setUserDetails(res?.data?.user);
-              handleClose(formik.resetForm());
+              formik.resetForm();
+              handleClose();
               EventEmitter.dispatch("loginSuccess", true);
             } else if (
               res?.response?.data?.errors &&
@@ -85,7 +86,8 @@ const FormModal = ({ open, handleClose }) => {
             if (res?.status === 201) {
               setIsLogin(false);
               enqueueSnackbar(res?.data, { variant: "success" });
-              handleClose(formik.resetForm());
+              formik.resetForm();
+              handleClose();
             } else if (res?.response?.data?.error) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.error, {
