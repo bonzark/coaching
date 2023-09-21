@@ -5,7 +5,7 @@ export const PrimaryBtn = (props) => {
   return (
     <Button
       sx={{
-        backgroundColor: "#671d63",
+        backgroundColor: "#873785",
         display: "flex",
         flexDirection: props.row ? "row" : "column",
         alignItems: "center",

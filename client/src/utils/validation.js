@@ -27,6 +27,25 @@ export const validationForgotSchema = yup.object({
     .required("Email is required"),
 });
 
+export const validationResetPassword = yup.object({
+  password: yup
+    .string()
+    .trim()
+    .min(8, "Password must be at least 8 characters")
+    .matches(/\d/, "Password must contain at least one digit")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(
+      /[!@#$%^&*(),.?":{}|<>]/,
+      "Password must contain at least one special character"
+    )
+    .required("Password is required"),
+  confirmPassWord: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
+});
+
 export const validationLoginSchema = yup.object({
   email: yup
     .string("Enter your email")

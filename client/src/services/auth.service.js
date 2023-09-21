@@ -34,4 +34,15 @@ const requestReset = (value) => {
     });
 };
 
-export { login, register, requestReset };
+const resetPassword = (value) => {
+  return axios
+    .post(`${baseUrl}/auth/reset-password`, value)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export { login, register, requestReset, resetPassword };

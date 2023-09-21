@@ -20,6 +20,7 @@ import AllCoaches from "../pages/ourCoaches/ourCoaches";
 import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 import SmoothScroll from "../components/shared/SmoothScroll";
 import SessionsPage from "../pages/Sessions";
+import ResetPassword from "../pages/resetPassword/resetPassword";
 
 const Routers = () => {
   return (
@@ -43,6 +44,10 @@ const Routers = () => {
           />
           <Route exact path="/events" element={<Event />} />
           <Route exact path="/contact" element={<Contact />} />
+          <Route
+            path="/reset-password/:resetToken"
+            element={<ResetPassword />}
+          />
           <Route element={<PrivateRoute />}>
             <Route
               path="/ourCoachesDetail/:id"
