@@ -4,6 +4,7 @@ import FAQAccordion from "../../components/FAQAccordion";
 import { heroListItems } from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
+import RitaPageTitle from "../../components/RitaPageTitle";
 
 const CoachDetail = () => {
   const accordionData = [
@@ -42,11 +43,9 @@ const CoachDetail = () => {
 
   return (
     <>
-      <PageBanner
-        heading={"Coaching with Rita"}
-        imgSrc="successStories.jpg"
-        listItems={heroListItems}
-        buttonText={btnText}
+      <RitaPageTitle
+        titleText={"Coaching With Rita"}
+        background={"./successStories.jpg"}
       />
       <Box sx={{ margin: "5rem 0" }}>
         <Box
