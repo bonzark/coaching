@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSnackbar } from "notistack";
 import { useFormik } from "formik";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { MainModal } from "../components/MainModal";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 import { InputBox } from "../components/InputBox";
@@ -11,11 +11,13 @@ import {
   validationLoginSchema,
   validationRegisterSchema,
 } from "../utils/validation";
+import ForgotPassword from "./ForgotPassword";
 
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [logingForm, setLogingForm] = useState(true);
   const [isLogIn, setIsLogin] = useState(false);
+  const [openReset, setOpenReset] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -169,7 +171,42 @@ const FormModal = ({ open, handleClose }) => {
               />
             )}
           </PrimaryBtn>
-
+          {logingForm && (
+            <>
+              <ForgotPassword isOpen={openReset} />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "4px",
+                  paddingTop: "16px",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ fontSize: "1rem", fontWeight: 100 }}
+                >
+                  Forgot password?
+                </Typography>
+                <Button
+                  variant="text"
+                  sx={{
+                    color: "#671d63",
+                    textTransform: "capitalize",
+                    fontSize: "1rem",
+                    fontWeight: 100,
+                    padding: 0,
+                  }}
+                  onClick={() => {
+                    setOpenReset(true);
+                  }}
+                >
+                  Recover it here.
+                </Button>
+              </Box>
+            </>
+          )}
           <Typography sx={{ textAlign: "center", mt: "20px" }}>
             {logingForm ? "Don't have account? " : "Already Registered? "}
             <span
