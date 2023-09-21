@@ -88,7 +88,6 @@ const Dashboard = () => {
               </Grid>
             ))} */}
             {upcomingSessions?.map((session) => {
-              console.log("detail : ", session?.session?.details);
               return (
                 <>
                   <Grid

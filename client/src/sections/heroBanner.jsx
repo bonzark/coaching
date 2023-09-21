@@ -8,10 +8,11 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 import { getAuthToken } from "../utils/auth";
+import EventEmitter from "reactjs-eventemitter";
 
 const HeroBanner = ({
   title,
@@ -23,10 +24,29 @@ const HeroBanner = ({
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleClose = (resetForm) => {
     setOpen(false);
     resetForm();
   };
+
+  useEffect(() => {
+    EventEmitter.subscribe("loginSuccess", (event) => {
+      setIsLoggedIn(true);
+    });
+
+    EventEmitter.subscribe("logoutSuccess", (event) => {
+      setIsLoggedIn(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (getAuthToken() === null || getAuthToken().length === 0) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  }, [getAuthToken()]);
 
   return (
     <>
@@ -115,10 +135,9 @@ const HeroBanner = ({
                 })}
               </List>
             )}
-            {getAuthToken() === null ? (
+            {!isLoggedIn ? (
               <Box sx={{ margin: "1rem 0" }}>
                 <PrimaryBtn onClick={handleOpen}>
-                  {" "}
                   <>
                     <span>DOWNLOAD NOW FOR FREE</span>
                     Gain Awareness Of Your Creation in less than 30 days
@@ -140,6 +159,7 @@ const HeroBanner = ({
                 </PrimaryBtn>
               )
             )}
+            {isLoggedIn && buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>}
           </Box>
           <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
             <img
