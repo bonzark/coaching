@@ -147,7 +147,17 @@ const Navbar = () => {
   );
 
   return (
-    <>
+    <Box
+      sx={{
+        position: "sticky",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 9999,
+      }}
+    >
       <FormModal open={open} handleClose={handleClose} />
       <Box sx={{ display: "flex" }}>
         <AppBar
@@ -160,6 +170,7 @@ const Navbar = () => {
                 }
               : "none",
             zIndex: "2",
+            position: "static",
             padding: "0 !important",
           }}
         >
@@ -294,7 +305,7 @@ const Navbar = () => {
           </Drawer>
         </nav>
       </Box>
-    </>
+    </Box>
   );
 };
 
