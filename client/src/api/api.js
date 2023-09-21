@@ -1,3 +1,2 @@
-const baseUrl = 'https://coaching-server.onrender.com';
-// const baseUrl = 'http/://localhost:4000';
+const baseUrl = import.meta.env.VITE_SECRET;
 export default baseUrl;
