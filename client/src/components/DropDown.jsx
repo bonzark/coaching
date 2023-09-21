@@ -16,6 +16,7 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogoutIcon from "@mui/icons-material/Logout";
+import EventEmitter from "reactjs-eventemitter";
 
 const CommonDropdown = ({
   dropdownItems,
@@ -47,6 +48,7 @@ const CommonDropdown = ({
     handleClose();
     logout();
     setOpen(false);
+    EventEmitter.dispatch("logoutSuccess", true);
     navigate("/");
   };
 

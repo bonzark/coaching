@@ -58,7 +58,7 @@ const Footer = () => {
               color: "#671d63",
               margin: 0,
               lineHeight: "1.3rem",
-              textAlign: "justify",
+              textAlign: { xs: "left", sm: "justify" },
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum

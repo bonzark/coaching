@@ -33,7 +33,11 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
       </Box>
       <Typography paragraph>{name},</Typography>
       {descriptionArr.map((para, index) => (
-        <Typography paragraph key={index} sx={{ textAlign: "justify" }}>
+        <Typography
+          paragraph
+          key={index}
+          sx={{ textAlign: { xs: "left", sm: "justify" } }}
+        >
           {para}
         </Typography>
       ))}

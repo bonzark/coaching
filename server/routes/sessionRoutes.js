@@ -23,6 +23,10 @@ router.put(
 router.delete("/:sessionId/delete", sessionController.deleteSession);
 
 router.get("/", sessionController.getAllSessions);
+router.get(
+  "/scheduled_events_calendly",
+  sessionController.scheduledEventsCalendly
+);
 router.get("/booked", sessionController.getAllBookedSessions);
 router.get("/booked/:bookedId", sessionController.getAllBookedSessionsById);
 router.get(

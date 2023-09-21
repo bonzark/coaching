@@ -72,8 +72,8 @@ const OurCoaches = () => {
           width: { md: "60%", xs: "90%" },
           mx: "auto",
           marginBottom: "50px",
-          textAlign: "justify",
-          textAlignLast: "center",
+          textAlign: { xs: "left", sm: "justify" },
+          textAlignLast: { xs: "left", sm: "center" },
         }}
       >
         We brings you the world's best teachers in every category of your

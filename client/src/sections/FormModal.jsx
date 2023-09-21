@@ -11,6 +11,7 @@ import {
   validationLoginSchema,
   validationRegisterSchema,
 } from "../utils/validation";
+import * as CryptoJS from "crypto-js";
 import EventEmitter from "reactjs-eventemitter";
 
 const FormModal = ({ open, handleClose }) => {
@@ -31,9 +32,13 @@ const FormModal = ({ open, handleClose }) => {
     onSubmit: (values) => {
       setIsLogin(true);
       if (logingForm) {
+        const passwordEncrypt = CryptoJS.AES.encrypt(
+          values.password,
+          import.meta.env.VITE_SECRET
+        ).toString();
         const data = {
           email: values.email,
-          password: values.password,
+          password: passwordEncrypt,
         };
         login(data)
           .then((res) => {
@@ -66,7 +71,16 @@ const FormModal = ({ open, handleClose }) => {
             });
           });
       } else {
-        register(values)
+        const passwordEncrypt = CryptoJS.AES.encrypt(
+          values.password,
+          import.meta.env.VITE_SECRET
+        ).toString();
+        const data = {
+          name: values.name,
+          email: values.email,
+          password: passwordEncrypt,
+        };
+        register(data)
           .then((res) => {
             if (res?.status === 201) {
               setIsLogin(false);

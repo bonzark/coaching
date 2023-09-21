@@ -13,7 +13,7 @@ const getSessions = async () => {
 };
 
 const getSessionsByCoachId = async (coachId) => {
-    return await axios
+  return await axios
     .get(`${baseUrl}/sessions/coach/${coachId}`)
     .then((response) => {
       return response;
@@ -38,7 +38,6 @@ const getBookedSessions = async () => {
   return await axios
     .get(`${baseUrl}/sessions/booked`)
     .then((response) => {
-      console.log("Booked Sessions : ", response.data);
       return response;
     })
     .catch((error) => {

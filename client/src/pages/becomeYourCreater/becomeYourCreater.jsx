@@ -36,16 +36,16 @@ const AccordionSummary = styled((props) => (
 const BecomeYourCreator = () => {
   const [expanded, setExpanded] = useState("panel1");
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = (resetForm) => {
-    setOpen(false);
-    resetForm();
-  };
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = (resetForm) => {
+  //   setOpen(false);
+  //   resetForm();
+  // };
 
-  const aboutTemplate1Data = aboutTemplateData.find(
-    (item) => item.id === "become-your-creator"
-  );
+  // const aboutTemplate1Data = aboutTemplateData.find(
+  //   (item) => item.id === "become-your-creator"
+  // );
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -54,14 +54,16 @@ const BecomeYourCreator = () => {
   return (
     <Box>
       <PageBanner heading={"Become Your Creator"} imgSrc="./creator.jpg" />
-      <Box sx={{ padding: "5rem" }}>
+      <Box
+        sx={{ padding: { xs: "1rem", sm: "2rem", md: "3.5rem", lg: "5rem" } }}
+      >
         <Box
           sx={{
             display: "flex",
             mx: "auto",
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: "55px",
+            paddingBottom: { lg: "55px" },
             flexDirection: { xs: "column", lg: "row" },
           }}
         >
@@ -114,8 +116,10 @@ const BecomeYourCreator = () => {
             boxShadow:
               "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
             maxWidth: "1120px",
-            margin: "4.2rem auto",
+            mx: "auto",
+            my: { xs: "3rem", lg: "4.2rem" },
             borderRadius: "12px",
+            overflow: "hidden",
           }}
         >
           {lineUpsData?.map((item, index) => (
@@ -152,7 +156,10 @@ const BecomeYourCreator = () => {
                 <Typography>{item?.title}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography paragraph sx={{ textAlign: "justify" }}>
+                <Typography
+                  paragraph
+                  sx={{ textAlign: { xs: "left", sm: "justify" } }}
+                >
                   {item?.content}
                 </Typography>
               </AccordionDetails>

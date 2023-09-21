@@ -24,8 +24,7 @@ const HeroBanner = ({
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!getAuthToken());
-  console.log("isloggedin  :", isLoggedIn);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleClose = (resetForm) => {
     setOpen(false);
     resetForm();
@@ -33,7 +32,11 @@ const HeroBanner = ({
 
   useEffect(() => {
     EventEmitter.subscribe("loginSuccess", (event) => {
-      console.log("event success============", event);
+      setIsLoggedIn(true);
+    });
+
+    EventEmitter.subscribe("logoutSuccess", (event) => {
+      setIsLoggedIn(false);
     });
   }, []);
 
@@ -101,7 +104,7 @@ const HeroBanner = ({
             {description && (
               <Typography
                 variant="h6"
-                sx={{ my: "1rem", textAlign: "justify" }}
+                sx={{ my: "1rem", textAlign: { xs: "left", sm: "justify" } }}
               >
                 {description}
               </Typography>
@@ -122,7 +125,7 @@ const HeroBanner = ({
                       <ListItemText
                         sx={{
                           fontWeight: "600",
-                          textAlign: "justify",
+                          textAlign: { xs: "left", sm: "justify" },
                           fontSize: "1.2rem",
                         }}
                         primary={item?.name}
@@ -132,7 +135,7 @@ const HeroBanner = ({
                 })}
               </List>
             )}
-            {!isLoggedIn && (
+            {!isLoggedIn ? (
               <Box sx={{ margin: "1rem 0" }}>
                 <PrimaryBtn onClick={handleOpen}>
                   <>
@@ -141,6 +144,20 @@ const HeroBanner = ({
                   </>
                 </PrimaryBtn>
               </Box>
+            ) : (
+              buttonText && (
+                <PrimaryBtn
+                  onClick={() => {
+                    Calendly.showPopupWidget(
+                      "https://calendly.com/b7-bonzark/wealth-creation"
+                    );
+
+                    return false;
+                  }}
+                >
+                  {buttonText}
+                </PrimaryBtn>
+              )
             )}
             {isLoggedIn && buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>}
           </Box>
