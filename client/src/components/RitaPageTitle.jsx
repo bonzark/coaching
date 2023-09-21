@@ -6,10 +6,14 @@ const RitaPageTitle = ({ background, titleText }) => {
       sx={{
         width: "80%",
         mx: "auto",
-        minHeight: { sx: "auto", md: "75vh" },
         display: "flex",
         alignItems: "center",
-        padding: { xs: "100px 0", md: "0" },
+        padding: {
+          xs: "50px 0",
+          sm: "70px 0 0",
+          md: "70px 0 120px",
+          lg: "70px 0",
+        },
       }}
     >
       <Box

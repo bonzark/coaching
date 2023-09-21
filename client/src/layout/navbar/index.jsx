@@ -155,7 +155,7 @@ const Navbar = () => {
         top: 0,
         right: 0,
         left: 0,
-        zIndex: 9999,
+        zIndex: 5,
       }}
     >
       <FormModal open={open} handleClose={handleClose} />
@@ -203,9 +203,8 @@ const Navbar = () => {
           <Toolbar
             sx={{
               paddingLeft: "0 !important",
-              justifyContent: "flex-end",
               maxWidth: "80%",
-              marginLeft: "auto",
+              margin: { xs: "0 auto 0 0", md: "0 0 0 auto" },
             }}
           >
             <IconButton
@@ -215,6 +214,7 @@ const Navbar = () => {
               onClick={handleDrawerToggle}
               sx={{
                 mr: 2,
+                ml: 2,
                 display: { md: "none", xs: mobileOpen ? "none" : "" },
               }}
             >
@@ -293,7 +293,8 @@ const Navbar = () => {
               keepMounted: true,
             }}
             sx={{
-              backgroundColor: "grey",
+              zIndex: 5,
+              backgroundColor: "#00000099",
               display: { xs: "block", md: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
