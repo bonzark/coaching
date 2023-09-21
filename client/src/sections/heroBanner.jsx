@@ -126,7 +126,19 @@ const HeroBanner = ({
                 </PrimaryBtn>
               </Box>
             ) : (
-              buttonText && <PrimaryBtn>{buttonText}</PrimaryBtn>
+              buttonText && (
+                <PrimaryBtn
+                  onClick={() => {
+                    Calendly.showPopupWidget(
+                      "https://calendly.com/b7-bonzark/wealth-creation"
+                    );
+
+                    return false;
+                  }}
+                >
+                  {buttonText}
+                </PrimaryBtn>
+              )
             )}
           </Box>
           <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
