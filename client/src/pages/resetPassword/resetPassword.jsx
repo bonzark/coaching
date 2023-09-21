@@ -35,7 +35,6 @@ const ResetPassword = () => {
         };
         resetPassword(data)
           .then((res) => {
-            console.log("res: ", res);
             if (res?.status === 200) {
               setIsLogin(false);
               enqueueSnackbar(res?.data?.message, { variant: "success" });
@@ -58,7 +57,6 @@ const ResetPassword = () => {
           })
           .catch((error) => {
             setIsLogin(false);
-            console.log(error?.response?.data);
             enqueueSnackbar(error?.response?.data?.error, {
               variant: "error",
             });

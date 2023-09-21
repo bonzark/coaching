@@ -188,8 +188,13 @@ const FormModal = ({ open, handleClose }) => {
           {logingForm && (
             <>
               <ForgotPassword
+                closeAllModal={() => handleClose(false)}
                 isOpen={openReset}
                 onClose={() => setOpenReset(false)}
+                onResetClose={() => {
+                  setOpenReset(false);
+                }}
+                blur
               />
               <Box
                 sx={{

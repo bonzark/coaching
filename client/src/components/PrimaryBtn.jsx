@@ -4,6 +4,7 @@ import React from "react";
 export const PrimaryBtn = (props) => {
   return (
     <Button
+      disabled={props?.disabled}
       sx={{
         backgroundColor: "#873785",
         display: "flex",

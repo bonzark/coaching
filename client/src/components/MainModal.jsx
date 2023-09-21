@@ -9,7 +9,7 @@ export const MainModal = ({ open, handleClose, blur, children }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={{
-        backdropFilter: "blur('100px')",
+        backdropFilter: `blur(${blur ? "5px" : "0px"})`,
       }}
     >
       <Box
