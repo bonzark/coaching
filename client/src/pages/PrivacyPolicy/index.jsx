@@ -33,6 +33,7 @@ const PrivacyPolicy = () => {
           <Box key={data?.key} sx={{ padding: "20px 0" }}>
             {data?.title && (
               <Typography
+                paragraph
                 sx={{
                   position: "relative",
                   fontSize: { xs: "0.9rem", sm: "1.25rem", md: "1.75rem" },
@@ -41,7 +42,7 @@ const PrivacyPolicy = () => {
                   fontWeight: "900",
                   borderBottom: "4px solid goldenrod",
                   width: "max-width",
-                  textAlign: "justify",
+                  textAlign: { xs: "left", sm: "justify" },
                   zIndex: "-1",
                 }}
               >
@@ -51,11 +52,12 @@ const PrivacyPolicy = () => {
             <Box sx={{ padding: "10px 0" }}>
               {data?.content?.map((para) => (
                 <Typography
+                  paragraph
                   key={para}
                   sx={{
                     fontSize: { xs: "12px", sm: "16px" },
                     padding: "10px 0",
-                    textAlign: "justify",
+                    textAlign: { xs: "left", sm: "justify" },
                     fontWeight: "100",
                   }}
                 >
