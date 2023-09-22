@@ -155,7 +155,7 @@ const Navbar = () => {
         top: 0,
         right: 0,
         left: 0,
-        zIndex: 9999,
+        zIndex: 999,
       }}
     >
       <FormModal open={open} handleClose={handleClose} />

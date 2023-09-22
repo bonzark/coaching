@@ -21,6 +21,7 @@ import OurCoachesDetail from "../pages/ourCoaches/ourCoachesDetail";
 import SmoothScroll from "../components/shared/SmoothScroll";
 import SessionsPage from "../pages/Sessions";
 import ResetPassword from "../pages/resetPassword/resetPassword";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 const Routers = () => {
   return (
@@ -54,6 +55,7 @@ const Routers = () => {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route path="/sessions" element={<SessionsPage />} />
           </Route>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         </Routes>
       </SmoothScroll>

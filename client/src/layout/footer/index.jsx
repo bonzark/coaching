@@ -201,7 +201,20 @@ const Footer = () => {
             fontSize: "1.2rem",
           }}
         >
-          Become Your Creator - 2023 All rights reserved - Privacy - Terms
+          Become Your Creator - 2023 All rights reserved -{" "}
+          <Link
+            style={{
+              color: "#671d63",
+              lineHeight: "1.5rem",
+              fontSize: "1.2rem",
+              textDecoration: "none",
+              fontWeight: 900,
+            }}
+            to={"/privacy-policy"}
+          >
+            Privacy
+          </Link>
+          - Terms
         </Typography>
       </Box>
     </Box>
