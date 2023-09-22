@@ -1,12 +1,30 @@
-import { Box } from "@mui/material";
-import PageBanner from "../../sections/PageBanner";
+import { Box, Typography } from "@mui/material";
 import TermOrCondition from "../../sections/TermOrCondition";
 import { termsAndConditionsData } from "../../utils/constant";
 
 const TermsAndConditions = () => {
   return (
     <>
-      <PageBanner heading="Terms & Conditions" />
+      <Box
+        sx={{
+          height: "200px",
+          backgroundColor: "whitesmoke",
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: { xs: "22px", sm: "30px", md: "35px" },
+            textAlign: "center",
+            color: "#671d61",
+            fontWeight: "bold",
+            fontFamily: "'montserrat', cursive",
+          }}
+        >
+          Terms & Conditions
+        </Typography>
+      </Box>
       <Box>
         {termsAndConditionsData.map((section, index) => (
           <TermOrCondition title={section.title} key={index} bigHead>
