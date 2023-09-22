@@ -64,7 +64,6 @@ const authController = {
           process.env.CRYPTO_JS_SECRET
         );
         var originalText = bytes.toString(CryptoJS.enc.Utf8);
-
         const isPasswordValid = await bcrypt.compare(
           originalText,
           user.password
@@ -142,8 +141,10 @@ const authController = {
         return res.status(400).json({ message: "Invalid token" });
       }
 
+      var bytes = CryptoJS.AES.decrypt(password, process.env.CRYPTO_JS_SECRET);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
       // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(originalText, 10);
       user.password = hashedPassword;
       user.resetToken = undefined;
       await user.save();

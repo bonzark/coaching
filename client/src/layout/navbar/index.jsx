@@ -74,9 +74,9 @@ const Navbar = () => {
             border: "5px solid #fff",
           }}
         >
-          <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
+          <Link to="/" onClick={handleDrawerToggle}>
             <img
-              src="./becomeYourCreator.jpeg"
+              src="/becomeYourCreator.jpeg"
               alt="logo"
               style={{
                 maxWidth: "100px",
@@ -190,7 +190,7 @@ const Navbar = () => {
             <Box sx={{ borderRadius: "50%", overflow: "hidden" }}>
               <Link to="/" style={{ display: "flex" }}>
                 <img
-                  src="./becomeYourCreator.jpeg"
+                  src="/becomeYourCreator.jpeg"
                   alt="logo"
                   style={{
                     maxWidth: "100px",
@@ -239,13 +239,13 @@ const Navbar = () => {
                     });
                   }}
                   sx={{
-                    color: "#cecece",
+                    color: "white",
                     fontWeight: "600",
                     textAlign: "center",
                     padding: 0,
                     transition: "all 0.2s linear",
                     ":hover": {
-                      color: "white",
+                      color: "#cecece",
                     },
                   }}
                 >
