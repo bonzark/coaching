@@ -25,7 +25,11 @@ const TermsAndConditions = () => {
           Terms & Conditions
         </Typography>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          padding: { xs: "20px", sm: "50px", md: "120px", lg: "0 22%" },
+        }}
+      >
         {termsAndConditionsData.map((section, index) => (
           <TermOrCondition title={section.title} key={index} bigHead>
             {section.content}
