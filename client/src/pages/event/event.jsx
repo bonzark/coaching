@@ -72,7 +72,7 @@ const Event = () => {
               BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER
               YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES
             </Typography>
-            <Link href="/" sx={{ textDecoration: "none" }}>
+            <Link to="/" style={{ textDecoration: "none" }}>
               <Typography
                 variant="h6"
                 sx={{

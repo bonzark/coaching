@@ -28,7 +28,6 @@ const PageBanner = ({
             top: 0,
             left: 0,
           },
-          marginTop: { xs: "40px", md: "0" },
         }}
       >
         <Container
@@ -43,10 +42,10 @@ const PageBanner = ({
             sx={{
               width: { xs: "100%  ", md: "100%", lg: "100%" },
               padding: {
-                xs: "120px 20px 90px",
-                sm: "130px 50px 100px",
-                md: "170px 50px 140px",
-                lg: "210px 75px 200px",
+                xs: "50px 20px",
+                sm: "100px 50px",
+                md: "140px 50px",
+                lg: "200px 75px",
               },
             }}
           >

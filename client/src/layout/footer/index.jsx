@@ -210,11 +210,23 @@ const Footer = () => {
               textDecoration: "none",
               fontWeight: 900,
             }}
-            to={"/privacy-policy"}
+            to="/privacy-policy"
           >
             Privacy
+          </Link>{" "}
+          -{" "}
+          <Link
+            style={{
+              color: "#671d63",
+              lineHeight: "1.5rem",
+              fontSize: "1.2rem",
+              textDecoration: "none",
+              fontWeight: 900,
+            }}
+            to="/terms-and-conditions"
+          >
+            Terms
           </Link>
-          - Terms
         </Typography>
       </Box>
     </Box>

@@ -59,7 +59,6 @@ const HeroBanner = ({
             alignItems: { xs: "end", md: "center" },
             position: "relative",
             zIndex: 1,
-            paddingTop: "3.5rem",
             minHeight: { lg: "100vh", xl: "auto" },
           }}
           maxWidth="false"
