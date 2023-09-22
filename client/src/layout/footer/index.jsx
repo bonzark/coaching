@@ -45,7 +45,7 @@ const Footer = () => {
             >
               <Link to="/" style={{ display: "flex" }}>
                 <img
-                  src="./becomeYourCreator.jpeg"
+                  src="/becomeYourCreator.jpeg"
                   alt="logo"
                   style={{ maxWidth: "150px", height: "auto" }}
                 />
