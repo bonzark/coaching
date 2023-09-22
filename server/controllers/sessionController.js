@@ -1,9 +1,10 @@
-const { validate } = require('../middlewares/validation');
-const Coach = require('../models/Coach');
-const BookedSession = require('../models/bookedSession');
-const Session = require('../models/session');
-const User = require('../models/user');
-const axios = require('axios');
+const { validate } = require("../middlewares/validation");
+const Coach = require("../models/Coach");
+const BookedSession = require("../models/bookedSession");
+const Session = require("../models/session");
+const stripe = require("../utils/stripe");
+const User = require("../models/user");
+const axios = require("axios");
 
 exports.bookSession = async (req, res) => {
   try {
@@ -14,31 +15,33 @@ exports.bookSession = async (req, res) => {
     const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "User not found" });
     }
 
-    const session = await Session.findById(sessionId).populate('coach');
+    const session = await Session.findById(sessionId).populate("coach");
     const coach = session.coach;
 
     if (!session) {
-      return res.status(404).json({ error: 'session not found' });
+      return res.status(404).json({ error: "session not found" });
     }
 
     const inputDate = date;
     const dateObj = new Date(inputDate);
     const dayOfWeek = dateObj.getDay();
     const daysOfWeek = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
     ];
     const dayName = daysOfWeek[dayOfWeek];
 
-    const coachAvailability = coach.availableDays.find((day) => day === dayName);
+    const coachAvailability = coach.availableDays.find(
+      (day) => day === dayName
+    );
 
     const conflictingCoachSession = await BookedSession.findOne({
       date: date,
@@ -75,7 +78,7 @@ exports.bookSession = async (req, res) => {
         coach.save();
         user.save();
         return res.status(201).json({
-          message: 'Coaching session appoint successfully',
+          message: "Coaching session appoint successfully",
           bookedSession,
         });
       }
@@ -86,7 +89,7 @@ exports.bookSession = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -96,7 +99,7 @@ exports.getAllSessionsForUser = async (req, res) => {
     const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: "User not found" });
     }
 
     const sessions = await Session.find({ user: userId });
@@ -104,32 +107,33 @@ exports.getAllSessionsForUser = async (req, res) => {
     return res.status(200).json({ sessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 exports.getAllSessions = async (req, res) => {
   try {
-    const sessions = await Session.find().populate('coach');
+    const sessions = await Session.find().populate("coach");
     return res.status(200).json({ sessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 exports.scheduledEventsCalendly = async (req, res) => {
   try {
     const options = {
-      method: 'GET',
-      url: 'https://api.calendly.com/scheduled_events',
+      method: "GET",
+      url: "https://api.calendly.com/scheduled_events",
       params: {
-        organization: 'https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1',
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
       },
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization:
-          'Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg',
+          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
       },
     };
 
@@ -144,7 +148,7 @@ exports.scheduledEventsCalendly = async (req, res) => {
       });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -152,16 +156,16 @@ exports.getSessionById = async (req, res) => {
   try {
     const { sessionId } = req.params;
 
-    const session = await Session.findById(sessionId).populate('coach');
+    const session = await Session.findById(sessionId).populate("coach");
 
     if (!session) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
 
     return res.status(200).json({ session });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -176,7 +180,7 @@ exports.createSessionByCoach = async (req, res) => {
 
     if (existingSession) {
       return res.status(400).json({
-        error: 'Session with the same coach, sessionType already exists',
+        error: "Session with the same coach, sessionType already exists",
       });
     }
 
@@ -191,22 +195,24 @@ exports.createSessionByCoach = async (req, res) => {
 
     await session.save();
 
-    return res.status(201).json({ message: 'Coaching session created successfully', session });
+    return res
+      .status(201)
+      .json({ message: "Coaching session created successfully", session });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 exports.getSessionsByCoachId = async (req, res) => {
   try {
     const { coachId } = req.params;
 
-    const sessions = await Session.find({ coach: coachId }).populate('coach');
+    const sessions = await Session.find({ coach: coachId }).populate("coach");
 
     return res.status(200).json({ sessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -214,17 +220,17 @@ exports.getAllBookedSessions = async (req, res) => {
   try {
     const bookedSessions = await BookedSession.find()
       .populate({
-        path: 'session',
+        path: "session",
         populate: {
-          path: 'coach',
-          model: 'coaches',
+          path: "coach",
+          model: "coaches",
         },
       })
-      .populate('user');
+      .populate("user");
     return res.status(200).json({ bookedSessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -234,22 +240,22 @@ exports.getAllBookedSessionsById = async (req, res) => {
 
     const bookedSessions = await BookedSession.findById(bookedId)
       .populate({
-        path: 'session',
+        path: "session",
         populate: {
-          path: 'coach',
-          model: 'coaches',
+          path: "coach",
+          model: "coaches",
         },
       })
-      .populate('user');
+      .populate("user");
 
     if (!bookedSessions) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
 
     return res.status(200).json({ bookedSessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -258,21 +264,21 @@ exports.getAllBookedSessionsByUserId = async (req, res) => {
     const { userId } = req.params;
 
     const bookedSessions = await BookedSession.find({ user: userId }).populate({
-      path: 'session',
+      path: "session",
       populate: {
-        path: 'coach',
-        model: 'coaches',
+        path: "coach",
+        model: "coaches",
       },
     });
 
     if (!bookedSessions) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
 
     return res.status(200).json({ bookedSessions });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -288,7 +294,7 @@ exports.getSessionsByDateAndCoach = [
       return res.status(200).json({ sessions });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 ];
@@ -315,13 +321,15 @@ exports.updateSession = [
       );
 
       if (!session) {
-        return res.status(404).json({ error: 'Session not found' });
+        return res.status(404).json({ error: "Session not found" });
       }
 
-      return res.status(200).json({ message: 'Session updated successfully', session });
+      return res
+        .status(200)
+        .json({ message: "Session updated successfully", session });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 ];
@@ -334,43 +342,45 @@ exports.deleteSession = async (req, res) => {
     const deletedSession = await Session.findByIdAndRemove(sessionId);
 
     if (!deletedSession) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
 
-    return res.status(200).json({ message: 'Session deleted successfully' });
+    return res.status(200).json({ message: "Session deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 exports.bookGroupSession = async (req, res) => {
   try {
     const { sessionId } = req.params;
-    const session = await Session.findById(sessionId).populate('coach');
+    const session = await Session.findById(sessionId).populate("coach");
 
     if (!session) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
 
     // Check if there's available capacity
     if (session.bookedUsers.length >= session.capacity) {
-      return res.status(400).json({ error: 'Session slot is full' });
+      return res.status(400).json({ error: "Session slot is full" });
     }
 
     const userId = req.body.userId;
 
     // Check if the user has already booked this slot
     if (session.bookedUsers.includes(userId)) {
-      return res.status(400).json({ error: 'You have already booked this slot' });
+      return res
+        .status(400)
+        .json({ error: "You have already booked this slot" });
     }
 
     // Add the user to the bookedUsers array
     session.bookedUsers.push(userId);
     await session.save();
 
-    res.status(201).json({ message: 'Session booked successfully' });
+    res.status(201).json({ message: "Session booked successfully" });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };

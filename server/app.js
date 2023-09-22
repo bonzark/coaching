@@ -12,6 +12,7 @@ var sessionRouter = require("./routes/sessionRoutes");
 var contactRouter = require("./routes/contactRoutes");
 var coachRoutes = require("./routes/coachRoutes");
 var userRoutes = require("./routes/userRoutes");
+var paymentRoutes = require("./routes/paymentRoutes");
 
 const connectDB = require("./db/connection");
 
@@ -40,6 +41,7 @@ app.use("/users", userRoutes);
 app.use("/sessions", sessionRouter);
 app.use("/contact-us", contactRouter);
 app.use("/coaches", coachRoutes);
+app.use("/payment", paymentRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
