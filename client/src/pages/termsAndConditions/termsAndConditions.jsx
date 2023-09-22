@@ -31,7 +31,11 @@ const TermsAndConditions = () => {
         }}
       >
         {termsAndConditionsData.map((section, index) => (
-          <TermOrCondition title={section.title} key={index} bigHead>
+          <TermOrCondition
+            title={section.title}
+            key={index}
+            bigHead={index === 0}
+          >
             {section.content}
           </TermOrCondition>
         ))}
