@@ -107,7 +107,7 @@ const ForgotPassword = ({
           }}
           disabled={isSending}
         >
-          Send
+          {isSending ? "Sending..." : "Send"}
           {isSending && (
             <CircularProgress size={"10px"} sx={{ color: "#fff" }} />
           )}
