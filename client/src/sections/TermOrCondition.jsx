@@ -3,11 +3,7 @@ import TNCTitle from "../components/TNCTitle";
 
 const TermOrCondition = ({ title, children, bigHead }) => {
   return (
-    <Box
-      sx={{
-        padding: { xs: "20px", sm: "50px", md: "120px", lg: "0 22%" },
-      }}
-    >
+    <Box sx={{ padding: "20px 0" }}>
       <TNCTitle bigHead={bigHead}>{title}</TNCTitle>
       <Typography
         paragraph
