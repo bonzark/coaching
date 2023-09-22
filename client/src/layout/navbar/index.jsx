@@ -31,12 +31,12 @@ const Navbar = () => {
   };
 
   React.useEffect(() => {
-    if (getAuthToken() === null) {
+    if (getAuthToken() === null || getAuthToken().length === 0) {
       setIsLoggedIn(false);
     } else {
       setIsLoggedIn(true);
     }
-    if (window.innerWidth < 768) {
+    if (window.innerWidth > 768) {
       setMobileOpen(false);
     }
   }, [getAuthToken()]);
@@ -74,9 +74,9 @@ const Navbar = () => {
             border: "5px solid #fff",
           }}
         >
-          <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
+          <Link to="/" onClick={handleDrawerToggle}>
             <img
-              src="./becomeYourCreator.jpeg"
+              src="/becomeYourCreator.jpeg"
               alt="logo"
               style={{
                 maxWidth: "100px",
@@ -147,7 +147,17 @@ const Navbar = () => {
   );
 
   return (
-    <>
+    <Box
+      sx={{
+        position: "sticky",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 9999,
+      }}
+    >
       <FormModal open={open} handleClose={handleClose} />
       <Box sx={{ display: "flex" }}>
         <AppBar
@@ -160,6 +170,7 @@ const Navbar = () => {
                 }
               : "none",
             zIndex: "2",
+            position: "static",
             padding: "0 !important",
           }}
         >
@@ -179,7 +190,7 @@ const Navbar = () => {
             <Box sx={{ borderRadius: "50%", overflow: "hidden" }}>
               <Link to="/" style={{ display: "flex" }}>
                 <img
-                  src="./becomeYourCreator.jpeg"
+                  src="/becomeYourCreator.jpeg"
                   alt="logo"
                   style={{
                     maxWidth: "100px",
@@ -228,13 +239,13 @@ const Navbar = () => {
                     });
                   }}
                   sx={{
-                    color: "#cecece",
+                    color: "white",
                     fontWeight: "600",
                     textAlign: "center",
                     padding: 0,
                     transition: "all 0.2s linear",
                     ":hover": {
-                      color: "white",
+                      color: "#cecece",
                     },
                   }}
                 >
@@ -294,7 +305,7 @@ const Navbar = () => {
           </Drawer>
         </nav>
       </Box>
-    </>
+    </Box>
   );
 };
 

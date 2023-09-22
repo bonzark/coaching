@@ -13,6 +13,7 @@ import {
 } from "../utils/validation";
 import * as CryptoJS from "crypto-js";
 import ForgotPassword from "./ForgotPassword";
+import EventEmitter from "reactjs-eventemitter";
 
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -48,7 +49,9 @@ const FormModal = ({ open, handleClose }) => {
               enqueueSnackbar(res?.data?.message, { variant: "success" });
               setToken(res?.data?.token);
               setUserDetails(res?.data?.user);
-              handleClose(formik.resetForm());
+              formik.resetForm();
+              handleClose();
+              EventEmitter.dispatch("loginSuccess", true);
             } else if (
               res?.response?.data?.errors &&
               res?.response?.data?.errors.length > 0
@@ -85,7 +88,8 @@ const FormModal = ({ open, handleClose }) => {
             if (res?.status === 201) {
               setIsLogin(false);
               enqueueSnackbar(res?.data, { variant: "success" });
-              handleClose(formik.resetForm());
+              formik.resetForm();
+              handleClose();
             } else if (res?.response?.data?.error) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.error, {
