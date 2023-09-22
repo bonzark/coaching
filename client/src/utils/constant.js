@@ -521,3 +521,105 @@ export const termsAndConditionsData = [
       "Address: London, UK<span></span><span></span>Email: support@becomeyourcreator,com",
   },
 ];
+export const privacyPolicyData = [
+  {
+    title: "",
+    content: [
+      `Become Your Creator Ltd. ("BYC", "us", "we" or "our") is committed to respecting your privacy and to complying with applicable data protection and privacy laws.`,
+      `You can visit our websites without disclosing any personally identifiable information about yourself (although please note that we may use cookies and collect other non-personally identifiable information about your browsing activity - see our cookie policy for detailed information).`,
+      `If you do submit personal information by ordering products, services, registering for an event or completing a web form registration, for example, you can be assured that we will use your personal information only to support your continuing relationship with “BYC”.`,
+      `We have provided this Privacy Policy Statement to help you understand how we collect, use and protect your information when you visit our websites and when you generally use our products and services.`,
+      `We wish to help you make informed decisions, so please take a few moments to read the sections below and learn how we may use your personal information.`,
+    ],
+    key: 1,
+  },
+  {
+    title: "Personal Information Collection",
+    content: [
+      `We endeavour to collect and use your personal information only with your knowledge and consent and typically when you order and subsequently use products and services, make customer enquiries, register for an event, register for information or other services, request product information, submit a job application or when you respond to communications from us (such as questionnaires or surveys).`,
+      `The type of personal information we may collect could include, for example, your name and postal address, date of birth, telephone number, email address, and credit/debit card information; lifestyle and other information collected on registration or through surveys.`,
+      `If you choose to provide us with personal information it will be used in support of the intended purposes stated at the time at which it was collected, and subject to any preferences indicated by you.`,
+    ],
+    key: 2,
+  },
+  {
+    title: "Non-personal Identifying Information",
+    content: [
+      `We may also collect non-personally identifying information about your visit to our websites based on your browsing activities. This information may include the pages you browse and products and services viewed or ordered for example. This helps us to better manage and develop our sites, to provide you with a more enjoyable, customised service and experience in the future, and to help us develop and deliver better products and services tailored to your individual interests and needs.`,
+      `From time to time, if you consented accordingly we may also store and use your information to contact you for market research and marketing purposes. We may contact you by email, phone or mail.`,
+    ],
+    key: 3,
+  },
+  {
+    title: "How will we use your information?",
+    content: [
+      `We may use your information for a number of purposes which includes: processing your orders and managing and administering your account; delivering any services, products or information requested by you; responding to complaints or account enquiries; administering debt recoveries; verifying your identity when required (you may lose your password or security information for example, and we may then need to ask you for other 'identifiable' information to protect your data from unauthorised access).`,
+      `We may also undertake market and product analysis based on your use of our services and products and contact you with information about new developments, products, services and special offers by post, telephone and automated means such as mobile text message (SMS), Email and the internet (subject to any preferences expressed by you).`,
+      `If you have consented to receive details of products and services, events and training you can contact us at any time to have your details removed from lists used by us for any or all of those purposes or from lists maintained by our headhunting division, to update your information or to otherwise tell us how you would like to receive information about our and/or third party products and services - the choice is yours.`,
+      `To update your marketing preferences please email: support@becomeyourcreator.com and quote your full name in the body of the email and tell us what you want us to do (i.e. 'opt-out Email', 'opt-out SMS' etc or if you have previously objected to receiving information by post for example, but would now like to change your mind and receive information then just say, 'opt-in post' in the subject header of your email).`,
+    ],
+    key: 4,
+  },
+  {
+    title: "When will we disclose your information to others?",
+    content: [
+      `We may only disclose information about you and contact details to (i) companies within the “BYC” Group for the purposes and subject always to the terms of this Privacy Policy Statement; (ii) in the event that we undergo re-organisation or are sold to a third party, in which case you agree that any personal information we hold about you may be transferred to that re-organised entity or third party for the purposes and subject to the terms of this Privacy Policy Statement`,
+      `For the purposes of this Privacy Policy Statement, "BYC" means Become Your Creator or any company or other entity in which Become Your Creator owns (directly or indirectly) more than 50% of the issued share capital.`,
+      `Please note that “BYC” does not sell or pass your personal information to third parties (other than as set out in the paragraph above) unless you have given us permission or unless it is strictly necessary to deliver the products and services ordered or used by you and you are notified beforehand.`,
+      `For example, we may disclose your data to a credit card company to validate your credit card details and obtain payment when you buy a phone or other product or service.`,
+      `“BYC” may also be obliged to disclose your personal information to meet any legal or regulatory requirements (for example to comply with a court order) or obligations in accordance with applicable law.`,
+    ],
+    key: 5,
+  },
+  {
+    title: "Social media, blogs, reviews",
+    content: [
+      `Any social media posts or comments you send to us (on the “BYC” social media pages or associated pages, for instance) will be shared under the terms of the relevant social media platform (e.g. Facebook / Instagram) on which they are written and could be made public.`,
+      `Other people, not us, control these platforms. We are not responsible for this kind of sharing. We recommend you should review the terms and conditions and privacy policies of the social media platforms you use. That way, you will understand how they will use your information, what information relating to you they will place in the public domain, and how you can stop them from doing so if you are unhappy about it.`,
+      `Any blog, review or other posts or comments you make about us, our products and services on any of our blogs, reviews or user community services will be shared with all other members of that service and the public at large. Any comments you make on these services and on social media in general must be not offensive, insulting or defamatory. You are responsible for ensuring that any comments you make comply with any relevant policy on acceptable use of those services.`,
+    ],
+    key: 6,
+  },
+  {
+    title: "How long do we keep your information for?",
+    content: [
+      `To make sure we meet our legal data protection and privacy obligations, we only hold on to your information for as long as we actually need it for the purposes we acquired it for in the first place.`,
+      `In most cases, this means we will keep your information for as long as you continue to use our services having expressed interest in them, and for a reasonable period of time afterwards if you stop doing so, to see if we can persuade you to come back to us. After that we will delete it other than where we lawfully can keep any data for audit or legal reasons.`,
+      `We shall keep data on our prospect database for not longer than 3 years from receipt subject to an individual’s right to unsubscribe or be forgotten at any time.`,
+    ],
+    key: 7,
+  },
+  {
+    title: "Access to your Information",
+    content: [
+      `You can write to us at any time to obtain details of the personal information we may hold about you. Please write to: lili@becomeyourcreator.com`,
+      `Please quote your name and address together with your mobile and/or email address (if relevant). We would be grateful if could also provide brief details of what information you want a copy of (this helps us to more readily locate your data).`,
+      `We will take all reasonable steps to confirm your identity before providing you with details of any personal information we may hold about you.`,
+    ],
+    key: 8,
+  },
+  {
+    title: "Information Security",
+    content: [
+      `“BYC” recognises that its customers are increasingly concerned about how companies protect personal information from misuse and abuse and about privacy in general. “BYC” is constantly reviewing and enhancing its technical, physical and managerial procedures and rules to protect your personal data from unauthorised access, accidental loss and/or destruction. We use industry standard TLS certificates to provide encryption of data in transit, for example, all access to “BYC’s” websites and management portals is covered by HTTPS.`,
+      `Please be aware that communications over the Internet, such as emails/webmail, are not secure unless they have been encrypted. Your communications may route through a number of countries before being delivered - this is the nature of the World Wide Web/Internet. “BYC” cannot accept responsibility for any unauthorised access or loss of personal information that is beyond our control.`,
+    ],
+    key: 9,
+  },
+  {
+    title: "Privacy Support",
+    content: [
+      `“BYC” reserves the right to amend or modify this Privacy Policy Statement at any time and in response to changes in applicable data protection and privacy legislation.`,
+      `If we decide to change our Privacy Policy, we will post the changes on our website so you know what information we collect and how we use it. If at any point we decide to use personally identifiable information in a manner different from that stated at the time it was collected, we will tell you. You will have a choice as to whether or not we are able to use your information in this different manner.`,
+      `If you have any enquiry about “BYC’s” privacy policy or practices, please send an email to: support@becomeyourcreator.com`,
+    ],
+    key: 10,
+  },
+  {
+    title: "Monitoring and or recording of all your Communications",
+    content: [
+      `Monitoring or recording of your calls, emails, text messages and other communications may take place in accordance with UK law, and in particular for business purposes, such as for quality control and training, to prevent unauthorised use of “BYC’s” websites, to ensure effective systems operation and in order to prevent or detect crime.`,
+    ],
+    key: 11,
+  },
+];
