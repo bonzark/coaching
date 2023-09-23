@@ -66,7 +66,7 @@ const HeroBanner = ({
           <Box
             sx={{
               maxWidth: { xs: "auto  ", md: "100%", lg: "40%" },
-              paddingX: { xs: "10px", md: "100px", lg: "10px" },
+              paddingX: { xs: "14px", md: "100px", lg: "24px" },
               paddingY: { xl: "50px" },
             }}
           >

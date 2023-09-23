@@ -7,26 +7,31 @@ import { NavLink } from "react-router-dom";
 const OurCoaches = () => {
   const items = [
     {
+      id: "4",
       title: "HELEN",
       subtitle: "Anxiety UK Approved Therapist",
       imgSrc: "./HELEN.jpg",
     },
     {
+      id: "1",
       title: "Brandi",
       subtitle: "A spiritual mentor",
       imgSrc: "./Brandi.jpg",
     },
     {
+      id: "2",
       title: "Sarah",
       subtitle: "An Energy Healer",
       imgSrc: "./Sarah.jpg",
     },
     {
+      id: "3",
       title: "Jacqueline",
       subtitle: "Minset Coach And Intuitive Healer",
       imgSrc: "./Jacqueline.jpg",
     },
     {
+      id: "5",
       title: "Rita",
       subtitle: "Accelerated Learning Coach",
       imgSrc: "./Coach2.jpg",
@@ -137,6 +142,7 @@ const OurCoaches = () => {
       >
         {items?.map((item) => (
           <CoachCarouselCard
+            id={item?.id}
             key={item?.title}
             title={item?.title}
             subtitle={item?.subtitle}
