@@ -3,7 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { object } from "yup";
 
-const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
+const CoachCarouselCard = ({ id, title, subtitle, imgSrc, redirectLink }) => {
+  const redirect = redirectLink ?? `/ourCoachesDetail/${id}`;
   return (
     <Box
       sx={{
@@ -15,7 +16,7 @@ const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
         height: "100%",
       }}
     >
-      <Link to={`/ourCoachesDetail/${id}`} name={id}>
+      <Link to={redirect} state={{ name: id }}>
         <img src={imgSrc} style={{ objectFit: "cover", width: "100%" }} />
         <Box
           sx={{

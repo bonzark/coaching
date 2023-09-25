@@ -18,7 +18,32 @@ const Dashboard = () => {
     };
     fetchData();
   }, []);
-
+  const renderUpcomingSessions = (upcomingSessions) => {
+    return upcomingSessions?.map((session) => {
+      return (
+        <>
+          <Grid
+            key={session?._id}
+            sx={{ height: "100% !important" }}
+            item
+            xs={12}
+            sm={6}
+            lg={4}
+          >
+            <SessionCard
+              price={session?.session?.price}
+              date={session?.date}
+              time={session?.time}
+              detail={session?.session?.details}
+              coachName={session?.session?.coach?.firstName}
+              title={session?.session?.title}
+              sessionImg={session?.session?.coach?.image}
+            />
+          </Grid>
+        </>
+      );
+    })
+  }
   const user = JSON.parse(localStorage.getItem("user"))?.name;
   return (
     <Box
@@ -87,7 +112,7 @@ const Dashboard = () => {
                 />
               </Grid>
             ))} */}
-            {upcomingSessions?.map((session) => {
+            {/* {upcomingSessions?.map((session) => {
               return (
                 <>
                   <Grid
@@ -110,7 +135,9 @@ const Dashboard = () => {
                   </Grid>
                 </>
               );
-            })}
+            })} */}
+            {upcomingSessions && upcomingSessions.length > 0 ? renderUpcomingSessions(upcomingSessions) : <h3>No Sessions Available</h3>
+            }
           </Grid>
         </Box>
       </Box>
@@ -120,7 +147,6 @@ const Dashboard = () => {
             fontSize: { xs: "20px", sm: "25px", md: "30px" },
             marginTop: "15px",
             color: "#673d61",
-            fontFamily: "'montserrat', cursive",
             textAlign: "center",
           }}
         >

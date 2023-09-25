@@ -23,6 +23,14 @@ const sessionSchemaObj = {
     type: String,
     required: true,
   },
+  calendlyLink: {
+    type: String,
+    required: true
+  },
+  stripeProductId: {
+    type: String,
+    required: true
+  }
 };
 
 const sessionSchema = new mongoose.Schema(sessionSchemaObj);

@@ -14,13 +14,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFreeReadingBooked: Boolean,
   isVerified: Boolean,
   verificationToken: String,
   resetToken: String,
+  //Changed it to BookedSessions as sessions not make any sense
   sessions: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Session",
+      ref: "BookedSession",
       required: true,
     },
   ],

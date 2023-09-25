@@ -35,6 +35,7 @@ const OurCoaches = () => {
       title: "Rita",
       subtitle: "Accelerated Learning Coach",
       imgSrc: "./Coach2.jpg",
+      redirectLink: "/coaching-with-rita"
     },
   ];
 
@@ -147,6 +148,7 @@ const OurCoaches = () => {
             title={item?.title}
             subtitle={item?.subtitle}
             imgSrc={item?.imgSrc}
+            redirectLink={item?.redirectLink}
           />
         ))}
       </Carousel>

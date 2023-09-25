@@ -14,7 +14,6 @@ import {
 import * as CryptoJS from "crypto-js";
 import ForgotPassword from "./ForgotPassword";
 import EventEmitter from "reactjs-eventemitter";
-
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [logingForm, setLogingForm] = useState(true);

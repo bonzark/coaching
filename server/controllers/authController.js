@@ -32,6 +32,8 @@ const authController = {
         });
 
         await newUser.save();
+
+        //TOOD: Add a free reading session in bookedSession table with status purchased. (default free session)
         const verificationLink = `${process.env.BASE_URL}/auth/verify/${verificationToken}`;
         const emailOptions = {
           to: email,

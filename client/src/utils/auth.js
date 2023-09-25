@@ -6,6 +6,10 @@ export const setUserDetails = (details) => {
   localStorage.setItem("user", JSON.stringify(details));
 };
 
+export const getUserDetails = (details) => {
+  localStorage.getItem("user", JSON.stringify(details));
+};
+
 export const getAuthToken = () => {
   const token = localStorage.getItem("token")
     ? localStorage.getItem("token")
