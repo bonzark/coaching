@@ -193,26 +193,8 @@ exports.inviteeCreated = async (req, res) => {
       { upsert: true }
     );
 
-    await User.findOneAndUpdate(
-      { _id: user._id },
-      {
-        $pull: { purchasedSession: session },
-        $push: { bookedSession: session },
-      },
-      { new: true }, // To return the updated user document
-      (err, updatedUser) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        if (!updatedUser) {
-          console.log("User not found");
-          return;
-        }
-        console.log("Updated user:");
-      }
-    );
+    await user.purchasedSession.pull(session._id);
+    user.bookedSession.push(session._id);
 
     await Coach.findById(session.coach).bookedSessions.push(session);
 
