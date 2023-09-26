@@ -219,9 +219,15 @@ exports.inviteeCreated = async (req, res) => {
   //TODO: Change status of bookedSession table. find entry with status purchased and with this user email and change that session to --> booked, populate other fields as well invite link(zoom or any), from and to dateTimes
   //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked
   try {
-    console.log(res);
-    const email = res.payload.email;
-    const user = User.findOne({ email });
+    console.log(
+      "--------------------------------------------------req.body--------------------------------------------------"
+    );
+    console.log(req.body);
+    console.log(
+      "--------------------------------------------------req.body--------------------------------------------------"
+    );
+    // const email = res.payload.email;
+    // const user = User.findOne({ email });
     // const session = Session.findOne({calendlyLink : })
   } catch (error) {
     console.error(error);
