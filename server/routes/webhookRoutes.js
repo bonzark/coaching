@@ -13,4 +13,6 @@ router.post(
   paymentController.paymentCompleted
 );
 
+router.post("/create-invitee", sessionController.inviteeCreated);
+
 module.exports = router;
