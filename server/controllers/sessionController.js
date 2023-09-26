@@ -220,9 +220,9 @@ exports.inviteeCreated = async (req, res) => {
   //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked
   try {
     console.log(res);
-    return res
-      .status(201)
-      .json({ message: "Coaching session created successfully", session });
+    const email = res.payload.email;
+    const user = User.findOne({ email });
+    // const session = Session.findOne({calendlyLink : })
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
