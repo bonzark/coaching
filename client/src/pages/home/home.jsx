@@ -17,6 +17,8 @@ const Home = () => {
         title={"Manifesting and living life you desire !"}
         imageUrl="./heroBg2.jpg"
         listItems={heroListItems}
+        //TODO: Remove it and use booking button
+        buttonText="Book Now"
       />
       <AboutSection />
       <OurCoaches />

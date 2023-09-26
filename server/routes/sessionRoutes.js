@@ -13,6 +13,10 @@ router.post(
   validateGetSessionDate,
   sessionController.getSessionsByDateAndCoach
 );
+router.post(
+  "/invitee-created",
+  sessionController.inviteeCreated
+);
 
 router.put(
   "/:sessionId/update",

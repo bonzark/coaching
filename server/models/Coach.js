@@ -96,4 +96,5 @@ const coachSchema = new mongoose.Schema({
   // availability: [availabilitySchema],
 });
 
-module.exports = mongoose.model("coaches", coachSchema);
+const Coach = mongoose.model("coaches", coachSchema);
+module.exports = Coach;

@@ -150,6 +150,84 @@ exports.scheduledEventsCalendly = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+exports.inviteeCreated = async (req, res) => {
+  //Webhook payload when invitee created
+
+  // {
+  //   "created_at": "2020-11-23T17:51:19.000000Z",
+  //   "created_by": "https://api.calendly.com/users/AAAAAAAAAAAAAAAA",
+  //   "event": "invitee.created",
+  //   "payload": {
+  //     "cancel_url": "https://calendly.com/cancellations/AAAAAAAAAAAAAAAA",
+  //     "created_at": "2020-11-23T17:51:18.327602Z",
+  //     "email": "test@example.com",
+  //     "event": "https://api.calendly.com/scheduled_events/AAAAAAAAAAAAAAAA",
+  //     "name": "John Doe",
+  //     "new_invitee": null,
+  //     "old_invitee": null,
+  //     "questions_and_answers": [],
+  //     "reschedule_url": "https://calendly.com/reschedulings/AAAAAAAAAAAAAAAA",
+  //     "rescheduled": false,
+  //     "status": "active",
+  //     "text_reminder_number": null,
+  //     "timezone": "America/New_York",
+  //     "tracking": {
+  //       "utm_campaign": null,
+  //       "utm_source": null,
+  //       "utm_medium": null,
+  //       "utm_content": null,
+  //       "utm_term": null,
+  //       "salesforce_uuid": null
+  //     },
+  //     "updated_at": "2020-11-23T17:51:18.341657Z",
+  //     "uri": "https://api.calendly.com/scheduled_events/AAAAAAAAAAAAAAAA/invitees/AAAAAAAAAAAAAAAA",
+  //     "scheduled_event": {
+  //       "uri": "https://api.calendly.com/scheduled_events/GBGBDCAADAEDCRZ2",
+  //       "name": "15 Minute Meeting",
+  //       "status": "active",
+  //       "start_time": "2019-08-24T14:15:22.123456Z",
+  //       "end_time": "2019-08-24T14:15:22.123456Z",
+  //       "event_type": "https://api.calendly.com/event_types/GBGBDCAADAEDCRZ2",
+  //       "location": {
+  //         "type": "physical",
+  //         "location": "string"
+  //       },
+  //       "invitees_counter": {
+  //         "total": 0,
+  //         "active": 0,
+  //         "limit": 0
+  //       },
+  //       "created_at": "2019-01-02T03:04:05.678123Z",
+  //       "updated_at": "2019-01-02T03:04:05.678123Z",
+  //       "event_memberships": [
+  //         {
+  //           "user": "https://api.calendly.com/users/GBGBDCAADAEDCRZ2",
+  //           "user_email": "user@example.com"
+  //         }
+  //       ],
+  //       "event_guests": [
+  //         {
+  //           "email": "user@example.com",
+  //           "created_at": "2019-08-24T14:15:22.123456Z",
+  //           "updated_at": "2019-08-24T14:15:22.123456Z"
+  //         }
+  //       ]
+  //     }
+  //   }
+  // }
+
+  //TODO: Change status of bookedSession table. find entry with status purchased and with this user email and change that session to --> booked, populate other fields as well invite link(zoom or any), from and to dateTimes
+  //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked
+  try {
+    console.log(res);
+    const email = res.payload.email;
+    const user = User.findOne({ email });
+    // const session = Session.findOne({calendlyLink : })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 exports.getSessionById = async (req, res) => {
   try {
@@ -170,7 +248,16 @@ exports.getSessionById = async (req, res) => {
 
 exports.createSessionByCoach = async (req, res) => {
   try {
-    const { coachId, price, title, details, sessionType } = req.body;
+    const {
+      coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    } = req.body;
+
+    const coach = await Coach.findById(coachId);
 
     const existingSession = await Session.findOne({
       coach: coachId,
@@ -186,13 +273,16 @@ exports.createSessionByCoach = async (req, res) => {
     // Create a new session
     const session = new Session({
       coach: coachId,
-      price,
       title,
       details,
       sessionType,
+      calendlyLink,
+      stripePriceId,
     });
 
     await session.save();
+    coach.sessions.push(session);
+    await coach.save();
 
     return res
       .status(201)

@@ -13,6 +13,7 @@ import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 import { getAuthToken } from "../utils/auth";
 import EventEmitter from "reactjs-eventemitter";
+import BookSessionBtn from "../components/BookSessionButton";
 
 const HeroBanner = ({
   title,
@@ -66,7 +67,7 @@ const HeroBanner = ({
           <Box
             sx={{
               maxWidth: { xs: "auto  ", md: "100%", lg: "40%" },
-              paddingX: { xs: "10px", md: "100px", lg: "10px" },
+              paddingX: { xs: "14px", md: "100px", lg: "24px" },
               paddingY: { xl: "50px" },
             }}
           >
@@ -144,17 +145,11 @@ const HeroBanner = ({
               </Box>
             ) : (
               buttonText && (
-                <PrimaryBtn
-                  onClick={() => {
-                    Calendly.showPopupWidget(
-                      "https://calendly.com/b7-bonzark/wealth-creation"
-                    );
-
-                    return false;
-                  }}
-                >
-                  {buttonText}
-                </PrimaryBtn>
+                <BookSessionBtn
+                  defaultText={"A bhai login kar pela"}
+                  freeSessionText={"mafat made he to vapar ne"}
+                  bookText={"halo have to final karo"}
+                />
               )
             )}
           </Box>

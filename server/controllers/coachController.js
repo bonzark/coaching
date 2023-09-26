@@ -19,7 +19,6 @@ exports.createCoach = [
         groupPrice,
       } = req.body;
 
-      console.log("req.file", req.file);
       const imageUrl = `${process.env.BASE_URL}/public/uploads/${req.file.originalname}`; // Assuming the image is saved in a 'uploads' directory
 
       // Create a new coach
