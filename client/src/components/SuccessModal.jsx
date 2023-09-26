@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const SuccessModal = ({ open, handleClose }) => {
+const SuccessModal = ({ open, handleClose, successMessage }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -51,9 +51,9 @@ const SuccessModal = ({ open, handleClose }) => {
         <Typography>Payment Done SuccessFully </Typography>
       </DialogTitle>
       <DialogContent sx={{ padding: "10px 25px" }}>
-        <DialogContentText>
-          Congratulations 🎉👏! You have successfully purchased a yoga session.
-        </DialogContentText>
+        {successMessage && (
+          <DialogContentText>{successMessage}</DialogContentText>
+        )}
         <LinearProgress
           value={progress}
           variant="determinate"
