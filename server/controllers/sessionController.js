@@ -221,14 +221,15 @@ exports.inviteeCreated = async (req, res) => {
   try {
     const email = req.body.payload.email;
     const user = User.findOne({ email });
-    console.log(
-      "-----------------------------------------------sedual event-----------------------------------------------"
-    );
-    console.log(req.body.payload.scheduled_event);
-    console.log(
-      "-----------------------------------------------email-----------------------------------------------"
-    );
-    console.log(req.body.payload.email);
+    const scheduling_url = axios
+      .get(req.body.payload.scheduled_event.event_type)
+      .then((res) => res.data.resource.scheduling_url)
+      .catch((err) => console.log(err));
+
+    const session = Session.findOne({ calendlyLink: scheduling_url });
+    console.log("scheduling_url :::", scheduling_url);
+    console.log("user :::", user);
+    console.log("session :::", session);
     res.status(200).end();
     // const session = Session.findOne({calendlyLink : })
   } catch (error) {
