@@ -86,7 +86,7 @@ const coachSchema = new mongoose.Schema({
       ],
     },
   ],
-  sessions: [
+  bookedSessions: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Session",
