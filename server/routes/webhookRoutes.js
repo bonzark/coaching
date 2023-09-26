@@ -14,6 +14,12 @@ router.post(
   paymentController.paymentCompleted
 );
 
-router.post("/create-invitee", sessionController.inviteeCreated);
+router.post(
+  "/create-invitee",
+  express.json({
+    type: "application/json",
+  }),
+  sessionController.inviteeCreated
+);
 
 module.exports = router;
