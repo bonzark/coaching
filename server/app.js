@@ -12,7 +12,8 @@ var sessionRouter = require("./routes/sessionRoutes");
 var contactRouter = require("./routes/contactRoutes");
 var coachRoutes = require("./routes/coachRoutes");
 var userRoutes = require("./routes/userRoutes");
-var paymentRoutes = require("./routes/paymentRoutes")
+var paymentRoutes = require("./routes/paymentRoutes");
+var webhookRoutes = require("./routes/webhookRoutes");
 
 const connectDB = require("./db/connection");
 
@@ -27,7 +28,22 @@ app.use(cors());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+// app.use((req, res, next) => {
+//   let data = "";
+//   req.setEncoding("utf8");
+
+//   req.on("data", (chunk) => {
+//     data += chunk;
+//   });
+
+//   req.on("end", () => {
+//     req.rawBody = data;
+//     next();
+//   });
+// });
+
 app.use(logger("dev"));
+app.use("/webhook", webhookRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -42,6 +58,7 @@ app.use("/sessions", sessionRouter);
 app.use("/contact-us", contactRouter);
 app.use("/coaches", coachRoutes);
 app.use("/payment", paymentRoutes);
+// app.use("/webhook", webhookRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

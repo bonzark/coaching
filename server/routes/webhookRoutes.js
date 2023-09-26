@@ -3,9 +3,13 @@ const router = express.Router();
 const paymentController = require("../controllers/paymentController");
 
 // Route to payment
-router.post("/", paymentController.paymentSession);
 router.post(
-  "/stripe/webhook/payment-completed",
+  "/",
+  express.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf; // Store the raw request body
+    },
+  }),
   paymentController.paymentCompleted
 );
 

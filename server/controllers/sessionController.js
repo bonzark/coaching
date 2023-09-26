@@ -151,7 +151,6 @@ exports.scheduledEventsCalendly = async (req, res) => {
   }
 };
 exports.inviteeCreated = async (req, res) => {
-
   //Webhook payload when invitee created
 
   // {
@@ -218,16 +217,16 @@ exports.inviteeCreated = async (req, res) => {
   // }
 
   //TODO: Change status of bookedSession table. find entry with status purchased and with this user email and change that session to --> booked, populate other fields as well invite link(zoom or any), from and to dateTimes
-  //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked  
+  //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked
   try {
-      console.log(res);
-      return res
+    console.log(res);
+    return res
       .status(201)
       .json({ message: "Coaching session created successfully", session });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.getSessionById = async (req, res) => {
@@ -249,7 +248,16 @@ exports.getSessionById = async (req, res) => {
 
 exports.createSessionByCoach = async (req, res) => {
   try {
-    const { coachId, price, title, details, sessionType } = req.body;
+    const {
+      coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    } = req.body;
+
+    const coach = await Coach.findById(coachId);
 
     const existingSession = await Session.findOne({
       coach: coachId,
@@ -265,13 +273,16 @@ exports.createSessionByCoach = async (req, res) => {
     // Create a new session
     const session = new Session({
       coach: coachId,
-      price,
       title,
       details,
       sessionType,
+      calendlyLink,
+      stripePriceId,
     });
 
     await session.save();
+    coach.sessions.push(session);
+    await coach.save();
 
     return res
       .status(201)

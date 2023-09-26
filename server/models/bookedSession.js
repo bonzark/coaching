@@ -12,34 +12,33 @@ const sessionSchemaObj = {
     required: true,
   },
   link: {
-    type: String, 
-    required: false
+    type: String,
+    required: false,
   },
   status: {
     type: String,
     enum: ["purchased", "booked", "consumed"],
     required: true,
   },
-  purchaseDate:{
-    type: String,
-    required: true
+  purchaseDate: {
+    type: Number,
+    required: true,
   },
-  bookedDate:{
+  bookedDate: {
     type: String,
-    required: false
+    required: false,
   },
   sessionStartDate: {
     type: String,
-    required: false
+    required: false,
   },
   sessionEndDate: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 };
 
 const sessionSchema = new mongoose.Schema(sessionSchemaObj);
-
 
 //TODO: Need to rename it to some appropriate name, like UserSessions
 const BookedSession = mongoose.model("BookedSession", sessionSchema);

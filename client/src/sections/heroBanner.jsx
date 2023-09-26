@@ -13,6 +13,7 @@ import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 import { getAuthToken } from "../utils/auth";
 import EventEmitter from "reactjs-eventemitter";
+import BookSessionBtn from "../components/BookSessionButton";
 
 const HeroBanner = ({
   title,
@@ -144,17 +145,11 @@ const HeroBanner = ({
               </Box>
             ) : (
               buttonText && (
-                <PrimaryBtn
-                  onClick={() => {
-                    Calendly.showPopupWidget(
-                      "https://calendly.com/b7-bonzark/testing-dev"
-                    );
-
-                    return false;
-                  }}
-                >
-                  {buttonText}
-                </PrimaryBtn>
+                <BookSessionBtn
+                  defaultText={"A bhai login kar pela"}
+                  freeSessionText={"mafat made he to vapar ne"}
+                  bookText={"halo have to final karo"}
+                />
               )
             )}
           </Box>

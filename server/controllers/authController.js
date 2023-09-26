@@ -27,6 +27,7 @@ const authController = {
           name,
           email,
           password: hashedPassword,
+          isFreeReadingBooked: false,
           isVerified: false,
           verificationToken,
         });

@@ -6,10 +6,6 @@ const sessionSchemaObj = {
     ref: "coaches", // Reference to the coach (user) who created the session
     required: true,
   },
-  price: {
-    type: Number,
-    required: true,
-  },
   sessionType: {
     type: String,
     enum: ["group", "oneToOne"],
@@ -25,12 +21,12 @@ const sessionSchemaObj = {
   },
   calendlyLink: {
     type: String,
-    required: true
+    required: true,
   },
-  stripeProductId: {
+  stripePriceId: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 };
 
 const sessionSchema = new mongoose.Schema(sessionSchemaObj);
