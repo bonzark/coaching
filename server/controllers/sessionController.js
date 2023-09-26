@@ -193,8 +193,8 @@ exports.inviteeCreated = async (req, res) => {
       { upsert: true }
     );
 
-    await user.purchasedSession.pull(session._id);
-    user.bookedSession.push(session._id);
+    await user.purchasedSession.pull(session);
+    await user.bookedSession.push(session);
 
     await Coach.findById(session.coach).bookedSessions.push(session);
 
