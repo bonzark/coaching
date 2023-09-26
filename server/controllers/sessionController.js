@@ -229,6 +229,7 @@ exports.inviteeCreated = async (req, res) => {
       "-----------------------------------------------email-----------------------------------------------"
     );
     console.log(req.body.payload.email);
+    res.status(200).end();
     // const session = Session.findOne({calendlyLink : })
   } catch (error) {
     console.error(error);
