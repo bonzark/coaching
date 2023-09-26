@@ -146,9 +146,9 @@ const HeroBanner = ({
             ) : (
               buttonText && (
                 <BookSessionBtn
-                  defaultText={"A bhai login kar pela"}
-                  freeSessionText={"mafat made he to vapar ne"}
-                  bookText={"halo have to final karo"}
+                  defaultText={"Book Now"}
+                  freeSessionText={"Book a free session"}
+                  bookText={"Book Session"}
                 />
               )
             )}
