@@ -86,10 +86,17 @@ const coachSchema = new mongoose.Schema({
       ],
     },
   ],
-  bookedSessions: [
+  sessions: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Session",
+      required: true,
+    },
+  ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
       required: true,
     },
   ],

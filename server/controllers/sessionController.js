@@ -196,7 +196,11 @@ exports.inviteeCreated = async (req, res) => {
     await user.purchasedSession.pull(session);
     await user.bookedSession.push(session);
 
-    await Coach.findById(session.coach).bookedSessions.push(session);
+    const coach = Coach.findById(session.coach);
+    if (!coach) {
+      console.log(session.coach);
+      console.log("can not find coach");
+    }
 
     res.status(200).end();
   } catch (error) {
