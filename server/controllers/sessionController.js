@@ -220,16 +220,43 @@ exports.inviteeCreated = async (req, res) => {
   //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked
   try {
     const email = req.body.payload.email;
-    const user = User.findOne({ email });
-    const scheduling_url = axios
-      .get(req.body.payload.scheduled_event.event_type)
-      .then((res) => res.data.resource.scheduling_url)
-      .catch((err) => console.log(err));
+    const user = await User.findOne({ email });
 
-    const session = Session.findOne({ calendlyLink: scheduling_url });
+    const options = {
+      method: "GET",
+      url: req.body.payload.scheduled_event.event_type,
+      params: {
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+      },
+    };
+
+    const scheduling_url = await axios
+      .request(options)
+      .then(function (response) {
+        console.log(
+          "response.data.resource.scheduling_url ::",
+          response.data.resource.scheduling_url
+        );
+        return response.data.resource.scheduling_url;
+      })
+      .catch(function (error) {
+        return res.status(500).json(error);
+      });
+
     console.log("scheduling_url :::", scheduling_url);
-    console.log("user :::", user);
-    console.log("session :::", session);
+    const session = Session.findOne({ calendlyLink: scheduling_url });
+    if (user) {
+      console.log("user found:::");
+    }
+    if (session) {
+      console.log("session found:::");
+    }
     res.status(200).end();
     // const session = Session.findOne({calendlyLink : })
   } catch (error) {
