@@ -193,19 +193,21 @@ exports.inviteeCreated = async (req, res) => {
       { upsert: true }
     );
 
-    await user.purchasedSession.pull(session);
-    user.bookedSession.push(session);
+    const bookedSession = await BookedSession.find({
+      session: session._id,
+      user: user._id,
+    });
+
+    await user.purchasedSession.pull(bookedSession);
+    user.bookedSession.push(bookedSession);
 
     const coach = await Coach.findOne({ _id: session.coach });
     console.log("Found document:", coach);
 
     if (!coach) {
-      console.log(session.coach);
       console.log("can not find coach");
     } else {
-      console.log(session.coach);
-      console.log(coach?.bookedSession);
-      await coach.bookedSession.push(session);
+      coach.bookedSession.push(bookedSession);
     }
 
     res.status(200).end();
