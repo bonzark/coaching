@@ -35,7 +35,7 @@ const OurCoaches = () => {
       title: "Rita",
       subtitle: "Accelerated Learning Coach",
       imgSrc: "./Coach2.jpg",
-      redirectLink: "/coaching-with-rita"
+      redirectLink: "/coaching-with-rita",
     },
   ];
 
@@ -152,32 +152,40 @@ const OurCoaches = () => {
           />
         ))}
       </Carousel>
-
-      <Link
-        component={NavLink}
-        to="/our-coaches"
-        variant="button"
+      <Box
         sx={{
-          color: "#671d63",
-          width: "max-content",
-          textDecoration: "none",
-          margin: "20px auto",
-          fontWeight: "bolder",
-          border: "none",
-          padding: "10px 20px",
-          borderRadius: "10px",
-          transition: "all 0.25s linear",
-          backgroundColor: "#EFE6EF",
-          "&:hover": {
-            backgroundColor: "#671d63",
-            color: "white",
-            border: "none",
-          },
-          display: "block",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
         }}
       >
-        SEE ALL COACHES
-      </Link>
+        <Link
+          component={NavLink}
+          to="/our-coaches"
+          variant="button"
+          sx={{
+            color: "#671d63",
+            width: "max-content",
+            textDecoration: "none",
+            margin: "20px auto",
+            fontWeight: "bolder",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "10px",
+            transition: "all 0.25s linear",
+            backgroundColor: "#EFE6EF",
+            "&:hover": {
+              backgroundColor: "#671d63",
+              color: "white",
+              border: "none",
+            },
+            display: "block",
+          }}
+        >
+          SEE ALL COACHES
+        </Link>
+      </Box>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
   return (
@@ -32,7 +32,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
         />
       </Box>
       <Typography paragraph>{name},</Typography>
-      {descriptionArr.map((para, index) => (
+      {descriptionArr?.map((para, index) => (
         <Typography
           paragraph
           key={index}
@@ -41,6 +41,20 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
           {para}
         </Typography>
       ))}
+      <Button
+        sx={{
+          color: "#673d61",
+          border: "1px solid #673d61",
+          p: "10px 15px",
+          ":hover": {
+            color: "#fff",
+            backgroundColor: "#873785",
+            transition: "all 0.4s ease-in-out",
+          },
+        }}
+      >
+        book free reading
+      </Button>
     </Box>
   );
 };
