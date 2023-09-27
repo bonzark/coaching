@@ -201,7 +201,9 @@ exports.inviteeCreated = async (req, res) => {
       console.log(session.coach);
       console.log("can not find coach");
     } else {
-      coach.bookedSession.push(session);
+      console.log(session.coach);
+      console.log(coach.bookedSession);
+      await coach.bookedSession.push(session);
     }
 
     res.status(200).end();
