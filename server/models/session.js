@@ -6,10 +6,6 @@ const sessionSchemaObj = {
     ref: "coaches", // Reference to the coach (user) who created the session
     required: true,
   },
-  price: {
-    type: Number,
-    required: true,
-  },
   sessionType: {
     type: String,
     enum: ["group", "oneToOne"],
@@ -20,6 +16,14 @@ const sessionSchemaObj = {
     required: true,
   },
   details: {
+    type: String,
+    required: true,
+  },
+  calendlyLink: {
+    type: String,
+    required: true,
+  },
+  stripePriceId: {
     type: String,
     required: true,
   },

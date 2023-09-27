@@ -14,13 +14,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFreeReadingBooked: Boolean,
   isVerified: Boolean,
   verificationToken: String,
   resetToken: String,
-  sessions: [
+  purchasedSession: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Session",
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
       required: true,
     },
   ],

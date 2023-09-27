@@ -150,6 +150,68 @@ exports.scheduledEventsCalendly = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+exports.inviteeCreated = async (req, res) => {
+  try {
+    const email = req.body.payload.email;
+    const options = {
+      method: "GET",
+      url: req?.body?.payload?.scheduled_event?.event_type,
+      params: {
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+      },
+    };
+
+    const scheduling_url = await axios
+      .request(options)
+      .then(function (response) {
+        return response?.data?.resource?.scheduling_url;
+      })
+      .catch(function (error) {
+        return res.status(500).json(error);
+      });
+
+    const user = await User.findOne({ email });
+    const session = await Session.findOne({ calendlyLink: scheduling_url });
+
+    await BookedSession.updateOne(
+      { session: session._id, user: user._id },
+      {
+        $set: {
+          status: "booked",
+          bookedDate: req?.body?.created_at,
+          sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
+          sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
+          link: req?.body?.payload?.scheduled_event?.location?.join_url,
+        },
+      },
+      { upsert: true }
+    );
+
+    await user.purchasedSession.pull(session);
+    user.bookedSession.push(session);
+
+    const coach = Coach.findById(session.coach);
+    if (!coach) {
+      console.log(session.coach);
+      console.log("can not find coach");
+    } else {
+      console.log(session.coach);
+      console.log(coach.bookedSession);
+      await coach.bookedSession.push(session);
+    }
+
+    res.status(200).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 exports.getSessionById = async (req, res) => {
   try {
@@ -170,7 +232,16 @@ exports.getSessionById = async (req, res) => {
 
 exports.createSessionByCoach = async (req, res) => {
   try {
-    const { coachId, price, title, details, sessionType } = req.body;
+    const {
+      coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    } = req.body;
+
+    const coach = await Coach.findById(coachId);
 
     const existingSession = await Session.findOne({
       coach: coachId,
@@ -186,13 +257,16 @@ exports.createSessionByCoach = async (req, res) => {
     // Create a new session
     const session = new Session({
       coach: coachId,
-      price,
       title,
       details,
       sessionType,
+      calendlyLink,
+      stripePriceId,
     });
 
     await session.save();
+    coach.sessions.push(session);
+    await coach.save();
 
     return res
       .status(201)

@@ -1,6 +1,7 @@
 import { Box, Link, Typography } from "@mui/material";
 import EventTemplate from "../../components/EventTemplate";
 import PageBanner from "../../sections/PageBanner";
+import { PrimaryBtn } from "../../components/PrimaryBtn";
 
 const Event = () => {
   return (
@@ -95,6 +96,21 @@ const Event = () => {
                 October 5th, 6th, 7th @ 8PM BST
               </Typography>
             </Link>
+            <Box
+              sx={{
+                textAlign: "center",
+                pt: "3vh"
+              }}
+            >
+              <PrimaryBtn
+                fullWidth
+                row
+                href="https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485"
+                target="_blank"
+              >
+                Get Tickets
+              </PrimaryBtn>
+            </Box>
           </Box>
         </EventTemplate>
       </Box>

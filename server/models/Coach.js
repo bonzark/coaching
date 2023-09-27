@@ -93,7 +93,15 @@ const coachSchema = new mongoose.Schema({
       required: true,
     },
   ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
   // availability: [availabilitySchema],
 });
 
-module.exports = mongoose.model("coaches", coachSchema);
+const Coach = mongoose.model("coaches", coachSchema);
+module.exports = Coach;
