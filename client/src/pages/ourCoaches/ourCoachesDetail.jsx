@@ -8,7 +8,7 @@ const OurCoachesDetail = () => {
   const location = useLocation();
   const { name } = location.state;
 
-  const data = coachesData.find((coach) => coach.id === name);
+  const data = coachesData?.find((coach) => coach.id === name);
 
   return (
     <>

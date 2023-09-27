@@ -1,13 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
-const PageBanner = ({
-  heading,
-  imgSrc,
-  description,
-  align,
-  //   TODO: Can make component such that it will expect height as props
-  //   minHeight,
-}) => {
+const PageBanner = ({ heading, imgSrc, description, align }) => {
   return (
     <>
       <Box
@@ -15,6 +8,7 @@ const PageBanner = ({
           backgroundImage: `url(${imgSrc})`,
           backgroundSize: { xs: "100%", md: "100%" },
           backgroundRepeat: "no-repeat",
+          height: { xs: "350px", md: "auto" },
           backgroundPosition: { xs: "center center", md: "top center" },
           position: "relative",
           "::after": {
@@ -32,6 +26,7 @@ const PageBanner = ({
       >
         <Container
           sx={{
+            height: "100%",
             display: "flex",
             alignItems: "center",
             position: "relative",
