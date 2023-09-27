@@ -131,8 +131,7 @@ exports.scheduledEventsCalendly = async (req, res) => {
       },
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
       },
     };
 
@@ -162,8 +161,7 @@ exports.inviteeCreated = async (req, res) => {
       },
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
       },
     };
 
@@ -193,24 +191,20 @@ exports.inviteeCreated = async (req, res) => {
       { upsert: true }
     );
 
-    const bookedSession = await BookedSession.find({
+    const bookedSession = await BookedSession.findOne({
       session: session._id,
       user: user._id,
     });
 
     await user.purchasedSession.pull(bookedSession);
     user.bookedSession.push(bookedSession);
+    await user.save();
 
     const coach = await Coach.findOne({ _id: session.coach });
-    console.log("Found document:", coach);
+    coach.bookedSession.push(bookedSession);
+    await coach.save();
 
-    if (!coach) {
-      console.log("can not find coach");
-    } else {
-      coach.bookedSession.push(bookedSession);
-    }
-
-    res.status(200).end();
+    res.status(200).json({ message: "Session Bokked Successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
