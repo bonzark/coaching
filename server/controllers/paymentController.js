@@ -44,6 +44,7 @@ exports.paymentSession = async (req, res) => {
     //Redirect user to this url. It is a stripe url, payment page.
     res.json({ url: session.url });
   } catch (e) {
+    console.log("error", e);
     res.status(500).json({ error: e.message });
   }
 };
@@ -91,8 +92,7 @@ exports.paymentCompleted = async (req, res) => {
       user.purchasedSession.push(purchasedSession);
       await user.save();
     }
-
-    res.sendStatus(200); // Respond to the webhook request with a 200 status code
+    res.status(200).redirect(process.env.HOST_URL);
   } catch (error) {
     console.error("Error handling webhook event:", error);
     res.sendStatus(400); // Respond with an error status code

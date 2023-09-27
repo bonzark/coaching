@@ -3,7 +3,7 @@ const User = require("../models/user");
 // Function to get a list of all users
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, "-password").populate("bookedSession"); // Exclude password field from the response
+    const users = await User.find({}, "-password").populate("bookedSession").populate("purchasedSession"); // Exclude password field from the response
 
     return res.status(200).json({ users });
   } catch (error) {
@@ -11,3 +11,14 @@ exports.getAllUsers = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+exports.getuserById = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await User.findById(userId, ["-password", "-resetToken"]).populate("bookedSession").populate("purchasedSession")
+    res.status(200).json(user)
+  } catch (error) {
+    console.log("error : ", error);
+    res.status(400).json({ error })
+  }
+}
