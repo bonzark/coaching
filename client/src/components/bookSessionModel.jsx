@@ -28,7 +28,6 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
   const [purchasedCount, setPurchasedCount] = useState(0);
-  const [isFree, setIsFree] = useState(false);
 
   const handleChange = (event) => {
     setCoach(event.target.value);
@@ -100,7 +99,7 @@ const BookSession = ({ open, handleClose, userDetails }) => {
       >
         Book your session now
         {!userDetails?.isFreeReadingBooked && (
-          <Chip sx={{ fontSize: "10px" }} label="Free Session Available" />
+          <Chip sx={{ fontSize: "10px" }} label="Your 1st Session Is Free.." />
         )}
       </Typography>
       <form>
@@ -115,12 +114,6 @@ const BookSession = ({ open, handleClose, userDetails }) => {
           >
             Hi, {userDetails.name}
           </Typography>
-          {!userDetails?.isFreeReadingBooked && (
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Checkbox onChange={() => setIsFree(!isFree)} />
-              <Typography>Use Free Session</Typography>
-            </Box>
-          )}
         </Box>
         <Box
           sx={{
@@ -205,9 +198,13 @@ const BookSession = ({ open, handleClose, userDetails }) => {
                 <SessionCard
                   title={i.title}
                   detail={i.details}
-                  btnText={i.isPurchased || isFree ? "Book Now" : "Purchase"}
+                  btnText={
+                    !userDetails?.isFreeReadingBooked || i.isPurchased
+                      ? "Book Now"
+                      : "Purchase"
+                  }
                   onClick={() =>
-                    i.isPurchased || isFree
+                    i.isPurchased || !userDetails?.isFreeReadingBooked
                       ? bookHandler(i)
                       : purchaseHandler(i._id, i.stripePriceId)
                   }
