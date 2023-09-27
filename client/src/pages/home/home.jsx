@@ -9,7 +9,7 @@ import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
 import CancelModal from "../../sections/CancelModal";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { search } = useLocation();
@@ -30,6 +30,16 @@ const Home = () => {
         title={"Manifesting and living life you desire !"}
         imageUrl="./heroBg2.jpg"
         listItems={heroListItems}
+        //TODO: Remove it and use booking button
+        buttonText="Book Now"
+      />
+      <SuccessModal
+        successMessage={"Congratulations, Your session has been purchased."}
+        open={isOpen}
+        handleClose={() => {
+          navigate("/");
+          setIsOpen(false);
+        }}
       />
       <AboutSection />
       <OurCoaches />

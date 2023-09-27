@@ -20,6 +20,8 @@ const SessionCard = ({
   date,
   time,
   sessionImg,
+  btnText,
+  onClick,
 }) => {
   return (
     <Card
@@ -57,45 +59,51 @@ const SessionCard = ({
             justifyContent: "space-between",
           }}
         >
-          <Typography
-            sx={{
-              fontWeight: "bold",
-              fontSize: { xs: "15px", sm: "20px", md: "25px" },
-              mb: { xs: 1, md: 2 },
-              color: "#671d63",
-            }}
-          >
-            {title}
-          </Typography>
-          <Box
-            sx={{
-              mb: { xs: 1, md: 2 },
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-            }}
-          >
-            <PersonOutlineIcon sx={{ color: "#671d63" }} />
+          {title && (
             <Typography
-              component={"span"}
               sx={{
-                fontSize: { xs: "15px", sm: "20px" },
+                fontWeight: "bold",
+                fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                mb: { xs: 1, md: 2 },
                 color: "#671d63",
               }}
             >
-              {" " + coachName}
+              {title}
             </Typography>
-          </Box>
+          )}
+          {coachName && (
+            <Box
+              sx={{
+                mb: { xs: 1, md: 2 },
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+              }}
+            >
+              <PersonOutlineIcon sx={{ color: "#671d63" }} />
+              <Typography
+                component={"span"}
+                sx={{
+                  fontSize: { xs: "15px", sm: "20px" },
+                  color: "#671d63",
+                }}
+              >
+                {" " + coachName}
+              </Typography>
+            </Box>
+          )}
         </Box>
-        <Typography
-          variant="body2"
-          sx={{
-            fontSize: { xs: "15px", sm: "20px" },
-            mb: { xs: 1, md: 2 },
-          }}
-        >
-          {detail}
-        </Typography>
+        {detail && (
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: { xs: "15px", sm: "20px" },
+              mb: { xs: 1, md: 2 },
+            }}
+          >
+            {detail}
+          </Typography>
+        )}
         <Box
           sx={{
             mb: { xs: 1, md: 2 },
@@ -106,68 +114,77 @@ const SessionCard = ({
             justifyContent: "space-between",
           }}
         >
-          <Typography
-            component={"span"}
-            sx={{
-              fontSize: { xs: "15px", sm: "20px", md: "25px" },
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-            }}
-          >
-            <CalendarMonthIcon sx={{ color: "#671d63", width: "25px" }} />
+          {date && (
             <Typography
-              sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+              component={"span"}
+              sx={{
+                fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+              }}
             >
-              {date}
+              <CalendarMonthIcon sx={{ color: "#671d63", width: "25px" }} />
+              <Typography
+                sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+              >
+                {date}
+              </Typography>
             </Typography>
-          </Typography>
-          <Typography
-            component={"div"}
-            sx={{ display: "flex", alignItems: "center", gap: "5px" }}
-          >
-            <AccessTimeIcon sx={{ color: "#671d63" }} />
+          )}
+          {time && (
             <Typography
-              sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+              component={"div"}
+              sx={{ display: "flex", alignItems: "center", gap: "5px" }}
             >
-              {time}
+              <AccessTimeIcon sx={{ color: "#671d63" }} />
+              <Typography
+                sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+              >
+                {time}
+              </Typography>
             </Typography>
-          </Typography>
+          )}
         </Box>
         <Box
           component={"div"}
           sx={{ display: "flex", alignItems: "center", py: { xs: "10px" } }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flex: 1,
-              alignItems: "center",
-              gap: "5px",
-            }}
-          >
-            <SellIcon sx={{ color: "#671d63", width: "25px" }} />
-            <Typography
-              component={"span"}
+          {price && (
+            <Box
               sx={{
-                fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                display: "flex",
+                flex: 1,
+                alignItems: "center",
+                gap: "5px",
               }}
             >
-              {"  $" + price}
-            </Typography>
-          </Box>
-          <Button
-            variant="outlineds"
-            sx={{
-              color: "#671d61",
-              border: "1px solid #671d63",
-              marginLeft: "auto",
-              maxWidth: "fit-content",
-              fontSize: { xs: "12px", sm: "15px", md: "18px" },
-            }}
-          >
-            Get Link
-          </Button>
+              <SellIcon sx={{ color: "#671d63", width: "25px" }} />
+              <Typography
+                component={"span"}
+                sx={{
+                  fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                }}
+              >
+                {"  $" + price}
+              </Typography>
+            </Box>
+          )}
+          {btnText && (
+            <Button
+              variant="outlineds"
+              sx={{
+                color: "#671d61",
+                border: "1px solid #671d63",
+                marginLeft: "auto",
+                maxWidth: "fit-content",
+                fontSize: { xs: "12px", sm: "15px", md: "18px" },
+              }}
+              onClick={onClick}
+            >
+              {btnText}
+            </Button>
+          )}
         </Box>
       </CardContent>
     </Card>
