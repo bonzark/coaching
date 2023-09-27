@@ -196,6 +196,7 @@ exports.inviteeCreated = async (req, res) => {
       user: user._id,
     });
 
+    user.isFreeReadingBooked = true;
     await user.purchasedSession.pull(bookedSession);
     user.bookedSession.push(bookedSession);
     await user.save();
