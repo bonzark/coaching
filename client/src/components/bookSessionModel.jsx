@@ -28,13 +28,36 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
   const [purchasedCount, setPurchasedCount] = useState(0);
+  const [hasLink, setHasLink] = useState(false);
 
   const handleChange = (event) => {
     setCoach(event.target.value);
     const data = coachList?.filter((i) => i._id === event.target.value)[0]
       ?.sessions;
     purchaseSession(userDetails, data);
+    bookedSession(userDetails, data);
     getPurchasedCount();
+  };
+
+  const bookedSession = (userDetails, data) => {
+    const bookedSession = data;
+    if (userDetails && bookedSession) {
+      const data = userDetails?.bookedSession;
+      for (let i = 0; i < bookedSession.length; i++) {
+        for (let j = 0; j < data.length; j++) {
+          console.log("data:::", data);
+          if (data[j].session === bookedSession[i]._id) {
+            bookedSession[i].isBooked = true;
+            bookedSession[i].sessionLink = data[j].link;
+          }
+        }
+      }
+      setSessionList(bookedSession);
+    }
+  };
+
+  const getLinkHandler = () => {
+    console.log("click");
   };
 
   const purchaseSession = (userDetails, data) => {
@@ -198,15 +221,23 @@ const BookSession = ({ open, handleClose, userDetails }) => {
                 <SessionCard
                   title={i.title}
                   detail={i.details}
+                  sessionLink={hasLink && i?.sessionLink}
                   btnText={
-                    !userDetails?.isFreeReadingBooked || i.isPurchased
+                    i.isBooked
+                      ? "Get Link"
+                      : !userDetails?.isFreeReadingBooked || i.isPurchased
                       ? "Book Now"
                       : "Purchase"
                   }
-                  onClick={() =>
-                    i.isPurchased || !userDetails?.isFreeReadingBooked
-                      ? bookHandler(i)
-                      : purchaseHandler(i._id, i.stripePriceId)
+                  onClick={
+                    i.isBooked
+                      ? () => {
+                          setHasLink(true);
+                        }
+                      : () =>
+                          i.isPurchased || !userDetails?.isFreeReadingBooked
+                            ? bookHandler(i)
+                            : purchaseHandler(i._id, i.stripePriceId)
                   }
                 />
               </Grid>

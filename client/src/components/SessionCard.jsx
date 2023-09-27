@@ -22,6 +22,7 @@ const SessionCard = ({
   sessionImg,
   btnText,
   onClick,
+  sessionLink,
 }) => {
   return (
     <Card
@@ -104,6 +105,9 @@ const SessionCard = ({
             {detail}
           </Typography>
         )}
+        {sessionLink && (
+          <Box sx={{ fontSize: "12px", color: "#671d63" }}>{sessionLink}</Box>
+        )}
         <Box
           sx={{
             mb: { xs: 1, md: 2 },
@@ -170,6 +174,7 @@ const SessionCard = ({
               </Typography>
             </Box>
           )}
+
           {btnText && (
             <Button
               variant="outlineds"
