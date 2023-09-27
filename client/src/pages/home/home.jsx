@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeroBanner from "../../sections/heroBanner";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import AboutSection from "../../sections/AboutSection";
@@ -8,8 +8,14 @@ import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
+import SuccessModal from "../../components/SuccessModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { search } = useLocation();
+  const [isOpen, setIsOpen] = useState(search === "?success=true");
+  const navigate = useNavigate();
+
   return (
     <>
       <HeroBanner
@@ -19,6 +25,14 @@ const Home = () => {
         listItems={heroListItems}
         //TODO: Remove it and use booking button
         buttonText="Book Now"
+      />
+      <SuccessModal
+        successMessage={"Congratulations, Your session has been purchased."}
+        open={isOpen}
+        handleClose={() => {
+          navigate("/");
+          setIsOpen(false);
+        }}
       />
       <AboutSection />
       <OurCoaches />
