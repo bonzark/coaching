@@ -27,7 +27,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setMobileOpen(!mobileOpen);
   };
 
   React.useEffect(() => {
@@ -79,6 +79,7 @@ const Navbar = () => {
               src="/becomeYourCreator.jpeg"
               alt="logo"
               style={{
+                display: "flex",
                 maxWidth: "100px",
                 height: "auto",
                 margin: "auto",

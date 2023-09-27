@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { PrimaryBtn } from "./PrimaryBtn";
 
@@ -147,24 +147,37 @@ const SuccessStories = ({
                   </Fragment>
                 ))}
 
-            {descriptionArr ? (
-              !wholeContent ? (
-                <Box
+            {descriptionArr && !wholeContent && (
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "1rem",
+                  px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
+                }}
+              >
+                <PrimaryBtn
+                  component={Link}
+                  to={`/ourCoachesDetail/${id}`}
+                  state={{ name: id }}
+                >
+                  Read More...
+                </PrimaryBtn>
+                <Button
                   sx={{
-                    margin: "0 auto",
-                    paddingY: "10px",
+                    color: "#673d61",
+                    border: "1px solid #673d61",
+                    p: "10px 15px",
+                    ":hover": {
+                      color: "#fff",
+                      backgroundColor: "#873785",
+                      transition: "all 0.4s ease-in-out",
+                    },
                   }}
                 >
-                  <PrimaryBtn
-                    component={Link}
-                    to={`/ourCoachesDetail/${id}`}
-                    state={{ name: id }}
-                  >
-                    Read More...
-                  </PrimaryBtn>
-                </Box>
-              ) : null
-            ) : null}
+                  book free reading
+                </Button>
+              </Box>
+            )}
             {content && (
               <Typography
                 paragraph

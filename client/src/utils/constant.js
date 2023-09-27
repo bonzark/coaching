@@ -1,7 +1,11 @@
 export const navItems = [
   {
-    name: 'Our Coaches',
-    link: '/our-coaches',
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Our Coaches",
+    link: "/our-coaches",
   },
   {
     name: 'Events',
