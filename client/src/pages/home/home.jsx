@@ -10,6 +10,7 @@ import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
 import CancelModal from "../../sections/CancelModal";
 import { useLocation, useNavigate } from "react-router-dom";
+import SuccessModal from "../../components/SuccessModal";
 
 const Home = () => {
   const { search } = useLocation();
@@ -35,10 +36,10 @@ const Home = () => {
       />
       <SuccessModal
         successMessage={"Congratulations, Your session has been purchased."}
-        open={isOpen}
+        open={open}
         handleClose={() => {
           navigate("/");
-          setIsOpen(false);
+          setOpen(false);
         }}
       />
       <AboutSection />

@@ -152,7 +152,7 @@ const BookSession = ({ open, handleClose, userDetails }) => {
                 >
                   {coachList.length > 0 &&
                     coachList?.map((coachItem) => (
-                      <MenuItem value={coachItem._id}>
+                      <MenuItem key={coachItem?._id} value={coachItem._id}>
                         {coachItem.firstName}
                       </MenuItem>
                     ))}
