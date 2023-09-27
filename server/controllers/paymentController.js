@@ -6,15 +6,6 @@ const User = require("../models/user");
 const app = express();
 
 const CLIENT_URL = process.env.HOST_URL;
-// Find your endpoint's secret in your Dashboard's webhook settings, populate using .env
-const endpointSecret =
-  "whsec_94eee311d8673d5488126063108dec9e61a5a632e5c69d0761905620210097f7";
-
-const fulfillOrder = (lineItems) => {
-  // TODO: fill me in
-  console.log("Fulfilling order", lineItems);
-  console.log("--------");
-};
 
 exports.paymentSession = async (req, res) => {
   try {
@@ -57,7 +48,7 @@ exports.paymentCompleted = async (req, res) => {
     const verifiedEvent = stripe.webhooks.constructEvent(
       event,
       signature,
-      "whsec_94eee311d8673d5488126063108dec9e61a5a632e5c69d0761905620210097f7"
+      `${process.env.STRIPE_WEBHOOK_SECRET}`
     );
 
     // Store the event in MongoDB
