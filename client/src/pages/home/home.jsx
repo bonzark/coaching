@@ -8,22 +8,24 @@ import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
-import CancelModal from "../../sections/CancelModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../../components/SuccessModal";
 
 const Home = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(search === "?cancel=true");
+  const [openCancel, setOpenCancel] = useState(search === "?cancelled=true");
+  const [openSuccess, setOpenSuccess] = useState(search === "?success=true");
   return (
     <>
-      <CancelModal
-        cancelMessage={"payment cancelled!!!"}
-        open={open}
-        onClose={() => {
+      <SuccessModal
+        message={"Your booking has been successfully cancelled."}
+        title={"Booking cancelled"}
+        open={openCancel}
+        status="cancelled"
+        handleClose={() => {
           navigate("/");
-          setOpen(false);
+          setOpenCancel(false);
         }}
       />
       <HeroBanner
@@ -31,15 +33,15 @@ const Home = () => {
         title={"Manifesting and living life you desire !"}
         imageUrl="./heroBg2.jpg"
         listItems={heroListItems}
-        //TODO: Remove it and use booking button
         buttonText="Book Now"
       />
       <SuccessModal
-        successMessage={"Congratulations, Your session has been purchased."}
-        open={open}
+        title={"Payment successful"}
+        message={"Congratulations, Your session has been purchased."}
+        open={openSuccess}
         handleClose={() => {
           navigate("/");
-          setOpen(false);
+          setOpenSuccess(false);
         }}
       />
       <AboutSection />
