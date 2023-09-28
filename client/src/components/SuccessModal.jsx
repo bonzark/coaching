@@ -123,15 +123,19 @@ const SuccessModal = ({ open, handleClose, message, status = "success" }) => {
               </Box>
             </Box>
           )}
-          <Typography sx={{ fontSize: { xs: "1.2rem", md: "2rem" } }}>
-            Payment Done Successfully
-          </Typography>
+          {title && (
+            <Typography sx={{ fontSize: { xs: "1.2rem", md: "2rem" } }}>
+              {title}
+            </Typography>
+          )}
         </DialogTitle>
-        <DialogContent sx={{ padding: "10px 25px" }}>
-          <DialogContentText sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}>
-            {successMessage}
-          </DialogContentText>
-        </DialogContent>
+        {message && (
+          <DialogContent sx={{ padding: "10px 25px" }}>
+            <DialogContentText sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              {message}
+            </DialogContentText>
+          </DialogContent>
+        )}
         <DialogActions sx={{ padding: "10px 25px" }}>
           <Button
             sx={{

@@ -19,7 +19,8 @@ const Home = () => {
   return (
     <>
       <SuccessModal
-        message={"payment cancelled!!!"}
+        message={"Your booking has been successfully cancelled."}
+        title={"Booking cancelled"}
         open={openCancel}
         status="cancelled"
         handleClose={() => {
@@ -35,6 +36,7 @@ const Home = () => {
         buttonText="Book Now"
       />
       <SuccessModal
+        title={"Payment successful"}
         message={"Congratulations, Your session has been purchased."}
         open={openSuccess}
         handleClose={() => {
