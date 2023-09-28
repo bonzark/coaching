@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getUserDetails, getAuthToken } from '../utils/auth';
-import EventEmitter from 'reactjs-eventemitter';
-import { PrimaryBtn } from './PrimaryBtn';
-import { Box } from '@mui/material';
-import FormModal from '../sections/FormModal';
-import BookSession from './bookSessionModel';
+import React, { useEffect, useState } from "react";
+import { getUserDetails, getAuthToken } from "../utils/auth";
+import EventEmitter from "reactjs-eventemitter";
+import { PrimaryBtn } from "./PrimaryBtn";
+import { Box } from "@mui/material";
+import FormModal from "../sections/FormModal";
+import BookSession from "./bookSessionModel";
 
 const BookSessionBtn = (props) => {
   const { defaultText, freeSessionText, bookText } = props;
@@ -18,11 +18,11 @@ const BookSessionBtn = (props) => {
   };
 
   useEffect(() => {
-    EventEmitter.subscribe('loginSuccess', (event) => {
+    EventEmitter.subscribe("loginSuccess", (event) => {
       setIsLoggedIn(true);
     });
 
-    EventEmitter.subscribe('logoutSuccess', (event) => {
+    EventEmitter.subscribe("logoutSuccess", (event) => {
       setIsLoggedIn(false);
     });
   }, []);
@@ -54,20 +54,23 @@ const BookSessionBtn = (props) => {
       {!isLoggedIn ? (
         <>
           <FormModal open={loginOpen} handleClose={handlePopupClose} />
-          <Box sx={{ margin: '1rem 0' }}>
+          <Box sx={{ margin: "1rem 0" }}>
             <PrimaryBtn onClick={handleOpen}>
               <>
                 <span>DOWNLOAD NOW FOR FREE</span>
-                Gain Awareness Of Your Creation in less than 30 days
               </>
             </PrimaryBtn>
           </Box>
         </>
       ) : (
         <>
-          <BookSession open={bookingOpen} handleClose={handleClose} userDetails={userDetails} />
+          <BookSession
+            open={bookingOpen}
+            handleClose={handleClose}
+            userDetails={userDetails}
+          />
           {btnText && (
-            <Box sx={{ margin: '1rem 0' }}>
+            <Box sx={{ margin: "1rem 0" }}>
               <PrimaryBtn onClick={onClickEvent} props>
                 {btnText}
               </PrimaryBtn>
