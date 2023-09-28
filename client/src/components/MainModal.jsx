@@ -10,6 +10,9 @@ export const MainModal = ({ open, handleClose, blur, children, lg }) => {
       aria-describedby="modal-modal-description"
       sx={{
         backdropFilter: `blur(${blur ? "5px" : "0px"})`,
+        "&:focus": {
+          outline: "none",
+        },
       }}
     >
       <Box

@@ -8,21 +8,21 @@ import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
-import CancelModal from "../../sections/CancelModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../../components/SuccessModal";
 
 const Home = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const [openCancel, setOpenCancel] = useState(search === "?cancel=true");
+  const [openCancel, setOpenCancel] = useState(search === "?cancelled=true");
   const [openSuccess, setOpenSuccess] = useState(search === "?success=true");
   return (
     <>
-      <CancelModal
+      <SuccessModal
         cancelMessage={"payment cancelled!!!"}
         open={openCancel}
-        onClose={() => {
+        status="cancelled"
+        handleClose={() => {
           navigate("/");
           setOpenCancel(false);
         }}

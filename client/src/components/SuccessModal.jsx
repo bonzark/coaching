@@ -9,8 +9,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
-const SuccessModal = ({ open, handleClose, successMessage }) => {
+const SuccessModal = ({
+  open,
+  handleClose,
+  successMessage,
+  status = "success",
+}) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -49,9 +55,79 @@ const SuccessModal = ({ open, handleClose, successMessage }) => {
         }}
       >
         <DialogTitle>
-          <CheckCircleIcon
-            sx={{ fill: "limegreen", width: "40px", height: "40px" }}
-          />
+          {status === "cancelled" && (
+            <Box
+              sx={{
+                perspective: "500px",
+                maxWidth: "fit-content",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyItems: "center",
+                  transition: "transform 1s",
+                  transformStyle: "preserve-3d",
+                  "@keyframes flip": {
+                    "0%": {
+                      transform: "rotateY( 0deg ) scale(1)",
+                    },
+                    "50%": {
+                      transform: "rotateY( 540deg ) scale(1.2)",
+                    },
+                    "100%": {
+                      transform: "rotateY( 1080deg ) scale(1)",
+                    },
+                  },
+                  animation: open && "flip 2s ease 250ms 1",
+                }}
+              >
+                <CancelOutlinedIcon
+                  sx={{
+                    fontSize: { xs: "1.5rem", md: "3rem" },
+                    color: "#f00",
+                    backgroundColor: "#ff000022",
+                    borderRadius: "50px",
+                  }}
+                />
+              </Box>
+            </Box>
+          )}
+          {status === "success" && (
+            <Box
+              sx={{
+                perspective: "500px",
+                maxWidth: "fit-content",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyItems: "center",
+                  transition: "transform 1s",
+                  transformStyle: "preserve-3d",
+                  "@keyframes flip": {
+                    "0%": {
+                      transform: "rotateY( 0deg ) scale(1)",
+                    },
+                    "50%": {
+                      transform: "rotateY( 540deg ) scale(1.2)",
+                    },
+                    "100%": {
+                      transform: "rotateY( 1080deg ) scale(1)",
+                    },
+                  },
+                  animation: open && "flip 2s ease 250ms 1",
+                }}
+              >
+                <CheckCircleIcon
+                  sx={{ fill: "limegreen", width: "40px", height: "40px" }}
+                />
+              </Box>
+            </Box>
+          )}
           <Typography sx={{ fontSize: { xs: "1.2rem", md: "2rem" } }}>
             Payment Done Successfully
           </Typography>
