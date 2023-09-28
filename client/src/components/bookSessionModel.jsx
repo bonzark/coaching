@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   Box,
   Checkbox,
@@ -14,20 +14,16 @@ import {
   OutlinedInput,
   Select,
   Typography,
-} from "@mui/material";
-import { MainModal } from "./MainModal";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-import {
-  getCoaches,
-  getSessionsByCoachID,
-  getAllSessions,
-} from "../services/session.service";
-import SessionCard from "./SessionCard";
-import { handlePayment } from "../services/payment.service";
-import { redirect } from "react-router-dom";
+} from '@mui/material';
+import { MainModal } from './MainModal';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import { getCoaches, getSessionsByCoachID, getAllSessions } from '../services/session.service';
+import SessionCard from './SessionCard';
+import { handlePayment } from '../services/payment.service';
+import { redirect } from 'react-router-dom';
 
 const BookSession = ({ open, handleClose, userDetails }) => {
-  const [coach, setCoach] = useState("");
+  const [coach, setCoach] = useState('');
   const [coachList, setCoachList] = useState([]);
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
@@ -64,7 +60,7 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   };
 
   const getLinkHandler = () => {
-    console.log("click");
+    console.log('click');
   };
 
   const purchaseSession = (userDetails, data) => {
@@ -78,7 +74,6 @@ const BookSession = ({ open, handleClose, userDetails }) => {
           }
         }
       }
-      console.log("purchaseSession ::", purchaseSession);
       setSessionList(purchaseSession);
     }
   };
@@ -86,8 +81,7 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   const getPurchasedCount = () => {
     setIsPurchased(true);
     setPurchasedCount(
-      userDetails?.purchasedSession?.filter((i) => i.status === "purchased")
-        ?.length
+      userDetails?.purchasedSession?.filter((i) => i.status === 'purchased')?.length
     );
   };
 
@@ -101,7 +95,7 @@ const BookSession = ({ open, handleClose, userDetails }) => {
       .then((res) => {
         window.location.replace(res?.data?.url);
       })
-      .catch((err) => console.log("err ::", err));
+      .catch((err) => console.log('err ::', err));
   };
 
   const bookHandler = (data) => {
@@ -128,28 +122,28 @@ const BookSession = ({ open, handleClose, userDetails }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "#671d63",
+          color: '#671d63',
           fontWeight: 900,
-          borderBottom: "1px solid #aaa",
-          paddingBottom: "0.5rem",
-          marginBottom: "1rem",
-          display: "flex",
-          justifyContent: "space-between",
+          borderBottom: '1px solid #aaa',
+          paddingBottom: '0.5rem',
+          marginBottom: '1rem',
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         Book your session now
         {!userDetails?.isFreeReadingBooked && (
-          <Chip sx={{ fontSize: "10px" }} label="Your 1st Session Is Free.." />
+          <Chip sx={{ fontSize: '10px' }} label="Your 1st Session Is Free.." />
         )}
       </Typography>
       <form>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography
             sx={{
-              color: "#000",
+              color: '#000',
               fontWeight: 900,
-              paddingBottom: "0.5rem",
-              marginBottom: "1rem",
+              paddingBottom: '0.5rem',
+              marginBottom: '1rem',
             }}
           >
             Hi, {userDetails?.name}
@@ -157,31 +151,29 @@ const BookSession = ({ open, handleClose, userDetails }) => {
         </Box>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "25px",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '25px',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              width: "100%",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              width: '100%',
             }}
           >
             <Box
               sx={{
-                width: "100%",
+                width: '100%',
                 flexBasis: 0,
                 flexGrow: 1,
               }}
             >
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  Choose your coach
-                </InputLabel>
+                <InputLabel id="demo-simple-select-label">Choose your coach</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -205,10 +197,10 @@ const BookSession = ({ open, handleClose, userDetails }) => {
         {isPurchased && (
           <Typography
             sx={{
-              color: "#000",
+              color: '#000',
               fontWeight: 900,
-              paddingBottom: "0.5rem",
-              marginBottom: "1rem",
+              paddingBottom: '0.5rem',
+              marginBottom: '1rem',
             }}
           >
             All Purchased session : {purchasedCount}
@@ -219,33 +211,25 @@ const BookSession = ({ open, handleClose, userDetails }) => {
             spacing={3}
             container
             sx={{
-              marginTop: "0 !important",
-              paddingBottom: "25px",
-              maxHeight: "50vh",
-              overflowY: "scroll",
-              paddingRight: "20px",
+              marginTop: '0 !important',
+              paddingBottom: '25px',
+              maxHeight: '50vh',
+              overflowY: 'scroll',
+              paddingRight: '20px',
             }}
           >
-            {console.log("sessionList :", sessionList)}
             {sessionList?.map((i) => (
-              <Grid
-                key={i?._id}
-                sx={{ height: "100% !important" }}
-                item
-                xs={12}
-                sm={6}
-                lg={6}
-              >
+              <Grid key={i?._id} sx={{ height: '100% !important' }} item xs={12} sm={6} lg={6}>
                 <SessionCard
                   title={i.title}
                   detail={i.details}
                   sessionLink={hasLink && i?.sessionLink}
                   btnText={
                     i.isBooked
-                      ? "Get Link"
+                      ? 'Get Link'
                       : !userDetails?.isFreeReadingBooked || i.isPurchased
-                      ? "Book Now"
-                      : "Purchase"
+                      ? 'Book Now'
+                      : 'Purchase'
                   }
                   onClick={
                     i.isBooked
@@ -264,11 +248,11 @@ const BookSession = ({ open, handleClose, userDetails }) => {
         ) : (
           <Typography
             sx={{
-              color: "#000",
+              color: '#000',
               fontWeight: 600,
-              paddingBottom: "0.5rem",
-              marginBottom: "1rem",
-              textAlign: "center",
+              paddingBottom: '0.5rem',
+              marginBottom: '1rem',
+              textAlign: 'center',
             }}
           >
             No session available
