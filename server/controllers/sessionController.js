@@ -212,7 +212,7 @@ exports.inviteeCreated = async (req, res) => {
       coach.bookedSession.push(bookedSession);
       await coach.save();
 
-      res.status(200).json({ message: "Session Booked Successfully" });
+      res.redirect(process.env.HOST_URL);
     }
   } catch (error) {
     console.error(error);
