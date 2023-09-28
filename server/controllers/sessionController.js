@@ -171,41 +171,49 @@ exports.inviteeCreated = async (req, res) => {
         return response?.data?.resource?.scheduling_url;
       })
       .catch(function (error) {
-        return res.status(500).json(error);
+        return res.send(error);
       });
 
     const user = await User.findOne({ email });
     const session = await Session.findOne({ calendlyLink: scheduling_url });
 
-    await BookedSession.updateOne(
-      { session: session._id, user: user._id },
-      {
-        $set: {
-          status: "booked",
-          bookedDate: req?.body?.created_at,
-          sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
-          sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
-          link: req?.body?.payload?.scheduled_event?.location?.join_url,
+    if (!user) {
+      res.status(404).json({ error: "User Not Found" });
+    }
+
+    if (!session) {
+      res.status(404).json({ error: "Session Not Found" });
+    }
+
+    if (user && session) {
+      await BookedSession.updateOne(
+        { session: session._id, user: user._id },
+        {
+          $set: {
+            status: "booked",
+            bookedDate: req?.body?.created_at,
+            sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
+            sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
+            link: req?.body?.payload?.scheduled_event?.location?.join_url,
+          },
         },
-      },
-      { upsert: true }
-    );
+        { upsert: true }
+      );
+      const bookedSession = await BookedSession.findOne({
+        session: session._id,
+        user: user._id,
+      });
+      user.isFreeReadingBooked = true;
+      await user.purchasedSession.pull(bookedSession);
+      user.bookedSession.push(bookedSession);
+      await user.save();
 
-    const bookedSession = await BookedSession.findOne({
-      session: session._id,
-      user: user._id,
-    });
+      const coach = await Coach.findOne({ _id: session.coach });
+      coach.bookedSession.push(bookedSession);
+      await coach.save();
 
-    user.isFreeReadingBooked = true;
-    await user.purchasedSession.pull(bookedSession);
-    user.bookedSession.push(bookedSession);
-    await user.save();
-
-    const coach = await Coach.findOne({ _id: session.coach });
-    coach.bookedSession.push(bookedSession);
-    await coach.save();
-
-    res.status(200).json({ message: "Session Bokked Successfully" });
+      res.status(200).json({ message: "Session Bokked Successfully" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
