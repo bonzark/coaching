@@ -16,10 +16,10 @@ const contactController = [
 
       await sendEmail(emailOptions);
 
-      res.status(200).send("Yay! Your message was sent successfully!");
+      res.status(200).send("Message sent successfully!");
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: "An error occurred" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 ];
