@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <SuccessModal
-        cancelMessage={"payment cancelled!!!"}
+        message={"payment cancelled!!!"}
         open={openCancel}
         status="cancelled"
         handleClose={() => {
@@ -35,7 +35,7 @@ const Home = () => {
         buttonText="Book Now"
       />
       <SuccessModal
-        successMessage={"Congratulations, Your session has been purchased."}
+        message={"Congratulations, Your session has been purchased."}
         open={openSuccess}
         handleClose={() => {
           navigate("/");
