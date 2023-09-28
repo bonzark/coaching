@@ -21,7 +21,7 @@ const getSessionsByCoachId = async (coachId) => {
     .catch((error) => {
       return error;
     });
-}
+};
 
 const getCoaches = async () => {
   return await axios
@@ -43,6 +43,35 @@ const getBookedSessions = async () => {
     .catch((error) => {
       return error;
     });
-}
+};
 
-export { getSessions, getCoaches, getSessionsByCoachId, getBookedSessions };
+const getSessionsByCoachID = async (id) => {
+  return await axios
+    .get(`${baseUrl}/sessions/coach/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+const getAllSessions = async () => {
+  return await axios
+    .get(`${baseUrl}/sessions`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export {
+  getSessions,
+  getCoaches,
+  getSessionsByCoachId,
+  getBookedSessions,
+  getSessionsByCoachID,
+  getAllSessions,
+};
