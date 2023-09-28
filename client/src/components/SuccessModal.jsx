@@ -11,7 +11,13 @@ import LinearProgress from "@mui/material/LinearProgress";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
-const SuccessModal = ({ open, handleClose, message, status = "success" }) => {
+const SuccessModal = ({
+  open,
+  handleClose,
+  title,
+  message,
+  status = "success",
+}) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
