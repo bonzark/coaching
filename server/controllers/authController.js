@@ -5,6 +5,8 @@ const { validate } = require("../middlewares/validation");
 const crypto = require("crypto");
 var CryptoJS = require("crypto-js");
 const sendEmail = require("../utils/sendEmail");
+const Session = require("../models/session");
+const BookedSession = require("../models/bookedSession");
 
 const authController = {
   register: [
@@ -100,6 +102,19 @@ const authController = {
       if (user) {
         user.isVerified = true;
         user.verificationToken = undefined;
+        const sessions = await Session.find({ sessionType: "freeReading" });
+
+        const promises = sessions.map(async (session) => {
+          const purchasedSession = new BookedSession({
+            session: session._id,
+            user: user._id,
+            purchaseDate: new Date(),
+            status: "purchased",
+          });
+          await purchasedSession.save();
+          return user.purchasedSession.push(purchasedSession);
+        });
+        await Promise.all(promises);
         await user.save();
         res.redirect(process.env.HOST_URL);
       } else {

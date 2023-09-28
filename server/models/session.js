@@ -8,7 +8,7 @@ const sessionSchemaObj = {
   },
   sessionType: {
     type: String,
-    enum: ["group", "oneToOne"],
+    enum: ["group", "oneToOne", "freeReading"],
     required: true,
   },
   title: {
