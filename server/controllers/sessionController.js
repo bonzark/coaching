@@ -211,7 +211,6 @@ exports.inviteeCreated = async (req, res) => {
       const coach = await Coach.findOne({ _id: session.coach });
       coach.bookedSession.push(bookedSession);
       await coach.save();
-
       res.redirect(process.env.HOST_URL);
     }
   } catch (error) {
