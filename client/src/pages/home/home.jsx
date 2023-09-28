@@ -15,15 +15,16 @@ import SuccessModal from "../../components/SuccessModal";
 const Home = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(search === "?cancel=true");
+  const [openCancel, setOpenCancel] = useState(search === "?cancel=true");
+  const [openSuccess, setOpenSuccess] = useState(search === "?success=true");
   return (
     <>
       <CancelModal
         cancelMessage={"payment cancelled!!!"}
-        open={open}
+        open={openCancel}
         onClose={() => {
           navigate("/");
-          setOpen(false);
+          setOpenCancel(false);
         }}
       />
       <HeroBanner
@@ -31,15 +32,14 @@ const Home = () => {
         title={"Manifesting and living life you desire !"}
         imageUrl="./heroBg2.jpg"
         listItems={heroListItems}
-        //TODO: Remove it and use booking button
         buttonText="Book Now"
       />
       <SuccessModal
         successMessage={"Congratulations, Your session has been purchased."}
-        open={open}
+        open={openSuccess}
         handleClose={() => {
           navigate("/");
-          setOpen(false);
+          setOpenSuccess(false);
         }}
       />
       <AboutSection />
