@@ -8,16 +8,24 @@ import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
 import { heroListItems } from "../../utils/constant";
-import SuccessModal from "../../components/SuccessModal";
+import CancelModal from "../../sections/CancelModal";
 import { useLocation, useNavigate } from "react-router-dom";
+import SuccessModal from "../../components/SuccessModal";
 
 const Home = () => {
   const { search } = useLocation();
-  const [isOpen, setIsOpen] = useState(search === "?success=true");
   const navigate = useNavigate();
-
+  const [open, setOpen] = useState(search === "?cancel=true");
   return (
     <>
+      <CancelModal
+        cancelMessage={"payment cancelled!!!"}
+        open={open}
+        onClose={() => {
+          navigate("/");
+          setOpen(false);
+        }}
+      />
       <HeroBanner
         header={"Discover what is blocking you from"}
         title={"Manifesting and living life you desire !"}
@@ -28,10 +36,10 @@ const Home = () => {
       />
       <SuccessModal
         successMessage={"Congratulations, Your session has been purchased."}
-        open={isOpen}
+        open={open}
         handleClose={() => {
           navigate("/");
-          setIsOpen(false);
+          setOpen(false);
         }}
       />
       <AboutSection />

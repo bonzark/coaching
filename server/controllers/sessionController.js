@@ -212,7 +212,7 @@ exports.inviteeCreated = async (req, res) => {
       coach.bookedSession.push(bookedSession);
       await coach.save();
 
-      res.status(200).json({ message: "Session Bokked Successfully" });
+      res.status(200).json({ message: "Session Booked Successfully" });
     }
   } catch (error) {
     console.error(error);
@@ -429,5 +429,16 @@ exports.deleteSession = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.testApi = async (req, res) => {
+  try {
+    const userData = await User.findOne({ _id: req.params.id }, "-password");
+    localStorage.setItem("user", JSON.stringify(userData));
+    res.status(200).json({ userData });
+  } catch (error) {
+    res.status(400).json({ error });
+    console.log("Error :", error);
   }
 };
