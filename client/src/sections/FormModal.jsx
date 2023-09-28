@@ -96,6 +96,11 @@ const FormModal = ({ open, handleClose }) => {
               enqueueSnackbar(res?.response?.data?.message, {
                 variant: 'error',
               });
+            } else if (res.response.status === 403) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data, {
+                variant: 'error',
+              });
             } else if (res.response.status === 500) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.error, {

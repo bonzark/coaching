@@ -1,11 +1,11 @@
 export const navItems = [
   {
-    name: "Home",
-    link: "/",
+    name: 'Home',
+    link: '/',
   },
   {
-    name: "Our Coaches",
-    link: "/our-coaches",
+    name: 'Our Coaches',
+    link: '/our-coaches',
   },
   {
     name: 'Events',
@@ -209,10 +209,10 @@ export const sidebarItems = [
     name: 'Session',
     path: '/session',
   },
-  {
-    name: 'Subscription',
-    path: '/subscription',
-  },
+  // {
+  //   name: 'Subscription',
+  //   path: '/subscription',
+  // },
   {
     name: 'Previous Purchases',
     path: '/previous-purchases',
