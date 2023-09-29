@@ -1,10 +1,11 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
-const PageBanner = ({ heading, imgSrc, description, align }) => {
+const PageBanner = ({ heading, imgSrc, bgColor, description, align, sx }) => {
   return (
     <>
       <Box
         sx={{
+          backgroundColor: bgColor ? bgColor : "transparent",
           backgroundImage: `url(${imgSrc})`,
           backgroundSize: { xs: "100%", md: "100%" },
           backgroundRepeat: "no-repeat",
@@ -49,9 +50,9 @@ const PageBanner = ({ heading, imgSrc, description, align }) => {
                 component={"p"}
                 sx={{
                   fontSize: { xs: "32px", md: "42px", lg: "72px" },
+                  textAlign: align ? align : "center",
                   color: "#671d63",
                   fontWeight: "bold",
-                  textAlign: "center",
                   lineHeight: { xs: "27px", md: "36px", lg: "62px" },
                   textTransform: "capitalize",
                   fontFamily: "'montserrat', cursive",

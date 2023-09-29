@@ -5,7 +5,8 @@ import { sessionData, subscriptionData } from "../../utils/constant";
 import SessionCard from "../../components/SessionCard";
 import SubscriptionCard from "../../components/SubscriptionCard";
 import { getBookedSessions, getSessions } from "../../services/session.service";
-
+import PageBanner from "../../sections/PageBanner";
+import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 const Dashboard = () => {
   const [upcomingSessions, setUpcomingSessions] = useState([]);
   const [linkVisible, setLinkVisible] = useState(false);
@@ -50,62 +51,95 @@ const Dashboard = () => {
   const userName = JSON.parse(localStorage.getItem("user"))?.name;
 
   return (
-    <Box
-      sx={{
-        marginTop: { xs: "40px", md: "92px" },
-        padding: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-      }}
-    >
-      <Typography
-        sx={{
-          fontSize: { xs: "33px", md: "42px" },
-          marginTop: "15px",
-          fontFamily: "'montserrat', cursive",
-        }}
-      >
-        Welcome,
-        <Typography
-          sx={{
-            color: "#673d61",
-            pl: "10px",
-            fontSize: { xs: "33px", md: "42px" },
-            textTransform: "capitalize",
-          }}
-          component={"span"}
-        >
-          {userName}
-        </Typography>
-      </Typography>
-      <Box sx={{ pt: "15px" }}>
-        <Typography
-          sx={{
-            fontSize: { xs: "20px", sm: "25px", md: "30px" },
-            marginTop: "15px",
-            color: "#673d61",
-            fontFamily: "'montserrat', cursive",
-            textAlign: "center",
-          }}
-        >
-          Upcoming Sessions
-        </Typography>
-        <Box>
-          <Grid
-            spacing={3}
-            container
+    <>
+      <PageBanner
+        heading={
+          <Typography
             sx={{
-              marginTop: "0 !important",
-              paddingBottom: "25px",
+              fontSize: { xs: "33px", md: "42px" },
+              marginTop: "15px",
+              fontFamily: "'montserrat', cursive",
             }}
           >
-            {upcomingSessions && upcomingSessions.length > 0 ? (
-              renderUpcomingSessions(upcomingSessions)
-            ) : (
-              <h3>No Sessions Available</h3>
-            )}
-          </Grid>
+            Welcome,
+            <Typography
+              sx={{
+                color: "#673d61",
+                pl: "10px",
+                fontSize: { xs: "33px", md: "42px" },
+                textTransform: "capitalize",
+              }}
+              component={"span"}
+            >
+              {userName}
+            </Typography>
+          </Typography>
+        }
+        bgColor={"#F2EFFB"}
+        imgSrc={"wealthCreation.jpg"}
+        align={"left"}
+      />
+      <Box
+        sx={{
+          padding: { xs: "0 1rem", sm: "0 2rem", md: "0 3rem", lg: "0 4rem" },
+        }}
+      >
+        <Box sx={{ pt: "15px" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "20px", sm: "25px", md: "30px" },
+              marginTop: "15px",
+              color: "#673d61",
+              fontFamily: "'montserrat', cursive",
+              textAlign: "center",
+            }}
+          >
+            Upcoming Sessions
+          </Typography>
+          <Box>
+            <Grid
+              spacing={3}
+              container
+              sx={{
+                marginTop: "0 !important",
+                paddingBottom: "25px",
+              }}
+            >
+              {upcomingSessions && upcomingSessions.length > 0 ? (
+                renderUpcomingSessions(upcomingSessions)
+              ) : (
+                <Box
+                  sx={{
+                    height: {
+                      xs: "350px",
+                      sm: "400px",
+                      md: "450px",
+                      lg: "500px",
+                    },
+                    width: {
+                      xs: "350px",
+                      sm: "400px",
+                      md: "450px",
+                      lg: "500px",
+                    },
+                    margin: "0 auto",
+                  }}
+                >
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                    src="./no-data-found.png"
+                    alt="no-data-found"
+                  />
+                </Box>
+              )}
+            </Grid>
+          </Box>
         </Box>
-      </Box>
-      {/* <Box>
+        {/* <Box>
         <Typography
           sx={{
             fontSize: { xs: "20px", sm: "25px", md: "30px" },
@@ -143,7 +177,8 @@ const Dashboard = () => {
           })}
         </Grid>
       </Box> */}
-    </Box>
+      </Box>
+    </>
   );
 };
 
