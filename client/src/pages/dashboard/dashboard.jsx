@@ -15,7 +15,6 @@ const Dashboard = () => {
       localStorage.getItem("user")
     )?.bookedSession;
     setUpcomingSessions(bookedSession);
-    console.log("bookedSession :", bookedSession);
   }, []);
 
   const renderUpcomingSessions = (upcomingSessions) => {
