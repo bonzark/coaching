@@ -177,12 +177,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           {isCoachPage
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
-          {/* {!userDetails?.isFreeReadingBooked && (
-            <Chip
-              sx={{ fontSize: "10px" }}
-              label="Your 1st Session Is Free.."
-            />
-          )} */}
+
           {isPurchased && (
             <Typography
               sx={{
