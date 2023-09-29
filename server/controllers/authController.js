@@ -62,8 +62,20 @@ const authController = {
         const { email, password } = req.body;
 
         const user = await User.findOne({ email: email.toLowerCase() })
-          .populate("purchasedSession")
-          .populate("bookedSession");
+          .populate({
+            path: "purchasedSession",
+            populate: {
+              path: "session",
+              model: "Session",
+            },
+          })
+          .populate({
+            path: "bookedSession",
+            populate: {
+              path: "session",
+              model: "Session",
+            },
+          });
         if (!user) {
           return res.status(401).json({ message: "Invalid credentials" });
         }
