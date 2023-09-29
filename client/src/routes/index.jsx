@@ -24,6 +24,7 @@ import ResetPassword from "../pages/resetPassword/resetPassword";
 import TermsAndConditions from "../pages/termsAndConditions/termsAndConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import SuccessModal from "../components/SuccessModal";
+import PreviousPurchases from "../pages/previousPurchases/previousPurchases";
 
 const Routers = () => {
   return (
@@ -40,6 +41,7 @@ const Routers = () => {
           <Route path="/wealth-creation" element={<WealthCreationSection />} />
           <Route path="/events" element={<Event />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/previous-purchases" element={<PreviousPurchases />} />
           <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
