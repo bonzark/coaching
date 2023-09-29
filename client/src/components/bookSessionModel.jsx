@@ -21,7 +21,6 @@ import { handlePayment } from "../services/payment.service";
 import { PopupModal } from "react-calendly";
 import { getUserDetails, setUserDetails } from "../utils/auth";
 import { getuserById } from "../services/user.service";
-import { useParams, useRoutes } from "react-router-dom";
 
 const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [coach, setCoach] = useState("");
@@ -34,7 +33,6 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [popupLink, setPopupLink] = useState("");
   const [hasLink, setHasLink] = useState({});
 
-  const params = useParams();
   const [isCoachPage, setIsCoachPage] = useState(false);
 
   const handleChange = (event) => {

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import { sessionData, subscriptionData } from "../../utils/constant";
 import SessionCard from "../../components/SessionCard";
-import SubscriptionCard from "../../components/SubscriptionCard";
-import { getBookedSessions, getSessions } from "../../services/session.service";
 import PageBanner from "../../sections/PageBanner";
-import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 const Dashboard = () => {
   const [upcomingSessions, setUpcomingSessions] = useState([]);
   const [linkVisible, setLinkVisible] = useState(false);
@@ -20,6 +15,7 @@ const Dashboard = () => {
 
   const renderUpcomingSessions = (upcomingSessions) => {
     return upcomingSessions?.map((session) => {
+      console.log("SESSION::", session);
       return (
         <>
           <Grid
