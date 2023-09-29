@@ -1,14 +1,24 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { coachesData } from "../../utils/constant";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import SingleCoachDetail from "../../sections/SingleCoachDetail";
+import { getCoaches } from "../../services/session.service";
 
 const OurCoachesDetail = () => {
   const location = useLocation();
   const { name } = location.state;
+  const { id } = useParams();
 
-  const data = coachesData?.find((coach) => coach.id === name);
+  console.log("id", id);
+
+  const [coachesData, setCoachesData] = useState([]);
+  useEffect(() => {
+    const coachesDataList = getCoaches();
+    setCoachesData(coachesDataList);
+  }, [id]);
+
+  console.log("Data :", coachesData);
+  // const data = coachesData?.find((coach) => coach.id === id);
 
   return (
     <>
