@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
 import {
   Box,
-  Checkbox,
-  Chip,
   FormControl,
   Grid,
-  IconButton,
   InputLabel,
-  List,
-  ListItem,
-  ListItemText,
   MenuItem,
   OutlinedInput,
   Select,
   Typography,
 } from "@mui/material";
 import { MainModal } from "./MainModal";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import {
   getCoaches,
   getSessionsByCoachID,
@@ -37,9 +30,9 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
   const [purchasedCount, setPurchasedCount] = useState(0);
-  const [hasLink, setHasLink] = useState(false);
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
+  const [hasLink, setHasLink] = useState({});
 
   const params = useParams();
   const [isCoachPage, setIsCoachPage] = useState(false);
@@ -59,6 +52,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
 
   const bookedSession = (userDetails, data) => {
     const bookedSession = data;
+    const sessionsWithLink = {};
     if (userDetails && bookedSession) {
       const data = userDetails?.bookedSession;
       for (let i = 0; i < bookedSession.length; i++) {
@@ -70,6 +64,10 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         }
       }
       setSessionList(bookedSession);
+      bookedSession.forEach((session) => {
+        if (session.isBooked) sessionsWithLink[[session._id]] = false;
+      });
+      setHasLink(sessionsWithLink);
     }
   };
 
@@ -176,6 +174,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             justifyContent: "space-between",
           }}
         >
+<<<<<<< HEAD
           {isCoachPage
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
@@ -185,6 +184,9 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               label="Your 1st Session Is Free.."
             />
           )} */}
+=======
+          Book your session now
+>>>>>>> origin/main
           {isPurchased && (
             <Typography
               sx={{
@@ -312,18 +314,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                       <SessionCard
                         title={i.title}
                         detail={i.details}
-                        sessionLink={hasLink && i?.sessionLink}
+                        sessionLink={hasLink[i._id] && i?.sessionLink}
                         btnText={
-                          i.isBooked
-                            ? "Get Link"
-                            : i.isPurchased
-                            ? "Book Now"
-                            : "Purchase"
+                          !hasLink[i._id]
+                            ? i.isBooked
+                              ? "Get Link"
+                              : i.isPurchased
+                              ? "Book Now"
+                              : "Purchase"
+                            : ""
                         }
                         onClick={
                           i.isBooked
                             ? () => {
-                                setHasLink(true);
+                                setHasLink((prev) => ({
+                                  ...prev,
+                                  [i._id]: true,
+                                }));
                               }
                             : () =>
                                 i.isPurchased
