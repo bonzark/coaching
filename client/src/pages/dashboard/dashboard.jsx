@@ -15,7 +15,6 @@ const Dashboard = () => {
 
   const renderUpcomingSessions = (upcomingSessions) => {
     return upcomingSessions?.map((session) => {
-      console.log("SESSION::", session);
       return (
         <>
           <Grid
@@ -36,7 +35,7 @@ const Dashboard = () => {
               sessionImg={session?.session?.coach?.image}
               btnText={!linkVisible && "Get Link"}
               onClick={() => setLinkVisible(!linkVisible)}
-              sessionLink={linkVisible && session?.session?.calendlyLink}
+              sessionLink={linkVisible && session?.link}
             />
           </Grid>
         </>

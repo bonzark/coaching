@@ -79,7 +79,6 @@ const PreviousPurchases = () => {
   };
 
   const bookHandler = (data) => {
-    console.log("data :", data);
     setPopupLink(data?.session?.calendlyLink);
     setPopup(true);
   };
@@ -127,7 +126,7 @@ const PreviousPurchases = () => {
                   sessionLink={
                     sessionLinks[session._id] &&
                     session.status === "booked" &&
-                    session.session.calendlyLink
+                    session?.link
                   }
                   btnText={
                     !sessionLinks[session._id]
