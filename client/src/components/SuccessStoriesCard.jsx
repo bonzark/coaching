@@ -13,6 +13,7 @@ const SuccessStories = ({
   descriptionArr,
   wholeContent,
   isDetailPage,
+  isOurCoachCard = false,
 }) => {
   return (
     <Box sx={{ paddingTop: 6, position: "relative" }}>
@@ -165,11 +166,14 @@ const SuccessStories = ({
                     Read More...
                   </PrimaryBtn>
                 </Box>
-                <BookSessionBtn
-                  defaultText={"Book Now"}
-                  freeSessionText={"Book a free session"}
-                  bookText={"Book Session"}
-                />
+                {isOurCoachCard && (
+                  <BookSessionBtn
+                    defaultText={"Book Now"}
+                    freeSessionText={"Book a free session"}
+                    bookText={"Book Session"}
+                    coachId={id}
+                  />
+                )}
               </Box>
             )}
             {content && (

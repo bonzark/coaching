@@ -15,6 +15,7 @@ const BookSessionBtn = ({
   ),
   freeSessionText,
   bookText,
+  coachId,
 }) => {
   const userDetails = getUserDetails();
   const [loginOpen, setLoginOpen] = useState(false);
@@ -72,6 +73,7 @@ const BookSessionBtn = ({
             open={bookingOpen}
             handleClose={handleClose}
             userDetails={userDetails}
+            coachId={coachId ? coachId : ""}
           />
           {btnText && (
             <Box sx={{ margin: "1rem 0" }}>
