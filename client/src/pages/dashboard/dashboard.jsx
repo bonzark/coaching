@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Grid,
+  Typography,
+} from "@mui/material";
 import SessionCard from "../../components/SessionCard";
 import PageBanner from "../../sections/PageBanner";
 const Dashboard = () => {
   const [upcomingSessions, setUpcomingSessions] = useState([]);
   const [linkVisible, setLinkVisible] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     const bookedSession = JSON.parse(
       localStorage.getItem("user")
     )?.bookedSession;
     setUpcomingSessions(bookedSession);
+    setIsLoading(false);
   }, []);
 
   const renderUpcomingSessions = (upcomingSessions) => {
@@ -100,8 +108,32 @@ const Dashboard = () => {
                 paddingBottom: "25px",
               }}
             >
-              {upcomingSessions && upcomingSessions.length > 0 ? (
+              {!isLoading && upcomingSessions && upcomingSessions.length > 0 ? (
                 renderUpcomingSessions(upcomingSessions)
+              ) : isLoading ? (
+                <Backdrop open={sessionsIsLoading}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "25px",
+                      padding: "15px 45px",
+                    }}
+                  >
+                    <CircularProgress
+                      sx={{ color: "white" }}
+                      color="secondary"
+                    />
+                    <Typography
+                      component="span"
+                      fontSize={"30px"}
+                      fontWeight={"bold"}
+                      color={"white"}
+                    >
+                      Loading Sessions
+                    </Typography>
+                  </Box>
+                </Backdrop>
               ) : (
                 <Box
                   sx={{

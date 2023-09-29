@@ -12,6 +12,8 @@ import {
 } from "../../services/session.service";
 import SessionCard from "../../components/SessionCard";
 import CircularProgress from "@mui/material/CircularProgress";
+import { getUserDetails } from "../../utils/auth";
+import { handlePayment } from "../../services/payment.service";
 
 export default function SelectSmall() {
   const [sessionsIsLoading, setSessionsIsLoading] = useState(false);
@@ -21,7 +23,8 @@ export default function SelectSmall() {
   const [currentCoach, setCurrentCoach] = useState("");
   const [sessions, setSessions] = useState([]);
   const [filteredSessions, setFilteredSessions] = useState([]);
-
+  const [hasLink, setHasLink] = useState({});
+  const userDetails = getUserDetails();
   const handleChange = (event) => {
     setCurrentCoach(event.target.value);
   };
@@ -35,6 +38,7 @@ export default function SelectSmall() {
 
   useEffect(() => {
     const getData = async () => {
+      setSessionsIsLoading(true);
       setFilteredSessionsIsLoading(true);
       const coachesData = await getCoaches();
       const sessionsList = await getSessions();
@@ -42,10 +46,23 @@ export default function SelectSmall() {
       setFilteredSessions(sessionsList?.data?.sessions);
       setCoachList(coachesData?.data?.coaches);
       setFilteredSessionsIsLoading(false);
+      setSessionsIsLoading(false);
     };
     getData();
   }, []);
 
+  const purchaseHandler = (sessionId, price_id) => {
+    const data = {
+      price_id,
+      userId: userDetails._id,
+      sessionId,
+    };
+    handlePayment(data)
+      .then((res) => {
+        window.location.replace(res?.data?.url);
+      })
+      .catch((err) => console.log("err :", err));
+  };
   return (
     <Box
       sx={{
@@ -181,6 +198,31 @@ export default function SelectSmall() {
                     detail={filteredSession?.details}
                     price={filteredSession?.price}
                     title={filteredSession?.title}
+                    btnText={
+                      !hasLink[filteredSession._id]
+                        ? filteredSession.isBooked
+                          ? "Get Link"
+                          : filteredSession.isPurchased
+                          ? "Book Now"
+                          : "Purchase"
+                        : ""
+                    }
+                    onClick={
+                      filteredSession.isBooked
+                        ? () => {
+                            setHasLink((prev) => ({
+                              ...prev,
+                              [filteredSession._id]: true,
+                            }));
+                          }
+                        : () =>
+                            filteredSession.isPurchased
+                              ? bookHandler(filteredSession)
+                              : purchaseHandler(
+                                  filteredSession._id,
+                                  filteredSession.stripePriceId
+                                )
+                    }
                   />
                 </Grid>
               );
