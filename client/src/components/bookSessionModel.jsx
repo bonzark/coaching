@@ -192,71 +192,75 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           )}
         </Typography>
         <form>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingLeft: "10px",
-            }}
-          >
-            <Typography
+          {!isCoachPage && (
+            <Box
               sx={{
-                color: "#000",
-                fontWeight: 900,
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
+                display: "flex",
+                justifyContent: "space-between",
+                paddingLeft: "10px",
               }}
             >
-              Hi, {userDetails?.name}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "25px",
-              marginBottom: "20px",
-            }}
-          >
+              <Typography
+                sx={{
+                  color: "#000",
+                  fontWeight: 900,
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Hi, {userDetails?.name}
+              </Typography>
+            </Box>
+          )}
+          {!isCoachPage && (
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
-                width: "100%",
+                justifyContent: "space-between",
+                gap: "25px",
+                marginBottom: "20px",
               }}
             >
               <Box
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                   width: "100%",
-                  flexBasis: 0,
-                  flexGrow: 1,
                 }}
               >
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Choose your coach
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={coach}
-                    label="Coach"
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Choose Your Coach" />}
-                  >
-                    {coachList.length > 0 &&
-                      coachList?.map((coachItem) => (
-                        <MenuItem key={coachItem?._id} value={coachItem._id}>
-                          {coachItem.firstName}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+                <Box
+                  sx={{
+                    width: "100%",
+                    flexBasis: 0,
+                    flexGrow: 1,
+                  }}
+                >
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Choose your coach
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={coach}
+                      label="Coach"
+                      onChange={handleChange}
+                      input={<OutlinedInput label="Choose Your Coach" />}
+                    >
+                      {coachList.length > 0 &&
+                        coachList?.map((coachItem) => (
+                          <MenuItem key={coachItem?._id} value={coachItem._id}>
+                            {coachItem.firstName}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                </Box>
               </Box>
             </Box>
-          </Box>
+          )}
 
           <Box
             sx={{
