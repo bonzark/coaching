@@ -174,7 +174,6 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             justifyContent: "space-between",
           }}
         >
-<<<<<<< HEAD
           {isCoachPage
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
@@ -184,9 +183,6 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               label="Your 1st Session Is Free.."
             />
           )} */}
-=======
-          Book your session now
->>>>>>> origin/main
           {isPurchased && (
             <Typography
               sx={{
