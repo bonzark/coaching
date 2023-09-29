@@ -107,7 +107,15 @@ const SessionCard = ({
           </Typography>
         )}
         {sessionLink && (
-          <Box sx={{ fontSize: "12px", color: "#671d63" }}>{sessionLink}</Box>
+          <a
+            href={sessionLink}
+            style={{ textDecoration: "none" }}
+            target="_blank"
+          >
+            <Box sx={{ fontSize: "12px", color: "#671d63", lineHeight: 1.85 }}>
+              {sessionLink}
+            </Box>
+          </a>
         )}
         <Box
           sx={{

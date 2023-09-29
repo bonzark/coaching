@@ -283,11 +283,13 @@ const BookSession = ({ open, handleClose, userDetails }) => {
                         detail={i.details}
                         sessionLink={hasLink[i._id] && i?.sessionLink}
                         btnText={
-                          i.isBooked
-                            ? "Get Link"
-                            : i.isPurchased
-                            ? "Book Now"
-                            : "Purchase"
+                          !hasLink[i._id]
+                            ? i.isBooked
+                              ? "Get Link"
+                              : i.isPurchased
+                              ? "Book Now"
+                              : "Purchase"
+                            : ""
                         }
                         onClick={
                           i.isBooked
