@@ -1,5 +1,5 @@
-import axios from 'axios';
-import baseUrl from '../api/api';
+import axios from "axios";
+import baseUrl from "../api/api";
 
 const getSessions = async () => {
   return await axios
@@ -26,6 +26,17 @@ const getSessionsByCoachId = async (coachId) => {
 const getCoaches = async () => {
   return await axios
     .get(`${baseUrl}/coaches/list`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+const getCoachById = async (id) => {
+  return await axios
+    .get(`${baseUrl}/coaches/${id}`)
     .then((response) => {
       return response;
     })
@@ -74,4 +85,5 @@ export {
   getBookedSessions,
   getSessionsByCoachID,
   getAllSessions,
+  getCoachById,
 };
