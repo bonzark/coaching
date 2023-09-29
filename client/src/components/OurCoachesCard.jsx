@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import { coachesData } from "../utils/constant";
 import SuccessStories from "./SuccessStoriesCard";
+import { getCoaches } from "../services/session.service";
 
 const OurCoachesCard = () => {
+  const [coachesData, setCoachesData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const coachesData = await getCoaches();
+      setCoachesData(coachesData?.data?.coaches);
+    };
+    getData();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -13,18 +23,20 @@ const OurCoachesCard = () => {
         gap: "15px",
       }}
     >
-      {coachesData.map((data) => (
-        <SuccessStories
-          key={data?.coachName}
-          title={data?.coachName}
-          imgSrc={data?.imageUrl}
-          reverse={data?.reverse}
-          descriptionArr={data?.description}
-          id={data?.id}
-          isDetailPage={false}
-          wholeContent={false}
-        />
-      ))}
+      {coachesData.length > 0 &&
+        coachesData.map((data) => (
+          <SuccessStories
+            key={data?._id}
+            title={`${data?.firstName} ${data?.lastName}`}
+            imgSrc={data?.image}
+            reverse={data?.reverse}
+            descriptionArr={data?.about}
+            id={data?._id}
+            isDetailPage={false}
+            wholeContent={false}
+            isOurCoachCard={true}
+          />
+        ))}
     </Box>
   );
 };

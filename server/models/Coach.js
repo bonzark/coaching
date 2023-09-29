@@ -47,7 +47,7 @@ const coachSchema = new mongoose.Schema({
     unique: true,
   },
   about: {
-    type: String,
+    type: Array,
   },
   intro: {
     type: String,

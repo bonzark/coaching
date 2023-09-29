@@ -21,15 +21,18 @@ import {
   getCoaches,
   getSessionsByCoachID,
   getAllSessions,
+  getCoachById,
 } from "../services/session.service";
 import SessionCard from "./SessionCard";
 import { handlePayment } from "../services/payment.service";
 import { PopupModal } from "react-calendly";
 import { getUserDetails, setUserDetails } from "../utils/auth";
 import { getuserById } from "../services/user.service";
+import { useParams, useRoutes } from "react-router-dom";
 
-const BookSession = ({ open, handleClose, userDetails }) => {
+const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [coach, setCoach] = useState("");
+  const [coachDetail, setCoachDetail] = useState();
   const [coachList, setCoachList] = useState([]);
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
@@ -37,6 +40,9 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   const [hasLink, setHasLink] = useState(false);
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
+
+  const params = useParams();
+  const [isCoachPage, setIsCoachPage] = useState(false);
 
   const handleChange = (event) => {
     setCoach(event.target.value);
@@ -106,7 +112,6 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   const bookHandler = (data) => {
     setPopupLink(data?.calendlyLink);
     setPopup(true);
-
     handleClose();
   };
   const userDetail = getUserDetails();
@@ -127,17 +132,33 @@ const BookSession = ({ open, handleClose, userDetails }) => {
   };
 
   useEffect(() => {
-    getCoaches()
-      .then((res) => setCoachList(res?.data?.coaches))
-      .catch((err) => console.log(err));
+    if (window.location.pathname === "/our-coaches") {
+      setIsCoachPage(true);
+      getSessionsByCoachID(coachId)
+        .then((res) => {
+          purchaseSession(userDetails, res?.data?.sessions);
+          bookedSession(userDetails, res?.data?.sessions);
+          getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
+      getCoachById(coachId)
+        .then((res) => {
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      getCoaches()
+        .then((res) => setCoachList(res?.data?.coaches))
+        .catch((err) => console.log(err));
 
-    getAllSessions()
-      .then((res) => {
-        purchaseSession(userDetails, res?.data?.sessions);
-        bookedSession(userDetails, res?.data?.sessions);
-        getPurchasedCount();
-      })
-      .catch((err) => console.log(err));
+      getAllSessions()
+        .then((res) => {
+          purchaseSession(userDetails, res?.data?.sessions);
+          bookedSession(userDetails, res?.data?.sessions);
+          getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
+    }
   }, [open]);
 
   return (
@@ -155,7 +176,9 @@ const BookSession = ({ open, handleClose, userDetails }) => {
             justifyContent: "space-between",
           }}
         >
-          Book your session now
+          {isCoachPage
+            ? `Book your session with ${coachDetail?.firstName} now`
+            : "Book your session now"}
           {/* {!userDetails?.isFreeReadingBooked && (
             <Chip
               sx={{ fontSize: "10px" }}
