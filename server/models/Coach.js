@@ -1,17 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const availabilitySchema = new mongoose.Schema({
   day: {
     type: String,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
+    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     required: true,
   },
   timeSlots: [
@@ -47,7 +39,7 @@ const coachSchema = new mongoose.Schema({
     unique: true,
   },
   about: {
-    type: String,
+    type: Array,
   },
   intro: {
     type: String,
@@ -75,33 +67,25 @@ const coachSchema = new mongoose.Schema({
   availableDays: [
     {
       type: String,
-      enum: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
+      enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     },
   ],
   sessions: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Session",
+      ref: 'Session',
       required: true,
     },
   ],
   bookedSession: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "BookedSession",
+      ref: 'BookedSession',
       required: true,
     },
   ],
   // availability: [availabilitySchema],
 });
 
-const Coach = mongoose.model("coaches", coachSchema);
+const Coach = mongoose.model('coaches', coachSchema);
 module.exports = Coach;
