@@ -2,8 +2,9 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
   overflow-y: scroll !important;
+  font-family: "Poppins";
 }
 
 .about-wrapper {

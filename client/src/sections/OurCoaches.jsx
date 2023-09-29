@@ -1,35 +1,41 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Link, Typography } from "@mui/material";
 import React from "react";
-// import Carousel from "react-material-ui-carousel";
 import Carousel from "react-multi-carousel";
 import CoachCarouselCard from "../components/CoachCarouselCard";
+import { NavLink } from "react-router-dom";
 
 const OurCoaches = () => {
   const items = [
     {
+      id: "4",
       title: "HELEN",
       subtitle: "Anxiety UK Approved Therapist",
       imgSrc: "./HELEN.jpg",
     },
     {
+      id: "1",
       title: "Brandi",
       subtitle: "A spiritual mentor",
       imgSrc: "./Brandi.jpg",
     },
     {
+      id: "2",
       title: "Sarah",
       subtitle: "An Energy Healer",
       imgSrc: "./Sarah.jpg",
     },
     {
+      id: "3",
       title: "Jacqueline",
       subtitle: "Minset Coach And Intuitive Healer",
       imgSrc: "./Jacqueline.jpg",
     },
     {
+      id: "5",
       title: "Rita",
       subtitle: "Accelerated Learning Coach",
       imgSrc: "./Coach2.jpg",
+      redirectLink: "/coaching-with-rita",
     },
   ];
 
@@ -37,7 +43,7 @@ const OurCoaches = () => {
     <Box
       sx={{
         paddingY: "30px",
-        backgroundColor: "whitesmoke"
+        backgroundColor: "whitesmoke",
       }}
     >
       <Typography
@@ -48,14 +54,15 @@ const OurCoaches = () => {
           fontSize: { xs: "32px", sm: "48px" },
           color: "#671d63",
           lineHeight: "48px",
-          fontFamily: "'Abril FatFace', sans-serif",
+          fontFamily: "'montserrat', sans-serif",
           display: "flex",
-          marginBottom: "75px",
+          marginTop: "30px",
+          marginBottom: { xs: "40px", md: "75px" },
           justifyContent: "center",
           "::before": {
-            position: "absolute",
-            bottom: "-40px",
             content: `""`,
+            position: "absolute",
+            bottom: { xs: "-10px", md: "-40px" },
             height: "3px",
             width: "110px",
             backgroundColor: "#671d63",
@@ -65,12 +72,14 @@ const OurCoaches = () => {
         Our Coaches
       </Typography>
       <Typography
+        paragraph
         sx={{
           fontSize: "20px",
           width: { md: "60%", xs: "90%" },
           mx: "auto",
-          textAlign: "center",
           marginBottom: "50px",
+          textAlign: { xs: "left", sm: "justify" },
+          textAlignLast: { xs: "left", sm: "center" },
         }}
       >
         We brings you the world's best teachers in every category of your
@@ -132,34 +141,51 @@ const OurCoaches = () => {
           },
         }}
       >
-        {items.map((item, index) => (
+        {items?.map((item) => (
           <CoachCarouselCard
-            key={index}
-            title={item.title}
-            subtitle={item.subtitle}
-            imgSrc={item.imgSrc}
+            id={item?.id}
+            key={item?.title}
+            title={item?.title}
+            subtitle={item?.subtitle}
+            imgSrc={item?.imgSrc}
+            redirectLink={item?.redirectLink}
           />
         ))}
       </Carousel>
-
-      <Button
-        variant="outlined"
+      <Box
         sx={{
-          color: "#671d63",
-          margin: "20px auto",
-          fontWeight: "bolder",
-          border: "none",
-          backgroundColor: "#EFE6EF",
-          "&:hover": {
-            backgroundColor: "#671d63",
-            color: "white",
-            border: "none",
-          },
-          display: "block",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
         }}
       >
-        SEE ALL COACHES
-      </Button>
+        <Link
+          component={NavLink}
+          to="/our-coaches"
+          variant="button"
+          sx={{
+            color: "#671d63",
+            width: "max-content",
+            textDecoration: "none",
+            margin: "20px auto",
+            fontWeight: "bolder",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "10px",
+            transition: "all 0.25s linear",
+            backgroundColor: "#EFE6EF",
+            "&:hover": {
+              backgroundColor: "#671d63",
+              color: "white",
+              border: "none",
+            },
+            display: "block",
+          }}
+        >
+          SEE ALL COACHES
+        </Link>
+      </Box>
     </Box>
   );
 };

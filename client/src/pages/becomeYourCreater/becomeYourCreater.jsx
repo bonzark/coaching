@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import AboutTemplate from "../../components/AboutTemplate";
 import { AccordionDetails, Box, Typography } from "@mui/material";
-import {
-  aboutTemplateData,
-  becomeYourCreatorList,
-  lineUpsData,
-} from "../../utils/constant";
+import { aboutTemplateData, lineUpsData } from "../../utils/constant";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
-import HeroBanner from "../../sections/heroBanner";
+import PageBanner from "../../sections/PageBanner";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -19,7 +14,6 @@ const Accordion = styled((props) => (
     display: "none",
   },
 }));
-
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
@@ -42,36 +36,23 @@ const AccordionSummary = styled((props) => (
 const BecomeYourCreator = () => {
   const [expanded, setExpanded] = useState("panel1");
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = (resetForm) => {
-    setOpen(false);
-    resetForm();
-  };
-
-  const aboutTemplate1Data = aboutTemplateData.find(
-    (item) => item.id === "become-your-creator"
-  );
-
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
   return (
     <Box>
-      <HeroBanner
-        header={"Become Your Creator"}
-        listItems={becomeYourCreatorList}
-        imageUrl="./heroBg.jpg"
-      />
-      <Box sx={{ padding: "2rem" }}>
+      <PageBanner heading={"Become Your Creator"} imgSrc="./creator.jpg" />
+      <Box
+        sx={{ padding: { xs: "1rem", sm: "2rem", md: "3.5rem", lg: "5rem" } }}
+      >
         <Box
           sx={{
             display: "flex",
             mx: "auto",
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: "55px",
+            paddingBottom: { lg: "55px" },
             flexDirection: { xs: "column", lg: "row" },
           }}
         >
@@ -85,7 +66,7 @@ const BecomeYourCreator = () => {
                 lg: "3.5rem",
               },
               color: "#671d63",
-              fontFamily: "'Abril FatFace',sans-serif",
+              fontFamily: "'montserrat',sans-serif",
               maxWidth: "592px",
               position: "relative",
               paddingRight: { lg: "70px" },
@@ -124,8 +105,10 @@ const BecomeYourCreator = () => {
             boxShadow:
               "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
             maxWidth: "1120px",
-            margin: "4.2rem auto",
+            mx: "auto",
+            my: { xs: "3rem", lg: "4.2rem" },
             borderRadius: "12px",
+            overflow: "hidden",
           }}
         >
           {lineUpsData?.map((item, index) => (
@@ -162,7 +145,12 @@ const BecomeYourCreator = () => {
                 <Typography>{item?.title}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{item?.content}</Typography>
+                <Typography
+                  paragraph
+                  sx={{ textAlign: { xs: "left", sm: "justify" } }}
+                >
+                  {item?.content}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}

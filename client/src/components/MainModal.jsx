@@ -1,13 +1,19 @@
 import { Box, IconButton, Modal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-export const MainModal = ({ open, handleClose, children }) => {
+export const MainModal = ({ open, handleClose, blur, children, lg }) => {
   return (
     <Modal
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{
+        backdropFilter: `blur(${blur ? "5px" : "0px"})`,
+        "&:focus": {
+          outline: "none",
+        },
+      }}
     >
       <Box
         sx={{
@@ -15,7 +21,7 @@ export const MainModal = ({ open, handleClose, children }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: { xs: "240px", md: "400px" },
+          width: { xs: lg ? "400px" : "240px", md: lg ? "800px" : "400px" },
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 5,

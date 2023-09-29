@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography, Button, Paper, Box } from "@mui/material";
 import { PrimaryBtn } from "../components/PrimaryBtn";
+import BookSessionBtn from "../components/BookSessionButton";
 
 const OfferSection = () => {
   return (
@@ -16,39 +17,31 @@ const OfferSection = () => {
     >
       <Grid item xs={12} md={5} lg={6} sx={{ order: { xs: 2, md: 1 } }}>
         <Typography
+          paragraph
           sx={{
             fontSize: { xs: "20px", md: "34px" },
             color: "#671d63",
-            fontFamily: '"Abril Fatface", sans-serif',
+            fontFamily: '"montserrat", sans-serif',
             fontWeight: 100,
             margin: { xs: "auto", sm: "0" },
             padding: "16px 0",
+            textAlign: { xs: "justify", md: "left" },
           }}
         >
           Here's Your Chance To Start Getting Everything You'll Ever Need To
           Live A Life Of Abundance, Attract Endless Happiness And Fulfilment...
         </Typography>
-        <PrimaryBtn>
-          <Box sx={{ padding: "0 40px" }}>
-            <Typography
-              component={"span"}
-              sx={{
-                fontSize: { fontWeight: 900 },
-              }}
-            >
-              Aceess Now For Free
-            </Typography>
-            <Typography
-              component={"span"}
-              sx={{
-                fontSize: { fontWeight: 900 },
-              }}
-            >
-              Instant Download.
-            </Typography>
-          </Box>
-        </PrimaryBtn>
-      </Grid >
+        <BookSessionBtn
+          defaultText={
+            <>
+              <h2 style={{ margin: "0" }}>Access now for free</h2>
+              <h2 style={{ margin: "0" }}>Instant download</h2>
+            </>
+          }
+          freeSessionText={<span>Redeem your free session</span>}
+          bookText={<span>Book Session</span>}
+        />
+      </Grid>
       <Grid
         item
         xs={12}
@@ -79,7 +72,7 @@ const OfferSection = () => {
           />
         </Box>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };
 

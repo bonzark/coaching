@@ -60,7 +60,7 @@ const FAQAccordion = ({ data }) => {
           fontSize: { xs: "32px", sm: "48px" },
           color: "#671d63",
           lineHeight: "50px",
-          fontFamily: "'Abril FatFace', sans-serif",
+          fontFamily: "'montserrat', sans-serif",
           display: "flex",
           marginBottom: { xs: "50px", md: "75px" },
           justifyContent: { xs: "center", md: "flex-start" },

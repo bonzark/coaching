@@ -1,21 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const sessionSchema = new mongoose.Schema({
+const sessionSchemaObj = {
   coach: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Coach', // Reference to the coach (user) who created the session
+    ref: "coaches", // Reference to the coach (user) who created the session
     required: true,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
-  time: {
+  sessionType: {
     type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
+    enum: ["group", "oneToOne", "freeReading"],
     required: true,
   },
   title: {
@@ -26,13 +19,17 @@ const sessionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  users: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Reference to the User model
-    },
-  ],
-});
+  calendlyLink: {
+    type: String,
+    required: true,
+  },
+  stripePriceId: {
+    type: String,
+    required: true,
+  },
+};
 
-const Session = mongoose.model('Session', sessionSchema);
+const sessionSchema = new mongoose.Schema(sessionSchemaObj);
+
+const Session = mongoose.model("Session", sessionSchema);
 module.exports = Session;

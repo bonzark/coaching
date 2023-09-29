@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: false,
   },
   email: {
     type: String,
@@ -14,15 +15,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isFreeReadingBooked: Boolean,
   isVerified: Boolean,
   verificationToken: String,
   resetToken: String,
-  sessions: [
+  purchasedSession: [
     {
-      date: Date,
-      time: String,
-      price: Number,
-      isFirstSessionFree: Boolean,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
     },
   ],
 });
