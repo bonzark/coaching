@@ -57,7 +57,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       const data = userDetails?.bookedSession;
       for (let i = 0; i < bookedSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === bookedSession[i]._id) {
+          if (data[j].session._id === bookedSession[i]._id) {
             bookedSession[i].isBooked = true;
             bookedSession[i].sessionLink = data[j].link;
           }
@@ -77,7 +77,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       const data = userDetails?.purchasedSession;
       for (let i = 0; i < purchaseSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === purchaseSession[i]._id) {
+          if (data[j].session._id === purchaseSession[i]._id) {
             purchaseSession[i].isPurchased = true;
           }
         }
@@ -268,18 +268,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               overflowY: "scroll",
             }}
           >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#671d63",
-                fontWeight: 900,
-                borderBottom: "1px solid #aaa",
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Purchased session
-            </Typography>
+            {sessionList?.filter(
+              (i) =>
+                i.sessionType === "freeReading" || i.isPurchased || i.isBooked
+            )?.length > 0 && (
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Purchased session
+              </Typography>
+            )}
             {sessionList?.length > 0 ? (
               <Grid
                 spacing={3}
@@ -349,18 +354,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 No session available
               </Typography>
             )}
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#671d63",
-                fontWeight: 900,
-                borderBottom: "1px solid #aaa",
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Purchase session
-            </Typography>
+            {sessionList?.filter(
+              (i) =>
+                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
+            )?.length > 0 && (
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Purchase session
+              </Typography>
+            )}
             {sessionList?.length > 0 ? (
               <Grid
                 spacing={3}

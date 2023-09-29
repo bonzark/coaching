@@ -23,6 +23,10 @@ export const PrimaryBtn = (props) => {
           color: "#fff",
           backgroundColor: "#3b0d39",
         },
+        "&.Mui-disabled": {
+          color: "#fff",
+          backgroundColor: "#3b0d39",
+        },
       }}
       {...props}
     >
