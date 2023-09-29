@@ -57,7 +57,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       const data = userDetails?.bookedSession;
       for (let i = 0; i < bookedSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === bookedSession[i]._id) {
+          if (data[j].session._id === bookedSession[i]._id) {
             bookedSession[i].isBooked = true;
             bookedSession[i].sessionLink = data[j].link;
           }
@@ -77,7 +77,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       const data = userDetails?.purchasedSession;
       for (let i = 0; i < purchaseSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === purchaseSession[i]._id) {
+          if (data[j].session._id === purchaseSession[i]._id) {
             purchaseSession[i].isPurchased = true;
           }
         }
@@ -192,71 +192,75 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           )}
         </Typography>
         <form>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingLeft: "10px",
-            }}
-          >
-            <Typography
+          {!isCoachPage && (
+            <Box
               sx={{
-                color: "#000",
-                fontWeight: 900,
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
+                display: "flex",
+                justifyContent: "space-between",
+                paddingLeft: "10px",
               }}
             >
-              Hi, {userDetails?.name}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "25px",
-              marginBottom: "20px",
-            }}
-          >
+              <Typography
+                sx={{
+                  color: "#000",
+                  fontWeight: 900,
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Hi, {userDetails?.name}
+              </Typography>
+            </Box>
+          )}
+          {!isCoachPage && (
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
-                width: "100%",
+                justifyContent: "space-between",
+                gap: "25px",
+                marginBottom: "20px",
               }}
             >
               <Box
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                   width: "100%",
-                  flexBasis: 0,
-                  flexGrow: 1,
                 }}
               >
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Choose your coach
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={coach}
-                    label="Coach"
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Choose Your Coach" />}
-                  >
-                    {coachList.length > 0 &&
-                      coachList?.map((coachItem) => (
-                        <MenuItem key={coachItem?._id} value={coachItem._id}>
-                          {coachItem.firstName}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+                <Box
+                  sx={{
+                    width: "100%",
+                    flexBasis: 0,
+                    flexGrow: 1,
+                  }}
+                >
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Choose your coach
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={coach}
+                      label="Coach"
+                      onChange={handleChange}
+                      input={<OutlinedInput label="Choose Your Coach" />}
+                    >
+                      {coachList.length > 0 &&
+                        coachList?.map((coachItem) => (
+                          <MenuItem key={coachItem?._id} value={coachItem._id}>
+                            {coachItem.firstName}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                </Box>
               </Box>
             </Box>
-          </Box>
+          )}
 
           <Box
             sx={{
@@ -264,18 +268,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               overflowY: "scroll",
             }}
           >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#671d63",
-                fontWeight: 900,
-                borderBottom: "1px solid #aaa",
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Purchased session
-            </Typography>
+            {sessionList?.filter(
+              (i) =>
+                i.sessionType === "freeReading" || i.isPurchased || i.isBooked
+            )?.length > 0 && (
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Purchased session
+              </Typography>
+            )}
             {sessionList?.length > 0 ? (
               <Grid
                 spacing={3}
@@ -345,18 +354,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 No session available
               </Typography>
             )}
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#671d63",
-                fontWeight: 900,
-                borderBottom: "1px solid #aaa",
-                paddingBottom: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            >
-              Purchase session
-            </Typography>
+            {sessionList?.filter(
+              (i) =>
+                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
+            )?.length > 0 && (
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Purchase session
+              </Typography>
+            )}
             {sessionList?.length > 0 ? (
               <Grid
                 spacing={3}
