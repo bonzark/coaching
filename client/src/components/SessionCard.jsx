@@ -58,6 +58,7 @@ const SessionCard = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            minHeight: { md: "75px" },
           }}
         >
           {title && (
@@ -67,7 +68,6 @@ const SessionCard = ({
                 fontSize: { xs: "15px", sm: "20px", md: "25px" },
                 mb: { xs: 1, md: 2 },
                 color: "#671d63",
-                minHeight: { md: "75px" },
               }}
             >
               {title}

@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   const renderUpcomingSessions = (upcomingSessions) => {
     return upcomingSessions?.map((session) => {
+      console.log("SESSION::", session);
       return (
         <>
           <Grid
