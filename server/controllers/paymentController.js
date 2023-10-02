@@ -1,8 +1,8 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
-const express = require('express');
-const PaymentDetail = require('../models/paymentDetails');
-const BookedSession = require('../models/bookedSession');
-const User = require('../models/user');
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const express = require("express");
+const PaymentDetail = require("../models/paymentDetails");
+const BookedSession = require("../models/bookedSession");
+const User = require("../models/user");
 const app = express();
 
 const CLIENT_URL = process.env.HOST_URL;
@@ -13,12 +13,12 @@ exports.paymentSession = async (req, res) => {
     const sessionId = req.body.sessionId;
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      mode: 'payment',
+      payment_method_types: ["card"],
+      mode: "payment",
       line_items: [
         {
           //Price Id can be retrived from products page, a single product will have a unique priceId
-          price: req.body.price_id ?? 'price_1NtwGWSFygNTJvTO4irLPEiE',
+          price: req.body.price_id ?? "price_1NtwGWSFygNTJvTO4irLPEiE",
           quantity: 1,
         },
       ],
@@ -35,7 +35,7 @@ exports.paymentSession = async (req, res) => {
     //Redirect user to this url. It is a stripe url, payment page.
     res.json({ url: session.url });
   } catch (e) {
-    console.log('error', e);
+    console.log("error", e);
     res.status(500).json({ error: e.message });
   }
 };
@@ -45,7 +45,7 @@ exports.paymentCompleted = async (req, res) => {
 
   // Verify the webhook event (optional but recommended)
   try {
-    const signature = req.headers['stripe-signature'];
+    const signature = req.headers["stripe-signature"];
     const verifiedEvent = stripe.webhooks.constructEvent(
       event,
       signature,
@@ -54,14 +54,17 @@ exports.paymentCompleted = async (req, res) => {
 
     // Store the event in MongoDB
 
-    if (verifiedEvent.type === 'payment_intent.succeeded') {
+    if (verifiedEvent.type === "payment_intent.succeeded") {
       const paymentIntent = verifiedEvent.data.object;
 
-      const checkoutSession = await getCheckoutSessionByPaymentIntentId(paymentIntent.id);
+      const checkoutSession = await getCheckoutSessionByPaymentIntentId(
+        paymentIntent.id
+      );
 
       const userId = checkoutSession.metadata.userId;
       const sessionId = checkoutSession.metadata.sessionId;
       const user = await User.findById(userId);
+      const session = await User.findById(sessionId);
 
       const paymentDetail = new PaymentDetail({
         id: paymentIntent.id,
@@ -74,7 +77,8 @@ exports.paymentCompleted = async (req, res) => {
         session: sessionId,
         user: userId,
         purchaseDate: paymentIntent.created,
-        status: 'purchased',
+        status: "purchased",
+        sessionType: session.sessionType,
       });
       await paymentDetail.save();
       await purchasedSession.save();
@@ -83,7 +87,7 @@ exports.paymentCompleted = async (req, res) => {
     }
     res.status(200).redirect(process.env.HOST_URL);
   } catch (error) {
-    console.error('Error handling webhook event:', error);
+    console.error("Error handling webhook event:", error);
     res.sendStatus(400); // Respond with an error status code
   }
 };
@@ -100,7 +104,7 @@ async function getCheckoutSessionByPaymentIntentId(paymentIntentId) {
 
     return session;
   } catch (error) {
-    console.error('Error retrieving Checkout Session:', error);
+    console.error("Error retrieving Checkout Session:", error);
     throw error;
   }
 }

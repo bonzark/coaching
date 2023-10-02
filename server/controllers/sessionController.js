@@ -174,7 +174,7 @@ exports.inviteeCreated = async (req, res) => {
         return res.send(error);
       });
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("purchasedSession");
     const session = await Session.findOne({ calendlyLink: scheduling_url });
 
     if (!user) {
@@ -203,7 +203,32 @@ exports.inviteeCreated = async (req, res) => {
         session: session._id,
         user: user._id,
       });
-      user.isFreeReadingBooked = true;
+
+      if (session.sessionType === "freeReading") {
+        const filter = {
+          $and: [
+            { user: user._id },
+            { session: { $ne: session._id } },
+            { sessionType: "freeReading" },
+          ],
+        };
+
+        await BookedSession.deleteMany(filter, function (err, result) {
+          if (err) {
+            console.error("Error Removing other free sessions:", err);
+          }
+        });
+        const updateUser = {
+          $pull: {
+            purchasedSession: {
+              session: { sessionType: "freeReading" },
+            },
+          },
+        };
+
+        await User.updateOne({ _id: user._id }, updateUser);
+      }
+
       await user.purchasedSession.pull(bookedSession);
       user.bookedSession.push(bookedSession);
       await user.save();

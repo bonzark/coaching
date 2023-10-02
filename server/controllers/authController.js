@@ -127,6 +127,7 @@ const authController = {
             user: user._id,
             purchaseDate: new Date(),
             status: "purchased",
+            sessionType: session.sessionType,
           });
           await purchasedSession.save();
           return user.purchasedSession.push(purchasedSession);

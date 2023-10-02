@@ -48,6 +48,18 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
     }
   };
 
+  const finalDisplaySessionList = (sessions) => {
+    const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
+    var result = sessions.reduce((unique, o) => {
+      if (!unique.some((obj) => obj.sessionType === "freeReading")) {
+        unique.push(o);
+      }
+      return unique;
+    }, []);
+
+    setSessionList(result.concat(paidSession));
+  };
+
   const bookedSession = (userDetails, data) => {
     const bookedSession = data;
     const sessionsWithLink = {};
@@ -61,11 +73,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           }
         }
       }
-      setSessionList(bookedSession);
       bookedSession.forEach((session) => {
         if (session.isBooked) sessionsWithLink[[session._id]] = false;
       });
       setHasLink(sessionsWithLink);
+      finalDisplaySessionList(bookedSession);
     }
   };
 
@@ -80,7 +92,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           }
         }
       }
-      setSessionList(purchaseSession);
+      finalDisplaySessionList(purchaseSession);
+      // setSessionList(purchaseSession);
     }
   };
 
@@ -176,7 +189,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
 
-          {isPurchased && (
+          {/* {isPurchased && (
             <Typography
               sx={{
                 color: "#000",
@@ -187,7 +200,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             >
               All Purchased session : {purchasedCount}
             </Typography>
-          )}
+          )} */}
         </Typography>
         <form>
           {!isCoachPage && (
