@@ -78,28 +78,33 @@ const authController = {
           });
         if (!user) {
           return res.status(401).json({ message: "Invalid credentials" });
+        } else if (!user.isVerified) {
+          return res.status(401).json({
+            message:
+              "Email verification is panding!! Check your email inbox and complete your Registration.",
+          });
+        } else {
+          var bytes = CryptoJS.AES.decrypt(
+            password,
+            process.env.CRYPTO_JS_SECRET
+          );
+          var originalText = bytes.toString(CryptoJS.enc.Utf8);
+          const isPasswordValid = await bcrypt.compare(
+            originalText,
+            user.password
+          );
+          if (!isPasswordValid) {
+            return res.status(401).json({ message: "Invalid credentials" });
+          }
+
+          // Successful login
+          const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "1h",
+          });
+
+          // Successful login
+          res.status(200).json({ message: "Login successful", user, token });
         }
-
-        var bytes = CryptoJS.AES.decrypt(
-          password,
-          process.env.CRYPTO_JS_SECRET
-        );
-        var originalText = bytes.toString(CryptoJS.enc.Utf8);
-        const isPasswordValid = await bcrypt.compare(
-          originalText,
-          user.password
-        );
-        if (!isPasswordValid) {
-          return res.status(401).json({ message: "Invalid credentials" });
-        }
-
-        // Successful login
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "1h",
-        });
-
-        // Successful login
-        res.status(200).json({ message: "Login successful", user, token });
       } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
       }
