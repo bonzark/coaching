@@ -17,7 +17,7 @@ const PreviousPurchases = () => {
   useEffect(() => {
     const ids = {};
     if (userDetail) {
-      if (userDetail?.bookedSession?.length > 0 && userDetail?.purchasedSession?.length > 0) {
+      if (userDetail?.bookedSession?.length > 0 || userDetail?.purchasedSession?.length > 0) {
         const ownedSessions = [...userDetail.bookedSession, ...userDetail.purchasedSession];
         ownedSessions
           .filter((session) => session.status === 'booked' && session)
