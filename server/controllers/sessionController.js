@@ -451,14 +451,6 @@ exports.deleteSession = async (req, res) => {
 
 exports.testApi = async (req, res) => {
   try {
-    const updateUser = {
-      $pull: {
-        purchasedSession: {
-          session: { sessionType: "freeReading" },
-        },
-      },
-    };
-
     const userData = await User.findOne({ _id: req.params.id }).populate(
       "purchasedSession"
     );
