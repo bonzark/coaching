@@ -218,6 +218,8 @@ exports.inviteeCreated = async (req, res) => {
         const newData = user.purchasedSession.filter(
           (i) => i.sessionType !== "freeReading"
         );
+        user.purchasedSession = newData;
+        await user.save();
       }
 
       await user.purchasedSession.pull(bookedSession);
