@@ -64,9 +64,6 @@ exports.paymentCompleted = async (req, res) => {
       const userId = checkoutSession.metadata.userId;
       const sessionId = checkoutSession.metadata.sessionId;
       const user = await User.findById(userId);
-      const session = await User.findOne({ _id: sessionId });
-
-      console.log("session :::", session, sessionId, checkoutSession);
 
       const paymentDetail = new PaymentDetail({
         id: paymentIntent.id,
@@ -80,7 +77,6 @@ exports.paymentCompleted = async (req, res) => {
         user: userId,
         purchaseDate: paymentIntent.created,
         status: "purchased",
-        sessionType: session.sessionType,
       });
       await paymentDetail.save();
       await purchasedSession.save();
