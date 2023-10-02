@@ -1,43 +1,20 @@
-import { Box, Button, Link, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Container, Link, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import CoachCarouselCard from "../components/CoachCarouselCard";
 import { NavLink } from "react-router-dom";
-
+import { getCoaches } from "../services/session.service";
 const OurCoaches = () => {
-  const items = [
-    {
-      id: "4",
-      title: "HELEN",
-      subtitle: "Anxiety UK Approved Therapist",
-      imgSrc: "./HELEN.jpg",
-    },
-    {
-      id: "1",
-      title: "Brandi",
-      subtitle: "A spiritual mentor",
-      imgSrc: "./Brandi.jpg",
-    },
-    {
-      id: "2",
-      title: "Sarah",
-      subtitle: "An Energy Healer",
-      imgSrc: "./Sarah.jpg",
-    },
-    {
-      id: "3",
-      title: "Jacqueline",
-      subtitle: "Minset Coach And Intuitive Healer",
-      imgSrc: "./Jacqueline.jpg",
-    },
-    {
-      id: "5",
-      title: "Rita",
-      subtitle: "Accelerated Learning Coach",
-      imgSrc: "./Coach2.jpg",
-      redirectLink: "/coaching-with-rita",
-    },
-  ];
+  const [coachList, setCoachList] = useState([]);
+
+  useEffect(() => {
+    const getCoacheData = async () => {
+      const coaches = await getCoaches();
+      console.log("coaches :", coaches.data);
+      setCoachList(coaches?.data?.coaches);
+    };
+    getCoacheData();
+  }, []);
 
   return (
     <Box
@@ -88,70 +65,74 @@ const OurCoaches = () => {
         trainers in the world and bring them into our ecosystem so you always
         learn from the very best in the field.
       </Typography>
-      <Carousel
-        additionalTransfrom={0}
-        arrows={false}
-        autoPlaySpeed={3000}
-        centerMode={false}
-        className=""
-        containerClass="container-with-dots"
-        dotListClass=""
-        draggable
-        focusOnSelect={false}
-        infinite
-        itemClass=""
-        keyBoardControl
-        minimumTouchDrag={80}
-        pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-        rewind={false}
-        rewindWithAnimation={false}
-        rtl={false}
-        shouldResetAutoplay
-        showDots={false}
-        sliderClass="CoachCarouselCardItem"
-        slidesToSlide={1}
-        swipeable
-        responsive={{
-          desktop: {
-            breakpoint: {
-              max: 3000,
-              min: 1024,
+      <Container>
+        <Carousel
+          additionalTransfrom={0}
+          arrows={false}
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="container-with-dots"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          sliderClass="CoachCarouselCardItem"
+          slidesToSlide={1}
+          swipeable
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 1024,
+              },
+              items: 4,
+              partialVisibilityGutter: 50,
             },
-            items: 5,
-            partialVisibilityGutter: 50,
-          },
-          mobile: {
-            breakpoint: {
-              max: 464,
-              min: 0,
+            tablet: {
+              breakpoint: {
+                max: 1024,
+                min: 464,
+              },
+              items: 2,
+              partialVisibilityGutter: 30,
             },
-            items: 1,
-            partialVisibilityGutter: 30,
-          },
-          tablet: {
-            breakpoint: {
-              max: 1024,
-              min: 464,
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 30,
             },
-            items: 2,
-            partialVisibilityGutter: 30,
-          },
-        }}
-      >
-        {items?.map((item) => (
-          <CoachCarouselCard
-            id={item?.id}
-            key={item?.title}
-            title={item?.title}
-            subtitle={item?.subtitle}
-            imgSrc={item?.imgSrc}
-            redirectLink={item?.redirectLink}
-          />
-        ))}
-      </Carousel>
+          }}
+        >
+          {coachList?.map((item) => {
+            console.log("Item :", item.firstName);
+            return (
+              <CoachCarouselCard
+                id={item?._id}
+                key={item?._id}
+                title={item?.firstName}
+                subtitle={item?.intro}
+                imgSrc={item?.image}
+              />
+            );
+          })}
+        </Carousel>
+      </Container>
       <Box
         sx={{
           display: "flex",
