@@ -20,6 +20,11 @@ const sessionSchemaObj = {
     enum: ["purchased", "booked", "consumed"],
     required: true,
   },
+  sessionType: {
+    type: String,
+    enum: ["group", "oneToOne", "freeReading"],
+    required: true,
+  },
   purchaseDate: {
     type: Number,
     required: true,
