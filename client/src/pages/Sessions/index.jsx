@@ -54,13 +54,13 @@ export default function SelectSmall() {
           }
         }
       }
-      setFilteredSessions(bookedSession);
       if (bookedSession?.length > 0) {
         bookedSession.forEach((session) => {
           if (session.isBooked) sessionsWithLink[[session._id]] = false;
         });
         setHasLink(sessionsWithLink);
       }
+      setFilteredSessions(bookedSession);
     }
   };
 

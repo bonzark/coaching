@@ -15,22 +15,6 @@ const PreviousPurchases = () => {
   const userDetail = getUserDetails();
 
   useEffect(() => {
-    const ids = {};
-    if (userDetail) {
-      if (userDetail?.bookedSession?.length > 0 || userDetail?.purchasedSession?.length > 0) {
-        const ownedSessions = [...userDetail.bookedSession, ...userDetail.purchasedSession];
-        ownedSessions
-          .filter((session) => session.status === 'booked' && session)
-          .forEach((session) => {
-            ids[[session._id]] = false;
-          });
-        setMyOwnSessions(ownedSessions);
-        setSessionLinks(ids);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     if (userDetail) {
       if (window.location.pathname === '/our-coaches') {
         setIsCoachPage(true);
@@ -49,7 +33,7 @@ const PreviousPurchases = () => {
           .catch((err) => console.log(err));
       }
     }
-  }, [open]);
+  }, []);
 
   const bookedSession = (userDetails, data) => {
     const bookedSession = data;
@@ -58,7 +42,7 @@ const PreviousPurchases = () => {
       const data = userDetails?.bookedSession;
       for (let i = 0; i < bookedSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === bookedSession[i]._id) {
+          if (data[j]?.session?._id === bookedSession[i]?._id) {
             bookedSession[i].isBooked = true;
             bookedSession[i].sessionLink = data[j].link;
           }
@@ -69,6 +53,7 @@ const PreviousPurchases = () => {
           if (session.isBooked) sessionsWithLink[[session._id]] = false;
         });
       }
+      setMyOwnSessions(bookedSession);
     }
   };
 
@@ -78,16 +63,17 @@ const PreviousPurchases = () => {
       const data = userDetails?.purchasedSession;
       for (let i = 0; i < purchaseSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session === purchaseSession[i]._id) {
+          if (data[j]?.session?._id === purchaseSession[i]?._id) {
             purchaseSession[i].isPurchased = true;
           }
         }
       }
+      setMyOwnSessions(purchaseSession);
     }
   };
 
   const bookHandler = (data) => {
-    setPopupLink(data?.session?.calendlyLink);
+    setPopupLink(data?.calendlyLink);
     setPopup(true);
   };
 
@@ -100,6 +86,7 @@ const PreviousPurchases = () => {
         .then((res) => {
           purchaseSession(userDetail, res?.data?.sessions);
           bookedSession(userDetail, res?.data?.sessions);
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
@@ -127,30 +114,32 @@ const PreviousPurchases = () => {
           myOwnSessions.length > 0 &&
           myOwnSessions.map(
             (session, index) =>
-              (session.status === 'booked' || session.status === 'purchased') && (
+              (session.isBooked === true || session.isPurchased === true) && (
                 <Box key={session?._id} sx={{ maxWidth: '400px' }}>
                   <SessionCard
                     key={session._id + index}
-                    title={session.session.title}
-                    detail={session.session.details}
-                    sessionLink={
-                      sessionLinks[session._id] && session.status === 'booked' && session?.link
-                    }
+                    title={session.title}
+                    detail={session.details}
+                    sessionLink={sessionLinks[session._id] && session?.sessionLink}
                     btnText={
                       !sessionLinks[session._id]
-                        ? session?.status === 'booked'
+                        ? session.isBooked
                           ? 'Get Link'
-                          : 'Book Now'
+                          : session.isPurchased
+                          ? 'Book Now'
+                          : 'Purchase'
                         : ''
                     }
-                    onClick={() => {
-                      if (session.status === 'booked')
-                        setSessionLinks((prev) => ({
-                          ...prev,
-                          [session._id]: true,
-                        }));
-                      else bookHandler(session);
-                    }}
+                    onClick={
+                      session?.isBooked
+                        ? () => {
+                            setSessionLinks((prev) => ({
+                              ...prev,
+                              [session._id]: true,
+                            }));
+                          }
+                        : () => session?.isPurchased && bookHandler(session)
+                    }
                   />
                 </Box>
               )
