@@ -66,7 +66,7 @@ exports.paymentCompleted = async (req, res) => {
       const user = await User.findById(userId);
       const session = await User.findById(sessionId);
 
-      console.log("session :::", session);
+      console.log("session :::", session, sessionId, checkoutSession);
 
       const paymentDetail = new PaymentDetail({
         id: paymentIntent.id,
