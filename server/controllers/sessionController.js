@@ -213,11 +213,7 @@ exports.inviteeCreated = async (req, res) => {
           ],
         };
 
-        await BookedSession.deleteMany(filter, function (err, result) {
-          if (err) {
-            console.error("Error Removing other free sessions:", err);
-          }
-        });
+        await BookedSession.deleteMany(filter);
         const updateUser = {
           $pull: {
             purchasedSession: {
