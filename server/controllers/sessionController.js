@@ -214,15 +214,10 @@ exports.inviteeCreated = async (req, res) => {
         };
 
         await BookedSession.deleteMany(filter);
-        const updateUser = {
-          $pull: {
-            purchasedSession: {
-              session: { sessionType: "freeReading" },
-            },
-          },
-        };
 
-        await User.updateOne({ _id: user._id }, updateUser);
+        const newData = user.purchasedSession.filter(
+          (i) => i.sessionType !== "freeReading"
+        );
       }
 
       await user.purchasedSession.pull(bookedSession);
@@ -455,8 +450,25 @@ exports.deleteSession = async (req, res) => {
 
 exports.testApi = async (req, res) => {
   try {
-    const userData = await User.findOne({ _id: req.params.id }, "-password");
-    localStorage.setItem("user", JSON.stringify(userData));
+    const updateUser = {
+      $pull: {
+        purchasedSession: {
+          session: { sessionType: "freeReading" },
+        },
+      },
+    };
+
+    const userData = await User.findOne({ _id: req.params.id }).populate(
+      "purchasedSession"
+    );
+
+    const newData = userData.purchasedSession.filter(
+      (i) => i.sessionType !== "freeReading"
+    );
+
+    userData.purchasedSession = newData;
+
+    userData.save();
     res.status(200).json({ userData });
   } catch (error) {
     res.status(400).json({ error });
