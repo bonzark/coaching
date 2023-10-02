@@ -1,47 +1,53 @@
-import { useEffect, useState } from "react";
-import { Box } from "@mui/material";
-import { getUserDetails, setUserDetails } from "../../utils/auth";
-import { PopupModal } from "react-calendly";
-import { getuserById } from "../../services/user.service";
-import { getAllSessions } from "../../services/session.service";
-import SessionCard from "../../components/SessionCard";
-import PageBanner from "../../sections/PageBanner";
+import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import { getUserDetails, setUserDetails } from '../../utils/auth';
+import { PopupModal } from 'react-calendly';
+import { getuserById } from '../../services/user.service';
+import { getAllSessions } from '../../services/session.service';
+import SessionCard from '../../components/SessionCard';
+import PageBanner from '../../sections/PageBanner';
 
 const PreviousPurchases = () => {
   const [sessionLinks, setSessionLinks] = useState({});
   const [popup, setPopup] = useState(false);
-  const [popupLink, setPopupLink] = useState("");
-  const ids = {};
+  const [popupLink, setPopupLink] = useState('');
+  const [myOwnSessions, setMyOwnSessions] = useState([]);
   const userDetail = getUserDetails();
-  const ownedSessions = [
-    ...userDetail.bookedSession,
-    ...userDetail.purchasedSession,
-  ];
-  ownedSessions
-    .filter((session) => session.status === "booked" && session)
-    .forEach((session) => {
-      ids[[session._id]] = false;
-    });
 
   useEffect(() => {
-    setSessionLinks(ids);
+    const ids = {};
+    if (userDetail) {
+      if (userDetail?.bookedSession?.length > 0 && userDetail?.purchasedSession?.length > 0) {
+        const ownedSessions = [...userDetail.bookedSession, ...userDetail.purchasedSession];
+        ownedSessions
+          .filter((session) => session.status === 'booked' && session)
+          .forEach((session) => {
+            ids[[session._id]] = false;
+          });
+        setMyOwnSessions(ownedSessions);
+        setSessionLinks(ids);
+      }
+    }
   }, []);
+
   useEffect(() => {
-    if (window.location.pathname === "/our-coaches") {
-      setIsCoachPage(true);
-      getSessionsByCoachID(coachId)
-        .then((res) => {
-          purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      getAllSessions()
-        .then((res) => {
-          purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
-        })
-        .catch((err) => console.log(err));
+    if (userDetail) {
+      if (window.location.pathname === '/our-coaches') {
+        setIsCoachPage(true);
+        getSessionsByCoachID(coachId)
+          .then((res) => {
+            purchaseSession(userDetail, res?.data?.sessions);
+            bookedSession(userDetail, res?.data?.sessions);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        getAllSessions()
+          .then((res) => {
+            purchaseSession(userDetail, res?.data?.sessions);
+            bookedSession(userDetail, res?.data?.sessions);
+          })
+          .catch((err) => console.log(err));
+      }
     }
   }, [open]);
 
@@ -58,9 +64,11 @@ const PreviousPurchases = () => {
           }
         }
       }
-      bookedSession.forEach((session) => {
-        if (session.isBooked) sessionsWithLink[[session._id]] = false;
-      });
+      if (bookedSession && bookedSession.length > 0) {
+        bookedSession.forEach((session) => {
+          if (session.isBooked) sessionsWithLink[[session._id]] = false;
+        });
+      }
     }
   };
 
@@ -90,8 +98,8 @@ const PreviousPurchases = () => {
       setUserDetails(data);
       getAllSessions()
         .then((res) => {
-          purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
+          purchaseSession(userDetail, res?.data?.sessions);
+          bookedSession(userDetail, res?.data?.sessions);
         })
         .catch((err) => console.log(err));
     }
@@ -100,61 +108,63 @@ const PreviousPurchases = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#f2effb",
+        backgroundColor: '#f2effb',
       }}
     >
       <PageBanner imgSrc="./prevPurchase.jpg" heading="Previous Purchases" />
       <Box
         sx={{
-          padding: "5rem 15px",
-          margin: "0 auto",
-          maxWidth: "1366px",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "35px 15px",
-          justifyContent: "center",
+          padding: '5rem 15px',
+          margin: '0 auto',
+          maxWidth: '1366px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '35px 15px',
+          justifyContent: 'center',
         }}
       >
-        {ownedSessions.map(
-          (session, index) =>
-            (session.status === "booked" || session.status === "purchased") && (
-              <Box key={session?._id} sx={{ maxWidth: "400px" }}>
-                <SessionCard
-                  key={session._id + index}
-                  title={session.session.title}
-                  detail={session.session.details}
-                  sessionLink={
-                    sessionLinks[session._id] &&
-                    session.status === "booked" &&
-                    session?.link
-                  }
-                  btnText={
-                    !sessionLinks[session._id]
-                      ? session?.status === "booked"
-                        ? "Get Link"
-                        : "Book Now"
-                      : ""
-                  }
-                  onClick={() => {
-                    if (session.status === "booked")
-                      setSessionLinks((prev) => ({
-                        ...prev,
-                        [session._id]: true,
-                      }));
-                    else bookHandler(session);
-                  }}
-                />
-              </Box>
-            )
-        )}
+        {myOwnSessions &&
+          myOwnSessions.length > 0 &&
+          myOwnSessions.map(
+            (session, index) =>
+              (session.status === 'booked' || session.status === 'purchased') && (
+                <Box key={session?._id} sx={{ maxWidth: '400px' }}>
+                  <SessionCard
+                    key={session._id + index}
+                    title={session.session.title}
+                    detail={session.session.details}
+                    sessionLink={
+                      sessionLinks[session._id] && session.status === 'booked' && session?.link
+                    }
+                    btnText={
+                      !sessionLinks[session._id]
+                        ? session?.status === 'booked'
+                          ? 'Get Link'
+                          : 'Book Now'
+                        : ''
+                    }
+                    onClick={() => {
+                      if (session.status === 'booked')
+                        setSessionLinks((prev) => ({
+                          ...prev,
+                          [session._id]: true,
+                        }));
+                      else bookHandler(session);
+                    }}
+                  />
+                </Box>
+              )
+          )}
       </Box>
-      <PopupModal
-        url={popupLink}
-        prefill={{ email: userDetail?.email, name: userDetail?.name }}
-        onModalClose={popupCloseHandler}
-        open={popup}
-        rootElement={document.getElementById("root")}
-      />
+      {popupLink && (
+        <PopupModal
+          url={popupLink}
+          prefill={{ email: userDetail?.email, name: userDetail?.name }}
+          onModalClose={popupCloseHandler}
+          open={popup}
+          rootElement={document.getElementById('root')}
+        />
+      )}
     </Box>
   );
 };
