@@ -1,10 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const data = () => {
-  console.log(data);
-};
-
 const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
   return (
     <Box
@@ -39,9 +35,6 @@ const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
             },
           }}
         >
-          {/* 
-                "linear-gradient(0deg, rgba(103,29,99,0.9) 38%, rgba(103,29,99,0) 100%)",
-          */}
           <Typography
             component={"h3"}
             sx={{
