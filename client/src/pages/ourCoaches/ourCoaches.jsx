@@ -1,6 +1,6 @@
-import React from "react";
-import OurCoachesCard from "../../components/OurCoachesCard";
-import PageBanner from "../../sections/PageBanner";
+import React from 'react';
+import OurCoachesCard from '../../components/OurCoachesCard';
+import PageBanner from '../../sections/PageBanner';
 
 const AllCoaches = () => {
   return (
