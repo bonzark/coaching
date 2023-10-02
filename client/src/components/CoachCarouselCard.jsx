@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
-import { object } from "yup";
 
-const CoachCarouselCard = ({ id, title, subtitle, imgSrc, redirectLink }) => {
-  const redirect = redirectLink ?? `/ourCoachesDetail/${id}`;
+const data = () => {
+  console.log(data);
+};
+
+const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
   return (
     <Box
       sx={{
@@ -16,11 +17,14 @@ const CoachCarouselCard = ({ id, title, subtitle, imgSrc, redirectLink }) => {
         height: "100%",
       }}
     >
-      <Link to={redirect} state={{ name: id }}>
-        <img src={imgSrc} style={{ objectFit: "cover", width: "100%" }} />
+      <Link to={`/ourCoachesDetail/${id}`} state={{ name: id }}>
+        <img
+          src={imgSrc}
+          style={{ objectFit: "cover", width: "100%", height: "350px" }}
+        />
         <Box
           sx={{
-            padding: "50px 30px",
+            padding: "0 0 35px 21px",
             position: "absolute",
             zIndex: 111,
             bottom: 0,
@@ -28,14 +32,16 @@ const CoachCarouselCard = ({ id, title, subtitle, imgSrc, redirectLink }) => {
             width: "100%",
             background:
               "linear-gradient(0deg, rgba(234,214,185,1) 18%, rgba(234,214,185,0) 100%)",
-            transition: "all 0.9s",
+            transition: "background 2s",
             "&:hover": {
-              transition: "all 0.9s",
               background:
                 "linear-gradient(0deg, rgba(103,29,99,0.9) 38%, rgba(103,29,99,0) 100%)",
             },
           }}
         >
+          {/* 
+                "linear-gradient(0deg, rgba(103,29,99,0.9) 38%, rgba(103,29,99,0) 100%)",
+          */}
           <Typography
             component={"h3"}
             sx={{
