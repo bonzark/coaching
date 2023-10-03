@@ -10,7 +10,6 @@ const OurCoaches = () => {
   useEffect(() => {
     const getCoacheData = async () => {
       const coaches = await getCoaches();
-      console.log("coaches :", coaches.data);
       setCoachList(coaches?.data?.coaches);
     };
     getCoacheData();
@@ -120,7 +119,6 @@ const OurCoaches = () => {
           }}
         >
           {coachList?.map((item) => {
-            console.log("Item :", item.firstName);
             return (
               <CoachCarouselCard
                 id={item?._id}
