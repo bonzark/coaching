@@ -19,6 +19,7 @@ export const MainModal = ({ open, handleClose, blur, children, lg }) => {
     >
       <Box
         sx={{
+          maxWidth: "968px",
           position: "absolute",
           top: "50%",
           left: "50%",

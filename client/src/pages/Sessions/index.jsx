@@ -84,6 +84,290 @@ export default function SelectSmall() {
     }
   };
 
+  const DivideSessions = ({ filteredSessions }) => {
+    const booked = filteredSessions
+      ?.filter((session) => {
+        if (currentCoach === "") return true;
+        else if (session?.coach?.firstName === currentCoach) return true;
+        else return false;
+      })
+      ?.filter((filteredSession) => filteredSession?.isBooked);
+    const bought = filteredSessions
+      ?.filter((session) => {
+        if (currentCoach === "") return true;
+        else if (session?.coach?.firstName === currentCoach) return true;
+        else return false;
+      })
+      ?.filter((filteredSession) => filteredSession?.isPurchased);
+    const toPurchase = filteredSessions
+      ?.filter((session) => {
+        if (currentCoach === "") return true;
+        else if (session?.coach?.firstName === currentCoach) return true;
+        else return false;
+      })
+      ?.filter(
+        (filteredSession) =>
+          !filteredSession?.isPurchased && !filteredSession?.isBooked
+      );
+
+    return (
+      <>
+        <Typography
+          variant="h4"
+          sx={{
+            fontSize: { xs: "20px", md: "26px" },
+            display: "block",
+            margin: "0 0.7rem",
+            borderBottom: "1px solid #671d63",
+          }}
+        >
+          Booked Sessions
+        </Typography>
+        <Grid
+          spacing={3}
+          container
+          sx={{
+            margin: "0 !important",
+            width: "100% !important",
+          }}
+          rowGap={"15px"}
+        >
+          {booked && booked.length ? (
+            booked.map((session) => (
+              <Grid
+                key={session?._id}
+                spacing={1}
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{
+                  padding: {
+                    xs: "16px 0 !important",
+                    md: "12px !important",
+                    lf: "24px !important",
+                  },
+                }}
+              >
+                <SessionCard
+                  coachName={session?.coach?.firstName}
+                  sessionLink={hasLink[session._id] && session?.sessionLink}
+                  date={session?.date}
+                  time={session?.time}
+                  sessionImg={session?.coach?.coachImg}
+                  detail={session?.details}
+                  price={session?.price}
+                  title={session?.title}
+                  btnText={
+                    !hasLink[session._id]
+                      ? session.isBooked
+                        ? "Get Link"
+                        : session.isPurchased
+                        ? "Book Now"
+                        : "Purchase"
+                      : ""
+                  }
+                  onClick={
+                    session?.isBooked
+                      ? () => {
+                          setHasLink((prev) => ({
+                            ...prev,
+                            [session._id]: true,
+                          }));
+                        }
+                      : () =>
+                          session?.isPurchased
+                            ? bookHandler(session)
+                            : purchaseHandler(
+                                session?._id,
+                                session?.stripePriceId
+                              )
+                  }
+                />
+              </Grid>
+            ))
+          ) : (
+            <Typography
+              sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
+            >
+              {currentCoach === ""
+                ? "No sessions have been booked yet..."
+                : `You have not booked any sessions from coach ${currentCoach}.`}
+            </Typography>
+          )}
+        </Grid>
+        <Typography
+          variant="h4"
+          sx={{
+            fontSize: { xs: "20px", md: "26px" },
+            display: "block",
+            margin: "5rem 0.7rem 0",
+            borderBottom: "1px solid #671d63",
+          }}
+        >
+          Purchased Sessions
+        </Typography>
+        <Grid
+          spacing={3}
+          container
+          sx={{
+            margin: "0 !important",
+            width: "100% !important",
+          }}
+          rowGap={"15px"}
+        >
+          {bought && bought.length ? (
+            bought.map((session) => (
+              <Grid
+                key={session?._id}
+                spacing={1}
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{
+                  padding: {
+                    xs: "16px 0 !important",
+                    md: "12px !important",
+                    lf: "24px !important",
+                  },
+                }}
+              >
+                <SessionCard
+                  coachName={session?.coach?.firstName}
+                  sessionLink={hasLink[session._id] && session?.sessionLink}
+                  date={session?.date}
+                  time={session?.time}
+                  sessionImg={session?.coach?.coachImg}
+                  detail={session?.details}
+                  price={session?.price}
+                  title={session?.title}
+                  btnText={
+                    !hasLink[session._id]
+                      ? session.isBooked
+                        ? "Get Link"
+                        : session.isPurchased
+                        ? "Book Now"
+                        : "Purchase"
+                      : ""
+                  }
+                  onClick={
+                    session?.isBooked
+                      ? () => {
+                          setHasLink((prev) => ({
+                            ...prev,
+                            [session._id]: true,
+                          }));
+                        }
+                      : () =>
+                          session?.isPurchased
+                            ? bookHandler(session)
+                            : purchaseHandler(
+                                session?._id,
+                                session?.stripePriceId
+                              )
+                  }
+                />
+              </Grid>
+            ))
+          ) : (
+            <Typography
+              sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
+            >
+              {currentCoach === ""
+                ? "You have not bought any sessions yet..."
+                : `No sessions from coach ${currentCoach} have been bought yet...`}
+            </Typography>
+          )}
+        </Grid>
+        <Typography
+          variant="h4"
+          sx={{
+            fontSize: { xs: "20px", md: "26px" },
+            display: "block",
+            margin: "5rem 0.7rem 0",
+            borderBottom: "1px solid #671d63",
+          }}
+        >
+          Purchase Sessions
+        </Typography>
+        <Grid
+          spacing={3}
+          container
+          sx={{
+            margin: "0 !important",
+            width: "100% !important",
+          }}
+          rowGap={"15px"}
+        >
+          {toPurchase && toPurchase.length ? (
+            toPurchase.map((session) => (
+              <Grid
+                key={session?._id}
+                spacing={1}
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{
+                  padding: {
+                    xs: "16px 0 !important",
+                    md: "12px !important",
+                    lf: "24px !important",
+                  },
+                }}
+              >
+                <SessionCard
+                  coachName={session?.coach?.firstName}
+                  sessionLink={hasLink[session._id] && session?.sessionLink}
+                  date={session?.date}
+                  time={session?.time}
+                  sessionImg={session?.coach?.coachImg}
+                  detail={session?.details}
+                  price={session?.price}
+                  title={session?.title}
+                  btnText={
+                    !hasLink[session._id]
+                      ? session.isBooked
+                        ? "Get Link"
+                        : session.isPurchased
+                        ? "Book Now"
+                        : "Purchase"
+                      : ""
+                  }
+                  onClick={
+                    session?.isBooked
+                      ? () => {
+                          setHasLink((prev) => ({
+                            ...prev,
+                            [session._id]: true,
+                          }));
+                        }
+                      : () =>
+                          session?.isPurchased
+                            ? bookHandler(session)
+                            : purchaseHandler(
+                                session?._id,
+                                session?.stripePriceId
+                              )
+                  }
+                />
+              </Grid>
+            ))
+          ) : (
+            <Typography
+              sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
+            >
+              {currentCoach === ""
+                ? "No sessions availabel to purchase..."
+                : `You have bought all sessions available from coach ${currentCoach}.`}
+            </Typography>
+          )}
+        </Grid>
+      </>
+    );
+  };
+
   useEffect(() => {
     const getData = async () => {
       setSessionsIsLoading(true);
@@ -158,10 +442,13 @@ export default function SelectSmall() {
         }}
       >
         <Typography
+          variant="h1"
           sx={{
-            fontSize: { xs: "20px", sm: "27px", md: "32px" },
+            fontSize: { xs: "24px", sm: "32px", md: "40px" },
             color: "#673d61",
             fontFamily: "'montserrat', cursive",
+            fontWeight: 900,
+            marginBottom: "2rem",
             // textAlign: { xs: "center", md: "left" },
           }}
         >
@@ -189,6 +476,7 @@ export default function SelectSmall() {
               value={currentCoach}
               onChange={handleChange}
               input={<OutlinedInput label="Choose Your Coach" />}
+              sx={{ mb: { xs: "25px", sm: 0 } }}
             >
               <MenuItem
                 value={""}
@@ -257,64 +545,7 @@ export default function SelectSmall() {
               </Box>
             </Backdrop>
           ) : filteredSessions?.length > 0 ? (
-            filteredSessions?.map((filteredSession) => {
-              return (
-                <Grid
-                  key={filteredSession?._id}
-                  spacing={1}
-                  item
-                  xs={12}
-                  md={6}
-                  lg={4}
-                  sx={{
-                    padding: {
-                      xs: "16px 0 !important",
-                      md: "12px !important",
-                      lf: "24px !important",
-                    },
-                  }}
-                >
-                  <SessionCard
-                    coachName={filteredSession?.coach?.firstName}
-                    sessionLink={
-                      hasLink[filteredSession._id] &&
-                      filteredSession?.sessionLink
-                    }
-                    date={filteredSession?.date}
-                    time={filteredSession?.time}
-                    sessionImg={filteredSession?.coach?.coachImg}
-                    detail={filteredSession?.details}
-                    price={filteredSession?.price}
-                    title={filteredSession?.title}
-                    btnText={
-                      !hasLink[filteredSession._id]
-                        ? filteredSession.isBooked
-                          ? "Get Link"
-                          : filteredSession.isPurchased
-                          ? "Book Now"
-                          : "Purchase"
-                        : ""
-                    }
-                    onClick={
-                      filteredSession?.isBooked
-                        ? () => {
-                            setHasLink((prev) => ({
-                              ...prev,
-                              [filteredSession._id]: true,
-                            }));
-                          }
-                        : () =>
-                            filteredSession?.isPurchased
-                              ? bookHandler(filteredSession)
-                              : purchaseHandler(
-                                  filteredSession?._id,
-                                  filteredSession?.stripePriceId
-                                )
-                    }
-                  />
-                </Grid>
-              );
-            })
+            <DivideSessions filteredSessions={filteredSessions} />
           ) : (
             <Typography
               sx={{ color: "#671d63", fontSize: "45px", margin: "40px auto" }}
