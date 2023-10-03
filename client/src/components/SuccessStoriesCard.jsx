@@ -170,7 +170,7 @@ const SuccessStories = ({
                   <BookSessionBtn
                     defaultText={"Book Now"}
                     freeSessionText={"Book a free session"}
-                    bookText={"Book Session"}
+                    bookText={"Purchase Session"}
                     coachId={id}
                   />
                 )}

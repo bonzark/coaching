@@ -34,19 +34,13 @@ const CoachDetail = () => {
     },
   ];
 
-  const btnText = (
-    <>
-      <span>Book Session</span>
-    </>
-  );
-
   return (
     <>
       <PageBanner
         heading={"Coaching with Rita"}
         imgSrc="successStories.jpg"
         listItems={heroListItems}
-        buttonText={btnText}
+        buttonText={<span>Purchase Session</span>}
       />
       <Box sx={{ margin: "5rem 0" }}>
         <Box
