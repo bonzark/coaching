@@ -279,10 +279,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               overflowY: "scroll",
             }}
           >
-            {sessionList?.filter(
-              (i) =>
-                i.sessionType === "freeReading" || i.isPurchased || i.isBooked
-            )?.length > 0 && (
+            {(sessionList?.length > 0 || sessionList) && (
               <Typography
                 variant="h6"
                 sx={{
@@ -296,7 +293,13 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 Purchased session
               </Typography>
             )}
-            {sessionList?.length > 0 ? (
+            {sessionList?.filter(
+              (i) =>
+                (i.sessionType === "freeReading" &&
+                  (i.isPurchased || i.isBooked)) ||
+                i.isPurchased ||
+                i.isBooked
+            )?.length > 0 ? (
               <Grid
                 spacing={3}
                 container
@@ -309,7 +312,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 {sessionList
                   ?.filter(
                     (i) =>
-                      i.sessionType === "freeReading" ||
+                      (i.sessionType === "freeReading" &&
+                        (i.isPurchased || i.isBooked)) ||
                       i.isPurchased ||
                       i.isBooked
                   )
@@ -364,10 +368,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 No session available
               </Typography>
             )}
-            {sessionList?.filter(
-              (i) =>
-                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
-            )?.length > 0 && (
+            {(sessionList?.length > 0 || sessionList) && (
               <Typography
                 variant="h6"
                 sx={{
@@ -381,7 +382,10 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 Purchase session
               </Typography>
             )}
-            {sessionList?.length > 0 ? (
+            {sessionList?.filter(
+              (i) =>
+                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
+            )?.length > 0 ? (
               <Grid
                 spacing={3}
                 container
