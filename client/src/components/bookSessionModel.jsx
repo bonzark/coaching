@@ -319,8 +319,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                       sx={{ height: "100% !important" }}
                       item
                       xs={12}
-                      sm={6}
-                      lg={6}
+                      md={6}
                     >
                       <SessionCard
                         title={i.title}
@@ -405,8 +404,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                       sx={{ height: "100% !important" }}
                       item
                       xs={12}
-                      sm={6}
-                      lg={6}
+                      md={6}
                     >
                       <SessionCard
                         title={i.title}
