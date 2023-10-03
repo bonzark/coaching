@@ -24,11 +24,11 @@ const SuccessModal = ({
     if (open) {
       let timer = setTimeout(() => {
         handleClose();
-      }, 3000);
+      }, 5000);
 
       // Update progress every 30ms (adjust the interval as needed)
       const interval = 30;
-      const step = 100 / (3000 / interval);
+      const step = 100 / (5000 / interval);
       let currentProgress = 0;
 
       const updateProgress = () => {

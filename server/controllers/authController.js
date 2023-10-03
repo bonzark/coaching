@@ -134,9 +134,9 @@ const authController = {
         });
         await Promise.all(promises);
         await user.save();
-        res.redirect(process.env.HOST_URL);
+        res.redirect(`${process.env.HOST_URL}?verify=true`);
       } else {
-        res.send("Invalid token.");
+        res.redirect(`${process.env.HOST_URL}?invalid=true`);
       }
     },
   ],

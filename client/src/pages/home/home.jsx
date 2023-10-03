@@ -16,6 +16,11 @@ const Home = () => {
   const navigate = useNavigate();
   const [openCancel, setOpenCancel] = useState(search === "?cancelled=true");
   const [openSuccess, setOpenSuccess] = useState(search === "?success=true");
+  const [openVerified, setOpenVerified] = useState(search === "?verify=true");
+  const [openInverified, setOpenInverified] = useState(
+    search === "?invalid=true"
+  );
+
   return (
     <>
       <SuccessModal
@@ -42,6 +47,25 @@ const Home = () => {
         handleClose={() => {
           navigate("/");
           setOpenSuccess(false);
+        }}
+      />
+      <SuccessModal
+        title={"Email Verified"}
+        message={"Congratulations, Your registration is complete."}
+        open={openVerified}
+        handleClose={() => {
+          navigate("/");
+          setOpenVerified(false);
+        }}
+      />
+      <SuccessModal
+        message={"Your Email verification Token is Invalid"}
+        title={"Invalid Token"}
+        open={openInverified}
+        status="cancelled"
+        handleClose={() => {
+          navigate("/");
+          setOpenInverified(false);
         }}
       />
       <AboutSection />
