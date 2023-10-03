@@ -1,5 +1,6 @@
 const { validate } = require("../middlewares/validation");
 const Coach = require("../models/Coach");
+const cloudinary = require("cloudinary").v2;
 
 // Function to create a new coach
 exports.createCoach = [

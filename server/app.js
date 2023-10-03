@@ -5,6 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
+const cloudinary = require("cloudinary").v2;
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/authRoutes");
@@ -58,7 +59,7 @@ app.use("/sessions", sessionRouter);
 app.use("/contact-us", contactRouter);
 app.use("/coaches", coachRoutes);
 app.use("/payment", paymentRoutes);
-const cloudinary = require("cloudinary").v2;
+
 // app.use("/webhook", webhookRoutes);
 
 // catch 404 and forward to error handler
