@@ -3,9 +3,9 @@ import React from "react";
 import { aboutTemplateData } from "../utils/constant";
 import AboutTemplate from "../components/AboutTemplate";
 
-const AboutSection = ({ }) => {
+const AboutSection = () => {
   const aboutTemplate1Data = aboutTemplateData.find(
-    (item) => item.id === "Rita"
+    (item) => item.id === "rita"
   );
 
   return (
@@ -22,6 +22,7 @@ const AboutSection = ({ }) => {
           image={aboutTemplate1Data.image}
           title={aboutTemplate1Data.title}
           content={aboutTemplate1Data.content}
+          to={"coaching-with-rita"}
           linkText={aboutTemplate1Data.linkText}
         />
       </Box>

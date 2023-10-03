@@ -2,12 +2,13 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
+  overflow-y: scroll !important;
+  font-family: "Poppins";
 }
 
 .about-wrapper {
   background: #c6d7ec;
-  /* clip-path: circle(85% at 50% 50%); */
 }
 
 .about-img {

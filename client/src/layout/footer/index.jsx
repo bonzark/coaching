@@ -20,7 +20,7 @@ const Footer = () => {
           margin: "0 auto",
           display: "flex",
           alignItems: "center",
-          justifyContent: { xs: "flex-start", md: "space-between" },
+          justifyContent: { xs: "space-between", md: "space-between" },
           borderBottom: "1px solid #671d63",
           gap: { xs: "15px", md: "30px" },
           flexWrap: "wrap",
@@ -36,20 +36,29 @@ const Footer = () => {
               paddingBottom: "30px",
             }}
           >
-            <Link to="/">
-              <img
-                src="./logo.png"
-                alt="logo"
-                style={{ maxWidth: "150px", height: "auto" }}
-              />
-            </Link>
+            <Box
+              sx={{
+                borderRadius: "100%",
+                overflow: "hidden",
+                border: "5px solid #fff",
+              }}
+            >
+              <Link to="/" style={{ display: "flex" }}>
+                <img
+                  src="/becomeYourCreator.jpeg"
+                  alt="logo"
+                  style={{ maxWidth: "150px", height: "auto" }}
+                />
+              </Link>
+            </Box>
           </Box>
           <Typography
-            varient="p"
+            paragraph
             sx={{
               color: "#671d63",
               margin: 0,
               lineHeight: "1.3rem",
+              textAlign: { xs: "left", sm: "justify" },
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
@@ -192,13 +201,36 @@ const Footer = () => {
             fontSize: "1.2rem",
           }}
         >
-          Become Your Creator - 2023 All rights reserved - Privacy - Terms
+          Become Your Creator - 2023 All rights reserved -{" "}
+          <Link
+            style={{
+              color: "#671d63",
+              lineHeight: "1.5rem",
+              fontSize: "1.2rem",
+              textDecoration: "none",
+              fontWeight: 900,
+            }}
+            to="/privacy-policy"
+          >
+            Privacy
+          </Link>{" "}
+          -{" "}
+          <Link
+            style={{
+              color: "#671d63",
+              lineHeight: "1.5rem",
+              fontSize: "1.2rem",
+              textDecoration: "none",
+              fontWeight: 900,
+            }}
+            to="/terms-and-conditions"
+          >
+            Terms
+          </Link>
         </Typography>
       </Box>
     </Box>
   );
 };
-
-// const Footer = () => {};
 
 export default Footer;

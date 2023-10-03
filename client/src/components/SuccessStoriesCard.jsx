@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { PrimaryBtn } from "./PrimaryBtn";
+import BookSessionBtn from "./BookSessionButton";
 
 const SuccessStories = ({
   id,
@@ -12,19 +13,20 @@ const SuccessStories = ({
   descriptionArr,
   wholeContent,
   isDetailPage,
+  isOurCoachCard = false,
 }) => {
   return (
     <Box sx={{ paddingTop: 6, position: "relative" }}>
       <Box
         component={"div"}
-        sx={{ mx: { xs: "50px", lg: "225px" } }}
+        sx={{ mx: { xs: "20px", md: "50px", lg: "225px" } }}
         key={title}
         className="story"
       >
         <Paper
           elevation={3}
           sx={{
-            width: "100%",
+            width: "90%",
             position: "relative",
             display: "flex",
             flexDirection: {
@@ -33,6 +35,8 @@ const SuccessStories = ({
             },
             justifyContent: "space-between",
             backgroundColor: "white",
+            padding: "2.5rem 1.5rem",
+            margin: "0 auto",
           }}
         >
           {!descriptionArr ? (
@@ -43,14 +47,14 @@ const SuccessStories = ({
                 top: { xs: "-30px", lg: "-48px" },
                 right: !reverse ? "0.9rem" : null,
                 left: reverse ? "0.9rem" : null,
-                fontSize: { xs: "35px", md: "120px" },
+                fontSize: { xs: "45px", sm: "55px", md: "85px" },
                 fontWeight: "bold",
                 color: "#671d63",
-                lineHeight: { xs: "35px", md: "120px" },
+                // lineHeight: { xs: "30px", sm: "35px", md: "85px", lg: "120px" },
                 backgroundColor: "#f8e3c4",
                 borderRadius: "50%",
-                width: { xs: "20px", md: "70px" },
-                height: { xs: "20px", md: "70px" },
+                width: { xs: "40px", md: "55px" },
+                height: { xs: "40px", md: "55px" },
                 padding: "10px",
                 textAlign: "center",
               }}
@@ -61,6 +65,7 @@ const SuccessStories = ({
           <Box
             sx={{
               width: { md: "35%", xs: "100%" },
+              maxHeight: "350px",
               height: {
                 md: "auto",
                 sm: "550px",
@@ -80,7 +85,7 @@ const SuccessStories = ({
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </Box>
@@ -103,7 +108,7 @@ const SuccessStories = ({
                 color: !isDetailPage ? "#414141" : "#671D63",
                 lineHeight: { xs: "22px", sm: "30px" },
                 textTransform: "capitalize",
-                fontFamily: "'Abril FatFace', sans-serif",
+                fontFamily: "'montserrat', sans-serif",
                 px: { xs: "1rem", md: "2rem", lg: "3rem" },
                 my: { xs: "8px", md: "10px", lg: "15px" },
               }}
@@ -126,16 +131,17 @@ const SuccessStories = ({
                     {para}
                   </Typography>
                 ))
-              : descriptionArr?.slice(0, 4).map((para) => (
+              : descriptionArr?.slice(0, 2).map((para) => (
                   <Fragment key={para}>
                     <Typography
-                      variant="h6"
+                      paragraph
                       sx={{
                         color: "#575757",
                         fontSize: { xs: "15px", sm: "20px" },
                         lineHeight: { xs: "20px", sm: "25px" },
                         px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
                         mb: { xs: "8px", md: "10px", lg: "15px" },
+                        textAlign: { xs: "left", sm: "justify" },
                       }}
                     >
                       {para}
@@ -143,14 +149,15 @@ const SuccessStories = ({
                   </Fragment>
                 ))}
 
-            {descriptionArr ? (
-              !wholeContent ? (
-                <Box
-                  sx={{
-                    margin: "0 auto",
-                    paddingY: "10px",
-                  }}
-                >
+            {descriptionArr && !wholeContent && (
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "1rem",
+                  px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
+                }}
+              >
+                <Box sx={{ margin: "1rem 0" }}>
                   <PrimaryBtn
                     component={Link}
                     to={`/ourCoachesDetail/${id}`}
@@ -159,13 +166,22 @@ const SuccessStories = ({
                     Read More...
                   </PrimaryBtn>
                 </Box>
-              ) : null
-            ) : null}
+                {isOurCoachCard && (
+                  <BookSessionBtn
+                    defaultText={"Book Now"}
+                    freeSessionText={"Book a free session"}
+                    bookText={"Book Session"}
+                    coachId={id}
+                  />
+                )}
+              </Box>
+            )}
             {content && (
               <Typography
-                variant="h6"
+                paragraph
                 sx={{
                   color: "#575757",
+                  textAlign: { xs: "left", sm: "justify" },
                   fontSize: { xs: "15px", sm: "23px" },
                   lineHeight: { xs: "20px", sm: "28px" },
                   px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },

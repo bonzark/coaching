@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useFormik } from 'formik';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { MainModal } from '../components/MainModal';
 import { PrimaryBtn } from '../components/PrimaryBtn';
 import { InputBox } from '../components/InputBox';
 import { login, register } from '../services/auth.service';
 import { setToken, setUserDetails } from '../utils/auth';
 import { validationLoginSchema, validationRegisterSchema } from '../utils/validation';
-
+import * as CryptoJS from 'crypto-js';
+import ForgotPassword from './ForgotPassword';
+import EventEmitter from 'reactjs-eventemitter';
 const FormModal = ({ open, handleClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const [logingForm, setLogingForm] = useState(true);
   const [isLogIn, setIsLogin] = useState(false);
+  const [openReset, setOpenReset] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -25,23 +28,39 @@ const FormModal = ({ open, handleClose }) => {
     onSubmit: (values) => {
       setIsLogin(true);
       if (logingForm) {
+        const passwordEncrypt = CryptoJS.AES.encrypt(
+          values.password,
+          import.meta.env.VITE_SECRET
+        ).toString();
         const data = {
           email: values.email,
-          password: values.password,
+          password: passwordEncrypt,
         };
         login(data)
           .then((res) => {
-            if (res?.response?.data?.errors && res?.response?.data?.errors.length > 0) {
-              setIsLogin(false);
-              enqueueSnackbar(res?.response?.data?.errors[0].msg, {
-                variant: 'error',
-              });
-            } else {
+            if (res?.status === 200) {
               setIsLogin(false);
               enqueueSnackbar(res?.data?.message, { variant: 'success' });
               setToken(res?.data?.token);
               setUserDetails(res?.data?.user);
-              handleClose(formik.resetForm());
+              formik.resetForm();
+              handleClose();
+              EventEmitter.dispatch('loginSuccess', true);
+            } else if (res?.response?.data?.errors && res?.response?.data?.errors.length > 0) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.errors[0].msg, {
+                variant: 'error',
+              });
+            } else if (res.response.status === 401) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.message, {
+                variant: 'error',
+              });
+            } else if (res.response.status === 500) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
+                variant: 'error',
+              });
             }
           })
           .catch((error) => {
@@ -51,22 +70,47 @@ const FormModal = ({ open, handleClose }) => {
             });
           });
       } else {
-        register(values)
+        const passwordEncrypt = CryptoJS.AES.encrypt(
+          values.password,
+          import.meta.env.VITE_SECRET
+        ).toString();
+        const data = {
+          name: values.name,
+          email: values.email,
+          password: passwordEncrypt,
+        };
+        register(data)
           .then((res) => {
-            if (res?.response?.data?.errors && res?.response?.data?.errors.length > 0) {
+            if (res?.status === 201) {
               setIsLogin(false);
-              enqueueSnackbar(res?.response?.data?.errors[0].msg, {
+              enqueueSnackbar(res?.data, { variant: 'success' });
+              formik.resetForm();
+              handleClose();
+            } else if (res?.response?.data?.error) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
                 variant: 'error',
               });
-            } else {
+            } else if (res.response.status === 401) {
               setIsLogin(false);
-              enqueueSnackbar(res?.data?.message, { variant: 'success' });
-              handleClose(formik.resetForm());
+              enqueueSnackbar(res?.response?.data?.message, {
+                variant: 'error',
+              });
+            } else if (res.response.status === 403) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data, {
+                variant: 'error',
+              });
+            } else if (res.response.status === 500) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
+                variant: 'error',
+              });
             }
           })
           .catch((error) => {
             setIsLogin(false);
-            enqueueSnackbar(error?.response?.data?.errors[0]?.msg, {
+            enqueueSnackbar(error?.response?.data?.error, {
               variant: 'error',
             });
           });
@@ -144,13 +188,52 @@ const FormModal = ({ open, handleClose }) => {
               <CircularProgress sx={{ color: '#fff', maxWidth: '20px', maxHeight: '20px' }} />
             )}
           </PrimaryBtn>
-
+          {logingForm && (
+            <>
+              <ForgotPassword
+                closeAllModal={() => handleClose(false)}
+                isOpen={openReset}
+                onClose={() => setOpenReset(false)}
+                onResetClose={() => {
+                  setOpenReset(false);
+                }}
+                blur
+              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '4px',
+                  paddingTop: '16px',
+                }}
+              >
+                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 100 }}>
+                  Forgot password?
+                </Typography>
+                <Button
+                  variant="text"
+                  sx={{
+                    color: '#671d63',
+                    textTransform: 'capitalize',
+                    fontSize: '1rem',
+                    fontWeight: 100,
+                    padding: 0,
+                  }}
+                  onClick={() => {
+                    setOpenReset(true);
+                  }}
+                >
+                  Recover it here.
+                </Button>
+              </Box>
+            </>
+          )}
           <Typography sx={{ textAlign: 'center', mt: '20px' }}>
             {logingForm ? "Don't have account? " : 'Already Registered? '}
             <span
               style={{ cursor: 'pointer', color: '#671d63' }}
               onClick={() => {
-                console.log('formik', formik);
                 formik.resetForm();
                 setLogingForm(!logingForm);
               }}

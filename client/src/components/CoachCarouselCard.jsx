@@ -1,8 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
-import { object } from "yup";
+import { Link } from "react-router-dom";
 
-const CoachCarouselCard = ({ title, subtitle, imgSrc }) => {
+const CoachCarouselCard = ({ id, title, subtitle, imgSrc }) => {
   return (
     <Box
       sx={{
@@ -14,43 +13,47 @@ const CoachCarouselCard = ({ title, subtitle, imgSrc }) => {
         height: "100%",
       }}
     >
-      <img src={imgSrc} style={{ objectFit: "cover", width: "100%" }} />
-      <Box
-        sx={{
-          padding: "50px 30px",
-          position: "absolute",
-          zIndex: 111,
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          background:
-            "linear-gradient(0deg, rgba(234,214,185,1) 18%, rgba(234,214,185,0) 100%)",
-          transition: "all 0.9s",
-          "&:hover": {
-            transition: "all 0.9s",
-            background:
-              "linear-gradient(0deg, rgba(103,29,99,0.9) 38%, rgba(103,29,99,0) 100%)",
-          },
-        }}
-      >
-        <Typography
-          component={"h3"}
+      <Link to={`/ourCoachesDetail/${id}`} state={{ name: id }}>
+        <img
+          src={imgSrc}
+          style={{ objectFit: "cover", width: "100%", height: "350px" }}
+        />
+        <Box
           sx={{
-            fontWeight: 600,
-            color: "#fff",
-            fontSize: "22px",
-            paddingTop: "100px",
+            padding: "0 0 35px 21px",
+            position: "absolute",
+            zIndex: 111,
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            background:
+              "linear-gradient(0deg, rgba(234,214,185,1) 18%, rgba(234,214,185,0) 100%)",
+            transition: "background 2s",
+            "&:hover": {
+              background:
+                "linear-gradient(0deg, rgba(103,29,99,0.9) 38%, rgba(103,29,99,0) 100%)",
+            },
           }}
         >
-          {title}
-        </Typography>
-        <Typography
-          component={"h6"}
-          sx={{ fontWeight: 400, color: "#fff", fontSize: "16px" }}
-        >
-          {subtitle}
-        </Typography>
-      </Box>
+          <Typography
+            component={"h3"}
+            sx={{
+              fontWeight: 600,
+              color: "#fff",
+              fontSize: "22px",
+              paddingTop: "100px",
+            }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            component={"h6"}
+            sx={{ fontWeight: 400, color: "#fff", fontSize: "16px" }}
+          >
+            {subtitle}
+          </Typography>
+        </Box>
+      </Link>
     </Box>
   );
 };

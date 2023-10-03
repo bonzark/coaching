@@ -1,47 +1,90 @@
+const { validate } = require("../middlewares/validation");
+const Coach = require("../models/Coach");
+const BookedSession = require("../models/bookedSession");
 const Session = require("../models/session");
 const User = require("../models/user");
+const axios = require("axios");
 
-// Function to book a coaching session
 exports.bookSession = async (req, res) => {
   try {
-    const { userId, date, time, price } = req.body; // Assuming you have these values in the request
+    const userId = req.params.userId;
+    const sessionId = req.params.sessionId;
+    const { date, time } = req.body;
 
-    // Check if the user has already booked a session
-    const user = await User.findById(userId).populate("sessions");
+    const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Check if the user's first session is free
-    if (user.sessions.length === 0) {
-      const session = new Session({
-        user: userId,
-        date: new Date(),
-        time: new Date().toUTCString(),
-        price: 0,
-        isFirstSessionFree: true,
-      });
+    const session = await Session.findById(sessionId).populate("coach");
+    const coach = session.coach;
 
-      await session.save();
-      user.sessions.push(session);
-      await user.save();
+    if (!session) {
+      return res.status(404).json({ error: "session not found" });
+    }
 
-      return res.status(201).json({ message: "Session booked for free" });
+    const inputDate = date;
+    const dateObj = new Date(inputDate);
+    const dayOfWeek = dateObj.getDay();
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const dayName = daysOfWeek[dayOfWeek];
+
+    const coachAvailability = coach.availableDays.find(
+      (day) => day === dayName
+    );
+
+    const conflictingCoachSession = await BookedSession.findOne({
+      date: date,
+      time: time,
+      session: sessionId,
+    });
+
+    const conflictingUserSession = await BookedSession.findOne({
+      date: date,
+      time: time,
+      user: userId,
+    });
+
+    if (coachAvailability) {
+      if (conflictingCoachSession) {
+        return res.status(400).json({
+          error: `coach is not availabe on ${date}, ${time}. Please choose another slot`,
+        });
+      } else if (conflictingUserSession) {
+        return res.status(400).json({
+          error: `you have alredy booked session on ${date}, ${time}. Please choose another slot`,
+        });
+      } else {
+        const bookedSession = new BookedSession({
+          session: sessionId,
+          user: userId,
+          date: date,
+          time: time,
+        });
+
+        await bookedSession.save();
+        coach.sessions.push(bookedSession);
+        user.sessions.push(bookedSession);
+        coach.save();
+        user.save();
+        return res.status(201).json({
+          message: "Coaching session appoint successfully",
+          bookedSession,
+        });
+      }
     } else {
-      const session = new Session({
-        user: userId,
-        date: new Date(),
-        time: new Date().toUTCString(),
-        price,
-        isFirstSessionFree: false,
+      return res.status(400).json({
+        error: `coach is not availabe on ${dayName}`,
       });
-
-      await session.save();
-      user.sessions.push(session);
-      await user.save();
-
-      return res.status(201).json({ message: "Session booked" });
     }
   } catch (error) {
     console.error(error);
@@ -69,9 +112,125 @@ exports.getAllSessionsForUser = async (req, res) => {
 
 exports.getAllSessions = async (req, res) => {
   try {
-    const sessions = await Session.find();
-
+    const sessions = await Session.find().populate("coach");
     return res.status(200).json({ sessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.scheduledEventsCalendly = async (req, res) => {
+  try {
+    const options = {
+      method: "GET",
+      url: "https://api.calendly.com/scheduled_events",
+      params: {
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
+      },
+    };
+
+    // Example: Fetch upcoming events
+    axios
+      .request(options)
+      .then(function (response) {
+        return res.status(200).json(response.data);
+      })
+      .catch(function (error) {
+        return res.status(500).json(error);
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+exports.inviteeCreated = async (req, res) => {
+  try {
+    const email = req.body.payload.email;
+    const options = {
+      method: "GET",
+      url: req?.body?.payload?.scheduled_event?.event_type,
+      params: {
+        organization:
+          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
+      },
+    };
+
+    const scheduling_url = await axios
+      .request(options)
+      .then(function (response) {
+        return response?.data?.resource?.scheduling_url;
+      })
+      .catch(function (error) {
+        return res.send(error);
+      });
+
+    const user = await User.findOne({ email }).populate("purchasedSession");
+    const session = await Session.findOne({ calendlyLink: scheduling_url });
+
+    if (!user) {
+      res.status(404).json({ error: "User Not Found" });
+    }
+
+    if (!session) {
+      res.status(404).json({ error: "Session Not Found" });
+    }
+
+    if (user && session) {
+      await BookedSession.updateOne(
+        { session: session._id, user: user._id },
+        {
+          $set: {
+            status: "booked",
+            bookedDate: req?.body?.created_at,
+            sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
+            sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
+            link: req?.body?.payload?.scheduled_event?.location?.join_url,
+          },
+        },
+        { upsert: true }
+      );
+      const bookedSession = await BookedSession.findOne({
+        session: session._id,
+        user: user._id,
+      });
+
+      if (session.sessionType === "freeReading") {
+        const filter = {
+          $and: [
+            { user: user._id },
+            { session: { $ne: session._id } },
+            { sessionType: "freeReading" },
+          ],
+        };
+
+        await BookedSession.deleteMany(filter);
+
+        const newData = user.purchasedSession.filter(
+          (i) => i.sessionType !== "freeReading"
+        );
+        user.purchasedSession = newData;
+      }
+
+      await user.purchasedSession.pull(bookedSession);
+      user.bookedSession.push(bookedSession);
+      await user.save();
+
+      const coach = await Coach.findOne({ _id: session.coach });
+      coach.bookedSession.push(bookedSession);
+      await coach.save();
+
+      res.status(200).json({ message: "Session Booked Successfully" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -80,10 +239,9 @@ exports.getAllSessions = async (req, res) => {
 
 exports.getSessionById = async (req, res) => {
   try {
-    const { sessionId } = req.params; // Assuming you pass the sessionId as a parameter in the route
+    const { sessionId } = req.params;
 
-    // Find the session by its ID
-    const session = await Session.findById(sessionId);
+    const session = await Session.findById(sessionId).populate("coach");
 
     if (!session) {
       return res.status(404).json({ error: "Session not found" });
@@ -93,5 +251,220 @@ exports.getSessionById = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.createSessionByCoach = async (req, res) => {
+  try {
+    const {
+      coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    } = req.body;
+
+    const coach = await Coach.findById(coachId);
+
+    const existingSession = await Session.findOne({
+      coach: coachId,
+      sessionType,
+    });
+
+    if (existingSession) {
+      return res.status(400).json({
+        error: "Session with the same coach, sessionType already exists",
+      });
+    }
+
+    // Create a new session
+    const session = new Session({
+      coach: coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    });
+
+    await session.save();
+    coach.sessions.push(session);
+    await coach.save();
+
+    return res
+      .status(201)
+      .json({ message: "Coaching session created successfully", session });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+exports.getSessionsByCoachId = async (req, res) => {
+  try {
+    const { coachId } = req.params;
+
+    const sessions = await Session.find({ coach: coachId }).populate("coach");
+
+    return res.status(200).json({ sessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getAllBookedSessions = async (req, res) => {
+  try {
+    const bookedSessions = await BookedSession.find()
+      .populate({
+        path: "session",
+        populate: {
+          path: "coach",
+          model: "coaches",
+        },
+      })
+      .populate("user");
+    return res.status(200).json({ bookedSessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getAllBookedSessionsById = async (req, res) => {
+  try {
+    const { bookedId } = req.params;
+
+    const bookedSessions = await BookedSession.findById(bookedId)
+      .populate({
+        path: "session",
+        populate: {
+          path: "coach",
+          model: "coaches",
+        },
+      })
+      .populate("user");
+
+    if (!bookedSessions) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    return res.status(200).json({ bookedSessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getAllBookedSessionsByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const bookedSessions = await BookedSession.find({ user: userId }).populate({
+      path: "session",
+      populate: {
+        path: "coach",
+        model: "coaches",
+      },
+    });
+
+    if (!bookedSessions) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    return res.status(200).json({ bookedSessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getSessionsByDateAndCoach = [
+  validate,
+  async (req, res) => {
+    try {
+      const { date, coachId } = req.body;
+
+      // Find sessions by date and coach ID
+      const sessions = await Session.find({ date, coach: coachId });
+
+      return res.status(200).json({ sessions });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+];
+
+exports.updateSession = [
+  validate,
+  async (req, res) => {
+    try {
+      const { sessionId } = req.params;
+      const { coachId, date, time, price, title, details } = req.body;
+
+      // Find the session by ID
+      const session = await Session.findByIdAndUpdate(
+        sessionId,
+        {
+          coach: coachId,
+          date,
+          time,
+          price,
+          title,
+          details,
+        },
+        { new: true }
+      );
+
+      if (!session) {
+        return res.status(404).json({ error: "Session not found" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Session updated successfully", session });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+];
+
+exports.deleteSession = async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+
+    // Find and delete the session by ID
+    const deletedSession = await Session.findByIdAndRemove(sessionId);
+
+    if (!deletedSession) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    return res.status(200).json({ message: "Session deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.testApi = async (req, res) => {
+  try {
+    const userData = await User.findOne({ _id: req.params.id }).populate(
+      "purchasedSession"
+    );
+
+    const newData = userData.purchasedSession.filter(
+      (i) => i.sessionType !== "freeReading"
+    );
+
+    userData.purchasedSession = newData;
+
+    userData.save();
+    res.status(200).json({ userData });
+  } catch (error) {
+    res.status(400).json({ error });
+    console.log("Error :", error);
   }
 };

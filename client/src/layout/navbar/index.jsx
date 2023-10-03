@@ -24,17 +24,27 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setMobileOpen(!mobileOpen);
   };
 
-  const isLoggedIn = !!getAuthToken();
+  React.useEffect(() => {
+    if (getAuthToken() === null || getAuthToken().length === 0) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+    if (window.innerWidth > 768) {
+      setMobileOpen(false);
+    }
+  }, [getAuthToken()]);
+
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => {
     setOpen(false);
-    formik.resetForm();
   };
 
   const changeNavbarColor = () => {
@@ -48,17 +58,36 @@ const Navbar = () => {
 
   const drawer = (
     <Box>
-      <Link to="/" style={{ display: "flex" }} onClick={handleDrawerToggle}>
-        <img
-          src="./logo.png"
-          alt="logo"
-          style={{
-            maxWidth: "100px",
-            height: "auto",
-            margin: "auto",
+      <Box
+        sx={{
+          background: "linear-gradient(#DCD9F0,#ffffff)",
+          padding: "0.5rem",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            borderRadius: "100px",
+            overflow: "hidden",
+            maxWidth: "fit-content",
+            margin: "0rem auto",
+            border: "5px solid #fff",
           }}
-        />
-      </Link>
+        >
+          <Link to="/" onClick={handleDrawerToggle}>
+            <img
+              src="/becomeYourCreator.jpeg"
+              alt="logo"
+              style={{
+                display: "flex",
+                maxWidth: "100px",
+                height: "auto",
+                margin: "auto",
+              }}
+            />
+          </Link>
+        </Box>
+      </Box>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -67,6 +96,12 @@ const Navbar = () => {
               <Button
                 component={Link}
                 to={item.link}
+                onClick={() => {
+                  window.scroll({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
                 sx={{
                   color: "#673d67",
                   margin: "0 auto",
@@ -82,6 +117,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <Box sx={{ display: { xs: "block", md: "none" } }}>
             <CommonDropdown
+              isMobile={mobileOpen}
               dropdownItems={sidebarItems}
               handleDrawerToggle={handleDrawerToggle}
             />
@@ -112,7 +148,17 @@ const Navbar = () => {
   );
 
   return (
-    <>
+    <Box
+      sx={{
+        position: "sticky",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 999,
+      }}
+    >
       <FormModal open={open} handleClose={handleClose} />
       <Box sx={{ display: "flex" }}>
         <AppBar
@@ -125,9 +171,44 @@ const Navbar = () => {
                 }
               : "none",
             zIndex: "2",
+            position: "static",
+            padding: "0 !important",
           }}
         >
-          <Toolbar>
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              marginRight: { xs: 0, md: "auto" },
+              background: "linear-gradient(#DCD9F0,#ffffff)",
+              padding: "5px",
+              margin: "0.5rem 0 0 2rem",
+              borderRadius: "100px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
+            <Box sx={{ borderRadius: "50%", overflow: "hidden" }}>
+              <Link to="/" style={{ display: "flex" }}>
+                <img
+                  src="/becomeYourCreator.jpeg"
+                  alt="logo"
+                  style={{
+                    maxWidth: "100px",
+                    height: "auto",
+                  }}
+                />
+              </Link>
+            </Box>
+          </Box>
+          <Toolbar
+            sx={{
+              paddingLeft: "0 !important",
+              justifyContent: "flex-end",
+              maxWidth: "80%",
+              marginLeft: "auto",
+            }}
+          >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -142,23 +223,6 @@ const Navbar = () => {
             </IconButton>
             <Box
               sx={{
-                display: { xs: "none", md: "block" },
-                marginRight: { xs: 0, md: "auto" },
-              }}
-            >
-              <Link to="/">
-                <img
-                  src="./logo.png"
-                  alt="logo"
-                  style={{
-                    maxWidth: "100px",
-                    height: "auto",
-                  }}
-                />
-              </Link>
-            </Box>
-            <Box
-              sx={{
                 display: { xs: "none", md: "flex" },
                 gap: { md: "5px", lg: "15px" },
                 marginRight: { md: "15px" },
@@ -169,14 +233,20 @@ const Navbar = () => {
                   key={item.name}
                   to={item.link}
                   component={Link}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
                   sx={{
-                    color: "#cecece",
+                    color: "white",
                     fontWeight: "600",
                     textAlign: "center",
                     padding: 0,
                     transition: "all 0.2s linear",
                     ":hover": {
-                      color: "white",
+                      color: "#cecece",
                     },
                   }}
                 >
@@ -189,6 +259,7 @@ const Navbar = () => {
                 <CommonDropdown
                   dropdownItems={sidebarItems}
                   handleDrawerToggle={handleDrawerToggle}
+                  logout={() => setIsLoggedIn(false)}
                 />
               </Box>
             ) : (
@@ -235,7 +306,7 @@ const Navbar = () => {
           </Drawer>
         </nav>
       </Box>
-    </>
+    </Box>
   );
 };
 
