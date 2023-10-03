@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
 import React from "react";
-const PageBanner = ({ heading, imgSrc, bgColor, description, align, sx }) => {
+const PageBanner = ({ heading, imgSrc, bgColor, align }) => {
   return (
     <>
       <Box
