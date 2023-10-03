@@ -51,7 +51,6 @@ const SuccessModal = ({
     <Dialog open={open} onClose={handleClose}>
       <Box
         sx={{
-          width: "450px",
           borderRadius: "15px",
         }}
       >
@@ -61,6 +60,7 @@ const SuccessModal = ({
               sx={{
                 perspective: "500px",
                 maxWidth: "fit-content",
+                paddingBottom: "0.5rem",
               }}
             >
               <Box
@@ -100,6 +100,7 @@ const SuccessModal = ({
               sx={{
                 perspective: "500px",
                 maxWidth: "fit-content",
+                paddingBottom: "0.5rem",
               }}
             >
               <Box
@@ -130,7 +131,11 @@ const SuccessModal = ({
             </Box>
           )}
           {title && (
-            <Typography sx={{ fontSize: { xs: "1.2rem", md: "2rem" } }}>
+            <Typography
+              sx={{
+                fontSize: { xs: "1.2rem", md: "2rem" },
+              }}
+            >
               {title}
             </Typography>
           )}
