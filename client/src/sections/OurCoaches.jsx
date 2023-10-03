@@ -147,10 +147,10 @@ const OurCoaches = () => {
             color: "#671d63",
             width: "max-content",
             textDecoration: "none",
-            margin: "20px auto",
             fontWeight: "bolder",
             border: "none",
             padding: "10px 20px",
+            marginTop: "2.75rem",
             borderRadius: "10px",
             transition: "all 0.25s linear",
             backgroundColor: "#EFE6EF",
@@ -159,7 +159,6 @@ const OurCoaches = () => {
               color: "white",
               border: "none",
             },
-            display: "block",
           }}
         >
           SEE ALL COACHES

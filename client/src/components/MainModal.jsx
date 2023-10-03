@@ -1,7 +1,9 @@
 import { Box, IconButton, Modal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { getAuthToken } from "../utils/auth";
 
 export const MainModal = ({ open, handleClose, blur, children, lg }) => {
+  const isLoggedIn = getAuthToken();
   return (
     <Modal
       open={open}
@@ -21,7 +23,7 @@ export const MainModal = ({ open, handleClose, blur, children, lg }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "80%",
+          width: isLoggedIn ? "80%" : "450px",
           bgcolor: "background.paper",
           boxShadow: 24,
           p: { xs: 2, sm: 3, md: 4 },
