@@ -29,11 +29,12 @@ const SessionCard = ({
       sx={{
         height: "100%",
         justifyContent: "space-between",
-        boxShadow: "#3c40434c 0px 1px 2px 0px, #3c404326 0px 2px 6px 2px ",
-        borderRadius: "8px",
-        transition: "transform 0.2s ease-in-out",
+        boxShadow:
+          "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px",
+        borderRadius: "7px",
+        transition: "transform 0.35s ease-in-out",
         "&:hover": {
-          transform: "scale(1.015)",
+          transform: "scale(1.002)",
         },
         padding: "10px 20px",
       }}

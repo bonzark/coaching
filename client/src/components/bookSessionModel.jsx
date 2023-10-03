@@ -277,6 +277,12 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             sx={{
               maxHeight: "50vh",
               overflowY: "scroll",
+              "scrollbar-width": "1px",
+              "::-webkit-scrollbar": {
+                width: "2px" /* Remove scrollbar space */,
+                background:
+                  "transparent" /* Optional: just make scrollbar invisible */,
+              },
             }}
           >
             {(sessionList?.length > 0 || sessionList) && (
@@ -306,7 +312,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 sx={{
                   marginTop: "0 !important",
                   paddingBottom: "25px",
-                  paddingRight: "20px",
+                  // paddingRight: { md: "20px" },
                 }}
               >
                 {sessionList
@@ -392,7 +398,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 sx={{
                   marginTop: "0 !important",
                   paddingBottom: "25px",
-                  paddingRight: "20px",
+                  // paddingRight: { md: "20px" },
                 }}
               >
                 {sessionList
