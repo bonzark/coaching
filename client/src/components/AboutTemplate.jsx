@@ -140,7 +140,7 @@ const AboutTemplate = (props) => {
                 </>
               }
               freeSessionText={<span>Redeem your free session</span>}
-              bookText={<span>Book Session</span>}
+              bookText={<span>Purchase Session</span>}
             />
           </Grid>
         </Grid>

@@ -149,7 +149,7 @@ const HeroBanner = ({
                   Gain Awareness Of Your Creation in less than 30 days
                 </>
               }
-              bookText={"Book Session"}
+              bookText={"Purchase Session"}
             />
           </Box>
           <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
