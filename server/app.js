@@ -58,11 +58,18 @@ app.use("/sessions", sessionRouter);
 app.use("/contact-us", contactRouter);
 app.use("/coaches", coachRoutes);
 app.use("/payment", paymentRoutes);
+const cloudinary = require("cloudinary").v2;
 // app.use("/webhook", webhookRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
+});
+
+cloudinary.config({
+  cloud_name: "dnwy9adyc",
+  api_key: "445762993667882",
+  api_secret: "qa3bFZOkf83EZagNNdeXCVuDpyI",
 });
 
 // error handler

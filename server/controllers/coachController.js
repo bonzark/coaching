@@ -19,7 +19,7 @@ exports.createCoach = [
         groupPrice,
       } = req.body;
 
-      const imageUrl = `${process.env.BASE_URL}/public/uploads/${req.file.originalname}`; // Assuming the image is saved in a 'uploads' directory
+      const imageUrl = await cloudinary.uploader.upload(req.file.buffer);
 
       // Create a new coach
       const coach = new Coach({
