@@ -135,7 +135,7 @@ const CommonDropdown = ({
                     sx={{
                       color: "#671d63",
                       border: "1px solid #fff",
-                      padding: "5pxs",
+                      padding: "5px",
                       margin: "0 8px",
                       display: "flex",
                       alignItems: "center",
@@ -220,7 +220,7 @@ const CommonDropdown = ({
                 sx={{
                   color: "#673d67",
                   border: "1px solid #671d61",
-                  margin: "0 8px",
+                  margin: "0 8px 15px",
                   padding: "8px 12px",
                   ":hover": {
                     background: "transparent",
