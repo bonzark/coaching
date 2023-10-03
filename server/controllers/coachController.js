@@ -20,9 +20,10 @@ exports.createCoach = [
         groupPrice,
       } = req.body;
 
-      const imageUrl = await cloudinary.uploader.upload(req.file.buffer);
+      const folder = "upload";
 
-      // Create a new coach
+      const imageUrl = await cloudinary.uploader.upload(req.file.path);
+
       const coach = new Coach({
         firstName,
         lastName,
@@ -36,8 +37,7 @@ exports.createCoach = [
           oneToOnePrice,
           groupPrice,
         },
-        image: imageUrl,
-        // Add other coach-specific fields here
+        image: imageUrl.secure_url,
       });
 
       await coach.save();
