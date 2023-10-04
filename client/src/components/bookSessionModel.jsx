@@ -146,18 +146,23 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   };
 
   useEffect(() => {
-    if (window.location.pathname === "/our-coaches") {
+    if (
+      window.location.pathname === "/our-coaches" ||
+      window.location.pathname === "/coaching-with-rita"
+    ) {
       setIsCoachPage(true);
+      if (window.location.pathname === "/our-coaches") {
+        getCoachById(coachId)
+          .then((res) => {
+            setCoachDetail(res.data.coach);
+          })
+          .catch((err) => console.log(err));
+      }
       getSessionsByCoachID(coachId)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
           bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
-        })
-        .catch((err) => console.log(err));
-      getCoachById(coachId)
-        .then((res) => {
-          setCoachDetail(res.data.coach);
         })
         .catch((err) => console.log(err));
     } else {
