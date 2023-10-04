@@ -48,6 +48,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
     }
   };
 
+  console.log("coachId :::::::", coachId);
+
   const finalDisplaySessionList = (sessions) => {
     const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
     var result = sessions.reduce((unique, o) => {
