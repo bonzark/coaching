@@ -9,12 +9,15 @@ import { getCoachByName } from "../../services/session.service";
 
 const CoachDetail = () => {
   const [coachDetail, setCoachDetail] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getRita = async () => {
       await getCoachByName("rita")
         .then((res) => {
+          setIsLoading(true);
           setCoachDetail(res.data.coach);
+          setIsLoading(false);
         })
         .catch((err) => console.log(err));
     };
@@ -129,29 +132,31 @@ const CoachDetail = () => {
                 alignItems: "center",
               }}
             >
-              <BookSessionBtn
-                defaultText={
-                  <>
+              {!isLoading && (
+                <BookSessionBtn
+                  defaultText={
                     <>
-                      <span>DOWNLOAD NOW FOR FREE</span>
+                      <>
+                        <span>DOWNLOAD NOW FOR FREE</span>
+                        Gain Awareness Of Your Creation in less than 30 days
+                      </>
+                    </>
+                  }
+                  freeSessionText={
+                    <>
+                      <span>BOOK A FREE SESSION</span>
                       Gain Awareness Of Your Creation in less than 30 days
                     </>
-                  </>
-                }
-                freeSessionText={
-                  <>
-                    <span>BOOK A FREE SESSION</span>
-                    Gain Awareness Of Your Creation in less than 30 days
-                  </>
-                }
-                bookText={
-                  <>
-                    <span>PURCHASE SESSION</span>
-                    Gain Awareness Of Your Creation in less than 30 days
-                  </>
-                }
-                coachId={coachDetail ? coachDetail[0]?._id : ""}
-              />
+                  }
+                  bookText={
+                    <>
+                      <span>PURCHASE SESSION</span>
+                      Gain Awareness Of Your Creation in less than 30 days
+                    </>
+                  }
+                  coachId={coachDetail ? coachDetail[0]?._id : ""}
+                />
+              )}
             </Box>
             <List>
               <ListItem
@@ -329,29 +334,31 @@ const CoachDetail = () => {
             alignItems: "center",
           }}
         >
-          <BookSessionBtn
-            defaultText={
-              <>
+          {!isLoading && (
+            <BookSessionBtn
+              defaultText={
                 <>
-                  <span>DOWNLOAD NOW FOR FREE</span>
+                  <>
+                    <span>DOWNLOAD NOW FOR FREE</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                </>
+              }
+              freeSessionText={
+                <>
+                  <span>BOOK A FREE SESSION</span>
                   Gain Awareness Of Your Creation in less than 30 days
                 </>
-              </>
-            }
-            freeSessionText={
-              <>
-                <span>BOOK A FREE SESSION</span>
-                Gain Awareness Of Your Creation in less than 30 days
-              </>
-            }
-            bookText={
-              <>
-                <span>PURCHASE SESSION</span>
-                Gain Awareness Of Your Creation in less than 30 days
-              </>
-            }
-            coachId={coachDetail ? coachDetail[0]?._id : ""}
-          />
+              }
+              bookText={
+                <>
+                  <span>PURCHASE SESSION</span>
+                  Gain Awareness Of Your Creation in less than 30 days
+                </>
+              }
+              coachId={coachDetail ? coachDetail[0]?._id : ""}
+            />
+          )}
         </Box>
       </Box>
       <SuccessCarousel />
