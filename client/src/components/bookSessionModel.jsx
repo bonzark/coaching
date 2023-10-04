@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
@@ -8,29 +8,29 @@ import {
   OutlinedInput,
   Select,
   Typography,
-} from '@mui/material';
-import { MainModal } from './MainModal';
+} from "@mui/material";
+import { MainModal } from "./MainModal";
 import {
   getCoaches,
   getSessionsByCoachID,
   getAllSessions,
   getCoachById,
-} from '../services/session.service';
-import SessionCard from './SessionCard';
-import { handlePayment } from '../services/payment.service';
-import { PopupModal } from 'react-calendly';
-import { getUserDetails, setUserDetails } from '../utils/auth';
-import { getuserById } from '../services/user.service';
+} from "../services/session.service";
+import SessionCard from "./SessionCard";
+import { handlePayment } from "../services/payment.service";
+import { PopupModal } from "react-calendly";
+import { getUserDetails, setUserDetails } from "../utils/auth";
+import { getuserById } from "../services/user.service";
 
 const BookSession = ({ open, handleClose, userDetails, coachId }) => {
-  const [coach, setCoach] = useState('');
+  const [coach, setCoach] = useState("");
   const [coachDetail, setCoachDetail] = useState();
   const [coachList, setCoachList] = useState([]);
   const [sessionList, setSessionList] = useState(null);
   const [isPurchased, setIsPurchased] = useState(false);
   const [purchasedCount, setPurchasedCount] = useState(0);
   const [popup, setPopup] = useState(false);
-  const [popupLink, setPopupLink] = useState('');
+  const [popupLink, setPopupLink] = useState("");
   const [hasLink, setHasLink] = useState({});
 
   const [isCoachPage, setIsCoachPage] = useState(false);
@@ -49,16 +49,19 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   };
 
   const finalDisplaySessionList = (sessions) => {
-    const paidSession = sessions.filter((i) => i.sessionType !== 'freeReading');
+    const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
     var result = sessions.reduce((unique, o) => {
       if (
-        !unique.some((obj) => obj.sessionType === 'freeReading') &&
-        o.sessionType === 'freeReading'
+        !unique.some((obj) => obj.sessionType === "freeReading") &&
+        o.sessionType === "freeReading" &&
+        (o.isBooked || o.isPurchased)
       ) {
         unique.push(o);
       }
       return unique;
     }, []);
+
+    console.log("result", result);
 
     setSessionList(result.concat(paidSession));
   };
@@ -80,6 +83,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         if (session.isBooked) sessionsWithLink[[session._id]] = false;
       });
       setHasLink(sessionsWithLink);
+      console.log("bookedSession", bookedSession);
       finalDisplaySessionList(bookedSession);
     }
   };
@@ -103,7 +107,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const getPurchasedCount = () => {
     setIsPurchased(true);
     setPurchasedCount(
-      userDetails?.purchasedSession?.filter((i) => i.status === 'purchased')?.length
+      userDetails?.purchasedSession?.filter((i) => i.status === "purchased")
+        ?.length
     );
   };
 
@@ -117,7 +122,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       .then((res) => {
         window.location.replace(res?.data?.url);
       })
-      .catch((err) => console.log('err ::', err));
+      .catch((err) => console.log("err ::", err));
   };
 
   const bookHandler = (data) => {
@@ -137,6 +142,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           purchaseSession(userDetails, res?.data?.sessions);
           bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
@@ -144,8 +150,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
 
   useEffect(() => {
     if (
-      window.location.pathname === '/our-coaches' ||
-      window.location.pathname === '/coaching-with-rita'
+      window.location.pathname === "/our-coaches" ||
+      window.location.pathname === "/coaching-with-rita"
     ) {
       setIsCoachPage(true);
       getSessionsByCoachID(coachId)
@@ -161,6 +167,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         })
         .catch((err) => console.log(err));
     } else {
+      setCoach("");
       getCoaches()
         .then((res) => setCoachList(res?.data?.coaches))
         .catch((err) => console.log(err));
@@ -181,18 +188,18 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         <Typography
           variant="h6"
           sx={{
-            color: '#671d63',
+            color: "#671d63",
             fontWeight: 900,
-            borderBottom: '1px solid #aaa',
-            paddingBottom: '0.5rem',
-            marginBottom: '1rem',
-            display: 'flex',
-            justifyContent: 'space-between',
+            borderBottom: "1px solid #aaa",
+            paddingBottom: "0.5rem",
+            marginBottom: "1rem",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
           {isCoachPage
             ? `Book your session with ${coachDetail?.firstName} now`
-            : 'Book your session now'}
+            : "Book your session now"}
 
           {/* {isPurchased && (
             <Typography
@@ -211,17 +218,17 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           {!isCoachPage && (
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                paddingLeft: '10px',
+                display: "flex",
+                justifyContent: "space-between",
+                paddingLeft: "10px",
               }}
             >
               <Typography
                 sx={{
-                  color: '#000',
+                  color: "#000",
                   fontWeight: 900,
-                  paddingBottom: '0.5rem',
-                  marginBottom: '1rem',
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 Hi, {userDetails?.name}
@@ -231,30 +238,32 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           {!isCoachPage && (
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '25px',
-                marginBottom: '20px',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "25px",
+                marginBottom: "20px",
               }}
             >
               <Box
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  width: '100%',
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  width: "100%",
                 }}
               >
                 <Box
                   sx={{
-                    width: '100%',
+                    width: "100%",
                     flexBasis: 0,
                     flexGrow: 1,
                   }}
                 >
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Choose your coach</InputLabel>
+                    <InputLabel id="demo-simple-select-label">
+                      Choose your coach
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -278,12 +287,13 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
 
           <Box
             sx={{
-              maxHeight: '50vh',
-              overflowY: 'scroll',
-              'scrollbar-width': '1px',
-              '::-webkit-scrollbar': {
-                width: '2px' /* Remove scrollbar space */,
-                background: 'transparent' /* Optional: just make scrollbar invisible */,
+              maxHeight: "50vh",
+              overflowY: "scroll",
+              "scrollbar-width": "1px",
+              "::-webkit-scrollbar": {
+                width: "2px" /* Remove scrollbar space */,
+                background:
+                  "transparent" /* Optional: just make scrollbar invisible */,
               },
             }}
           >
@@ -291,11 +301,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: '#671d63',
+                  color: "#671d63",
                   fontWeight: 900,
-                  borderBottom: '1px solid #aaa',
-                  paddingBottom: '0.5rem',
-                  marginBottom: '1rem',
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 Purchased session
@@ -303,7 +313,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             )}
             {sessionList?.filter(
               (i) =>
-                (i.sessionType === 'freeReading' && (i.isPurchased || i.isBooked)) ||
+                (i.sessionType === "freeReading" &&
+                  (i.isPurchased || i.isBooked)) ||
                 i.isPurchased ||
                 i.isBooked
             )?.length > 0 ? (
@@ -311,20 +322,27 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                 spacing={3}
                 container
                 sx={{
-                  marginTop: '0 !important',
-                  paddingBottom: '25px',
+                  marginTop: "0 !important",
+                  paddingBottom: "25px",
                   // paddingRight: { md: "20px" },
                 }}
               >
                 {sessionList
                   ?.filter(
                     (i) =>
-                      (i.sessionType === 'freeReading' && (i.isPurchased || i.isBooked)) ||
+                      (i.sessionType === "freeReading" &&
+                        (i.isPurchased || i.isBooked)) ||
                       i.isPurchased ||
                       i.isBooked
                   )
                   ?.map((i) => (
-                    <Grid key={i?._id} sx={{ height: '100% !important' }} item xs={12} md={6}>
+                    <Grid
+                      key={i?._id}
+                      sx={{ height: "100% !important" }}
+                      item
+                      xs={12}
+                      md={6}
+                    >
                       <SessionCard
                         title={i.title}
                         detail={i.details}
@@ -332,11 +350,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                         btnText={
                           !hasLink[i._id]
                             ? i.isBooked
-                              ? 'Get Link'
+                              ? "Get Link"
                               : i.isPurchased
-                              ? 'Book Now'
-                              : 'Purchase'
-                            : ''
+                              ? "Book Now"
+                              : "Purchase"
+                            : ""
                         }
                         onClick={
                           i.isBooked
@@ -358,11 +376,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             ) : (
               <Typography
                 sx={{
-                  color: '#000',
+                  color: "#000",
                   fontWeight: 600,
-                  paddingBottom: '0.5rem',
-                  marginBottom: '1rem',
-                  textAlign: 'center',
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                  textAlign: "center",
                 }}
               >
                 No session available
@@ -372,37 +390,55 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: '#671d63',
+                  color: "#671d63",
                   fontWeight: 900,
-                  borderBottom: '1px solid #aaa',
-                  paddingBottom: '0.5rem',
-                  marginBottom: '1rem',
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 Purchase session
               </Typography>
             )}
             {sessionList?.filter(
-              (i) => i.sessionType !== 'freeReading' && !i.isPurchased && !i.isBooked
+              (i) =>
+                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
             )?.length > 0 ? (
               <Grid
                 spacing={3}
                 container
                 sx={{
-                  marginTop: '0 !important',
-                  paddingBottom: '25px',
+                  marginTop: "0 !important",
+                  paddingBottom: "25px",
                   // paddingRight: { md: "20px" },
                 }}
               >
                 {sessionList
-                  ?.filter((i) => i.sessionType !== 'freeReading' && !i.isPurchased && !i.isBooked)
+                  ?.filter(
+                    (i) =>
+                      i.sessionType !== "freeReading" &&
+                      !i.isPurchased &&
+                      !i.isBooked
+                  )
                   ?.map((i) => (
-                    <Grid key={i?._id} sx={{ height: '100% !important' }} item xs={12} md={6}>
+                    <Grid
+                      key={i?._id}
+                      sx={{ height: "100% !important" }}
+                      item
+                      xs={12}
+                      md={6}
+                    >
                       <SessionCard
                         title={i.title}
                         detail={i.details}
                         sessionLink={hasLink && i?.sessionLink}
-                        btnText={i.isBooked ? 'Get Link' : i.isPurchased ? 'Book Now' : 'Purchase'}
+                        btnText={
+                          i.isBooked
+                            ? "Get Link"
+                            : i.isPurchased
+                            ? "Book Now"
+                            : "Purchase"
+                        }
                         onClick={
                           i.isBooked
                             ? () => {
@@ -420,11 +456,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             ) : (
               <Typography
                 sx={{
-                  color: '#000',
+                  color: "#000",
                   fontWeight: 600,
-                  paddingBottom: '0.5rem',
-                  marginBottom: '1rem',
-                  textAlign: 'center',
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                  textAlign: "center",
                 }}
               >
                 No session available
@@ -438,7 +474,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         prefill={{ email: userDetail?.email, name: userDetail?.name }}
         onModalClose={popupCloseHandler}
         open={popup}
-        rootElement={document.getElementById('root')}
+        rootElement={document.getElementById("root")}
       />
     </>
   );
