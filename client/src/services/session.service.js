@@ -45,6 +45,17 @@ const getCoachById = async (id) => {
     });
 };
 
+const getCoachByName = async (name) => {
+  return await axios
+    .get(`${baseUrl}/coaches/name/${name}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
 const getBookedSessions = async () => {
   return await axios
     .get(`${baseUrl}/sessions/booked`)
@@ -86,4 +97,5 @@ export {
   getSessionsByCoachID,
   getAllSessions,
   getCoachById,
+  getCoachByName,
 };

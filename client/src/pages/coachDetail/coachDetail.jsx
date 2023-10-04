@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
 import { heroListItems } from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import BookSessionBtn from "../../components/BookSessionButton";
+import { getCoachByName } from "../../services/session.service";
 
 const CoachDetail = () => {
+  const [coachDetail, setCoachDetail] = useState();
+
+  useEffect(() => {
+    getCoachByName("rita")
+      .then((res) => {
+        setCoachDetail(res.data.coach);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const accordionData = [
     {
       summary: "Collapsible Group Item #1",
@@ -135,7 +146,7 @@ const CoachDetail = () => {
                     Gain Awareness Of Your Creation in less than 30 days
                   </>
                 }
-                coachId={"651bf1bd5b3ee30412f1536c"}
+                coachId={coachDetail[0]?._id}
               />
             </Box>
             <List>
@@ -335,7 +346,7 @@ const CoachDetail = () => {
                 Gain Awareness Of Your Creation in less than 30 days
               </>
             }
-            coachId={"651bf1bd5b3ee30412f1536c"}
+            coachId={coachDetail[0]?._id}
           />
         </Box>
       </Box>
