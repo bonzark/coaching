@@ -16,6 +16,7 @@ import { getUserDetails, setUserDetails } from "../../utils/auth";
 import { handlePayment } from "../../services/payment.service";
 import { PopupModal } from "react-calendly";
 import { getuserById } from "../../services/user.service";
+import PageBanner from "../../sections/PageBanner";
 
 export default function SelectSmall() {
   const [sessionsIsLoading, setSessionsIsLoading] = useState(false);
@@ -426,142 +427,131 @@ export default function SelectSmall() {
     }
   };
   return (
-    <Box
-      sx={{
-        marginTop: "55px",
-        color: "#671d61",
-        padding: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
-      }}
-    >
+    <>
+      <PageBanner imgSrc="./prevPurchase.jpg" heading="Sessions" />
       <Box
         sx={{
-          display: { sm: "flex" },
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "15px",
+          color: "#671d61",
+          padding: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
         }}
       >
-        <Typography
-          variant="h1"
+        <Box
           sx={{
-            fontSize: { xs: "24px", sm: "32px", md: "40px" },
-            color: "#673d61",
-            fontFamily: "'montserrat', cursive",
-            fontWeight: 900,
-            marginBottom: "2rem",
-            // textAlign: { xs: "center", md: "left" },
+            display: { sm: "flex" },
+            justifyContent: "end",
+            alignItems: "center",
+            gap: "15px",
           }}
         >
-          Sessions
-        </Typography>
-        <Box>
-          <Typography
-            sx={{ fontSize: { xs: "20px", sm: "24px", md: "27px" } }}
-          ></Typography>
-          <FormControl
-            sx={{
-              minWidth: { xs: "100%", sm: "240px" },
-              borderColor: "#671d61",
-              color: "#671d63",
-              marginTop: { xs: "16px", sm: 0 },
-            }}
-            size="medium"
-          >
-            <InputLabel id="demo-select-large-label">
-              Choose Your Coach
-            </InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={currentCoach}
-              onChange={handleChange}
-              input={<OutlinedInput label="Choose Your Coach" />}
-              sx={{ mb: { xs: "25px", sm: 0 } }}
-            >
-              <MenuItem
-                value={""}
-                onClick={() => {
-                  setFilteredSessions(sessions);
-                }}
-              >
-                <Typography>All Sessions</Typography>
-              </MenuItem>
-              {coachList?.map((singleCoach) => {
-                return (
-                  <MenuItem
-                    key={singleCoach?._id}
-                    value={singleCoach?.firstName}
-                    sx={{
-                      backgroundColor: "#fff",
-                      color: "#671d61",
-                      ":hover": {
-                        backgroundColor: "#671d61",
-                        color: "#fff",
-                      },
-                    }}
-                    onClick={() => {
-                      setCurrentCoach(singleCoach);
-                      handleSelect(singleCoach?._id);
-                      // getSessionsByCoachId(singleCoach?._id);
-                    }}
-                  >
-                    {singleCoach?.firstName}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </Box>
-      </Box>
-      <Box>
-        <Grid
-          spacing={3}
-          container
-          sx={{
-            margin: "0 !important",
-            width: "100% !important",
-          }}
-          rowGap={"15px"}
-        >
-          {filteredSessionsisLoading | sessionsIsLoading ? (
-            <Backdrop open={sessionsIsLoading}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "25px",
-                  padding: "15px 45px",
-                }}
-              >
-                <CircularProgress sx={{ color: "white" }} color="secondary" />
-                <Typography
-                  component="span"
-                  fontSize={"30px"}
-                  fontWeight={"bold"}
-                  color={"white"}
-                >
-                  Loading Sessions
-                </Typography>
-              </Box>
-            </Backdrop>
-          ) : filteredSessions?.length > 0 ? (
-            <DivideSessions filteredSessions={filteredSessions} />
-          ) : (
+          <Box>
             <Typography
-              sx={{ color: "#671d63", fontSize: "45px", margin: "40px auto" }}
+              sx={{ fontSize: { xs: "20px", sm: "24px", md: "27px" } }}
+            ></Typography>
+            <FormControl
+              sx={{
+                minWidth: { xs: "100%", sm: "240px" },
+                borderColor: "#671d61",
+                color: "#671d63",
+                marginTop: { xs: "16px", sm: 0 },
+              }}
+              size="medium"
             >
-              No Sessions Found....
-            </Typography>
-          )}
-        </Grid>
+              <InputLabel id="demo-select-large-label">
+                Choose Your Coach
+              </InputLabel>
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={currentCoach}
+                onChange={handleChange}
+                input={<OutlinedInput label="Choose Your Coach" />}
+                sx={{ mb: { xs: "25px", sm: 0 } }}
+              >
+                <MenuItem
+                  value={""}
+                  onClick={() => {
+                    setFilteredSessions(sessions);
+                  }}
+                >
+                  <Typography>All Sessions</Typography>
+                </MenuItem>
+                {coachList?.map((singleCoach) => {
+                  return (
+                    <MenuItem
+                      key={singleCoach?._id}
+                      value={singleCoach?.firstName}
+                      sx={{
+                        backgroundColor: "#fff",
+                        color: "#671d61",
+                        ":hover": {
+                          backgroundColor: "#671d61",
+                          color: "#fff",
+                        },
+                      }}
+                      onClick={() => {
+                        setCurrentCoach(singleCoach);
+                        handleSelect(singleCoach?._id);
+                        // getSessionsByCoachId(singleCoach?._id);
+                      }}
+                    >
+                      {singleCoach?.firstName}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Box>
+        </Box>
+        <Box>
+          <Grid
+            spacing={3}
+            container
+            sx={{
+              margin: "0 !important",
+              width: "100% !important",
+            }}
+            rowGap={"15px"}
+          >
+            {filteredSessionsisLoading || sessionsIsLoading ? (
+              <Backdrop open={sessionsIsLoading}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "25px",
+                    padding: "15px 45px",
+                  }}
+                >
+                  <CircularProgress sx={{ color: "white" }} color="secondary" />
+                  <Typography
+                    component="span"
+                    fontSize={"30px"}
+                    fontWeight={"bold"}
+                    color={"white"}
+                  >
+                    Loading Sessions
+                  </Typography>
+                </Box>
+              </Backdrop>
+            ) : filteredSessions?.length > 0 ? (
+              <DivideSessions filteredSessions={filteredSessions} />
+            ) : (
+              <Typography
+                sx={{ color: "#671d63", fontSize: "45px", margin: "40px auto" }}
+              >
+                No Sessions Found....
+              </Typography>
+            )}
+          </Grid>
+        </Box>
+        <PopupModal
+          url={popupLink}
+          prefill={{ email: userDetails?.email, name: userDetails?.name }}
+          onModalClose={popupCloseHandler}
+          open={popup}
+          rootElement={document.getElementById("root")}
+        />
       </Box>
-      <PopupModal
-        url={popupLink}
-        prefill={{ email: userDetails?.email, name: userDetails?.name }}
-        onModalClose={popupCloseHandler}
-        open={popup}
-        rootElement={document.getElementById("root")}
-      />
-    </Box>
+    </>
   );
 }
