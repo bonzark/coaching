@@ -30,10 +30,12 @@ const OurCoachesDetail = () => {
 
   return (
     <>
-      <PageBanner
-        heading={`Meet Out Coach ${coachesData?.firstName}`}
-        imgSrc="../coach-detail.jpeg"
-      />
+      {coachesData?.firstName && (
+        <PageBanner
+          heading={`Meet Out Coach ${coachesData?.firstName}`}
+          imgSrc="../coach-detail.jpeg"
+        />
+      )}
       <Box
         sx={{
           margin: "0 0",
