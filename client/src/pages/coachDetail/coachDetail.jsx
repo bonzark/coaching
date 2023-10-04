@@ -13,13 +13,13 @@ const CoachDetail = () => {
 
   useEffect(() => {
     const getRita = async () => {
+      setIsLoading(true);
       await getCoachByName("rita")
         .then((res) => {
-          setIsLoading(true);
           setCoachDetail(res.data.coach);
-          setIsLoading(false);
         })
         .catch((err) => console.log(err));
+      setIsLoading(false);
     };
 
     getRita();
