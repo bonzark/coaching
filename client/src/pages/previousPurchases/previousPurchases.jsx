@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
-import { getUserDetails, setUserDetails } from '../../utils/auth';
-import { PopupModal } from 'react-calendly';
-import { getuserById } from '../../services/user.service';
-import { getAllSessions } from '../../services/session.service';
-import SessionCard from '../../components/SessionCard';
-import PageBanner from '../../sections/PageBanner';
+import { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import { getUserDetails, setUserDetails } from "../../utils/auth";
+import { PopupModal } from "react-calendly";
+import { getuserById } from "../../services/user.service";
+import { getAllSessions } from "../../services/session.service";
+import SessionCard from "../../components/SessionCard";
+import PageBanner from "../../sections/PageBanner";
 
 const PreviousPurchases = () => {
   const [sessionLinks, setSessionLinks] = useState({});
   const [popup, setPopup] = useState(false);
-  const [popupLink, setPopupLink] = useState('');
+  const [popupLink, setPopupLink] = useState("");
   const [myOwnSessions, setMyOwnSessions] = useState([]);
   const userDetail = getUserDetails();
 
   useEffect(() => {
     if (userDetail) {
-      if (window.location.pathname === '/our-coaches') {
+      if (window.location.pathname === "/our-coaches") {
         setIsCoachPage(true);
         getSessionsByCoachID(coachId)
           .then((res) => {
@@ -95,40 +95,41 @@ const PreviousPurchases = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '#f2effb',
+        backgroundColor: "#f2effb",
       }}
     >
       <PageBanner imgSrc="./prevPurchase.jpg" heading="Previous Purchases" />
       <Box
         sx={{
-          padding: '5rem 15px',
-          margin: '0 auto',
-          maxWidth: '1366px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '35px 15px',
-          justifyContent: 'center',
+          padding: "5rem 15px",
+          margin: "0 auto",
+          maxWidth: "1366px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "35px 15px",
+          justifyContent: "center",
         }}
       >
-        {myOwnSessions &&
-          myOwnSessions.length > 0 &&
+        {myOwnSessions && myOwnSessions.length > 0 ? (
           myOwnSessions.map(
             (session, index) =>
               (session.isBooked === true || session.isPurchased === true) && (
-                <Box key={session?._id} sx={{ maxWidth: '400px' }}>
+                <Box key={session?._id} sx={{ maxWidth: "400px" }}>
                   <SessionCard
                     key={session._id + index}
                     title={session.title}
                     detail={session.details}
-                    sessionLink={sessionLinks[session._id] && session?.sessionLink}
+                    sessionLink={
+                      sessionLinks[session._id] && session?.sessionLink
+                    }
                     btnText={
                       !sessionLinks[session._id]
                         ? session.isBooked
-                          ? 'Get Link'
+                          ? "Get Link"
                           : session.isPurchased
-                          ? 'Book Now'
-                          : 'Purchase'
-                        : ''
+                          ? "Book Now"
+                          : "Purchase"
+                        : ""
                     }
                     onClick={
                       session?.isBooked
@@ -143,7 +144,23 @@ const PreviousPurchases = () => {
                   />
                 </Box>
               )
-          )}
+          )
+        ) : (
+          <Box
+            sx={{ padding: { xs: "2.5rem 0", md: "4.5rem 0", lg: "6rem 0" } }}
+          >
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: { xs: "1.5rem", md: "3rem" },
+                color: "#671d63",
+                padding: { sm: "0 1rem", md: "0 3rem" },
+              }}
+            >
+              You don't seem to own any sessions yet...
+            </Typography>
+          </Box>
+        )}
       </Box>
       {popupLink && (
         <PopupModal
@@ -151,7 +168,7 @@ const PreviousPurchases = () => {
           prefill={{ email: userDetail?.email, name: userDetail?.name }}
           onModalClose={popupCloseHandler}
           open={popup}
-          rootElement={document.getElementById('root')}
+          rootElement={document.getElementById("root")}
         />
       )}
     </Box>
