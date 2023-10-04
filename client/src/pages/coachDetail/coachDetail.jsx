@@ -129,7 +129,12 @@ const CoachDetail = () => {
                     Gain Awareness Of Your Creation in less than 30 days
                   </>
                 }
-                bookText={"Purchase Session"}
+                bookText={
+                  <>
+                    <span>PURCHASE SESSION</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                }
                 coachId={"651bf1bd5b3ee30412f1536c"}
               />
             </Box>
@@ -324,7 +329,12 @@ const CoachDetail = () => {
                 Gain Awareness Of Your Creation in less than 30 days
               </>
             }
-            bookText={"Purchase Session"}
+            bookText={
+              <>
+                <span>PURCHASE SESSION</span>
+                Gain Awareness Of Your Creation in less than 30 days
+              </>
+            }
             coachId={"651bf1bd5b3ee30412f1536c"}
           />
         </Box>
