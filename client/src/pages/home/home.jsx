@@ -59,8 +59,10 @@ const Home = () => {
         }}
       />
       <SuccessModal
-        message={"Your Email verification Token is Invalid"}
-        title={"Invalid Token"}
+        message={
+          "Your Email verification already done!! Please try with login."
+        }
+        title={"Email Already Verified"}
         open={openInverified}
         status="cancelled"
         handleClose={() => {
