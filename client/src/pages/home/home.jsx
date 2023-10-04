@@ -64,7 +64,6 @@ const Home = () => {
         }
         title={"Email Already Verified"}
         open={openInverified}
-        status="cancelled"
         handleClose={() => {
           navigate("/");
           setOpenInverified(false);
