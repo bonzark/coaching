@@ -150,7 +150,7 @@ const CoachDetail = () => {
                     Gain Awareness Of Your Creation in less than 30 days
                   </>
                 }
-                coachId={coachDetail[0]?._id}
+                coachId={coachDetail ? coachDetail[0]?._id : ""}
               />
             </Box>
             <List>
@@ -350,7 +350,7 @@ const CoachDetail = () => {
                 Gain Awareness Of Your Creation in less than 30 days
               </>
             }
-            coachId={coachDetail[0]?._id}
+            coachId={coachDetail ? coachDetail[0]?._id : ""}
           />
         </Box>
       </Box>
