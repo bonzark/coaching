@@ -10,7 +10,7 @@ const OurCoaches = () => {
   useEffect(() => {
     const getCoacheData = async () => {
       const coaches = await getCoaches();
-      setCoachList(coaches?.data?.coaches);
+      setCoachList(coaches?.data?.coaches.coaches.reverse());
     };
     getCoacheData();
   }, []);
