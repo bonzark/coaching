@@ -8,14 +8,19 @@ import BookSessionBtn from "../../components/BookSessionButton";
 import { getCoachByName } from "../../services/session.service";
 
 const CoachDetail = () => {
-  const [coachDetail, setCoachDetail] = useState();
+  const [coachDetail, setCoachDetail] = useState([]);
 
   useEffect(() => {
-    getCoachByName("rita")
-      .then((res) => {
-        setCoachDetail(res.data.coach);
-      })
-      .catch((err) => console.log(err));
+    const getRita = async () => {
+      await getCoachByName("rita")
+        .then((res) => {
+          console.log(res.data.coach);
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    getRita();
   }, []);
 
   const accordionData = [
@@ -346,7 +351,7 @@ const CoachDetail = () => {
                 Gain Awareness Of Your Creation in less than 30 days
               </>
             }
-            coachId={coachDetail[0]?._id}
+            coachId={coachDetail[0]?._id ? coachDetail[0]?._id : ""}
           />
         </Box>
       </Box>

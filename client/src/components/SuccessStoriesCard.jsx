@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { PrimaryBtn } from "./PrimaryBtn";
 import BookSessionBtn from "./BookSessionButton";
+import { getCoachByName } from "../services/session.service";
 
 const SuccessStories = ({
   id,
@@ -15,6 +16,21 @@ const SuccessStories = ({
   isDetailPage,
   isOurCoachCard = false,
 }) => {
+  const [coachDetail, setCoachDetail] = useState([]);
+
+  useEffect(() => {
+    const getRita = async () => {
+      await getCoachByName("rita")
+        .then((res) => {
+          console.log(res.data.coach);
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    getRita();
+  }, []);
+
   return (
     <Box sx={{ paddingTop: 6, position: "relative" }}>
       <Box
@@ -161,7 +177,7 @@ const SuccessStories = ({
                   <PrimaryBtn
                     component={Link}
                     to={
-                      id === "651bf1bd5b3ee30412f1536c"
+                      id === coachDetail[0]?._id
                         ? `/coaching-with-rita`
                         : `/ourCoachesDetail/${id}`
                     }

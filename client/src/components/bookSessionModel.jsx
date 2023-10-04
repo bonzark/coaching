@@ -141,10 +141,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   };
 
   useEffect(() => {
-    if (
-      window.location.pathname === "/our-coaches" ||
-      window.location.pathname === "/coaching-with-rita"
-    ) {
+    if (window.location.pathname === "/our-coaches") {
       setIsCoachPage(true);
       getSessionsByCoachID(coachId)
         .then((res) => {
