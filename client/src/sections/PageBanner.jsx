@@ -47,7 +47,7 @@ const PageBanner = ({ heading, imgSrc, bgColor, align }) => {
           >
             {heading && (
               <Typography
-                component={"p"}
+                component={"div"}
                 sx={{
                   fontSize: { xs: "32px", md: "42px", lg: "72px" },
                   textAlign: align ? align : "center",

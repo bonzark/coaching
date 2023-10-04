@@ -277,7 +277,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             sx={{
               maxHeight: "50vh",
               overflowY: "scroll",
-              "scrollbar-width": "1px",
+              scrollbarWidth: "1px",
               "::-webkit-scrollbar": {
                 width: "2px" /* Remove scrollbar space */,
                 background:

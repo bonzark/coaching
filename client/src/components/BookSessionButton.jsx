@@ -24,7 +24,7 @@ const BookSessionBtn = ({
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handlePopupClose = () => {
     setLoginOpen(false);
-  };
+      };
 
   useEffect(() => {
     EventEmitter.subscribe("loginSuccess", (event) => {

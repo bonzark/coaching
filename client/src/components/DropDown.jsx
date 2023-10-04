@@ -75,7 +75,7 @@ const CommonDropdown = ({
       )}
       {!isMobile ? (
         <Popper
-          open={open}
+                    open={open}
           anchorEl={anchorEl}
           placement="bottom-start"
           transition

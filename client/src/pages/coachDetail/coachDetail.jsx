@@ -101,7 +101,7 @@ const CoachDetail = () => {
         </Box>
 
         <Container sx={{ padding: { xs: 0, sm: "0 30px" } }}>
-          <Typography
+          <Box
             sx={{
               mb: { xs: "8px", md: "10px", lg: "15px" },
             }}
@@ -273,7 +273,7 @@ const CoachDetail = () => {
                 experience a holistic sense of fulfillment and happiness.
               </ListItem>
             </List>
-          </Typography>
+          </Box>
         </Container>
       </Box>
       <SuccessCarousel />

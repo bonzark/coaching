@@ -117,7 +117,7 @@ const ResetPassword = () => {
             formik.touched.confirmPassWord && formik.errors.confirmPassWord
           }
         />
-        <PrimaryBtn fullWidth type="submit" row>
+        <PrimaryBtn fullWidth type="submit" row={true}>
           Reset
           {isLogIn && (
             <CircularProgress

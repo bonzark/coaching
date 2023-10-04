@@ -1,18 +1,29 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-export const PrimaryBtn = (props) => {
+export const PrimaryBtn = ({
+  disabled,
+  row,
+  fullWidth,
+  children,
+  type,
+  sx,
+  onClick,
+}) => {
   return (
     <Button
-      disabled={props?.disabled}
+      disabled={disabled}
+      type={type ? type : "button"}
+      onClick={onClick ? onClick : null}
       sx={{
+        ...sx,
         backgroundColor: "#873785",
         display: "flex",
-        flexDirection: props.row ? "row" : "column",
+        flexDirection: row === true ? "row" : "column",
         alignItems: "center",
-        width: props.fullWidth ? "100%" : { xs: "100%", sm: "max-content" },
+        width: fullWidth ? "100%" : { xs: "100%", sm: "max-content" },
         gap: "20px",
-        span: { display: "block", fontSize: "16px" },
+        "& span": { display: "block", fontSize: "16px" }, // Note the change here
         color: "#fff",
         borderRadius: "5px",
         padding: { xs: "10px", md: "18px 25px" },
@@ -28,9 +39,8 @@ export const PrimaryBtn = (props) => {
           backgroundColor: "#3b0d39",
         },
       }}
-      {...props}
     >
-      {props.children}
+      {children}
     </Button>
   );
 };

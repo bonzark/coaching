@@ -18,6 +18,7 @@ import FormModal from "../../sections/FormModal";
 import { getAuthToken } from "../../utils/auth";
 import { navItems, sidebarItems } from "../../utils/constant";
 import CommonDropdown from "../../components/DropDown";
+import EventEmitter from "reactjs-eventemitter";
 
 const Navbar = () => {
   const drawerWidth = 300;
@@ -31,6 +32,16 @@ const Navbar = () => {
   };
 
   React.useEffect(() => {
+    EventEmitter.subscribe("loginSuccess", (event) => {
+      setIsLoggedIn(true);
+    });
+
+    EventEmitter.subscribe("logoutSuccess", (event) => {
+      setIsLoggedIn(false);
+    });
+  }, []);
+
+  React.useEffect(() => {
     if (getAuthToken() === null || getAuthToken().length === 0) {
       setIsLoggedIn(false);
     } else {
@@ -42,7 +53,7 @@ const Navbar = () => {
   }, [getAuthToken()]);
 
   const handleOpen = () => setOpen(true);
-
+  
   const handleClose = () => {
     setOpen(false);
   };

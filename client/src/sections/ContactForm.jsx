@@ -144,7 +144,7 @@ const ContactForm = () => {
             fullWidth
             type="submit"
             disabled={isSubmit ? true : false}
-            row
+            row={true}
           >
             Send
             {isSubmit && (

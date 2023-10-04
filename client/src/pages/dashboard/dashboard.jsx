@@ -166,44 +166,6 @@ const Dashboard = () => {
             </Grid>
           </Box>
         </Box>
-        {/* <Box>
-        <Typography
-          sx={{
-            fontSize: { xs: "20px", sm: "25px", md: "30px" },
-            marginTop: "15px",
-            color: "#673d61",
-            textAlign: "center",
-          }}
-        >
-          Subscriptions Plans
-        </Typography>
-        <Grid
-          container
-          sx={{
-            justifyContent: "center",
-            gap: "25px",
-            marginTop: "30px",
-          }}
-        >
-          {subscriptionData?.map((plan) => {
-            return (
-              <Grid
-                sx={{ height: { xs: "100%", lg: "auto" } }}
-                item
-                key={plan?.price}
-              >
-                <SubscriptionCard
-                  description={plan?.description}
-                  title={plan?.title}
-                  price={plan?.price}
-                  locked={plan?.locked}
-                  unlocked={plan?.unlocked}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box> */}
       </Box>
     </>
   );
