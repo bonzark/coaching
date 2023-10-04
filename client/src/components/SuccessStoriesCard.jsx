@@ -160,7 +160,11 @@ const SuccessStories = ({
                 <Box sx={{ margin: "1rem 0" }}>
                   <PrimaryBtn
                     component={Link}
-                    to={`/ourCoachesDetail/${id}`}
+                    to={
+                      id === "651bf1bd5b3ee30412f1536c"
+                        ? `/coaching-with-rita`
+                        : `/ourCoachesDetail/${id}`
+                    }
                     state={{ name: id }}
                   >
                     Read More...

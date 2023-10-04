@@ -52,8 +52,18 @@ const Navbar = () => {
     }
   }, [getAuthToken()]);
 
+  React.useEffect(() => {
+    EventEmitter.subscribe("loginSuccess", (event) => {
+      setIsLoggedIn(true);
+    });
+
+    EventEmitter.subscribe("logoutSuccess", (event) => {
+      setIsLoggedIn(false);
+    });
+  }, []);
+
   const handleOpen = () => setOpen(true);
-  
+
   const handleClose = () => {
     setOpen(false);
   };

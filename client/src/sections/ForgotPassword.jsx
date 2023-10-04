@@ -72,6 +72,18 @@ const ForgotPassword = ({
         >
           Forgot Password
         </Typography>
+        <Typography
+          component={"p"}
+          sx={{
+            fontSize: "16px",
+            fontWeight: "400",
+            textAlign: "center",
+            color: "#000",
+            marginBottom: "10px",
+          }}
+        >
+          Please enter registered email address you'd like to reset password
+        </Typography>
         <InputBox
           fullWidth
           id="email"

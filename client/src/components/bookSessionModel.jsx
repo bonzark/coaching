@@ -51,7 +51,10 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const finalDisplaySessionList = (sessions) => {
     const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
     var result = sessions.reduce((unique, o) => {
-      if (!unique.some((obj) => obj.sessionType === "freeReading")) {
+      if (
+        !unique.some((obj) => obj.sessionType === "freeReading") &&
+        o.sessionType === "freeReading"
+      ) {
         unique.push(o);
       }
       return unique;
@@ -141,7 +144,10 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   };
 
   useEffect(() => {
-    if (window.location.pathname === "/our-coaches") {
+    if (
+      window.location.pathname === "/our-coaches" ||
+      window.location.pathname === "/coaching-with-rita"
+    ) {
       setIsCoachPage(true);
       getSessionsByCoachID(coachId)
         .then((res) => {

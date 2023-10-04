@@ -4,6 +4,7 @@ import FAQAccordion from "../../components/FAQAccordion";
 import { heroListItems } from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
+import BookSessionBtn from "../../components/BookSessionButton";
 
 const CoachDetail = () => {
   const accordionData = [
@@ -106,6 +107,37 @@ const CoachDetail = () => {
               mb: { xs: "8px", md: "10px", lg: "15px" },
             }}
           >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <BookSessionBtn
+                defaultText={
+                  <>
+                    <>
+                      <span>DOWNLOAD NOW FOR FREE</span>
+                      Gain Awareness Of Your Creation in less than 30 days
+                    </>
+                  </>
+                }
+                freeSessionText={
+                  <>
+                    <span>BOOK A FREE SESSION</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                }
+                bookText={
+                  <>
+                    <span>PURCHASE SESSION</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                }
+                coachId={"651bf1bd5b3ee30412f1536c"}
+              />
+            </Box>
             <List>
               <ListItem
                 sx={{
@@ -275,6 +307,37 @@ const CoachDetail = () => {
             </List>
           </Box>
         </Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BookSessionBtn
+            defaultText={
+              <>
+                <>
+                  <span>DOWNLOAD NOW FOR FREE</span>
+                  Gain Awareness Of Your Creation in less than 30 days
+                </>
+              </>
+            }
+            freeSessionText={
+              <>
+                <span>BOOK A FREE SESSION</span>
+                Gain Awareness Of Your Creation in less than 30 days
+              </>
+            }
+            bookText={
+              <>
+                <span>PURCHASE SESSION</span>
+                Gain Awareness Of Your Creation in less than 30 days
+              </>
+            }
+            coachId={"651bf1bd5b3ee30412f1536c"}
+          />
+        </Box>
       </Box>
       <SuccessCarousel />
       <FAQAccordion data={accordionData} />
