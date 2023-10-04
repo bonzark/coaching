@@ -196,7 +196,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             justifyContent: "space-between",
           }}
         >
-          {isCoachPage
+          {isCoachPage && coachDetail?.firstName
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
 
