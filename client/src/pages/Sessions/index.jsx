@@ -533,7 +533,8 @@ export default function SelectSmall() {
                   </Typography>
                 </Box>
               </Backdrop>
-            ) : filteredSessions?.length > 0 ? (
+            ) : filteredSessions?.length > 0 &&
+              (!sessionsIsLoading || !filteredSessionsisLoading) ? (
               <DivideSessions filteredSessions={filteredSessions} />
             ) : (
               <Typography
