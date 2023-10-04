@@ -407,6 +407,7 @@ export default function SelectSmall() {
           setSessions(res?.data?.sessions);
           purchaseSession(userDetails, res?.data?.sessions);
           bookedSession(userDetails, res?.data?.sessions);
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
