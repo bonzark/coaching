@@ -136,3 +136,22 @@ exports.getCoachById = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+exports.getCoachByName = async (req, res) => {
+  try {
+    const { name } = req.params;
+
+    const coach = await Coach.find({
+      firstName: { $regex: new RegExp("^" + name.toLowerCase(), "i") },
+    });
+
+    if (!coach) {
+      return res.status(404).json({ error: "Coach not found" });
+    }
+
+    return res.status(200).json({ coach });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
