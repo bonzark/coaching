@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
-import { heroListItems } from "../../utils/constant";
+import {
+  heroListItems,
+  testimonialCoachingWithRitaData,
+} from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import BookSessionBtn from "../../components/BookSessionButton";
@@ -361,7 +364,7 @@ const CoachDetail = () => {
           )}
         </Box>
       </Box>
-      <SuccessCarousel />
+      <SuccessCarousel testimonials={testimonialCoachingWithRitaData} />
       <FAQAccordion data={accordionData} />
     </>
   );

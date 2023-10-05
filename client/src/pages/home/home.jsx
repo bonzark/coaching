@@ -7,7 +7,7 @@ import News from "../../sections/news";
 import OurCoaches from "../../sections/OurCoaches";
 import OurProgram from "../../sections/OurProgram";
 import OfferSection from "../../sections/OffersSection";
-import { heroListItems } from "../../utils/constant";
+import { heroListItems, testimonialHomeData } from "../../utils/constant";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../../components/SuccessModal";
 
@@ -73,7 +73,7 @@ const Home = () => {
       <OurCoaches />
       <News />
       <OurProgram />
-      <SuccessCarousel />
+      <SuccessCarousel testimonials={testimonialHomeData} />
       <OfferSection />
       <FreeMeditation />
     </>
