@@ -18,6 +18,7 @@ exports.createCoach = [
         availableDays,
         oneToOnePrice,
         groupPrice,
+        order,
       } = req.body;
 
       const folder = "upload";
@@ -30,6 +31,7 @@ exports.createCoach = [
         email,
         about,
         intro,
+        order,
         availableFrom,
         availableTo,
         availableDays,

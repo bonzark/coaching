@@ -118,17 +118,19 @@ const OurCoaches = () => {
             },
           }}
         >
-          {coachList?.map((item) => {
-            return (
-              <CoachCarouselCard
-                id={item?._id}
-                key={item?._id}
-                title={item?.firstName}
-                subtitle={item?.intro}
-                imgSrc={item?.image}
-              />
-            );
-          })}
+          {coachList
+            ?.sort((a, b) => (a.order > b.order ? 1 : -1))
+            ?.map((item) => {
+              return (
+                <CoachCarouselCard
+                  id={item?._id}
+                  key={item?._id}
+                  title={item?.firstName}
+                  subtitle={item?.intro}
+                  imgSrc={item?.image}
+                />
+              );
+            })}
         </Carousel>
       </Container>
       <Box
