@@ -21,6 +21,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
           borderRadius: "8px",
           overflow: "hidden",
           display: "flex",
+          width: { xs: "auto", md: "50%" },
         }}
       >
         <img

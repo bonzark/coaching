@@ -28,19 +28,21 @@ const OurCoachesCard = () => {
     >
       {!isLoading ? (
         coachesData.length > 0 &&
-        coachesData.map((data) => (
-          <SuccessStories
-            key={data?._id}
-            title={`${data?.firstName} ${data?.lastName}`}
-            imgSrc={data?.image}
-            reverse={data?.reverse}
-            descriptionArr={data?.about}
-            id={data?._id}
-            isDetailPage={false}
-            wholeContent={false}
-            isOurCoachCard={true}
-          />
-        ))
+        coachesData
+          ?.sort((a, b) => (a.order > b.order ? 1 : -1))
+          ?.map((data) => (
+            <SuccessStories
+              key={data?._id}
+              title={`${data?.firstName} ${data?.lastName}`}
+              imgSrc={data?.image}
+              reverse={data?.reverse}
+              descriptionArr={data?.about}
+              id={data?._id}
+              isDetailPage={false}
+              wholeContent={false}
+              isOurCoachCard={true}
+            />
+          ))
       ) : (
         <Box sx={{ paddingBottom: "3.5rem", textAlign: "center" }}>
           <CircularProgress
