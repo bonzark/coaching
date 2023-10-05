@@ -300,59 +300,63 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {toPurchase && toPurchase.length ? (
-            toPurchase.map((session) => (
-              <Grid
-                key={session?._id}
-                item
-                xs={12}
-                md={6}
-                lg={4}
-                sx={{
-                  padding: {
-                    xs: "16px 0 !important",
-                    md: "12px !important",
-                    lf: "24px !important",
-                  },
-                }}
-              >
-                <SessionCard
-                  coachName={session?.coach?.firstName}
-                  sessionLink={hasLink[session._id] && session?.sessionLink}
-                  date={session?.date}
-                  time={session?.time}
-                  sessionImg={session?.coach?.coachImg}
-                  detail={session?.details}
-                  price={session?.price}
-                  title={session?.title}
-                  btnText={
-                    !hasLink[session._id]
-                      ? session.isBooked
-                        ? "Get Link"
-                        : session.isPurchased
-                        ? "Book Now"
-                        : "Purchase"
-                      : ""
-                  }
-                  onClick={
-                    session?.isBooked
-                      ? () => {
-                          setHasLink((prev) => ({
-                            ...prev,
-                            [session._id]: true,
-                          }));
-                        }
-                      : () =>
-                          session?.isPurchased
-                            ? bookHandler(session)
-                            : purchaseHandler(
-                                session?._id,
-                                session?.stripePriceId
-                              )
-                  }
-                />
-              </Grid>
-            ))
+          {toPurchase &&
+          toPurchase?.filter((i) => i.sessionType !== "freeReading").length ? (
+            toPurchase
+              ?.filter((i) => i.sessionType !== "freeReading")
+              .map((session) => (
+                <Grid
+                  key={session?._id}
+                  spacing={1}
+                  item
+                  xs={12}
+                  md={6}
+                  lg={4}
+                  sx={{
+                    padding: {
+                      xs: "16px 0 !important",
+                      md: "12px !important",
+                      lf: "24px !important",
+                    },
+                  }}
+                >
+                  <SessionCard
+                    coachName={session?.coach?.firstName}
+                    sessionLink={hasLink[session._id] && session?.sessionLink}
+                    date={session?.date}
+                    time={session?.time}
+                    sessionImg={session?.coach?.coachImg}
+                    detail={session?.details}
+                    price={session?.price}
+                    title={session?.title}
+                    btnText={
+                      !hasLink[session._id]
+                        ? session.isBooked
+                          ? "Get Link"
+                          : session.isPurchased
+                          ? "Book Now"
+                          : "Purchase"
+                        : ""
+                    }
+                    onClick={
+                      session?.isBooked
+                        ? () => {
+                            setHasLink((prev) => ({
+                              ...prev,
+                              [session._id]: true,
+                            }));
+                          }
+                        : () =>
+                            session?.isPurchased
+                              ? bookHandler(session)
+                              : purchaseHandler(
+                                  session?._id,
+                                  session?.stripePriceId
+                                )
+                    }
+                  />
+                </Grid>
+              ))
           ) : (
             <Typography
               sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
@@ -405,6 +409,7 @@ export default function SelectSmall() {
           setSessions(res?.data?.sessions);
           purchaseSession(userDetails, res?.data?.sessions);
           bookedSession(userDetails, res?.data?.sessions);
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }

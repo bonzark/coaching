@@ -48,12 +48,15 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
     }
   };
 
+  console.log("coachId :::::::", coachId);
+
   const finalDisplaySessionList = (sessions) => {
     const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
     var result = sessions.reduce((unique, o) => {
       if (
         !unique.some((obj) => obj.sessionType === "freeReading") &&
-        o.sessionType === "freeReading"
+        o.sessionType === "freeReading" &&
+        (o.isBooked || o.isPurchased)
       ) {
         unique.push(o);
       }
@@ -138,6 +141,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           purchaseSession(userDetails, res?.data?.sessions);
           bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
@@ -149,6 +153,13 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       window.location.pathname === "/coaching-with-rita"
     ) {
       setIsCoachPage(true);
+      if (window.location.pathname === "/our-coaches") {
+        getCoachById(coachId)
+          .then((res) => {
+            setCoachDetail(res.data.coach);
+          })
+          .catch((err) => console.log(err));
+      }
       getSessionsByCoachID(coachId)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
@@ -156,12 +167,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           getPurchasedCount();
         })
         .catch((err) => console.log(err));
-      getCoachById(coachId)
-        .then((res) => {
-          setCoachDetail(res.data.coach);
-        })
-        .catch((err) => console.log(err));
     } else {
+      setCoach("");
       getCoaches()
         .then((res) => setCoachList(res?.data?.coaches))
         .catch((err) => console.log(err));
@@ -191,7 +198,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
             justifyContent: "space-between",
           }}
         >
-          {isCoachPage
+          {isCoachPage && coachDetail?.firstName
             ? `Book your session with ${coachDetail?.firstName} now`
             : "Book your session now"}
 
