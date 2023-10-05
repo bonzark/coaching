@@ -47,7 +47,7 @@ const SuccessCarousel = ({ testimonials }) => {
             <SuccessStories
               key={index}
               imgSrc="./successStories.jpg"
-              content={item.review}
+              content={item?.review}
               title=""
             />
           ))}
