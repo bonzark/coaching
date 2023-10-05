@@ -666,3 +666,56 @@ export const EventsData = [
       'https://allevents.in/online/energy-and-pathline-coaching-one-to-one-your-secret-weapon-to-manifestation-mastery/80002596870303',
   },
 ];
+
+
+export const becomeYourCreatorData = [{ type: "para", content: "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work." },
+{ type: "header", content: "£19.99 PER MONTH." },
+{
+  type: "header",
+  content: "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR..."
+},
+{ type: "content", content: "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you." },
+{ type: "content", content: "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way." },
+{ type: "content", content: "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well-being over the relentless hustle." },
+{
+  type: "content", content: "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another.Together, we create a space that nourishes and encourages growth."
+},
+{ type: "content", content: "You thrive on the invigorating energy of new beginnings, whether it's a Monday, a fresh month, or a new season. These moments excite and inspire you, fuelling your motivation to transform your life." },
+{ type: "content", content: "As a big dreamer, you're prepared to confront the shadows within yourself and engage in the necessary inner work to bring about positive change. You're ready to break free from your own excuses and design a life that you genuinely love." },
+{
+  type: "header",
+  content: "WHAT TO LOOK FORWARD TO EVERY MONTH",
+},
+{
+  type: "content",
+  content: "Every month, we have an exciting lineup of live sessions just for you! Here's what you can anticipate:"
+},
+{
+  type: "content",
+  content: "1 x Masterclass: Join us for an empowering session on manifestation, mindset, personal development, or spirituality. We have a fantastic mix of live guest experts and pre-recorded classes hosted by the incredible Rita and/or Lilian. "
+},
+{
+  type: "content",
+  content: "1 x Monthly Themed Goal Setting Session: Dive deep into setting and achieving your goals with our special monthly theme. Get ready to unlock your full potential and make your dreams a reality."
+},
+{
+  type: "content",
+  content: "1 x Get It Done Session: Need some motivation to take action? Look no further! Those sessions are designed to provide you with the much-needed motivation to take action and accomplish your goals. Whether you're struggling to start a new project, complete a daunting task, or simply lacking the drive to get things done, our session is here to ignite that spark within you. "
+},
+{
+  type: "content",
+  content: "1 x Digital Download: Enhance your personal growth journey with our exclusive digital downloads. Each month, you'll receive a valuable resource such as a workbook, EFT video, hypnosis session, or meditation guide."
+},
+{
+  type: "content",
+  content: "1 x Live Session with Rita: Enjoy an extra live session led by the incredible Rita herself. Dive even deeper into the topics that matter most to you and receive personalized guidance from a true expert."
+},
+{
+  type: "content",
+  content: "3 x Live Sessions with Our Lead Coaches: Our team of lead coaches is here to support you every step of the way. With three additional live sessions per month, you'll gain valuable insights, tips, and guidance from experienced professionals."
+},
+{
+  type: "content",
+  content: "Get ready for an incredible month of growth, inspiration, and transformation. We can't wait to see you at our live sessions!"
+}
+]
