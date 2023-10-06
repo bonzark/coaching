@@ -60,6 +60,45 @@ const BecomeYourCreator = () => {
       >
         <Box
           sx={{
+            paddingBottom: { lg: "55px" },
+          }}
+        >
+          <List sx={{ paddingBottom: "1rem", px: { xs: 0, md: "1rem" } }}>
+            {becomeYourCreatorData?.map((item, key) => (
+              <ListItem
+                sx={{ display: "flex", alignItems: "start", px: 0 }}
+                key={key}
+              >
+                {item?.type === "header" && (
+                  <ListItemIcon
+                    sx={{
+                      minWidth: { xs: "12px", sm: "18px", lg: "30px" },
+                      paddingRight: { xs: "5px", md: "12px" },
+                    }}
+                  >
+                    <CheckCircleIcon sx={{ color: "#671d63", width: "100%" }} />
+                  </ListItemIcon>
+                )}
+                <Typography
+                  sx={{
+                    fontSize: {
+                      xs: item?.type === "header" ? "1.25rem" : "1rem",
+                      sm: item?.type === "header" ? "1.30rem" : "1.05rem",
+                      md: item?.type === "header" ? "1.35rem" : "1.10rem",
+                    },
+                    textAlign: "justify",
+                    fontWeight: item?.type === "content" ? 100 : 400,
+                    paddingLeft: item?.type === "content" && { md: "42px" },
+                  }}
+                >
+                  {item?.content}
+                </Typography>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        <Box
+          sx={{
             display: "flex",
             mx: "auto",
             alignItems: "center",
@@ -110,42 +149,7 @@ const BecomeYourCreator = () => {
             you! Here's what you can anticipate:
           </Typography>
         </Box>
-        <Box
-          sx={{
-            paddingBottom: { lg: "55px" },
-          }}
-        >
-          <List>
-            {becomeYourCreatorData?.map((item, key) => (
-              <ListItem sx={{ display: "flex", alignItems: "start" }} key={key}>
-                {item?.type === "header" && (
-                  <ListItemIcon
-                    sx={{
-                      minWidth: { xs: "12px", sm: "18px", lg: "30px" },
-                      paddingRight: { xs: "5px", md: "12px" },
-                    }}
-                  >
-                    <CheckCircleIcon sx={{ color: "#671d63", width: "100%" }} />
-                  </ListItemIcon>
-                )}
-                <Typography
-                  sx={{
-                    fontSize: {
-                      xs: item?.type === "header" ? "0.95rem" : "0.75rem",
-                      sm: item?.type === "header" ? "1.05rem" : "0.95rem",
-                      md: item?.type === "header" ? "1.25rem" : "1.05rem",
-                    },
-                    textAlign: "justify",
-                    fontWeight: item?.type === "content" ? 100 : 400,
-                    paddingLeft: item?.type === "content" && { md: "42px" },
-                  }}
-                >
-                  {item?.content}
-                </Typography>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+
         <Box
           sx={{
             display: "grid",
