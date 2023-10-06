@@ -29,7 +29,7 @@ const DisclaimerModelBtn = ({ text }) => {
         {text}
       </Button>
       <MainModal open={open} handleClose={handleClose} lg={true}>
-        <Box sx={{ maxHeight: "75vh", overflowY: "auto" }}>
+        <Box sx={{ maxHeight: "75vh", overflowY: "auto", overflowX: "hidden" }}>
           <Typography
             variant="h6"
             sx={{
