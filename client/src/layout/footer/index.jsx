@@ -30,7 +30,7 @@ const Footer = () => {
           padding: "40px 0",
           margin: "0 auto",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: { xs: "space-between", md: "space-between" },
           borderBottom: "1px solid #671d63",
           gap: { xs: "15px", md: "30px" },
@@ -39,10 +39,11 @@ const Footer = () => {
       >
         <Box
           sx={{
-            maxWidth: "50%",
-            display: "flex",
+            maxWidth: { md: "50%", xs: "100%" },
+            display: { md: "flex", xs: "block" },
             gap: "50px",
             alignItems: "center",
+            marginBottom: { xs: "50px", md: "0" },
           }}
         >
           <Box
@@ -102,7 +103,7 @@ const Footer = () => {
             </Typography>
           </Box>
         </Box>
-        <Box>
+        <Box sx={{ maxWidth: { md: "25%", xs: "50%" } }}>
           <Typography
             variant="h3"
             sx={{
@@ -148,7 +149,13 @@ const Footer = () => {
             })}
           </Box>
         </Box>
-        <Box sx={{ marginTop: { xs: "1rem", md: "0" }, alignSelf: "start" }}>
+        <Box
+          sx={{
+            marginTop: { xs: "1rem", md: "0" },
+            alignSelf: "start",
+            maxWidth: { md: "25%", xs: "50%" },
+          }}
+        >
           <Typography
             variant="h3"
             sx={{
