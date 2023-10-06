@@ -287,6 +287,8 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           <Box
             sx={{
               maxHeight: "50vh",
+              paddingRight: "15px",
+              paddingLeft: "5px",
               overflowY: "scroll",
               "scrollbar-width": "1px",
               "::-webkit-scrollbar": {
