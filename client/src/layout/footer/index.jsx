@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   const handleReadMoreClick = () => {
-    setOpen(true);
+    setOpen(!open);
   };
   return (
     <Box
