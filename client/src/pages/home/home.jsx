@@ -25,7 +25,7 @@ const Home = () => {
     <>
       <SuccessModal
         message={"Your booking has been successfully cancelled."}
-        title={"Booking cancelled"}
+        title={"Payment cancelled"}
         open={openCancel}
         status="cancelled"
         handleClose={() => {
