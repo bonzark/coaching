@@ -21,9 +21,13 @@ import { handlePayment } from "../services/payment.service";
 import { PopupModal } from "react-calendly";
 import { getUserDetails, setUserDetails } from "../utils/auth";
 import { getuserById } from "../services/user.service";
+import AgreePopup from "./agreePopup";
 
 const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [coach, setCoach] = useState("");
+  const [agreePopup, setAgreePopup] = useState(false);
+  const [agreePopupPayload, setAgreePopupPayload] = useState({});
+  const [checked, setChecked] = useState(false);
   const [coachDetail, setCoachDetail] = useState();
   const [coachList, setCoachList] = useState([]);
   const [sessionList, setSessionList] = useState(null);
@@ -34,6 +38,12 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
   const [hasLink, setHasLink] = useState({});
 
   const [isCoachPage, setIsCoachPage] = useState(false);
+
+  const handleAgreePopupClose = () => {
+    setAgreePopupPayload({});
+    setAgreePopup(false);
+    setChecked(false);
+  };
 
   const handleChange = (event) => {
     setCoach(event.target.value);
@@ -180,6 +190,20 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
         .catch((err) => console.log(err));
     }
   }, [open]);
+
+  const agreePopupHandler = (data) => {
+    setAgreePopupPayload({
+      id: data._id,
+      stripePriceId: data.stripePriceId,
+    });
+    setAgreePopup(true);
+  };
+
+  const agreePopupSubmitHandler = () => {
+    if (agreePopupPayload.id && agreePopupPayload.stripePriceId) {
+      purchaseHandler(agreePopupPayload.id, agreePopupPayload.stripePriceId);
+    }
+  };
 
   return (
     <>
@@ -366,7 +390,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                             : () =>
                                 i.isPurchased
                                   ? bookHandler(i)
-                                  : purchaseHandler(i._id, i.stripePriceId)
+                                  : agreePopupHandler(i)
                         }
                       />
                     </Grid>
@@ -446,7 +470,7 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
                             : () =>
                                 i.isPurchased
                                   ? bookHandler(i)
-                                  : purchaseHandler(i._id, i.stripePriceId)
+                                  : agreePopupHandler(i)
                         }
                       />
                     </Grid>
@@ -468,6 +492,13 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           </Box>
         </form>
       </MainModal>
+      <AgreePopup
+        open={agreePopup}
+        handleClose={handleAgreePopupClose}
+        submit={agreePopupSubmitHandler}
+        checked={checked}
+        setChecked={setChecked}
+      />
       <PopupModal
         url={popupLink}
         prefill={{ email: userDetail?.email, name: userDetail?.name }}

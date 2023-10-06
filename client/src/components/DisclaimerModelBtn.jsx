@@ -19,10 +19,9 @@ const DisclaimerModelBtn = ({ text }) => {
           color: "#671d63",
           textDecoration: "none",
           ":hover": { color: "#671d63" },
-          padding: "0 5px",
           borderBottom: "1px solid #671d63",
           borderRadius: 0,
-          marginLeft: "10px",
+          lineHeight: "10px",
         }}
         onClick={handleReadMoreClick}
       >
