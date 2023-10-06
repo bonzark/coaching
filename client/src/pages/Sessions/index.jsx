@@ -276,7 +276,7 @@ export default function SelectSmall() {
               sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
             >
               {currentCoach === ""
-                ? "You have not bought any sessions yet..."
+                ? "You don't seem to have any unbooked purchased sessions..."
                 : `No sessions from coach ${currentCoach} have been bought yet...`}
             </Typography>
           )}
