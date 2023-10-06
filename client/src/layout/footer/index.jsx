@@ -1,9 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+  Button,
+} from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Link } from "react-router-dom";
 import { footerItems } from "../../utils/constant";
+import { MainModal } from "../../components/MainModal";
+import DisclaimerModelBtn from "../../components/DisclaimerModelBtn";
 
 const Footer = () => {
   return (
@@ -26,7 +37,14 @@ const Footer = () => {
           flexWrap: "wrap",
         }}
       >
-        <Box sx={{ maxWidth: "532px" }}>
+        <Box
+          sx={{
+            maxWidth: "50%",
+            display: "flex",
+            gap: "50px",
+            alignItems: "center",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -52,21 +70,37 @@ const Footer = () => {
               </Link>
             </Box>
           </Box>
-          <Typography
-            paragraph
-            sx={{
-              color: "#671d63",
-              margin: 0,
-              lineHeight: "1.3rem",
-              textAlign: { xs: "left", sm: "justify" },
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-            magnam facere ad perferendis amet tenetur reiciendis placeat et
-            neque quo. Odio aspernatur maxime itaque facilis quos excepturi iste
-            minima? Quae tempora deleniti porro dolores perferendis similique
-            est dignissimos quod unde.
-          </Typography>
+          <Box>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#671d63",
+                fontSize: "1.2rem",
+                fontWeight: 900,
+                paddingBottom: { xs: "10px", md: "30px" },
+                margin: 0,
+              }}
+            >
+              Become Your Creator LTD.
+            </Typography>
+            <Typography
+              paragraph
+              sx={{
+                color: "#671d63",
+                margin: 0,
+                lineHeight: "1.3rem",
+                textAlign: { xs: "left", sm: "justify" },
+              }}
+            >
+              Become Your Creator LTD. offers coaching services for
+              informational and educational purposes only. While our sessions
+              are personalized, it is the individual's responsibility to apply
+              the coaching to achieve desired outcomes. We provide guidance,
+              support, and encouragement, but clients are accountable for their
+              actions and decisions resulting from our coaching.
+              <DisclaimerModelBtn text={"Read More..."} />
+            </Typography>
+          </Box>
         </Box>
         <Box>
           <Typography
@@ -114,14 +148,14 @@ const Footer = () => {
             })}
           </Box>
         </Box>
-        <Box sx={{ marginTop: { xs: "1rem", md: "2rem" }, alignSelf: "start" }}>
+        <Box sx={{ marginTop: { xs: "1rem", md: "0" }, alignSelf: "start" }}>
           <Typography
             variant="h3"
             sx={{
               color: "#671d63",
               fontSize: "1.2rem",
               fontWeight: 900,
-              paddingBottom: "8px",
+              paddingBottom: { xs: "10px", md: "30px" },
               margin: 0,
             }}
           >
