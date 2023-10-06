@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import SingleCoachDetail from "../../sections/SingleCoachDetail";
 import { getCoaches } from "../../services/session.service";
 import PageBanner from "../../sections/PageBanner";
+import SingleCoachDetail from "../../sections/SingleCoachDetail";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const OurCoachesDetail = () => {
@@ -32,7 +32,7 @@ const OurCoachesDetail = () => {
     <>
       {coachesData?.firstName && (
         <PageBanner
-          heading={`Meet Out Coach ${coachesData?.firstName}`}
+          heading={`Meet Our Coach ${coachesData?.firstName}`}
           imgSrc="../coach-detail.jpeg"
         />
       )}

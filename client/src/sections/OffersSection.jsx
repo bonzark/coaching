@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Typography, Button, Paper, Box } from "@mui/material";
-import { PrimaryBtn } from "../components/PrimaryBtn";
 import BookSessionBtn from "../components/BookSessionButton";
 
 const OfferSection = () => {

@@ -1,5 +1,4 @@
 const { body, validationResult } = require("express-validator");
-const User = require("../models/user");
 
 const validateRegistration = [
   body("name").trim().notEmpty().withMessage("Username is required"),

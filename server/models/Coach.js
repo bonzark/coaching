@@ -1,37 +1,5 @@
 const mongoose = require("mongoose");
 
-const availabilitySchema = new mongoose.Schema({
-  day: {
-    type: String,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    required: true,
-  },
-  timeSlots: [
-    {
-      start: {
-        type: String,
-        required: true,
-      },
-      end: {
-        type: String,
-        required: true,
-      },
-      maxClients: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
-});
-
 const coachSchema = new mongoose.Schema({
   firstName: {
     type: String,
