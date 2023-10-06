@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const coachController = require("../controllers/coachController");
-const multer = require("multer");
 const { validateCoach } = require("../middlewares/validation");
 const upload = require("../middlewares/imageUpload");
 

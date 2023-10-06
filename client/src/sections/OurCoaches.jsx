@@ -1,5 +1,5 @@
-import { Box, Button, Container, Link, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box, Container, Link, Typography } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import CoachCarouselCard from "../components/CoachCarouselCard";
 import { NavLink } from "react-router-dom";
@@ -68,6 +68,7 @@ const OurCoaches = () => {
         <Carousel
           additionalTransfrom={0}
           arrows={false}
+          autoPlay={true}
           autoPlaySpeed={3000}
           centerMode={false}
           className=""

@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { PrimaryBtn } from "./PrimaryBtn";
 import { Link } from "react-router-dom";
 import BookSessionBtn from "./BookSessionButton";
 

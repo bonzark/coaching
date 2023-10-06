@@ -7,11 +7,7 @@ import {
   ListItemIcon,
   Typography,
 } from "@mui/material";
-import {
-  aboutTemplateData,
-  becomeYourCreatorData,
-  lineUpsData,
-} from "../../utils/constant";
+import { becomeYourCreatorData, lineUpsData } from "../../utils/constant";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";

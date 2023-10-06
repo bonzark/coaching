@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import {
   Box,
-  Container,
   List,
   ListItem,
   ListItemIcon,
@@ -8,8 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useEffect, useState } from "react";
-import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 import { getAuthToken } from "../utils/auth";
 import EventEmitter from "reactjs-eventemitter";

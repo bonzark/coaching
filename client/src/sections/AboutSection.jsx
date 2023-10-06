@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import { aboutTemplateData } from "../utils/constant";
 import AboutTemplate from "../components/AboutTemplate";
 

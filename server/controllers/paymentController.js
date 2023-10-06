@@ -1,9 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
-const express = require("express");
 const PaymentDetail = require("../models/paymentDetails");
 const BookedSession = require("../models/bookedSession");
 const User = require("../models/user");
-const app = express();
 
 const CLIENT_URL = process.env.HOST_URL;
 

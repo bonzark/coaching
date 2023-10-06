@@ -1,9 +1,7 @@
 import { Box, IconButton, Modal } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { getAuthToken } from "../utils/auth";
 
 export const MainModal = ({ open, handleClose, blur, children, lg }) => {
-  const isLoggedIn = getAuthToken();
   return (
     <Modal
       open={open}
