@@ -159,7 +159,9 @@ const DisclaimerModelBtn = ({ text }) => {
               you do not agree with this disclaimer, please do not use our
               coaching services.
             </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
+            <Typography
+              sx={{ fontSize: { md: "18px", xs: "15px" }, overflow: "hidden" }}
+            >
               If you have any questions, please do not hesitate to contact us
               via email on support@becomeyourcreator.com
             </Typography>
