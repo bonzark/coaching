@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Checkbox,
   Typography,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -160,6 +161,7 @@ const SessionCard = ({
             </Typography>
           )}
         </Box>
+
         <Box
           component={"div"}
           sx={{ display: "flex", alignItems: "center", py: { xs: "10px" } }}
