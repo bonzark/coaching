@@ -38,7 +38,7 @@ const OfferSection = () => {
             </>
           }
           freeSessionText={<span>Redeem your free session</span>}
-          bookText={<span>Purchase Session</span>}
+          bookText={<span>Book A Sessions</span>}
         />
       </Grid>
       <Grid
