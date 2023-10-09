@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import BookSessionBtn from "../components/BookSessionButton";
 
-const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
+const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
   return (
     <Box
       sx={{
@@ -58,7 +58,14 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
             Gain Awareness Of Your Creation in less than 30 days
           </>
         }
-        bookText={"Purchase Session"}
+        bookText={
+          <>
+            <span>BOOK A SESSION</span>
+            Gain Awareness Of Your Creation in less than 30 days
+          </>
+        }
+        isPurchaseModel={false}
+        coachId={id}
       />
     </Box>
   );

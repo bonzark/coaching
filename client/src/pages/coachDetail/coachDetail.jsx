@@ -153,7 +153,7 @@ const CoachDetail = () => {
                   }
                   bookText={
                     <>
-                      <span>PURCHASE SESSION</span>
+                      <span>BOOK A SESSION</span>
                       Gain Awareness Of Your Creation in less than 30 days
                     </>
                   }
@@ -355,7 +355,7 @@ const CoachDetail = () => {
               }
               bookText={
                 <>
-                  <span>PURCHASE SESSION</span>
+                  <span>BOOK A SESSION</span>
                   Gain Awareness Of Your Creation in less than 30 days
                 </>
               }

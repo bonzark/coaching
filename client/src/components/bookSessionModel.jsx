@@ -23,7 +23,13 @@ import { getUserDetails, setUserDetails } from "../utils/auth";
 import { getuserById } from "../services/user.service";
 import AgreePopup from "./agreePopup";
 
-const BookSession = ({ open, handleClose, userDetails, coachId }) => {
+const BookSession = ({
+  open,
+  handleClose,
+  userDetails,
+  coachId,
+  isPurchaseModel = false,
+}) => {
   const [coach, setCoach] = useState("");
   const [agreePopup, setAgreePopup] = useState(false);
   const [agreePopupPayload, setAgreePopupPayload] = useState({});
@@ -175,6 +181,22 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
           getPurchasedCount();
         })
         .catch((err) => console.log(err));
+    } else if (window.location.pathname.includes("ourCoachesDetail")) {
+      setIsCoachPage(true);
+
+      getCoachById(coachId)
+        .then((res) => {
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+
+      getSessionsByCoachID(coachId)
+        .then((res) => {
+          purchaseSession(userDetails, res?.data?.sessions);
+          bookedSession(userDetails, res?.data?.sessions);
+          getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
     } else {
       setCoach("");
       getCoaches()
@@ -204,6 +226,11 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
       purchaseHandler(agreePopupPayload.id, agreePopupPayload.stripePriceId);
     }
   };
+
+  console.log(
+    "window.location.pathname",
+    window.location.pathname.includes("ourCoachesDetail")
+  );
 
   return (
     <>
@@ -316,181 +343,157 @@ const BookSession = ({ open, handleClose, userDetails, coachId }) => {
               overflowY: "scroll",
               "scrollbar-width": "1px",
               "::-webkit-scrollbar": {
-                width: "2px" /* Remove scrollbar space */,
-                background:
-                  "transparent" /* Optional: just make scrollbar invisible */,
+                width: "2px",
+                background: "transparent",
               },
             }}
           >
-            {(sessionList?.length > 0 || sessionList) && (
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "#671d63",
-                  fontWeight: 900,
-                  borderBottom: "1px solid #aaa",
-                  paddingBottom: "0.5rem",
-                  marginBottom: "1rem",
-                }}
-              >
-                Purchased session
-              </Typography>
-            )}
-            {sessionList?.filter(
-              (i) =>
-                (i.sessionType === "freeReading" &&
-                  (i.isPurchased || i.isBooked)) ||
-                i.isPurchased ||
-                i.isBooked
-            )?.length > 0 ? (
-              <Grid
-                spacing={3}
-                container
-                sx={{
-                  marginTop: "0 !important",
-                  paddingBottom: "25px",
-                  // paddingRight: { md: "20px" },
-                }}
-              >
-                {sessionList
-                  ?.filter(
-                    (i) =>
-                      (i.sessionType === "freeReading" &&
-                        (i.isPurchased || i.isBooked)) ||
-                      i.isPurchased ||
-                      i.isBooked
-                  )
-                  ?.map((i) => (
-                    <Grid
-                      key={i?._id}
-                      sx={{ height: "100% !important" }}
-                      item
-                      xs={12}
-                      md={6}
-                    >
-                      <SessionCard
-                        title={i.title}
-                        detail={i.details}
-                        sessionLink={hasLink[i._id] && i?.sessionLink}
-                        btnText={
-                          !hasLink[i._id]
-                            ? i.isBooked
+            {!isPurchaseModel &&
+              (sessionList?.filter(
+                (i) =>
+                  (i.sessionType === "freeReading" &&
+                    (i.isPurchased || i.isBooked)) ||
+                  i.isPurchased ||
+                  i.isBooked
+              )?.length > 0 ? (
+                <Grid
+                  spacing={3}
+                  container
+                  sx={{
+                    marginTop: "0 !important",
+                    paddingBottom: "25px",
+                    // paddingRight: { md: "20px" },
+                  }}
+                >
+                  {sessionList
+                    ?.filter(
+                      (i) =>
+                        (i.sessionType === "freeReading" &&
+                          (i.isPurchased || i.isBooked)) ||
+                        i.isPurchased ||
+                        i.isBooked
+                    )
+                    ?.map((i) => (
+                      <Grid
+                        key={i?._id}
+                        sx={{ height: "100% !important" }}
+                        item
+                        xs={12}
+                        md={6}
+                      >
+                        <SessionCard
+                          title={i.title}
+                          detail={i.details}
+                          sessionLink={hasLink[i._id] && i?.sessionLink}
+                          btnText={
+                            !hasLink[i._id]
+                              ? i.isBooked
+                                ? "Get Link"
+                                : i.isPurchased
+                                ? "Book Now"
+                                : "Purchase"
+                              : ""
+                          }
+                          onClick={
+                            i.isBooked
+                              ? () => {
+                                  setHasLink((prev) => ({
+                                    ...prev,
+                                    [i._id]: true,
+                                  }));
+                                }
+                              : () =>
+                                  i.isPurchased
+                                    ? bookHandler(i)
+                                    : agreePopupHandler(i)
+                          }
+                        />
+                      </Grid>
+                    ))}
+                </Grid>
+              ) : (
+                <Typography
+                  sx={{
+                    color: "#000",
+                    fontWeight: 600,
+                    paddingBottom: "0.5rem",
+                    marginBottom: "1rem",
+                    textAlign: "center",
+                  }}
+                >
+                  No session available
+                </Typography>
+              ))}
+
+            {/* {isPurchaseModel &&
+              (sessionList?.filter(
+                (i) =>
+                  i.sessionType !== "freeReading" &&
+                  !i.isPurchased &&
+                  !i.isBooked
+              )?.length > 0 ? (
+                <Grid
+                  spacing={3}
+                  container
+                  sx={{
+                    marginTop: "0 !important",
+                    paddingBottom: "25px",
+                    // paddingRight: { md: "20px" },
+                  }}
+                >
+                  {sessionList
+                    ?.filter(
+                      (i) =>
+                        i.sessionType !== "freeReading" &&
+                        !i.isPurchased &&
+                        !i.isBooked
+                    )
+                    ?.map((i) => (
+                      <Grid
+                        key={i?._id}
+                        sx={{ height: "100% !important" }}
+                        item
+                        xs={12}
+                        md={6}
+                      >
+                        <SessionCard
+                          title={i.title}
+                          detail={i.details}
+                          sessionLink={hasLink && i?.sessionLink}
+                          btnText={
+                            i.isBooked
                               ? "Get Link"
                               : i.isPurchased
                               ? "Book Now"
                               : "Purchase"
-                            : ""
-                        }
-                        onClick={
-                          i.isBooked
-                            ? () => {
-                                setHasLink((prev) => ({
-                                  ...prev,
-                                  [i._id]: true,
-                                }));
-                              }
-                            : () =>
-                                i.isPurchased
-                                  ? bookHandler(i)
-                                  : agreePopupHandler(i)
-                        }
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-            ) : (
-              <Typography
-                sx={{
-                  color: "#000",
-                  fontWeight: 600,
-                  paddingBottom: "0.5rem",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                }}
-              >
-                No session available
-              </Typography>
-            )}
-            {(sessionList?.length > 0 || sessionList) && (
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "#671d63",
-                  fontWeight: 900,
-                  borderBottom: "1px solid #aaa",
-                  paddingBottom: "0.5rem",
-                  marginBottom: "1rem",
-                }}
-              >
-                Purchase session
-              </Typography>
-            )}
-            {sessionList?.filter(
-              (i) =>
-                i.sessionType !== "freeReading" && !i.isPurchased && !i.isBooked
-            )?.length > 0 ? (
-              <Grid
-                spacing={3}
-                container
-                sx={{
-                  marginTop: "0 !important",
-                  paddingBottom: "25px",
-                  // paddingRight: { md: "20px" },
-                }}
-              >
-                {sessionList
-                  ?.filter(
-                    (i) =>
-                      i.sessionType !== "freeReading" &&
-                      !i.isPurchased &&
-                      !i.isBooked
-                  )
-                  ?.map((i) => (
-                    <Grid
-                      key={i?._id}
-                      sx={{ height: "100% !important" }}
-                      item
-                      xs={12}
-                      md={6}
-                    >
-                      <SessionCard
-                        title={i.title}
-                        detail={i.details}
-                        sessionLink={hasLink && i?.sessionLink}
-                        btnText={
-                          i.isBooked
-                            ? "Get Link"
-                            : i.isPurchased
-                            ? "Book Now"
-                            : "Purchase"
-                        }
-                        onClick={
-                          i.isBooked
-                            ? () => {
-                                setHasLink(true);
-                              }
-                            : () =>
-                                i.isPurchased
-                                  ? bookHandler(i)
-                                  : agreePopupHandler(i)
-                        }
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-            ) : (
-              <Typography
-                sx={{
-                  color: "#000",
-                  fontWeight: 600,
-                  paddingBottom: "0.5rem",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                }}
-              >
-                No session available
-              </Typography>
-            )}
+                          }
+                          onClick={
+                            i.isBooked
+                              ? () => {
+                                  setHasLink(true);
+                                }
+                              : () =>
+                                  i.isPurchased
+                                    ? bookHandler(i)
+                                    : agreePopupHandler(i)
+                          }
+                        />
+                      </Grid>
+                    ))}
+                </Grid>
+              ) : (
+                <Typography
+                  sx={{
+                    color: "#000",
+                    fontWeight: 600,
+                    paddingBottom: "0.5rem",
+                    marginBottom: "1rem",
+                    textAlign: "center",
+                  }}
+                >
+                  No session available
+                </Typography>
+              ))} */}
           </Box>
         </form>
       </MainModal>

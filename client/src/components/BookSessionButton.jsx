@@ -16,6 +16,7 @@ const BookSessionBtn = ({
   freeSessionText,
   bookText,
   coachId,
+  isPurchaseModel = false,
 }) => {
   const userDetails = getUserDetails();
   const [loginOpen, setLoginOpen] = useState(false);
@@ -74,6 +75,7 @@ const BookSessionBtn = ({
             handleClose={handleClose}
             userDetails={userDetails}
             coachId={coachId ? coachId : ""}
+            isPurchaseModel={isPurchaseModel}
           />
           {btnText && (
             <Box sx={{ margin: "1rem 0" }}>
