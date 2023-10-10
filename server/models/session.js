@@ -23,24 +23,7 @@ const sessionSchemaObj = {
     type: String,
     required: true,
   },
-  stripePriceId: {
-    twiceWeekFullPriceId: {
-      type: String,
-      required: true,
-    },
-    twiceWeekRecurrentPriceId: {
-      type: String,
-      required: true,
-    },
-    onceWeekRecurrentPriceId: {
-      type: String,
-      required: true,
-    },
-    onceWeekFullPriceId: {
-      type: String,
-      required: true,
-    },
-  },
+  stripePrice: mongoose.Schema.Types.Mixed,
 };
 
 const sessionSchema = new mongoose.Schema(sessionSchemaObj);

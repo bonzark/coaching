@@ -4,6 +4,7 @@ const BookedSession = require("../models/bookedSession");
 const Session = require("../models/session");
 const User = require("../models/user");
 const axios = require("axios");
+const consumedSession = require("../utils/consumedSession");
 
 exports.bookSession = async (req, res) => {
   try {
@@ -398,22 +399,16 @@ exports.getSessionsByDateAndCoach = [
 ];
 
 exports.updateSession = [
-  validate,
   async (req, res) => {
     try {
       const { sessionId } = req.params;
-      const { coachId, date, time, price, title, details } = req.body;
+      const { stripePrice } = req.body;
 
       // Find the session by ID
       const session = await Session.findByIdAndUpdate(
         sessionId,
         {
-          coach: coachId,
-          date,
-          time,
-          price,
-          title,
-          details,
+          stripePrice,
         },
         { new: true }
       );
@@ -452,17 +447,7 @@ exports.deleteSession = async (req, res) => {
 
 exports.testApi = async (req, res) => {
   try {
-    const userData = await User.findOne({ _id: req.params.id }).populate(
-      "purchasedSession"
-    );
-
-    const newData = userData.purchasedSession.filter(
-      (i) => i.sessionType !== "freeReading"
-    );
-
-    userData.purchasedSession = newData;
-
-    userData.save();
+    const userData = await consumedSession();
     res.status(200).json({ userData });
   } catch (error) {
     res.status(400).json({ error });

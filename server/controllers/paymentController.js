@@ -74,11 +74,14 @@ exports.paymentCompleted = async (req, res) => {
         user: userId,
       });
 
-      function getKeyByValue(object, value) {
-        return Object.keys(object).find((key) => object[key] === value);
+      function getKeyByValue(arr, value) {
+        data = arr.filter((i) => i.priceId === value);
+        if (data.length > 0) {
+          return data.type;
+        }
       }
 
-      const package = getKeyByValue(session.stripePriceId, priceId);
+      const package = getKeyByValue(session.stripePrice, priceId);
 
       switch (package) {
         case twiceWeekFullPriceId || twiceWeekRecurrentPriceId:
