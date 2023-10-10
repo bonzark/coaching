@@ -18,18 +18,60 @@ import { useEffect, useState } from "react";
 import { PrimaryBtn } from "../../components/PrimaryBtn";
 import { getCoaches } from "../../services/session.service";
 import { useParams } from "react-router-dom";
+import AgreePopup from "../../components/agreePopup";
+import { getUserDetails } from "../../utils/auth";
+import { handlePayment } from "../../services/payment.service";
 
 const Packages = () => {
   const { id } = useParams();
   const [radioValue, setRadioValue] = useState();
+  const [modeValue, setModeValue] = useState();
   const [currentCoach, setCurrentCoach] = useState();
   const [currentSession, setCurrentSession] = useState();
   const [pack, setPack] = useState(null);
   const [coachList, setCoachList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [agreePopup, setAgreePopup] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [agreePopupPayload, setAgreePopupPayload] = useState({});
+  const userDetails = getUserDetails();
+
+  const handleAgreePopupClose = () => {
+    setAgreePopupPayload({});
+    setAgreePopup(false);
+    setChecked(false);
+  };
+
+  const agreePopupSubmitHandler = () => {
+    if (
+      agreePopupPayload?.id &&
+      agreePopupPayload?.stripePriceId &&
+      agreePopupPayload?.mode
+    ) {
+      purchaseHandler(
+        agreePopupPayload?.id,
+        agreePopupPayload?.stripePriceId,
+        agreePopupPayload?.mode
+      );
+    }
+  };
+
+  const agreePopupHandler = (data) => {
+    setAgreePopupPayload({
+      id: currentSession,
+      stripePriceId: radioValue,
+      mode: modeValue,
+    });
+    setAgreePopup(true);
+  };
 
   const handleRadioChange = (event) => {
     setRadioValue(event.target.value);
+    setModeValue(
+      pack.sessions
+        ?.filter((session) => session?.sessionType !== "freeReading")[0]
+        ?.stripePrice.filter((i) => i.priceId === event.target.value)[0].mode
+    );
   };
   const handleCoachChange = (event) => {
     setCurrentCoach(event.target.value);
@@ -69,6 +111,13 @@ const Packages = () => {
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.priceId
           );
+          setModeValue(
+            res?.data?.coaches
+              ?.filter((coach) => coach.order === 1)[0]
+              .sessions?.filter(
+                (session) => session?.sessionType !== "freeReading"
+              )[0]?.stripePrice[0]?.mode
+          );
         } else {
           setCurrentCoach(
             res?.data?.coaches?.filter((coach) => coach._id === id)[0]._id
@@ -88,15 +137,33 @@ const Packages = () => {
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.priceId
           );
+          setModeValue(
+            res?.data?.coaches
+              ?.filter((coach) => coach._id === id)[0]
+              .sessions?.filter(
+                (session) => session?.sessionType !== "freeReading"
+              )[0]?.stripePrice[0]?.mode
+          );
         }
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("ID::", id);
-  console.log("CURRENT SESSION::", currentSession);
-  console.log("PACK::", pack);
+  const purchaseHandler = (sessionId, price_id, mode) => {
+    const data = {
+      price_id,
+      userId: userDetails?._id,
+      sessionId,
+      mode,
+    };
+    console.log("data :::", data);
+    handlePayment(data)
+      .then((res) => {
+        window.location.replace(res?.data?.url);
+      })
+      .catch((err) => console.log("err ::", err));
+  };
 
   return (
     <>
@@ -508,7 +575,12 @@ const Packages = () => {
                           </RadioGroup>
                         </Box>
                         <Box sx={{ display: "flex", marginTop: "4rem" }}>
-                          <PrimaryBtn fullWidth>Proceed to purchase</PrimaryBtn>
+                          <PrimaryBtn
+                            onClick={() => agreePopupHandler({})}
+                            fullWidth
+                          >
+                            Proceed to purchase
+                          </PrimaryBtn>
                         </Box>
                       </Box>
                     </Box>
@@ -543,6 +615,13 @@ const Packages = () => {
           />
         </Box>
       )}
+      <AgreePopup
+        open={agreePopup}
+        handleClose={handleAgreePopupClose}
+        submit={agreePopupSubmitHandler}
+        checked={checked}
+        setChecked={setChecked}
+      />
     </>
   );
 };

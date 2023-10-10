@@ -227,11 +227,6 @@ const BookSession = ({
     }
   };
 
-  console.log(
-    "window.location.pathname",
-    window.location.pathname.includes("ourCoachesDetail")
-  );
-
   return (
     <>
       <MainModal open={open} handleClose={handleClose} lg>
