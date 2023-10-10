@@ -208,7 +208,10 @@ const SuccessStories = ({
 
                 {isOurCoachCard && (
                   <Box sx={{ margin: "1rem 0" }}>
-                    <PrimaryBtn onClick={() => navigate("/")} props>
+                    <PrimaryBtn
+                      onClick={() => navigate("/packages/" + id)}
+                      props
+                    >
                       Purchse
                     </PrimaryBtn>
                   </Box>

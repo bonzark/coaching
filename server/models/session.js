@@ -23,10 +23,7 @@ const sessionSchemaObj = {
     type: String,
     required: true,
   },
-  stripePriceId: {
-    type: String,
-    required: true,
-  },
+  stripePrice: mongoose.Schema.Types.Mixed,
 };
 
 const sessionSchema = new mongoose.Schema(sessionSchemaObj);

@@ -68,23 +68,13 @@ exports.getCoachList = async (req, res) => {
 exports.updateCoach = async (req, res) => {
   try {
     const { coachId } = req.params;
-    const { firstName, lastName, email, about, intro } = req.body; // Update data in the request body
-    const { originalname, buffer } = req.file;
+    const { sessionFees } = req.body; // Update data in the request body
 
     // Update the coach record
     const updatedCoach = await Coach.findByIdAndUpdate(
       coachId,
       {
-        firstName,
-        lastName,
-        email,
-        about,
-        intro,
-        image: {
-          data: buffer,
-          contentType: "image/*",
-          title: originalname,
-        },
+        sessionFees,
       },
       { new: true }
     );

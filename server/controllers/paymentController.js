@@ -2,6 +2,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET);
 const PaymentDetail = require("../models/paymentDetails");
 const BookedSession = require("../models/bookedSession");
 const User = require("../models/user");
+const Session = require("../models/session");
 
 const CLIENT_URL = process.env.HOST_URL;
 
@@ -9,14 +10,17 @@ exports.paymentSession = async (req, res) => {
   try {
     const userId = req.body.userId;
     const sessionId = req.body.sessionId;
+    const price_id = req.body.price_id;
+    const mode = req.body.mode;
 
+    console.log(userId, sessionId, price_id);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      mode: "payment",
+      mode: mode,
       line_items: [
         {
           //Price Id can be retrived from products page, a single product will have a unique priceId
-          price: req.body.price_id ?? "price_1NtwGWSFygNTJvTO4irLPEiE",
+          price: price_id ?? "price_1NtwGWSFygNTJvTO4irLPEiE",
           quantity: 1,
         },
       ],
@@ -27,6 +31,7 @@ exports.paymentSession = async (req, res) => {
       metadata: {
         userId: userId,
         sessionId: sessionId,
+        priceId: req.body.price_id,
       },
     });
 
@@ -61,7 +66,10 @@ exports.paymentCompleted = async (req, res) => {
 
       const userId = checkoutSession.metadata.userId;
       const sessionId = checkoutSession.metadata.sessionId;
+      const priceId = checkoutSession.metadata.priceId;
+
       const user = await User.findById(userId);
+      const session = await Session.findById(sessionId);
 
       const paymentDetail = new PaymentDetail({
         id: paymentIntent.id,
@@ -70,16 +78,79 @@ exports.paymentCompleted = async (req, res) => {
         user: userId,
       });
 
-      const purchasedSession = new BookedSession({
-        session: sessionId,
-        user: userId,
-        purchaseDate: paymentIntent.created,
-        status: "purchased",
-      });
+      function getKeyByValue(arr, value) {
+        data = arr.filter((i) => i.priceId === value)[0];
+        if (data) {
+          return data.type;
+        }
+      }
+
+      const package = getKeyByValue(session.stripePrice, priceId);
+
+      console.log("package ::", package);
+      switch (package) {
+        case "twiceWeekFullPriceId":
+          for (let i = 0; i < 24; i++) {
+            const purchasedSession = new BookedSession({
+              session: sessionId,
+              user: userId,
+              purchaseDate: paymentIntent.created,
+              status: "purchased",
+            });
+            await purchasedSession.save();
+            user.purchasedSession.push(purchasedSession);
+          }
+          await user.save();
+
+          break;
+        case "twiceWeekRecurrentPriceId":
+          for (let i = 0; i < 24; i++) {
+            const purchasedSession = new BookedSession({
+              session: sessionId,
+              user: userId,
+              purchaseDate: paymentIntent.created,
+              status: "purchased",
+            });
+            await purchasedSession.save();
+            user.purchasedSession.push(purchasedSession);
+          }
+          await user.save();
+
+          break;
+        case "onceWeekFullPriceId":
+          for (let i = 0; i < 12; i++) {
+            const purchasedSession = new BookedSession({
+              session: sessionId,
+              user: userId,
+              purchaseDate: paymentIntent.created,
+              status: "purchased",
+            });
+            await purchasedSession.save();
+            user.purchasedSession.push(purchasedSession);
+          }
+          await user.save();
+          break;
+        case "onceWeekRecurrentPriceId":
+          for (let i = 0; i < 12; i++) {
+            const purchasedSession = new BookedSession({
+              session: sessionId,
+              user: userId,
+              purchaseDate: paymentIntent.created,
+              status: "purchased",
+            });
+            await purchasedSession.save();
+            user.purchasedSession.push(purchasedSession);
+          }
+          await user.save();
+          break;
+
+        default:
+          console.error("Error Price Id not found3.:", error);
+          res.sendStatus(400);
+          break;
+      }
+
       await paymentDetail.save();
-      await purchasedSession.save();
-      user.purchasedSession.push(purchasedSession);
-      await user.save();
     }
     res.status(200).redirect(process.env.HOST_URL);
   } catch (error) {

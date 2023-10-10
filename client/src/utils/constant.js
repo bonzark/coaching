@@ -218,6 +218,10 @@ export const sidebarItems = [
     name: "Previous Purchases",
     path: "/previous-purchases",
   },
+  {
+    name: "Our Packages",
+    path: "/packages",
+  },
 ];
 export const coachesData = [
   {
@@ -677,22 +681,48 @@ export const eventsData = [
   },
 ];
 
-
-export const becomeYourCreatorData = [{ type: "para", content: "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work." },
-{ type: "header", content: "£19.99 PER MONTH." },
-{
-  type: "header",
-  content: "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR..."
-},
-{ type: "content", content: "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you." },
-{ type: "content", content: "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way." },
-{ type: "content", content: "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well-being over the relentless hustle." },
-{
-  type: "content", content: "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another.Together, we create a space that nourishes and encourages growth."
-},
-{ type: "content", content: "You thrive on the invigorating energy of new beginnings, whether it's a Monday, a fresh month, or a new season. These moments excite and inspire you, fuelling your motivation to transform your life." },
-{ type: "content", content: "As a big dreamer, you're prepared to confront the shadows within yourself and engage in the necessary inner work to bring about positive change. You're ready to break free from your own excuses and design a life that you genuinely love." },
-]
+export const becomeYourCreatorData = [
+  {
+    type: "para",
+    content:
+      "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work.",
+  },
+  { type: "header", content: "£19.99 PER MONTH." },
+  {
+    type: "header",
+    content: "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
+  },
+  {
+    type: "content",
+    content:
+      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you.",
+  },
+  {
+    type: "content",
+    content:
+      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way.",
+  },
+  {
+    type: "content",
+    content:
+      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well-being over the relentless hustle.",
+  },
+  {
+    type: "content",
+    content:
+      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another.Together, we create a space that nourishes and encourages growth.",
+  },
+  {
+    type: "content",
+    content:
+      "You thrive on the invigorating energy of new beginnings, whether it's a Monday, a fresh month, or a new season. These moments excite and inspire you, fuelling your motivation to transform your life.",
+  },
+  {
+    type: "content",
+    content:
+      "As a big dreamer, you're prepared to confront the shadows within yourself and engage in the necessary inner work to bring about positive change. You're ready to break free from your own excuses and design a life that you genuinely love.",
+  },
+];
 export const testimonialHomeData = [
   {
     review: `I absolutely love Rita! She is the real deal. Rita has helped me expand and grow spiritually and continue to do so. I feel like I am growing in ways that I never expected and seeing things in a healthier, positive light rather than being in the dark all the time. I’d rather heal through a spiritual aspect than clinical. I’m continuing my sessions and I’m really and truly thankful for coming to them for more of a spiritual awakening.`,
@@ -740,4 +770,78 @@ export const testimonialOurCoachesData = [
     review: `I absolutely love the coaching sessions I do. They have helped me raise my vibration and increase my awareness and bring in the manifestations I have always wanted to. Highly recommend!`,
   },
   { review: `I loved this course! Now I know how to REALLY manifest` },
+];
+
+export const productDescriptionData = {
+  title: "Product Description",
+  data: [
+    {
+      type: "para",
+      content: `Our one-on-one manifestation and alignment program is a personalized coaching program designed to help you align with your manifestation and become the creator of your own life. The program is conducted through a series of one-on-one sessions for a period of 3 months.`,
+    },
+    {
+      type: "para",
+      content: `During the program, we will work closely with you to identify your goals and desires, and then develop a customized program to help you manifest those desires. We use a variety of techniques to read your energy and lifelines, and identify your exact blockages, so we can align you, so you become a magnet to your creation.`,
+    },
+    {
+      type: "para",
+      content: `In addition to helping you manifest your desires, the program also focuses on alignment. This means helping you align with their true purpose and values, so you can live a more authentic and fulfilling life. We will work with you to identify any limiting beliefs or patterns that may be holding you back, and help you shift your mindset to one of abundance and prosperity.`,
+    },
+    {
+      type: "para",
+      content: `On top of the One-One sessions, and to accelerate your journey, you will also receive the following:`,
+    },
+    {
+      type: "bullet",
+      content: [
+        `Grounding & Alignment Sessions`,
+        `Dissolve Karma and Remove Blockages- Hypnosis`,
+        `Conscious Awareness & Energy Release`,
+        `Conscious Creation & Energy Alteration To Start Manifesting`,
+      ],
+    },
+    {
+      type: "para",
+      content: `Overall, a One-One manifestation and alignment program is a powerful tool for anyone looking to manifest anything they desire. We provide personalized support and guidance, and help individuals become the creators of their own life!`,
+    },
+  ],
+};
+
+export const packagesData = [
+  {
+    coach: "rita",
+    once: 5000,
+    twice: 10000,
+    image: "./rita.jpg",
+  },
+  {
+    coach: "sarah",
+    once: 3000,
+    twice: 6000,
+    image: "./Sarah.jpg",
+  },
+  {
+    coach: "brandi",
+    once: 3000,
+    twice: 6000,
+    image: "./Brandi.jpg",
+  },
+  {
+    coach: "maggie",
+    once: 2000,
+    twice: 4000,
+    image: "./Maggie.jpg",
+  },
+  {
+    coach: "jacqueline",
+    once: 2000,
+    twice: 4000,
+    image: "./Jacqueline.jpg",
+  },
+  {
+    coach: "helen",
+    once: 2000,
+    twice: 4000,
+    image: "HELEN.jpg",
+  },
 ];

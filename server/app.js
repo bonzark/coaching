@@ -17,6 +17,7 @@ var paymentRoutes = require("./routes/paymentRoutes");
 var webhookRoutes = require("./routes/webhookRoutes");
 
 const connectDB = require("./db/connection");
+const consumedSession = require("./utils/consumedSession");
 
 var app = express();
 
@@ -28,20 +29,6 @@ app.use(cors());
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
-
-// app.use((req, res, next) => {
-//   let data = "";
-//   req.setEncoding("utf8");
-
-//   req.on("data", (chunk) => {
-//     data += chunk;
-//   });
-
-//   req.on("end", () => {
-//     req.rawBody = data;
-//     next();
-//   });
-// });
 
 app.use(logger("dev"));
 app.use("/webhook", webhookRoutes);
@@ -61,6 +48,8 @@ app.use("/coaches", coachRoutes);
 app.use("/payment", paymentRoutes);
 
 // app.use("/webhook", webhookRoutes);
+
+// setInterval(consumedSession, 3600000);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

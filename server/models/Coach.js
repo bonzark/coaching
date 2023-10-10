@@ -33,16 +33,7 @@ const coachSchema = new mongoose.Schema({
   availableTo: {
     type: String,
   },
-  sessionFees: {
-    oneToOnePrice: {
-      type: String,
-      required: true,
-    },
-    groupPrice: {
-      type: String,
-      required: true,
-    },
-  },
+  sessionFees: mongoose.Schema.Types.Mixed,
   availableDays: [
     {
       type: String,
