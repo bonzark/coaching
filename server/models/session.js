@@ -24,8 +24,22 @@ const sessionSchemaObj = {
     required: true,
   },
   stripePriceId: {
-    type: String,
-    required: true,
+    twiceWeekFullPriceId: {
+      type: String,
+      required: true,
+    },
+    twiceWeekRecurrentPriceId: {
+      type: String,
+      required: true,
+    },
+    onceWeekRecurrentPriceId: {
+      type: String,
+      required: true,
+    },
+    onceWeekFullPriceId: {
+      type: String,
+      required: true,
+    },
   },
 };
 
