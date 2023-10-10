@@ -218,6 +218,10 @@ export const sidebarItems = [
     name: "Previous Purchases",
     path: "/previous-purchases",
   },
+  {
+    name: "Our Packages",
+    path: "/packages",
+  },
 ];
 export const coachesData = [
   {
