@@ -152,6 +152,10 @@ exports.scheduledEventsCalendly = async (req, res) => {
 };
 exports.inviteeCreated = async (req, res) => {
   try {
+    console.log("--------------------------------------------");
+    console.log(req);
+    console.log("--------------------------------------------");
+
     const email = req.body.payload.email;
     const options = {
       method: "GET",

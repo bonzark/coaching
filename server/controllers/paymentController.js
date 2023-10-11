@@ -13,7 +13,6 @@ exports.paymentSession = async (req, res) => {
     const price_id = req.body.price_id;
     const mode = req.body.mode;
 
-    console.log(userId, sessionId, price_id);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: mode,
@@ -55,34 +54,19 @@ exports.paymentCompleted = async (req, res) => {
       `${process.env.STRIPE_WEBHOOK_SECRET}`
     );
 
-    console.log("verifiedEvent :::", verifiedEvent);
-    console.log(
-      "----------------------------------------------------------------------------"
-    );
-
     // Store the event in MongoDB
 
     if (verifiedEvent.type === "payment_intent.succeeded") {
       const paymentIntent = verifiedEvent.data.object;
 
-      console.log("paymentIntent :::", paymentIntent);
-      console.log(
-        "----------------------------------------------------------------------------"
-      );
       const checkoutSession = await getCheckoutSessionByPaymentIntentId(
         paymentIntent.id
-      );
-
-      console.log("checkoutSession :::", checkoutSession);
-      console.log(
-        "----------------------------------------------------------------------------"
       );
 
       const userId = checkoutSession.metadata.userId;
       const sessionId = checkoutSession.metadata.sessionId;
       const priceId = checkoutSession.metadata.priceId;
 
-      console.log("---------------------------", userId, sessionId, priceId);
       const user = await User.findById(userId);
       const session = await Session.findById(sessionId);
 

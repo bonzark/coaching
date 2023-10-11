@@ -42,6 +42,7 @@ const BookSession = ({
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
   const [hasLink, setHasLink] = useState({});
+  const [selectedBookedId, setSelectedBookedId] = useState();
 
   const [isCoachPage, setIsCoachPage] = useState(false);
 
@@ -111,6 +112,7 @@ const BookSession = ({
           if (data[j].session._id === purchaseSession[i]._id) {
             purchaseSession[i].isPurchased = true;
             purchaseSession[i].count = count++;
+            purchaseSession[i].bookedSessionId = data[j]._id;
           }
         }
       }
@@ -142,6 +144,7 @@ const BookSession = ({
 
   const bookHandler = (data) => {
     setPopupLink(data?.calendlyLink);
+    setSelectedBookedId(data?.bookedSessionId);
     setPopup(true);
     handleClose();
   };
@@ -508,6 +511,9 @@ const BookSession = ({
         onModalClose={popupCloseHandler}
         open={popup}
         rootElement={document.getElementById("root")}
+        utm={{
+          utmContent: selectedBookedId,
+        }}
       />
     </>
   );
