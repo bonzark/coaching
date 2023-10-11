@@ -1,5 +1,5 @@
-import axios from "axios";
-import baseUrl from "../api/api";
+import axios from 'axios';
+import baseUrl from '../api/api';
 
 const getSessions = async () => {
   return await axios
@@ -89,6 +89,17 @@ const getAllSessions = async () => {
     });
 };
 
+const getAllBookedSessions = async (userId) => {
+  return await axios
+    .get(`${baseUrl}/sessions/booked/user/${userId}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
 export {
   getSessions,
   getCoaches,
@@ -98,4 +109,5 @@ export {
   getAllSessions,
   getCoachById,
   getCoachByName,
+  getAllBookedSessions,
 };
