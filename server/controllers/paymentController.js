@@ -55,19 +55,34 @@ exports.paymentCompleted = async (req, res) => {
       `${process.env.STRIPE_WEBHOOK_SECRET}`
     );
 
+    console.log("verifiedEvent :::", verifiedEvent);
+    console.log(
+      "----------------------------------------------------------------------------"
+    );
+
     // Store the event in MongoDB
 
     if (verifiedEvent.type === "payment_intent.succeeded") {
       const paymentIntent = verifiedEvent.data.object;
 
+      console.log("paymentIntent :::", paymentIntent);
+      console.log(
+        "----------------------------------------------------------------------------"
+      );
       const checkoutSession = await getCheckoutSessionByPaymentIntentId(
         paymentIntent.id
+      );
+
+      console.log("checkoutSession :::", checkoutSession);
+      console.log(
+        "----------------------------------------------------------------------------"
       );
 
       const userId = checkoutSession.metadata.userId;
       const sessionId = checkoutSession.metadata.sessionId;
       const priceId = checkoutSession.metadata.priceId;
 
+      console.log("---------------------------", userId, sessionId, price_id);
       const user = await User.findById(userId);
       const session = await Session.findById(sessionId);
 
