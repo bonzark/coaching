@@ -153,7 +153,7 @@ exports.scheduledEventsCalendly = async (req, res) => {
 exports.inviteeCreated = async (req, res) => {
   try {
     console.log("--------------------------------------------");
-    console.log(req.body.payload.questions_and_answers);
+    console.log(req?.body?.payload?.scheduled_event);
     console.log("--------------------------------------------");
 
     const email = req.body.payload.email;

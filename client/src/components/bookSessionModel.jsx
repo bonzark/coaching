@@ -510,9 +510,6 @@ const BookSession = ({
         prefill={{
           email: userDetail?.email,
           name: userDetail?.name,
-          customAnswers: {
-            a1: setSelectedBookedId,
-          },
         }}
         onModalClose={popupCloseHandler}
         pageSettings={{ hideLandingPageDetails: true }}
