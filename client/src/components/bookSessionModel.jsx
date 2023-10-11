@@ -42,7 +42,7 @@ const BookSession = ({
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
   const [hasLink, setHasLink] = useState({});
-  const [selectedBookedId, setSelectedBookedId] = useState();
+  const [selectedBookedId, setSelectedBookedId] = useState("");
 
   const [isCoachPage, setIsCoachPage] = useState(false);
 
@@ -506,14 +506,18 @@ const BookSession = ({
         setChecked={setChecked}
       />
       <PopupModal
-        url={popupLink}
-        prefill={{ email: userDetail?.email, name: userDetail?.name }}
+        url={`${popupLink}`}
+        prefill={{
+          email: userDetail?.email,
+          name: userDetail?.name,
+          customAnswers: {
+            a1: setSelectedBookedId,
+          },
+        }}
         onModalClose={popupCloseHandler}
+        pageSettings={{ hideLandingPageDetails: true }}
         open={popup}
         rootElement={document.getElementById("root")}
-        utm={{
-          utmContent: selectedBookedId,
-        }}
       />
     </>
   );
