@@ -516,7 +516,7 @@ const BookSession = ({
         open={popup}
         rootElement={document.getElementById("root")}
         utm={{
-          utmContent: "test",
+          utmContent: selectedBookedId,
         }}
       />
     </>

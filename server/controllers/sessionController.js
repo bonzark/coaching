@@ -160,6 +160,7 @@ exports.inviteeCreated = async (req, res) => {
     console.log(req?.body?.payload?.tracking);
 
     const email = req.body.payload.email;
+    const bookedSessionId = req?.body?.payload?.tracking?.utm_content;
     const options = {
       method: "GET",
       url: req?.body?.payload?.scheduled_event?.event_type,
@@ -195,7 +196,7 @@ exports.inviteeCreated = async (req, res) => {
 
     if (user && session) {
       await BookedSession.updateOne(
-        { session: session._id, user: user._id },
+        { _id: bookedSessionId, session: session._id, user: user._id },
         {
           $set: {
             status: "booked",
@@ -208,6 +209,7 @@ exports.inviteeCreated = async (req, res) => {
         { upsert: true }
       );
       const bookedSession = await BookedSession.findOne({
+        _id: bookedSessionId,
         session: session._id,
         user: user._id,
       });
@@ -230,7 +232,7 @@ exports.inviteeCreated = async (req, res) => {
         user.isFreeReadingBooked = true;
       } else {
         const newData = user.purchasedSession.filter(
-          (i) => i._id !== bookedSession
+          (i) => i._id !== bookedSessionId
         );
 
         user.purchasedSession = newData;
