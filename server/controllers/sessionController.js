@@ -152,51 +152,25 @@ exports.scheduledEventsCalendly = async (req, res) => {
 };
 exports.inviteeCreated = async (req, res) => {
   try {
-    console.log("--------------------------------------------");
-    console.log(req?.body?.payload?.scheduled_event);
-    console.log("--------------------------------------------");
-    console.log(req);
-    console.log("--------------------------------------------");
-    console.log(req?.body?.payload?.tracking);
-
     const email = req.body.payload.email;
     const bookedSessionId = req?.body?.payload?.tracking?.utm_content;
-    const options = {
-      method: "GET",
-      url: req?.body?.payload?.scheduled_event?.event_type,
-      params: {
-        organization:
-          "https://api.calendly.com/organizations/e7cbbbf8-e5bd-4fa3-90fe-30ae3dd4fde1",
-      },
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
-      },
-    };
-
-    const scheduling_url = await axios
-      .request(options)
-      .then(function (response) {
-        return response?.data?.resource?.scheduling_url;
-      })
-      .catch(function (error) {
-        return res.send(error);
-      });
 
     const user = await User.findOne({ email }).populate("purchasedSession");
-    const session = await Session.findOne({ calendlyLink: scheduling_url });
+    const bookedSession = await BookedSession.findOne({
+      _id: bookedSessionId,
+      user: user._id,
+    });
 
     if (!user) {
       res.status(404).json({ error: "User Not Found" });
     }
 
-    if (!session) {
-      res.status(404).json({ error: "Session Not Found" });
+    if (!bookedSession) {
+      res.status(404).json({ error: "Boooked Session Not Found" });
     }
-
-    if (user && session) {
+    if (user && bookedSession) {
       await BookedSession.updateOne(
-        { _id: bookedSessionId, session: session._id, user: user._id },
+        { _id: bookedSessionId, user: user._id },
         {
           $set: {
             status: "booked",
@@ -208,11 +182,19 @@ exports.inviteeCreated = async (req, res) => {
         },
         { upsert: true }
       );
-      const bookedSession = await BookedSession.findOne({
+
+      const updatedBookedSession = await BookedSession.findOne({
         _id: bookedSessionId,
-        session: session._id,
         user: user._id,
       });
+
+      const session = await Session.findOne({
+        _id: updatedBookedSession?.session,
+      });
+
+      if (!session) {
+        res.status(404).json({ error: "Session Not Found" });
+      }
 
       if (session.sessionType === "freeReading") {
         const filter = {
@@ -231,13 +213,14 @@ exports.inviteeCreated = async (req, res) => {
         user.purchasedSession = newData;
         user.isFreeReadingBooked = true;
       } else {
-        const newData = user.purchasedSession.filter(
-          (i) => i._id !== bookedSessionId
-        );
+        const newData = user.purchasedSession.filter((i) => {
+          if (i._id.toString() !== bookedSessionId) {
+            return i;
+          }
+        });
 
         user.purchasedSession = newData;
       }
-
       user.bookedSession.push(bookedSession);
       await user.save();
 
@@ -461,10 +444,87 @@ exports.deleteSession = async (req, res) => {
 
 exports.testApi = async (req, res) => {
   try {
-    const userData = await consumedSession();
-    res.status(200).json({ userData });
+    const email = req.body.email;
+    const bookedSessionId = req?.body?.utm_content;
+
+    const user = await User.findOne({ email }).populate("purchasedSession");
+    const bookedSession = await BookedSession.findOne({
+      _id: bookedSessionId,
+      user: user._id,
+    });
+
+    if (!user) {
+      res.status(404).json({ error: "User Not Found" });
+    }
+
+    if (!bookedSession) {
+      res.status(404).json({ error: "Boooked Session Not Found" });
+    }
+
+    if (user && bookedSession) {
+      await BookedSession.updateOne(
+        { _id: bookedSessionId, user: user._id },
+        {
+          $set: {
+            status: "booked",
+            bookedDate: req?.body?.created_at,
+            sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
+            sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
+            link: req?.body?.payload?.scheduled_event?.location?.join_url,
+          },
+        },
+        { upsert: true }
+      );
+
+      const updatedBookedSession = await BookedSession.findOne({
+        _id: bookedSessionId,
+        user: user._id,
+      });
+
+      const session = await Session.findOne({
+        _id: updatedBookedSession?.session,
+      });
+
+      if (!session) {
+        res.status(404).json({ error: "Session Not Found" });
+      }
+
+      if (session.sessionType === "freeReading") {
+        const filter = {
+          $and: [
+            { user: user._id },
+            { session: { $ne: session._id } },
+            { sessionType: "freeReading" },
+          ],
+        };
+
+        await BookedSession.deleteMany(filter);
+
+        const newData = user.purchasedSession.filter(
+          (i) => i.sessionType !== "freeReading"
+        );
+        user.purchasedSession = newData;
+        user.isFreeReadingBooked = true;
+      } else {
+        const newData = user.purchasedSession.filter((i) => {
+          if (i._id.toString() !== bookedSessionId) {
+            return i;
+          }
+        });
+
+        user.purchasedSession = newData;
+      }
+      user.bookedSession.push(bookedSession);
+      await user.save();
+
+      const coach = await Coach.findOne({ _id: session.coach });
+      coach.bookedSession.push(bookedSession);
+      await coach.save();
+
+      res.status(200).json({ message: "Session Booked Successfully" });
+    }
   } catch (error) {
-    res.status(400).json({ error });
-    console.log("Error :", error);
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
