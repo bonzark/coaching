@@ -515,6 +515,9 @@ const BookSession = ({
         pageSettings={{ hideLandingPageDetails: true }}
         open={popup}
         rootElement={document.getElementById("root")}
+        utm={{
+          utmContent: "test",
+        }}
       />
     </>
   );

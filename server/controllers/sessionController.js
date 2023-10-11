@@ -155,6 +155,7 @@ exports.inviteeCreated = async (req, res) => {
     console.log("--------------------------------------------");
     console.log(req?.body?.payload?.scheduled_event);
     console.log("--------------------------------------------");
+    console.log(req);
 
     const email = req.body.payload.email;
     const options = {
