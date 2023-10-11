@@ -24,6 +24,7 @@ const SessionCard = ({
   btnText,
   onClick,
   sessionLink,
+  quntity,
 }) => {
   return (
     <Card
@@ -161,6 +162,7 @@ const SessionCard = ({
             </Typography>
           )}
         </Box>
+        {quntity && <span>Available Session : {quntity}</span>}
 
         <Box
           component={"div"}

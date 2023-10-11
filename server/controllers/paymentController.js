@@ -87,7 +87,6 @@ exports.paymentCompleted = async (req, res) => {
 
       const package = getKeyByValue(session.stripePrice, priceId);
 
-      console.log("package ::", package);
       switch (package) {
         case "twiceWeekFullPriceId":
           for (let i = 0; i < 24; i++) {
@@ -152,7 +151,7 @@ exports.paymentCompleted = async (req, res) => {
 
       await paymentDetail.save();
     }
-    res.status(200).redirect(process.env.HOST_URL);
+    res.sendStatus(200);
   } catch (error) {
     console.error("Error handling webhook event:", error);
     res.sendStatus(400); // Respond with an error status code

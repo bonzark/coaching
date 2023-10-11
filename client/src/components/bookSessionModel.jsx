@@ -105,10 +105,12 @@ const BookSession = ({
     const purchaseSession = data;
     if (userDetails && purchaseSession) {
       const data = userDetails?.purchasedSession;
+      let count = 0;
       for (let i = 0; i < purchaseSession.length; i++) {
         for (let j = 0; j < data.length; j++) {
           if (data[j].session._id === purchaseSession[i]._id) {
             purchaseSession[i].isPurchased = true;
+            purchaseSession[i].count = count++;
           }
         }
       }
@@ -389,6 +391,7 @@ const BookSession = ({
                                 : "Purchase"
                               : ""
                           }
+                          quntity={i?.count}
                           onClick={
                             i.isBooked
                               ? () => {

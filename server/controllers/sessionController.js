@@ -221,9 +221,14 @@ exports.inviteeCreated = async (req, res) => {
         );
         user.purchasedSession = newData;
         user.isFreeReadingBooked = true;
+      } else {
+        const newData = user.purchasedSession.filter(
+          (i) => i._id !== bookedSession
+        );
+
+        user.purchasedSession = newData;
       }
 
-      await user.purchasedSession.pull(bookedSession);
       user.bookedSession.push(bookedSession);
       await user.save();
 
