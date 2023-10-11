@@ -82,7 +82,7 @@ exports.paymentCompleted = async (req, res) => {
       const sessionId = checkoutSession.metadata.sessionId;
       const priceId = checkoutSession.metadata.priceId;
 
-      console.log("---------------------------", userId, sessionId, price_id);
+      console.log("---------------------------", userId, sessionId, priceId);
       const user = await User.findById(userId);
       const session = await Session.findById(sessionId);
 
