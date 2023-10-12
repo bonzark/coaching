@@ -65,7 +65,7 @@ const BookSession = ({
       getAllBookedSessionsByUserId(userDetail._id)
         .then((res) => {
           const filterData = res?.data?.bookedSessions?.filter(
-            (i) => i.session.coach === event.target.value
+            (i) => i?.session?.coach?._id === event.target.value
           );
           bookedSession(userDetail, filterData);
         })
@@ -191,7 +191,7 @@ const BookSession = ({
       getAllBookedSessionsByUserId(userDetail._id)
         .then((res) => {
           const filterData = res?.data?.bookedSessions?.filter(
-            (i) => i.session.coach === coachId
+            (i) => i?.session?.coach?._id === coachId
           );
           bookedSession(userDetail, filterData);
         })

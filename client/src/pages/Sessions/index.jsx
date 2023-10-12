@@ -6,6 +6,7 @@ import Select from "@mui/material/Select";
 import { Backdrop, Box, Grid, OutlinedInput, Typography } from "@mui/material";
 
 import {
+  getAllBookedSessionsByUserId,
   getAllSessions,
   getCoaches,
   getSessionsByCoachId,
@@ -17,6 +18,7 @@ import { handlePayment } from "../../services/payment.service";
 import { PopupModal } from "react-calendly";
 import { getuserById } from "../../services/user.service";
 import PageBanner from "../../sections/PageBanner";
+import { getDateAndTimeHandler } from "../../utils/getDateAndTime";
 
 export default function SelectSmall() {
   const [sessionsIsLoading, setSessionsIsLoading] = useState(false);
@@ -29,6 +31,7 @@ export default function SelectSmall() {
   const [hasLink, setHasLink] = useState({});
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
+  const [bookedSessionList, setBookedSessionList] = useState(false);
   const userDetails = getUserDetails();
   const handleChange = (event) => {
     setCurrentCoach(event.target.value);
@@ -44,55 +47,61 @@ export default function SelectSmall() {
         })
         .catch((err) => console.log(err));
       setSessionsIsLoading(false);
+
+      getAllBookedSessionsByUserId(userDetails._id)
+        .then((res) => {
+          const filterData = res?.data?.bookedSessions?.filter(
+            (i) => i?.session?.coach._id === coachId
+          );
+          bookedSession(userDetails, filterData);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
   const bookedSession = (userDetails, data) => {
-    const bookedSession = data;
-    const sessionsWithLink = {};
-    if (userDetails && bookedSession) {
+    const apiSessionList = data;
+    if (userDetails && apiSessionList) {
       const data = userDetails?.bookedSession;
-      for (let i = 0; i < bookedSession.length; i++) {
+      for (let i = 0; i < apiSessionList.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session._id === bookedSession[i]._id) {
-            bookedSession[i].isBooked = true;
-            bookedSession[i].sessionLink = data[j].link;
+          if (data[j]._id === apiSessionList[i]._id) {
+            apiSessionList[i].isBooked = true;
           }
         }
       }
-      if (bookedSession?.length > 0) {
-        bookedSession.forEach((session) => {
-          if (session.isBooked) sessionsWithLink[[session._id]] = false;
-        });
-        setHasLink(sessionsWithLink);
-      }
-      setFilteredSessions(bookedSession);
     }
+    setBookedSessionList(apiSessionList);
   };
 
   const purchaseSession = (userDetails, data) => {
-    const purchaseSession = data;
-    if (userDetails && purchaseSession) {
+    const apiSessionList = data;
+    if (userDetails && apiSessionList) {
       const data = userDetails?.purchasedSession;
-      for (let i = 0; i < purchaseSession.length; i++) {
+      let count = 1;
+      for (let i = 0; i < apiSessionList.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j]?.session?._id === purchaseSession[i]?._id) {
-            purchaseSession[i].isPurchased = true;
+          if (data[j].session._id === apiSessionList[i]._id) {
+            apiSessionList[i].isPurchased = true;
+            if (data[j].session.sessionType !== "freeReading") {
+              apiSessionList[i].count = count++;
+            }
+            apiSessionList[i].bookedSessionId = data[j]._id;
           }
         }
       }
-      setFilteredSessions(purchaseSession);
+      setFilteredSessions(apiSessionList);
     }
   };
 
   const DivideSessions = ({ filteredSessions }) => {
-    const booked = filteredSessions
-      ?.filter((session) => {
-        if (currentCoach === "") return true;
-        else if (session?.coach?.firstName === currentCoach) return true;
-        else return false;
-      })
-      ?.filter((filteredSession) => filteredSession?.isBooked);
+    // const booked = filteredSessions
+    //   ?.filter((session) => {
+    //     if (currentCoach === "") return true;
+    //     else if (session?.coach?.firstName === currentCoach) return true;
+    //     else return false;
+    //   })
+    //   ?.filter((filteredSession) => filteredSession?.isBooked);
     const bought = filteredSessions
       ?.filter((session) => {
         if (currentCoach === "") return true;
@@ -100,16 +109,16 @@ export default function SelectSmall() {
         else return false;
       })
       ?.filter((filteredSession) => filteredSession?.isPurchased);
-    const toPurchase = filteredSessions
-      ?.filter((session) => {
-        if (currentCoach === "") return true;
-        else if (session?.coach?.firstName === currentCoach) return true;
-        else return false;
-      })
-      ?.filter(
-        (filteredSession) =>
-          !filteredSession?.isPurchased && !filteredSession?.isBooked
-      );
+    // const toPurchase = filteredSessions
+    //   ?.filter((session) => {
+    //     if (currentCoach === "") return true;
+    //     else if (session?.coach?.firstName === currentCoach) return true;
+    //     else return false;
+    //   })
+    //   ?.filter(
+    //     (filteredSession) =>
+    //       !filteredSession?.isPurchased && !filteredSession?.isBooked
+    //   );
 
     const filteredFreeSessions = bought.filter(
       (session) => session.sessionType === "freeReading"
@@ -121,6 +130,9 @@ export default function SelectSmall() {
     const sessionWithLowestOrder = filteredFreeSessions.filter(
       (session) => session?.coach?.order === lowestOrder
     );
+    const paidSession = bought.filter((i) => i.sessionType !== "freeReading");
+
+    const finalDisplaySessionList = sessionWithLowestOrder.concat(paidSession);
 
     return (
       <>
@@ -144,8 +156,8 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {booked && booked.length ? (
-            booked.map((session) => (
+          {bookedSessionList && bookedSessionList.length ? (
+            bookedSessionList.map((session) => (
               <Grid
                 key={session?._id}
                 spacing={1}
@@ -162,14 +174,18 @@ export default function SelectSmall() {
                 }}
               >
                 <SessionCard
-                  coachName={session?.coach?.firstName}
-                  sessionLink={hasLink[session._id] && session?.sessionLink}
-                  date={session?.date}
-                  time={session?.time}
-                  sessionImg={session?.coach?.coachImg}
-                  detail={session?.details}
-                  price={session?.price}
-                  title={session?.title}
+                  coachName={session?.session?.coach?.firstName}
+                  sessionLink={hasLink[session._id] && session?.link}
+                  date={
+                    getDateAndTimeHandler(session?.sessionStartDate)
+                      .formattedDate
+                  }
+                  time={
+                    getDateAndTimeHandler(session?.sessionStartDate)
+                      .formattedTime
+                  }
+                  detail={session?.session?.details}
+                  title={session?.session?.title}
                   btnText={
                     !hasLink[session._id]
                       ? session.isBooked
@@ -228,8 +244,8 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {sessionWithLowestOrder && sessionWithLowestOrder.length ? (
-            sessionWithLowestOrder.map((session) => (
+          {finalDisplaySessionList && finalDisplaySessionList.length ? (
+            finalDisplaySessionList.map((session) => (
               <Grid
                 key={session?._id}
                 spacing={1}
@@ -254,6 +270,7 @@ export default function SelectSmall() {
                   detail={session?.details}
                   price={session?.price}
                   title={session?.title}
+                  quntity={session?.count}
                   btnText={
                     !hasLink[session._id]
                       ? session.isBooked
@@ -393,7 +410,11 @@ export default function SelectSmall() {
           .then((res) => {
             setSessions(res?.data?.sessions);
             purchaseSession(userDetails, res?.data?.sessions);
-            bookedSession(userDetails, res?.data?.sessions);
+          })
+          .catch((err) => console.log(err));
+        getAllBookedSessionsByUserId(userDetails._id)
+          .then((res) => {
+            bookedSession(userDetails, res?.data?.bookedSessions);
           })
           .catch((err) => console.log(err));
       }
