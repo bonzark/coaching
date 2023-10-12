@@ -89,6 +89,17 @@ const getAllSessions = async () => {
     });
 };
 
+const getAllBookedSessionsByUserId = async (id) => {
+  return await axios
+    .get(`${baseUrl}/sessions/booked/user/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
 export {
   getSessions,
   getCoaches,
@@ -98,4 +109,5 @@ export {
   getAllSessions,
   getCoachById,
   getCoachByName,
+  getAllBookedSessionsByUserId,
 };
