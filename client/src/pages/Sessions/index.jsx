@@ -111,6 +111,17 @@ export default function SelectSmall() {
           !filteredSession?.isPurchased && !filteredSession?.isBooked
       );
 
+    const filteredFreeSessions = bought.filter(
+      (session) => session.sessionType === "freeReading"
+    );
+
+    const lowestOrder = Math.min(
+      ...filteredFreeSessions.map((session) => session?.coach?.order)
+    );
+    const sessionWithLowestOrder = filteredFreeSessions.filter(
+      (session) => session?.coach?.order === lowestOrder
+    );
+
     return (
       <>
         <Typography
@@ -217,8 +228,8 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {bought && bought.length ? (
-            bought.map((session) => (
+          {sessionWithLowestOrder && sessionWithLowestOrder.length ? (
+            sessionWithLowestOrder.map((session) => (
               <Grid
                 key={session?._id}
                 spacing={1}
@@ -281,7 +292,7 @@ export default function SelectSmall() {
             </Typography>
           )}
         </Grid>
-        <Typography
+        {/* <Typography
           variant="h4"
           sx={{
             fontSize: { xs: "20px", md: "26px" },
@@ -367,7 +378,7 @@ export default function SelectSmall() {
                 : `You have bought all sessions available from coach ${currentCoach}.`}
             </Typography>
           )}
-        </Grid>
+        </Grid> */}
       </>
     );
   };
