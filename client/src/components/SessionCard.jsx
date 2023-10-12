@@ -24,7 +24,7 @@ const SessionCard = ({
   btnText,
   onClick,
   sessionLink,
-  quntity,
+  quantity,
 }) => {
   return (
     <Card
@@ -102,8 +102,8 @@ const SessionCard = ({
           <Typography
             variant="body2"
             sx={{
+              lineHeight: 1.2,
               fontSize: { xs: "15px", sm: "20px" },
-              mb: { xs: 1, md: 2 },
             }}
           >
             {detail}
@@ -165,7 +165,24 @@ const SessionCard = ({
           </a>
         )}
 
-        {quntity && <span>Available Session : {quntity}</span>}
+        {quantity && (
+          <Typography
+            sx={{
+              backgroundColor: "#671d63",
+              maxWidth: "fit-content",
+              padding: "2px 12px",
+              borderRadius: "8px",
+              color: "#fff",
+              fontWeight: 700,
+              mb: 1,
+            }}
+          >
+            {Number(quantity) === 1
+              ? "Available Session"
+              : "Available Sessions"}{" "}
+            : {quantity}
+          </Typography>
+        )}
 
         <Box
           component={"div"}
@@ -201,6 +218,7 @@ const SessionCard = ({
                 marginLeft: "auto",
                 maxWidth: "fit-content",
                 fontSize: { xs: "12px", sm: "15px", md: "18px" },
+                mb: 2,
               }}
               onClick={onClick}
             >
