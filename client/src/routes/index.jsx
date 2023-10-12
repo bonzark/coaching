@@ -43,8 +43,6 @@ const Routers = () => {
           <Route path="/events" element={<Event />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/previous-purchases" element={<PreviousPurchases />} />
-          <Route path="/packages" element={<Packages />} />
-          <Route path="/packages/:id" element={<Packages />} />
           <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
@@ -58,6 +56,8 @@ const Routers = () => {
             <Route path="/session" element={<SessionsPage />} />
             <Route path="/sessions" element={<SessionsPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/:id" element={<Packages />} />
           </Route>
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
