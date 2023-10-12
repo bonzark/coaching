@@ -13,6 +13,8 @@ exports.paymentSession = async (req, res) => {
     const price_id = req.body.price_id;
     const mode = req.body.mode;
 
+    console.log("paymentSession ::::", userId, sessionId, price_id, mode);
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: mode,
@@ -30,7 +32,7 @@ exports.paymentSession = async (req, res) => {
       metadata: {
         userId: userId,
         sessionId: sessionId,
-        priceId: req.body.price_id,
+        priceId: price_id,
       },
     });
 
@@ -56,11 +58,35 @@ exports.paymentCompleted = async (req, res) => {
 
     // Store the event in MongoDB
 
+    console.log(
+      "----------------------------------------------------------------------"
+    );
+    console.log("verifiedEvent", verifiedEvent);
+    console.log(
+      "----------------------------------------------------------------------"
+    );
+
     if (verifiedEvent.type === "payment_intent.succeeded") {
       const paymentIntent = verifiedEvent.data.object;
 
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+      console.log("paymentIntent", paymentIntent);
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+
       const checkoutSession = await getCheckoutSessionByPaymentIntentId(
-        paymentIntent.id
+        paymentIntent.invoice
+      );
+
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+      console.log("checkoutSession", checkoutSession);
+      console.log(
+        "----------------------------------------------------------------------"
       );
 
       const userId = checkoutSession.metadata.userId;
@@ -157,14 +183,14 @@ exports.paymentCompleted = async (req, res) => {
   }
 };
 
-async function getCheckoutSessionByPaymentIntentId(paymentIntentId) {
+async function getCheckoutSessionByPaymentIntentId(invoiceId) {
   try {
     // List all Checkout Sessions
     const sessions = await stripe.checkout.sessions.list({ limit: 100 }); // Adjust limit as needed
 
     // Filter the sessions to find the one associated with the PaymentIntent ID
     const session = sessions.data.find((session) => {
-      return session.payment_intent === paymentIntentId;
+      return session.invoice === invoiceId;
     });
 
     return session;

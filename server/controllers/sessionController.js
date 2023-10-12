@@ -362,7 +362,13 @@ exports.getAllBookedSessionsByUserId = async (req, res) => {
     const bookedSessions = await BookedSession.find({
       user: userId,
       status: "booked",
-    }).populate("session");
+    }).populate({
+      path: "session",
+      populate: {
+        path: "coach",
+        model: "coaches",
+      },
+    });
 
     if (!bookedSessions) {
       return res.status(404).json({ error: "Session not found" });
