@@ -409,7 +409,7 @@ const BookSession = ({
                             getDateAndTimeHandler(i.sessionStartDate)
                               .formattedTime
                           }
-                          quntity={i?.count}
+                          quantity={i?.count}
                           onClick={
                             i.isBooked
                               ? () => {
@@ -449,11 +449,11 @@ const BookSession = ({
                   color: "#671d63",
                   fontWeight: 900,
                   borderBottom: "1px solid #aaa",
-                  paddingBottom: "0.5rem",
+                  padding: "1.5rem 0 0.5rem",
                   marginBottom: "1rem",
                 }}
               >
-                Purchased session
+                Purchased Session
               </Typography>
               {!isPurchaseModel &&
                 (sessionList?.filter(
@@ -501,7 +501,7 @@ const BookSession = ({
                                   : "Purchase"
                                 : ""
                             }
-                            quntity={i?.count}
+                            quantity={i?.count}
                             onClick={
                               i.isBooked
                                 ? () => {
