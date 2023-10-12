@@ -1,7 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import BookSessionBtn from "../components/BookSessionButton";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import { useNavigate } from "react-router-dom";
 
 const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -43,30 +47,37 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
           {para}
         </Typography>
       ))}
-      <BookSessionBtn
-        defaultText={
-          <>
+      <Box sx={{ display: "flex", gap: { xs: "12px", md: "25px" } }}>
+        <BookSessionBtn
+          defaultText={
             <>
-              <span>DOWNLOAD NOW FOR FREE</span>
+              <>
+                <span>DOWNLOAD NOW FOR FREE</span>
+                Gain Awareness Of Your Creation in less than 30 days
+              </>
+            </>
+          }
+          freeSessionText={
+            <>
+              <span>BOOK A FREE SESSION</span>
               Gain Awareness Of Your Creation in less than 30 days
             </>
-          </>
-        }
-        freeSessionText={
-          <>
-            <span>BOOK A FREE SESSION</span>
-            Gain Awareness Of Your Creation in less than 30 days
-          </>
-        }
-        bookText={
-          <>
-            <span>BOOK A SESSION</span>
-            Gain Awareness Of Your Creation in less than 30 days
-          </>
-        }
-        isPurchaseModel={false}
-        coachId={id}
-      />
+          }
+          bookText={
+            <>
+              <span>BOOK A SESSION</span>
+              Gain Awareness Of Your Creation in less than 30 days
+            </>
+          }
+          isPurchaseModel={false}
+          coachId={id}
+        />
+        <Box sx={{ margin: "1rem 0", display: "flex" }}>
+          <PrimaryBtn onClick={() => navigate("/packages/" + id)} props>
+            Purchase
+          </PrimaryBtn>
+        </Box>
+      </Box>
     </Box>
   );
 };
