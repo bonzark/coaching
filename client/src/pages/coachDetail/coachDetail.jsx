@@ -9,8 +9,11 @@ import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import BookSessionBtn from "../../components/BookSessionButton";
 import { getCoachByName } from "../../services/session.service";
+import { useNavigate } from "react-router-dom";
+import { PrimaryBtn } from "../../components/PrimaryBtn";
 
 const CoachDetail = () => {
+  const navigate = useNavigate();
   const [coachDetail, setCoachDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -132,33 +135,45 @@ const CoachDetail = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                gap: "25px",
               }}
             >
               {!isLoading && (
-                <BookSessionBtn
-                  defaultText={
-                    <>
+                <>
+                  <BookSessionBtn
+                    defaultText={
                       <>
-                        <span>DOWNLOAD NOW FOR FREE</span>
+                        <>
+                          <span>DOWNLOAD NOW FOR FREE</span>
+                          Gain Awareness Of Your Creation in less than 30 days
+                        </>
+                      </>
+                    }
+                    freeSessionText={
+                      <>
+                        <span>BOOK A FREE SESSION</span>
                         Gain Awareness Of Your Creation in less than 30 days
                       </>
-                    </>
-                  }
-                  freeSessionText={
-                    <>
-                      <span>BOOK A FREE SESSION</span>
-                      Gain Awareness Of Your Creation in less than 30 days
-                    </>
-                  }
-                  bookText={
-                    <>
-                      <span>BOOK A SESSION</span>
-                      Gain Awareness Of Your Creation in less than 30 days
-                    </>
-                  }
-                  coachId={coachDetail ? coachDetail[0]?._id : ""}
-                />
+                    }
+                    bookText={
+                      <>
+                        <span>BOOK A SESSION</span>
+                        Gain Awareness Of Your Creation in less than 30 days
+                      </>
+                    }
+                    coachId={coachDetail ? coachDetail[0]?._id : ""}
+                  />
+                  <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                    <PrimaryBtn
+                      onClick={() =>
+                        navigate("/packages/" + coachDetail[0]._id)
+                      }
+                      props
+                    >
+                      Purchase
+                    </PrimaryBtn>
+                  </Box>
+                </>
               )}
             </Box>
             <List>
@@ -334,33 +349,43 @@ const CoachDetail = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            gap: "25px",
           }}
         >
           {!isLoading && (
-            <BookSessionBtn
-              defaultText={
-                <>
+            <>
+              <BookSessionBtn
+                defaultText={
                   <>
-                    <span>DOWNLOAD NOW FOR FREE</span>
+                    <>
+                      <span>DOWNLOAD NOW FOR FREE</span>
+                      Gain Awareness Of Your Creation in less than 30 days
+                    </>
+                  </>
+                }
+                freeSessionText={
+                  <>
+                    <span>BOOK A FREE SESSION</span>
                     Gain Awareness Of Your Creation in less than 30 days
                   </>
-                </>
-              }
-              freeSessionText={
-                <>
-                  <span>BOOK A FREE SESSION</span>
-                  Gain Awareness Of Your Creation in less than 30 days
-                </>
-              }
-              bookText={
-                <>
-                  <span>BOOK A SESSION</span>
-                  Gain Awareness Of Your Creation in less than 30 days
-                </>
-              }
-              coachId={coachDetail ? coachDetail[0]?._id : ""}
-            />
+                }
+                bookText={
+                  <>
+                    <span>BOOK A SESSION</span>
+                    Gain Awareness Of Your Creation in less than 30 days
+                  </>
+                }
+                coachId={coachDetail ? coachDetail[0]?._id : ""}
+              />
+              <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                <PrimaryBtn
+                  onClick={() => navigate("/packages/" + coachDetail[0]._id)}
+                  props
+                >
+                  Purchase
+                </PrimaryBtn>
+              </Box>
+            </>
           )}
         </Box>
       </Box>
