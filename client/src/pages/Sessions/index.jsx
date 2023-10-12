@@ -553,8 +553,8 @@ export default function SelectSmall() {
         <PopupModal
           url={`${popupLink}`}
           prefill={{
-            email: userDetail?.email,
-            name: userDetail?.name,
+            email: userDetails?.email,
+            name: userDetails?.name,
           }}
           onModalClose={popupCloseHandler}
           open={popup}
