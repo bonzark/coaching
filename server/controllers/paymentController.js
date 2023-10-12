@@ -78,7 +78,7 @@ exports.paymentCompleted = async (req, res) => {
       );
 
       const checkoutSession = await getCheckoutSessionByPaymentIntentId(
-        paymentIntent.id
+        paymentIntent.invoice
       );
 
       console.log(
@@ -183,14 +183,14 @@ exports.paymentCompleted = async (req, res) => {
   }
 };
 
-async function getCheckoutSessionByPaymentIntentId(paymentIntentId) {
+async function getCheckoutSessionByPaymentIntentId(invoiceId) {
   try {
     // List all Checkout Sessions
     const sessions = await stripe.checkout.sessions.list({ limit: 100 }); // Adjust limit as needed
 
     // Filter the sessions to find the one associated with the PaymentIntent ID
     const session = sessions.data.find((session) => {
-      return session.payment_intent === paymentIntentId;
+      return session.invoice === invoiceId;
     });
 
     return session;
