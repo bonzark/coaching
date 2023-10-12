@@ -15,6 +15,7 @@ import {
   getSessionsByCoachID,
   getAllSessions,
   getCoachById,
+  getAllBookedSessionsByUserId,
 } from "../services/session.service";
 import SessionCard from "./SessionCard";
 import { handlePayment } from "../services/payment.service";
@@ -22,6 +23,7 @@ import { PopupModal } from "react-calendly";
 import { getUserDetails, setUserDetails } from "../utils/auth";
 import { getuserById } from "../services/user.service";
 import AgreePopup from "./agreePopup";
+import { getDateAndTimeHandler } from "../utils/getDateAndTime";
 
 const BookSession = ({
   open,
@@ -37,13 +39,12 @@ const BookSession = ({
   const [coachDetail, setCoachDetail] = useState();
   const [coachList, setCoachList] = useState([]);
   const [sessionList, setSessionList] = useState(null);
-  const [isPurchased, setIsPurchased] = useState(false);
+  const [bookedSessionList, setBookedSessionList] = useState(false);
   const [purchasedCount, setPurchasedCount] = useState(0);
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState("");
   const [hasLink, setHasLink] = useState({});
   const [selectedBookedId, setSelectedBookedId] = useState("");
-
   const [isCoachPage, setIsCoachPage] = useState(false);
 
   const handleAgreePopupClose = () => {
@@ -58,8 +59,15 @@ const BookSession = ({
       getSessionsByCoachID(event.target.value)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
+      getAllBookedSessionsByUserId(userDetail._id)
+        .then((res) => {
+          const filterData = res?.data?.bookedSessions?.filter(
+            (i) => i.session.coach === event.target.value
+          );
+          bookedSession(userDetail, filterData);
         })
         .catch((err) => console.log(err));
     }
@@ -82,47 +90,42 @@ const BookSession = ({
   };
 
   const bookedSession = (userDetails, data) => {
-    const bookedSession = data;
-    const sessionsWithLink = {};
-    if (userDetails && bookedSession) {
+    const apiSessionList = data;
+    if (userDetails && apiSessionList) {
       const data = userDetails?.bookedSession;
-      for (let i = 0; i < bookedSession.length; i++) {
+      for (let i = 0; i < apiSessionList.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session._id === bookedSession[i]._id) {
-            bookedSession[i].isBooked = true;
-            bookedSession[i].sessionLink = data[j].link;
+          if (data[j]._id === apiSessionList[i]._id) {
+            apiSessionList[i].isBooked = true;
           }
         }
       }
-      bookedSession.forEach((session) => {
-        if (session.isBooked) sessionsWithLink[[session._id]] = false;
-      });
-      setHasLink(sessionsWithLink);
-      finalDisplaySessionList(bookedSession);
     }
+    setBookedSessionList(apiSessionList);
   };
 
   const purchaseSession = (userDetails, data) => {
-    const purchaseSession = data;
-    if (userDetails && purchaseSession) {
+    const apiSessionList = data;
+    if (userDetails && apiSessionList) {
       const data = userDetails?.purchasedSession;
-      let count = 0;
-      for (let i = 0; i < purchaseSession.length; i++) {
+      let count = 1;
+      for (let i = 0; i < apiSessionList.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session._id === purchaseSession[i]._id) {
-            purchaseSession[i].isPurchased = true;
-            purchaseSession[i].count = count++;
-            purchaseSession[i].bookedSessionId = data[j]._id;
+          if (data[j].session._id === apiSessionList[i]._id) {
+            apiSessionList[i].isPurchased = true;
+            if (data[j].session.sessionType !== "freeReading") {
+              apiSessionList[i].count = count++;
+            }
+            apiSessionList[i].bookedSessionId = data[j]._id;
           }
         }
       }
-      finalDisplaySessionList(purchaseSession);
+      finalDisplaySessionList(apiSessionList);
       // setSessionList(purchaseSession);
     }
   };
 
   const getPurchasedCount = () => {
-    setIsPurchased(true);
     setPurchasedCount(
       userDetails?.purchasedSession?.filter((i) => i.status === "purchased")
         ?.length
@@ -158,7 +161,6 @@ const BookSession = ({
       getAllSessions()
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
           window.location.reload();
         })
@@ -182,8 +184,16 @@ const BookSession = ({
       getSessionsByCoachID(coachId)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
+
+      getAllBookedSessionsByUserId(userDetail._id)
+        .then((res) => {
+          const filterData = res?.data?.bookedSessions?.filter(
+            (i) => i.session.coach === coachId
+          );
+          bookedSession(userDetail, filterData);
         })
         .catch((err) => console.log(err));
     } else if (window.location.pathname.includes("ourCoachesDetail")) {
@@ -198,7 +208,6 @@ const BookSession = ({
       getSessionsByCoachID(coachId)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
         })
         .catch((err) => console.log(err));
@@ -211,8 +220,13 @@ const BookSession = ({
       getAllSessions()
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           getPurchasedCount();
+        })
+        .catch((err) => console.log(err));
+
+      getAllBookedSessionsByUserId(userDetail._id)
+        .then((res) => {
+          bookedSession(userDetail, res?.data?.bookedSessions);
         })
         .catch((err) => console.log(err));
     }
@@ -348,32 +362,31 @@ const BookSession = ({
               },
             }}
           >
-            {!isPurchaseModel &&
-              (sessionList?.filter(
-                (i) =>
-                  (i.sessionType === "freeReading" &&
-                    (i.isPurchased || i.isBooked)) ||
-                  i.isPurchased ||
-                  i.isBooked
-              )?.length > 0 ? (
-                <Grid
-                  spacing={3}
-                  container
-                  sx={{
-                    marginTop: "0 !important",
-                    paddingBottom: "25px",
-                    // paddingRight: { md: "20px" },
-                  }}
-                >
-                  {sessionList
-                    ?.filter(
-                      (i) =>
-                        (i.sessionType === "freeReading" &&
-                          (i.isPurchased || i.isBooked)) ||
-                        i.isPurchased ||
-                        i.isBooked
-                    )
-                    ?.map((i) => (
+            <Box>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Booked session
+              </Typography>
+              {!isPurchaseModel &&
+                (bookedSessionList?.length > 0 ? (
+                  <Grid
+                    spacing={3}
+                    container
+                    sx={{
+                      marginTop: "0 !important",
+                      paddingBottom: "25px",
+                      // paddingRight: { md: "20px" },
+                    }}
+                  >
+                    {bookedSessionList?.map((i) => (
                       <Grid
                         key={i?._id}
                         sx={{ height: "100% !important" }}
@@ -382,9 +395,9 @@ const BookSession = ({
                         md={6}
                       >
                         <SessionCard
-                          title={i.title}
-                          detail={i.details}
-                          sessionLink={hasLink[i._id] && i?.sessionLink}
+                          title={i.session.title}
+                          detail={i.session.details}
+                          sessionLink={hasLink[i._id] && i?.link}
                           btnText={
                             !hasLink[i._id]
                               ? i.isBooked
@@ -393,6 +406,14 @@ const BookSession = ({
                                 ? "Book Now"
                                 : "Purchase"
                               : ""
+                          }
+                          date={
+                            getDateAndTimeHandler(i.sessionStartDate)
+                              .formattedDate
+                          }
+                          time={
+                            getDateAndTimeHandler(i.sessionStartDate)
+                              .formattedTime
                           }
                           quntity={i?.count}
                           onClick={
@@ -411,21 +432,113 @@ const BookSession = ({
                         />
                       </Grid>
                     ))}
-                </Grid>
-              ) : (
-                <Typography
-                  sx={{
-                    color: "#000",
-                    fontWeight: 600,
-                    paddingBottom: "0.5rem",
-                    marginBottom: "1rem",
-                    textAlign: "center",
-                  }}
-                >
-                  No session available
-                </Typography>
-              ))}
+                  </Grid>
+                ) : (
+                  <Typography
+                    sx={{
+                      color: "#000",
+                      fontWeight: 600,
+                      paddingBottom: "0.5rem",
+                      marginBottom: "1rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    No session available
+                  </Typography>
+                ))}
+            </Box>
 
+            <Box>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#671d63",
+                  fontWeight: 900,
+                  borderBottom: "1px solid #aaa",
+                  paddingBottom: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Purchased session
+              </Typography>
+              {!isPurchaseModel &&
+                (sessionList?.filter(
+                  (i) =>
+                    (i.sessionType === "freeReading" &&
+                      (i.isPurchased || i.isBooked)) ||
+                    i.isPurchased ||
+                    i.isBooked
+                )?.length > 0 ? (
+                  <Grid
+                    spacing={3}
+                    container
+                    sx={{
+                      marginTop: "0 !important",
+                      paddingBottom: "25px",
+                      // paddingRight: { md: "20px" },
+                    }}
+                  >
+                    {sessionList
+                      ?.filter(
+                        (i) =>
+                          (i.sessionType === "freeReading" &&
+                            (i.isPurchased || i.isBooked)) ||
+                          i.isPurchased ||
+                          i.isBooked
+                      )
+                      ?.map((i) => (
+                        <Grid
+                          key={i?._id}
+                          sx={{ height: "100% !important" }}
+                          item
+                          xs={12}
+                          md={6}
+                        >
+                          <SessionCard
+                            title={i.title}
+                            detail={i.details}
+                            sessionLink={hasLink[i._id] && i?.sessionLink}
+                            btnText={
+                              !hasLink[i._id]
+                                ? i.isBooked
+                                  ? "Get Link"
+                                  : i.isPurchased
+                                  ? "Book Now"
+                                  : "Purchase"
+                                : ""
+                            }
+                            quntity={i?.count}
+                            onClick={
+                              i.isBooked
+                                ? () => {
+                                    setHasLink((prev) => ({
+                                      ...prev,
+                                      [i._id]: true,
+                                    }));
+                                  }
+                                : () =>
+                                    i.isPurchased
+                                      ? bookHandler(i)
+                                      : agreePopupHandler(i)
+                            }
+                          />
+                        </Grid>
+                      ))}
+                  </Grid>
+                ) : (
+                  <Typography
+                    sx={{
+                      color: "#000",
+                      fontWeight: 600,
+                      paddingBottom: "0.5rem",
+                      marginBottom: "1rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    No session available
+                  </Typography>
+                ))}
+            </Box>
             {/* {isPurchaseModel &&
               (sessionList?.filter(
                 (i) =>

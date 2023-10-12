@@ -109,17 +109,7 @@ const SessionCard = ({
             {detail}
           </Typography>
         )}
-        {sessionLink && (
-          <a
-            href={sessionLink}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-          >
-            <Box sx={{ fontSize: "12px", color: "#671d63", lineHeight: 1.85 }}>
-              {sessionLink}
-            </Box>
-          </a>
-        )}
+
         <Box
           sx={{
             mb: { xs: 1, md: 2 },
@@ -134,7 +124,7 @@ const SessionCard = ({
             <Typography
               component={"span"}
               sx={{
-                fontSize: { xs: "15px", sm: "20px", md: "25px" },
+                fontSize: { xs: "15px", sm: "15px", md: "18px" },
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
@@ -142,7 +132,7 @@ const SessionCard = ({
             >
               <CalendarMonthIcon sx={{ color: "#671d63", width: "25px" }} />
               <Typography
-                sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+                sx={{ fontSize: { xs: "15px", sm: "15px", md: "18px" } }}
               >
                 {date}
               </Typography>
@@ -155,13 +145,26 @@ const SessionCard = ({
             >
               <AccessTimeIcon sx={{ color: "#671d63" }} />
               <Typography
-                sx={{ fontSize: { xs: "15px", sm: "20px", md: "25px" } }}
+                sx={{ fontSize: { xs: "15px", sm: "15px", md: "18px" } }}
               >
                 {time}
               </Typography>
             </Typography>
           )}
         </Box>
+
+        {sessionLink && (
+          <a
+            href={sessionLink}
+            style={{ textDecoration: "none" }}
+            target="_blank"
+          >
+            <Box sx={{ fontSize: "12px", color: "#671d63", lineHeight: 1.85 }}>
+              {sessionLink}
+            </Box>
+          </a>
+        )}
+
         {quntity && <span>Available Session : {quntity}</span>}
 
         <Box
