@@ -25,14 +25,7 @@ const Dashboard = () => {
     return upcomingSessions?.map((session) => {
       return (
         <>
-          <Grid
-            key={session?._id}
-            sx={{ height: "100% !important" }}
-            item
-            xs={12}
-            sm={6}
-            lg={4}
-          >
+          <Grid key={session?._id} item xs={12} sm={6} lg={4}>
             <SessionCard
               price={session?.session?.price}
               date={session?.date}
@@ -105,7 +98,8 @@ const Dashboard = () => {
               container
               sx={{
                 marginTop: "0 !important",
-                paddingBottom: "25px",
+                paddingBottom: "75px",
+                gap: "25px 0",
               }}
             >
               {!isLoading && upcomingSessions && upcomingSessions.length > 0 ? (
