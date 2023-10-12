@@ -12,6 +12,7 @@ const PreviousPurchases = () => {
   const [popup, setPopup] = useState(false);
   const [popupLink, setPopupLink] = useState('');
   const [myOwnSessions, setMyOwnSessions] = useState([]);
+  const [selectedBookedId, setSelectedBookedId] = useState('');
   const userDetail = getUserDetails();
 
   useEffect(() => {
@@ -74,6 +75,7 @@ const PreviousPurchases = () => {
 
   const bookHandler = (data) => {
     setPopupLink(data?.calendlyLink);
+    setSelectedBookedId(data?.bookedSessionId);
     setPopup(true);
   };
 
@@ -147,11 +149,17 @@ const PreviousPurchases = () => {
       </Box>
       {popupLink && (
         <PopupModal
-          url={popupLink}
-          prefill={{ email: userDetail?.email, name: userDetail?.name }}
+          url={`${popupLink}`}
+          prefill={{
+            email: userDetail?.email,
+            name: userDetail?.name,
+          }}
           onModalClose={popupCloseHandler}
           open={popup}
           rootElement={document.getElementById('root')}
+          utm={{
+            utmContent: selectedBookedId,
+          }}
         />
       )}
     </Box>
