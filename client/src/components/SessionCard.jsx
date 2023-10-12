@@ -54,6 +54,7 @@ const SessionCard = ({
           height: sessionImg ? "calc(100% - 250px)" : "100%",
           marginTop: sessionImg ? "8px" : 0,
           display: "grid",
+          alignItems: "center",
         }}
       >
         <Box
@@ -179,7 +180,7 @@ const SessionCard = ({
           >
             {Number(quantity) === 1
               ? "Available Session"
-              : "Available Sessions"}{" "}
+              : "Available Sessions "}
             : {quantity}
           </Typography>
         )}

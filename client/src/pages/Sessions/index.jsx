@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { Backdrop, Box, Grid, OutlinedInput, Typography } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { Backdrop, Box, Grid, OutlinedInput, Typography } from "@mui/material";
 
 import {
   getAllBookedSessionsByUserId,
   getAllSessions,
   getCoaches,
   getSessionsByCoachId,
-} from '../../services/session.service';
-import SessionCard from '../../components/SessionCard';
-import CircularProgress from '@mui/material/CircularProgress';
-import { getUserDetails, setUserDetails } from '../../utils/auth';
-import { handlePayment } from '../../services/payment.service';
-import { PopupModal } from 'react-calendly';
-import { getuserById } from '../../services/user.service';
-import PageBanner from '../../sections/PageBanner';
-import { getDateAndTimeHandler } from '../../utils/getDateAndTime';
+} from "../../services/session.service";
+import SessionCard from "../../components/SessionCard";
+import CircularProgress from "@mui/material/CircularProgress";
+import { getUserDetails, setUserDetails } from "../../utils/auth";
+import { handlePayment } from "../../services/payment.service";
+import { PopupModal } from "react-calendly";
+import { getuserById } from "../../services/user.service";
+import PageBanner from "../../sections/PageBanner";
+import { getDateAndTimeHandler } from "../../utils/getDateAndTime";
 
 export default function SelectSmall() {
   const [sessionsIsLoading, setSessionsIsLoading] = useState(false);
-  const [filteredSessionsisLoading, setFilteredSessionsIsLoading] = useState(false);
+  const [filteredSessionsisLoading, setFilteredSessionsIsLoading] =
+    useState(false);
   const [coachList, setCoachList] = useState([]);
-  const [currentCoach, setCurrentCoach] = useState('');
+  const [currentCoach, setCurrentCoach] = useState("");
   const [sessions, setSessions] = useState([]);
   const [filteredSessions, setFilteredSessions] = useState([]);
   const [hasLink, setHasLink] = useState({});
   const [popup, setPopup] = useState(false);
-  const [popupLink, setPopupLink] = useState('');
-  const [selectedBookedId, setSelectedBookedId] = useState('');
+  const [popupLink, setPopupLink] = useState("");
+  const [selectedBookedId, setSelectedBookedId] = useState("");
   const [bookedSessionList, setBookedSessionList] = useState(false);
   const userDetails = getUserDetails();
   const handleChange = (event) => {
@@ -83,7 +84,7 @@ export default function SelectSmall() {
         for (let j = 0; j < data.length; j++) {
           if (data[j].session._id === apiSessionList[i]._id) {
             apiSessionList[i].isPurchased = true;
-            if (data[j].session.sessionType !== 'freeReading') {
+            if (data[j].session.sessionType !== "freeReading") {
               apiSessionList[i].count = count++;
             }
             apiSessionList[i].bookedSessionId = data[j]._id;
@@ -104,7 +105,7 @@ export default function SelectSmall() {
     //   ?.filter((filteredSession) => filteredSession?.isBooked);
     const bought = filteredSessions
       ?.filter((session) => {
-        if (currentCoach === '') return true;
+        if (currentCoach === "") return true;
         else if (session?.coach?.firstName === currentCoach) return true;
         else return false;
       })
@@ -120,13 +121,17 @@ export default function SelectSmall() {
     //       !filteredSession?.isPurchased && !filteredSession?.isBooked
     //   );
 
-    const filteredFreeSessions = bought.filter((session) => session.sessionType === 'freeReading');
+    const filteredFreeSessions = bought.filter(
+      (session) => session.sessionType === "freeReading"
+    );
 
-    const lowestOrder = Math.min(...filteredFreeSessions.map((session) => session?.coach?.order));
+    const lowestOrder = Math.min(
+      ...filteredFreeSessions.map((session) => session?.coach?.order)
+    );
     const sessionWithLowestOrder = filteredFreeSessions.filter(
       (session) => session?.coach?.order === lowestOrder
     );
-    const paidSession = bought.filter((i) => i.sessionType !== 'freeReading');
+    const paidSession = bought.filter((i) => i.sessionType !== "freeReading");
 
     const finalDisplaySessionList = sessionWithLowestOrder.concat(paidSession);
 
@@ -135,10 +140,10 @@ export default function SelectSmall() {
         <Typography
           variant="h4"
           sx={{
-            fontSize: { xs: '20px', md: '26px' },
-            display: 'block',
-            margin: '0 0.7rem',
-            borderBottom: '1px solid #671d63',
+            fontSize: { xs: "20px", md: "26px" },
+            display: "block",
+            margin: "0 0.7rem",
+            borderBottom: "1px solid #671d63",
           }}
         >
           Booked Sessions
@@ -147,10 +152,10 @@ export default function SelectSmall() {
           spacing={3}
           container
           sx={{
-            margin: '0 !important',
-            width: '100% !important',
+            margin: "0 !important",
+            width: "100% !important",
           }}
-          rowGap={'15px'}
+          rowGap={"15px"}
         >
           {bookedSessionList && bookedSessionList.length ? (
             bookedSessionList.map((session) => (
@@ -163,27 +168,33 @@ export default function SelectSmall() {
                 lg={4}
                 sx={{
                   padding: {
-                    xs: '16px 0 !important',
-                    md: '12px !important',
-                    lf: '24px !important',
+                    xs: "16px 0 !important",
+                    md: "12px !important",
+                    lf: "24px !important",
                   },
                 }}
               >
                 <SessionCard
                   coachName={session?.session?.coach?.firstName}
                   sessionLink={hasLink[session._id] && session?.link}
-                  date={getDateAndTimeHandler(session?.sessionStartDate).formattedDate}
-                  time={getDateAndTimeHandler(session?.sessionStartDate).formattedTime}
+                  date={
+                    getDateAndTimeHandler(session?.sessionStartDate)
+                      .formattedDate
+                  }
+                  time={
+                    getDateAndTimeHandler(session?.sessionStartDate)
+                      .formattedTime
+                  }
                   detail={session?.session?.details}
                   title={session?.session?.title}
                   btnText={
                     !hasLink[session._id]
                       ? session.isBooked
-                        ? 'Get Link'
+                        ? "Get Link"
                         : session.isPurchased
-                        ? 'Book Now'
-                        : 'Purchase'
-                      : ''
+                        ? "Book Now"
+                        : "Purchase"
+                      : ""
                   }
                   onClick={
                     session?.isBooked
@@ -196,15 +207,20 @@ export default function SelectSmall() {
                       : () =>
                           session?.isPurchased
                             ? bookHandler(session)
-                            : purchaseHandler(session?._id, session?.stripePriceId)
+                            : purchaseHandler(
+                                session?._id,
+                                session?.stripePriceId
+                              )
                   }
                 />
               </Grid>
             ))
           ) : (
-            <Typography sx={{ fontSize: { xs: '16px', md: '20px' }, marginLeft: '1rem' }}>
-              {currentCoach === ''
-                ? 'No sessions have been booked yet...'
+            <Typography
+              sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
+            >
+              {currentCoach === ""
+                ? "No sessions have been booked yet..."
                 : `You have not booked any sessions from coach ${currentCoach}.`}
             </Typography>
           )}
@@ -212,10 +228,10 @@ export default function SelectSmall() {
         <Typography
           variant="h4"
           sx={{
-            fontSize: { xs: '20px', md: '26px' },
-            display: 'block',
-            margin: '5rem 0.7rem 0',
-            borderBottom: '1px solid #671d63',
+            fontSize: { xs: "20px", md: "26px" },
+            display: "block",
+            margin: "5rem 0.7rem 0",
+            borderBottom: "1px solid #671d63",
           }}
         >
           Purchased Sessions
@@ -224,10 +240,10 @@ export default function SelectSmall() {
           spacing={3}
           container
           sx={{
-            margin: '0 !important',
-            width: '100% !important',
+            margin: "0 !important",
+            width: "100% !important",
           }}
-          rowGap={'15px'}
+          rowGap={"15px"}
         >
           {finalDisplaySessionList && finalDisplaySessionList.length ? (
             finalDisplaySessionList.map((session) => (
@@ -240,9 +256,9 @@ export default function SelectSmall() {
                 lg={4}
                 sx={{
                   padding: {
-                    xs: '16px 0 !important',
-                    md: '12px !important',
-                    lf: '24px !important',
+                    xs: "16px 0 !important",
+                    md: "12px !important",
+                    lf: "24px !important",
                   },
                 }}
               >
@@ -255,15 +271,15 @@ export default function SelectSmall() {
                   detail={session?.details}
                   price={session?.price}
                   title={session?.title}
-                  quntity={session?.count}
+                  quantity={session?.count}
                   btnText={
                     !hasLink[session._id]
                       ? session.isBooked
-                        ? 'Get Link'
+                        ? "Get Link"
                         : session.isPurchased
-                        ? 'Book Now'
-                        : 'Purchase'
-                      : ''
+                        ? "Book Now"
+                        : "Purchase"
+                      : ""
                   }
                   onClick={
                     session?.isBooked
@@ -276,14 +292,19 @@ export default function SelectSmall() {
                       : () =>
                           session?.isPurchased
                             ? bookHandler(session)
-                            : purchaseHandler(session?._id, session?.stripePriceId)
+                            : purchaseHandler(
+                                session?._id,
+                                session?.stripePriceId
+                              )
                   }
                 />
               </Grid>
             ))
           ) : (
-            <Typography sx={{ fontSize: { xs: '16px', md: '20px' }, marginLeft: '1rem' }}>
-              {currentCoach === ''
+            <Typography
+              sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
+            >
+              {currentCoach === ""
                 ? "You don't seem to have any unbooked purchased sessions..."
                 : `No sessions from coach ${currentCoach} have been bought yet...`}
             </Typography>
@@ -434,7 +455,7 @@ export default function SelectSmall() {
         .then((res) => {
           window.location.replace(res?.data?.url);
         })
-        .catch((err) => console.log('err :', err));
+        .catch((err) => console.log("err :", err));
     }
   };
   return (
@@ -442,40 +463,44 @@ export default function SelectSmall() {
       <PageBanner imgSrc="./prevPurchase.jpg" heading="Sessions" />
       <Box
         sx={{
-          color: '#671d61',
-          padding: { xs: '1rem', sm: '2rem', md: '3rem', lg: '4rem' },
+          color: "#671d61",
+          padding: { xs: "1rem", sm: "2rem", md: "3rem", lg: "4rem" },
         }}
       >
         <Box
           sx={{
-            display: { sm: 'flex' },
-            justifyContent: 'end',
-            alignItems: 'center',
-            gap: '15px',
+            display: { sm: "flex" },
+            justifyContent: "end",
+            alignItems: "center",
+            gap: "15px",
           }}
         >
           <Box>
-            <Typography sx={{ fontSize: { xs: '20px', sm: '24px', md: '27px' } }}></Typography>
+            <Typography
+              sx={{ fontSize: { xs: "20px", sm: "24px", md: "27px" } }}
+            ></Typography>
             <FormControl
               sx={{
-                minWidth: { xs: '100%', sm: '240px' },
-                borderColor: '#671d61',
-                color: '#671d63',
-                marginTop: { xs: '16px', sm: 0 },
+                minWidth: { xs: "100%", sm: "240px" },
+                borderColor: "#671d61",
+                color: "#671d63",
+                marginTop: { xs: "16px", sm: 0 },
               }}
               size="medium"
             >
-              <InputLabel id="demo-select-large-label">Choose Your Coach</InputLabel>
+              <InputLabel id="demo-select-large-label">
+                Choose Your Coach
+              </InputLabel>
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 value={currentCoach}
                 onChange={handleChange}
                 input={<OutlinedInput label="Choose Your Coach" />}
-                sx={{ mb: { xs: '25px', sm: 0 } }}
+                sx={{ mb: { xs: "25px", sm: 0 } }}
               >
                 <MenuItem
-                  value={''}
+                  value={""}
                   onClick={() => {
                     setFilteredSessions(sessions);
                   }}
@@ -488,11 +513,11 @@ export default function SelectSmall() {
                       key={singleCoach?._id}
                       value={singleCoach?.firstName}
                       sx={{
-                        backgroundColor: '#fff',
-                        color: '#671d61',
-                        ':hover': {
-                          backgroundColor: '#671d61',
-                          color: '#fff',
+                        backgroundColor: "#fff",
+                        color: "#671d61",
+                        ":hover": {
+                          backgroundColor: "#671d61",
+                          color: "#fff",
                         },
                       }}
                       onClick={() => {
@@ -514,27 +539,27 @@ export default function SelectSmall() {
             spacing={3}
             container
             sx={{
-              margin: '0 !important',
-              width: '100% !important',
+              margin: "0 !important",
+              width: "100% !important",
             }}
-            rowGap={'15px'}
+            rowGap={"15px"}
           >
             {filteredSessionsisLoading || sessionsIsLoading ? (
               <Backdrop open={sessionsIsLoading}>
                 <Box
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '25px',
-                    padding: '15px 45px',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "25px",
+                    padding: "15px 45px",
                   }}
                 >
-                  <CircularProgress sx={{ color: 'white' }} color="secondary" />
+                  <CircularProgress sx={{ color: "white" }} color="secondary" />
                   <Typography
                     component="span"
-                    fontSize={'30px'}
-                    fontWeight={'bold'}
-                    color={'white'}
+                    fontSize={"30px"}
+                    fontWeight={"bold"}
+                    color={"white"}
                   >
                     Loading Sessions
                   </Typography>
@@ -544,7 +569,9 @@ export default function SelectSmall() {
               (!sessionsIsLoading || !filteredSessionsisLoading) ? (
               <DivideSessions filteredSessions={filteredSessions} />
             ) : (
-              <Typography sx={{ color: '#671d63', fontSize: '45px', margin: '40px auto' }}>
+              <Typography
+                sx={{ color: "#671d63", fontSize: "45px", margin: "40px auto" }}
+              >
                 No Sessions Found....
               </Typography>
             )}
@@ -558,7 +585,7 @@ export default function SelectSmall() {
           }}
           onModalClose={popupCloseHandler}
           open={popup}
-          rootElement={document.getElementById('root')}
+          rootElement={document.getElementById("root")}
           utm={{
             utmContent: selectedBookedId,
           }}
