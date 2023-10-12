@@ -36,13 +36,12 @@ const Routers = () => {
           <Route path="/" element={<Home />} />
           <Route path="/?success=true" element={<SuccessModal />} />
           <Route path="/our-coaches" element={<AllCoaches />} />
-          <Route path="/online-courses" element={<OnlineCourses />} />
+          {/* <Route path="/online-courses" element={<OnlineCourses />} /> */}
           <Route path="/coaching-with-rita" element={<CoachDetail />} />
           <Route path="/become-your-creator" element={<BecomeYourCreator />} />
           <Route path="/wealth-creation" element={<WealthCreationSection />} />
           <Route path="/events" element={<Event />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/previous-purchases" element={<PreviousPurchases />} />
           <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
@@ -55,6 +54,7 @@ const Routers = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/session" element={<SessionsPage />} />
             <Route path="/sessions" element={<SessionsPage />} />
+            <Route path="/previous-purchases" element={<PreviousPurchases />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/packages/:id" element={<Packages />} />
