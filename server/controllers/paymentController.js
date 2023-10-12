@@ -56,11 +56,35 @@ exports.paymentCompleted = async (req, res) => {
 
     // Store the event in MongoDB
 
+    console.log(
+      "----------------------------------------------------------------------"
+    );
+    console.log("verifiedEvent", verifiedEvent);
+    console.log(
+      "----------------------------------------------------------------------"
+    );
+
     if (verifiedEvent.type === "payment_intent.succeeded") {
       const paymentIntent = verifiedEvent.data.object;
 
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+      console.log("paymentIntent", paymentIntent);
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+
       const checkoutSession = await getCheckoutSessionByPaymentIntentId(
         paymentIntent.id
+      );
+
+      console.log(
+        "----------------------------------------------------------------------"
+      );
+      console.log("checkoutSession", checkoutSession);
+      console.log(
+        "----------------------------------------------------------------------"
       );
 
       const userId = checkoutSession.metadata.userId;
