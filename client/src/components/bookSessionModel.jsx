@@ -383,17 +383,11 @@ const BookSession = ({
                     sx={{
                       marginTop: "0 !important",
                       paddingBottom: "25px",
-                      // paddingRight: { md: "20px" },
+                      gap: "25px 0",
                     }}
                   >
                     {bookedSessionList?.map((i) => (
-                      <Grid
-                        key={i?._id}
-                        sx={{ height: "100% !important" }}
-                        item
-                        xs={12}
-                        md={6}
-                      >
+                      <Grid key={i?._id} item xs={12} md={6}>
                         <SessionCard
                           title={i.session.title}
                           detail={i.session.details}
