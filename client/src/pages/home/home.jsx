@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroBanner from "../../sections/heroBanner";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import AboutSection from "../../sections/AboutSection";
@@ -10,6 +10,7 @@ import OfferSection from "../../sections/OffersSection";
 import { heroListItems, testimonialHomeData } from "../../utils/constant";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../../components/SuccessModal";
+import FormModal from "../../sections/FormModal";
 
 const Home = () => {
   const { search } = useLocation();
@@ -17,12 +18,21 @@ const Home = () => {
   const [openCancel, setOpenCancel] = useState(search === "?cancelled=true");
   const [openSuccess, setOpenSuccess] = useState(search === "?success=true");
   const [openVerified, setOpenVerified] = useState(search === "?verify=true");
+  const [privateAccess, setPrivateAccess] = useState(search === "?login=false");
   const [openInverified, setOpenInverified] = useState(
     search === "?invalid=true"
   );
 
+  useEffect(() => {
+    navigate("/");
+  }, []);
+
   return (
     <>
+      <FormModal
+        open={privateAccess}
+        handleClose={() => setPrivateAccess(false)}
+      />
       <SuccessModal
         message={"Your pament was cancelled."}
         title={"Payment cancelled"}
@@ -33,13 +43,6 @@ const Home = () => {
           setOpenCancel(false);
         }}
       />
-      <HeroBanner
-        header={"Discover what is blocking you from"}
-        title={"Manifesting and living life you desire !"}
-        imageUrl="./heroBg2.jpg"
-        listItems={heroListItems}
-        buttonText="Book Now"
-      />
       <SuccessModal
         title={"Payment successful"}
         message={"Congratulations, Your session has been purchased."}
@@ -48,6 +51,13 @@ const Home = () => {
           navigate("/");
           setOpenSuccess(false);
         }}
+      />
+      <HeroBanner
+        header={"Discover what is blocking you from"}
+        title={"Manifesting and living life you desire !"}
+        imageUrl="./heroBg2.jpg"
+        listItems={heroListItems}
+        buttonText="Book Now"
       />
       <SuccessModal
         title={"Email Verified"}
