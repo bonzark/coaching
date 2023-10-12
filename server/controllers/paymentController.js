@@ -13,6 +13,8 @@ exports.paymentSession = async (req, res) => {
     const price_id = req.body.price_id;
     const mode = req.body.mode;
 
+    console.log("paymentSession ::::", userId, sessionId, price_id, mode);
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: mode,
@@ -30,7 +32,7 @@ exports.paymentSession = async (req, res) => {
       metadata: {
         userId: userId,
         sessionId: sessionId,
-        priceId: req.body.price_id,
+        priceId: price_id,
       },
     });
 
