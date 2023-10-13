@@ -166,6 +166,7 @@ const CoachDetail = () => {
                       props
                     >
                       Purchase
+                      {/* Book Your Coaching */}
                     </PrimaryBtn>
                   </Box>
                 </>
@@ -350,7 +351,13 @@ const CoachDetail = () => {
           {!isLoading && (
             <>
               <BookSessionBtn
-                defaultText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
+                defaultText={
+                  <>
+                    {/* <span>DOWNLOAD NOW FOR FREE</span>
+                    Gain Awareness Of Your Creation in less than 30 days */}
+                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                  </>
+                }
                 freeSessionText={
                   <>
                     <span>BOOK A FREE SESSION</span>
@@ -371,6 +378,7 @@ const CoachDetail = () => {
                   props
                 >
                   Purchase
+                  {/* Book Your Coaching */}
                 </PrimaryBtn>
               </Box>
             </>

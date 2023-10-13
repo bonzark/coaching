@@ -17,7 +17,6 @@ const News = () => {
             mx: "auto",
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: { lg: "70px" },
             flexDirection: { xs: "column", lg: "row" },
           }}
         >
@@ -73,8 +72,9 @@ const News = () => {
         > */}
         <Box
           sx={{
-            paddingX: { xs: "0", lg: "5rem", xl: "7rem" },
+            paddingX: { xs: 0, lg: "5rem", xl: "7rem" },
             scale: "0.8",
+            marginY: { xs: "-185px", md: "-80px" },
           }}
         >
           <EventTemplate
