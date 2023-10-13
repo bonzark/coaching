@@ -447,85 +447,8 @@ exports.deleteSession = async (req, res) => {
 
 exports.testApi = async (req, res) => {
   try {
-    const email = req.body.email;
-    const bookedSessionId = req?.body?.utm_content;
-
-    const user = await User.findOne({ email }).populate("purchasedSession");
-    const bookedSession = await BookedSession.findOne({
-      _id: bookedSessionId,
-      user: user._id,
-    });
-
-    if (!user) {
-      res.status(404).json({ error: "User Not Found" });
-    }
-
-    if (!bookedSession) {
-      res.status(404).json({ error: "Boooked Session Not Found" });
-    }
-
-    if (user && bookedSession) {
-      await BookedSession.updateOne(
-        { _id: bookedSessionId, user: user._id },
-        {
-          $set: {
-            status: "booked",
-            bookedDate: req?.body?.created_at,
-            sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
-            sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
-            link: req?.body?.payload?.scheduled_event?.location?.join_url,
-          },
-        },
-        { upsert: true }
-      );
-
-      const updatedBookedSession = await BookedSession.findOne({
-        _id: bookedSessionId,
-        user: user._id,
-      });
-
-      const session = await Session.findOne({
-        _id: updatedBookedSession?.session,
-      });
-
-      if (!session) {
-        res.status(404).json({ error: "Session Not Found" });
-      }
-
-      if (session.sessionType === "freeReading") {
-        const filter = {
-          $and: [
-            { user: user._id },
-            { session: { $ne: session._id } },
-            { sessionType: "freeReading" },
-          ],
-        };
-
-        await BookedSession.deleteMany(filter);
-
-        const newData = user.purchasedSession.filter(
-          (i) => i.sessionType !== "freeReading"
-        );
-        user.purchasedSession = newData;
-        user.isFreeReadingBooked = true;
-      } else {
-        const newData = user.purchasedSession.filter((i) => {
-          if (i._id.toString() !== bookedSessionId) {
-            return i;
-          }
-        });
-
-        user.purchasedSession = newData;
-      }
-      user.bookedSession.push(bookedSession);
-      await user.save();
-
-      const coach = await Coach.findOne({ _id: session.coach });
-      coach.bookedSession.push(bookedSession);
-      await coach.save();
-
-      res.status(200).json({ message: "Session Booked Successfully" });
-    }
+    const data = await consumedSession();
+    res.status(200);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

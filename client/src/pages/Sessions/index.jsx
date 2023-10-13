@@ -25,7 +25,7 @@ export default function SelectSmall() {
   const [filteredSessionsisLoading, setFilteredSessionsIsLoading] =
     useState(false);
   const [coachList, setCoachList] = useState([]);
-  const [currentCoach, setCurrentCoach] = useState("");
+  const [currentCoach, setCurrentCoach] = useState();
   const [sessions, setSessions] = useState([]);
   const [filteredSessions, setFilteredSessions] = useState([]);
   const [hasLink, setHasLink] = useState({});
@@ -44,7 +44,6 @@ export default function SelectSmall() {
       getSessionsByCoachId(coachId)
         .then((res) => {
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
         })
         .catch((err) => console.log(err));
       setSessionsIsLoading(false);
@@ -54,7 +53,10 @@ export default function SelectSmall() {
           const filterData = res?.data?.bookedSessions?.filter(
             (i) => i?.session?.coach._id === coachId
           );
-          bookedSession(userDetails, filterData);
+          bookedSession(
+            userDetails,
+            coachId ? filterData : res?.data?.bookedSessions
+          );
         })
         .catch((err) => console.log(err));
     }
@@ -105,7 +107,7 @@ export default function SelectSmall() {
     //   ?.filter((filteredSession) => filteredSession?.isBooked);
     const bought = filteredSessions
       ?.filter((session) => {
-        if (currentCoach === "") return true;
+        if (!currentCoach) return true;
         else if (session?.coach?.firstName === currentCoach) return true;
         else return false;
       })
@@ -219,7 +221,7 @@ export default function SelectSmall() {
             <Typography
               sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
             >
-              {currentCoach === ""
+              {!currentCoach
                 ? "No sessions have been booked yet..."
                 : `You have not booked any sessions from coach ${currentCoach}.`}
             </Typography>
@@ -304,9 +306,9 @@ export default function SelectSmall() {
             <Typography
               sx={{ fontSize: { xs: "16px", md: "20px" }, marginLeft: "1rem" }}
             >
-              {currentCoach === ""
+              {!currentCoach
                 ? "You don't seem to have any unbooked purchased sessions..."
-                : `No sessions from coach ${currentCoach} have been bought yet...`}
+                : `No sessions from coach ${currentCoach?.firstName} have been bought yet...`}
             </Typography>
           )}
         </Grid>
@@ -437,7 +439,6 @@ export default function SelectSmall() {
         .then((res) => {
           setSessions(res?.data?.sessions);
           purchaseSession(userDetails, res?.data?.sessions);
-          bookedSession(userDetails, res?.data?.sessions);
           window.location.reload();
         })
         .catch((err) => console.log(err));
@@ -499,14 +500,6 @@ export default function SelectSmall() {
                 input={<OutlinedInput label="Choose Your Coach" />}
                 sx={{ mb: { xs: "25px", sm: 0 } }}
               >
-                <MenuItem
-                  value={""}
-                  onClick={() => {
-                    setFilteredSessions(sessions);
-                  }}
-                >
-                  <Typography>All Sessions</Typography>
-                </MenuItem>
                 {coachList?.map((singleCoach) => {
                   return (
                     <MenuItem
