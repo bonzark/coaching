@@ -36,7 +36,6 @@ const FreeMeditation = () => {
               variant: "warning",
             });
           }
-          formik.resetForm();
         })
         .catch((error) => {
           enqueueSnackbar(
@@ -46,6 +45,7 @@ const FreeMeditation = () => {
             }
           );
         });
+      await formik.resetForm();
       await setIsLoading(false);
     },
   });
@@ -105,11 +105,11 @@ const FreeMeditation = () => {
                 id="email"
                 name="email"
                 type="email"
-                value={formik.values.name}
+                value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 required={true}
-                error={formik.touched.name && Boolean(formik.errors.name)}
+                error={formik.touched.email && Boolean(formik.errors.email)}
                 sx={{
                   paddingY: "20px",
                   paddingX: "5px",
