@@ -1,24 +1,53 @@
-import React from "react";
+import { useState } from "react";
 import {
   Box,
   InputBase,
   Typography,
   InputAdornment,
   Paper,
+  CircularProgress,
 } from "@mui/material";
 import { useFormik } from "formik";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 import { validationEmail } from "../utils/validation";
+import { useSnackbar } from "notistack";
+import { freeMeditation } from "../services/contact.service";
 
 const FreeMeditation = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const formik = useFormik({
     initialValues: {
       email: "",
     },
     enableReinitialize: true,
     validationSchema: validationEmail,
-    onSubmit: (values) => {},
+    onSubmit: async (values) => {
+      await setIsLoading(true);
+      await freeMeditation({ email: values.email })
+        .then((res) => {
+          if (res?.status === 200) {
+            enqueueSnackbar(res?.data, {
+              variant: "success",
+            });
+          } else {
+            enqueueSnackbar(res?.message, {
+              variant: "warning",
+            });
+          }
+          formik.resetForm();
+        })
+        .catch((error) => {
+          enqueueSnackbar(
+            "Oops! Something went wrong. Please try again later.",
+            {
+              variant: "error",
+            }
+          );
+        });
+      await setIsLoading(false);
+    },
   });
 
   return (
@@ -101,7 +130,17 @@ const FreeMeditation = () => {
                         fontSize: "40px",
                       }}
                     >
-                      <ArrowForwardIcon />
+                      {!isLoading ? (
+                        <ArrowForwardIcon />
+                      ) : (
+                        <CircularProgress
+                          sx={{
+                            color: "#fff",
+                            maxWidth: "20px",
+                            maxHeight: "20px",
+                          }}
+                        />
+                      )}
                     </PrimaryBtn>
                   </InputAdornment>
                 }
