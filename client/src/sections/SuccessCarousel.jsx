@@ -13,7 +13,7 @@ const SuccessCarousel = ({ testimonials }) => {
       <Box
         sx={{
           background: "linear-gradient(#EFE6EF, #F1E2F0)",
-          py: "100px",
+          py: "50px",
         }}
       >
         <Typography

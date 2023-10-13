@@ -34,7 +34,7 @@ const News = () => {
               maxWidth: "592px",
               position: "relative",
               paddingRight: { lg: "70px" },
-              marginBottom: { xs: "40px", lg: 0 },
+              marginBottom: { xs: "20px", lg: 0 },
               marginRight: { xs: "10px", lg: "45px" },
               lineHeight: { xs: "35px", sm: "45px", md: "50px", lg: "60px" },
               "&:after": {
@@ -78,11 +78,11 @@ const News = () => {
           }}
         >
           <EventTemplate
-            id={filteredEvent.id}
-            image={filteredEvent.imageUrl}
-            title={filteredEvent.title}
-            subtitle={filteredEvent.subtitle}
-            eventUrl={filteredEvent.eventUrl}
+            id={filteredEvent?.id}
+            image={filteredEvent?.imageUrl}
+            title={filteredEvent?.title}
+            subtitle={filteredEvent?.subtitle}
+            eventUrl={filteredEvent?.eventUrl}
           >
             <Box>
               <Typography
@@ -102,7 +102,7 @@ const News = () => {
                   marginBottom: { xs: "1rem", md: "2rem" },
                 }}
               >
-                {filteredEvent.host}
+                {filteredEvent?.host}
               </Typography>
               <Typography
                 variant="h6"
@@ -120,7 +120,7 @@ const News = () => {
                   marginBottom: { xs: "1rem", md: "2rem" },
                 }}
               >
-                {filteredEvent.subtitle}
+                {filteredEvent?.subtitle}
               </Typography>
               <Typography
                 variant="h6"
@@ -140,7 +140,7 @@ const News = () => {
                   maxWidth: "500px",
                 }}
               >
-                {filteredEvent.shortDescription}
+                {filteredEvent?.shortDescription}
               </Typography>
               <Link to="/" style={{ textDecoration: "none" }}>
                 <Typography
@@ -162,7 +162,7 @@ const News = () => {
                     },
                   }}
                 >
-                  {filteredEvent.dateTime}
+                  {filteredEvent?.dateTime}
                 </Typography>
               </Link>
             </Box>
