@@ -1,4 +1,4 @@
-import { Box, Button, DialogContent, Typography } from "@mui/material";
+import { Box, Button, DialogContent, Typography, Link } from "@mui/material";
 import React, { useState } from "react";
 import { MainModal } from "./MainModal";
 
@@ -44,125 +44,147 @@ const DisclaimerModelBtn = ({ text }) => {
             Become Your Creator LTD. Disclaimer
           </Typography>
           <DialogContent>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              Become Your Creator LTD. offers coaching services for
-              informational and educational purposes only. While our sessions
-              are personalized, it is the individual's responsibility to apply
-              the coaching to achieve desired outcomes. We provide guidance,
-              support, and encouragement, but clients are accountable for their
-              actions and decisions resulting from our coaching.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              We do not replace professional advice, therapy, or medical
-              treatment. Clients are encouraged to consult qualified
-              professionals for specific circumstances, as we do not guarantee
-              the completeness, accuracy, or reliability of our services. We are
-              not liable for any loss or damage arising from the use of our
-              coaching.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              In our commitment to client well-being, we may refuse coaching if
-              signs of mental illness are identified. Pregnant women and
-              individuals under 18 are not suitable for our services, and we
-              recommend specialized care for their needs. These measures ensure
-              tailored support for each client, prioritizing their safety and
-              effectiveness.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              By participating in our coaching, you agree to these terms. If you
-              disagree, please refrain from using our services. Thank you for
-              your understanding and cooperation.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              For legal purposes, the services and programs provided by Become
-              Your Creator LTD. are intended for informational and educational
-              purposes only. Our coaching sessions are personalized and tailored
-              to individual needs, and it is does to the individual to apply the
-              coaching in order to see the desired outcomes.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              Become Your Creator LTD. is committed to providing guidance,
-              support, and encouragement to help clients achieve their goals.
-              However, it is important to understand that the actions and
-              decisions clients take, or fail to take, based on our coaching
-              sessions are their own responsibility.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              We cannot be held liable for the choices made by clients outside
-              the scope of our coaching sessions. While we strive to offer
-              valuable insights and strategies, the ultimate responsibility for
-              personal decisions and their outcomes rests solely with the
-              client.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              Our role is to empower, motivate, and facilitate personal growth,
-              but the client retains full accountability for their actions, both
-              successful and otherwise. We encourage clients to exercise their
-              own judgment and seek additional advice when necessary.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              By engaging in our coaching services, clients acknowledge and
-              accept this limitation of our liability.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              While we strive to offer accurate and helpful information, our
-              coaching services do not replace professional advice, therapy, or
-              medical treatment. We encourage you to consult with qualified
-              professionals regarding your specific circumstances. Any reliance
-              you place on the information provided in our coaching sessions is
-              at your own risk.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              We make no representations or warranties of any kind, express or
-              implied, about the completeness, accuracy, reliability,
-              suitability, or availability with respect to our coaching services
-              or the information, products, services, or related graphics
-              contained therein. Any reliance you place on such information is
-              strictly at your own risk.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              In no event will we be liable for any loss or damage, including
-              without limitation, indirect or consequential loss or damage, or
-              any loss or damage whatsoever arising from loss of data or profits
-              arising out of, or in connection with, the use of our coaching
-              services.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              At our life coaching practice, the well-being of our clients is
-              our utmost priority. It is essential to note that if, during the
-              initial assessment or subsequent sessions, we identify signs of
-              mental illness or emotional distress, we reserve the right to
-              refuse coaching services. In such cases, we strongly recommend
-              seeking assistance from a licensed mental health professional or a
-              qualified medical practitioner.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              Additionally, our coaching services are not suitable for pregnant
-              women and individuals under the age of 18. For pregnant women, it
-              is advisable to consult healthcare providers who specialize in
-              prenatal care and mental health. Clients under the age of 18 are
-              encouraged to seek guidance from appropriate sources, such as
-              school counsellors or family therapists, who are better equipped
-              to address their specific needs.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              We deeply care about the safety and well-being of all individuals,
-              and these guidelines are in place to ensure that each client
-              receives the most appropriate and effective support tailored to
-              their unique circumstances. Thank you for your understanding and
-              cooperation.
-            </Typography>
-            <Typography sx={{ fontSize: { md: "18px", xs: "15px" } }}>
-              By engaging in our coaching sessions, you agree to these terms and
-              acknowledge that you have read and understood this disclaimer. If
-              you do not agree with this disclaimer, please do not use our
-              coaching services.
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              Coaching services offered by Become Your Creator LTD. are designed
+              to provide information and education to clients. The company
+              focuses on empowering individuals to take control of their lives,
+              set goals, and work towards achieving them. However, it is
+              important to understand and acknowledge certain guidelines and
+              disclaimers to ensure the safety and well-being of all individuals
+              involved.
             </Typography>
             <Typography
-              sx={{ fontSize: { md: "18px", xs: "15px" }, overflow: "hidden" }}
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
             >
-              If you have any questions, please do not hesitate to contact us
-              via email on support@becomeyourcreator.com
+              Firstly, clients must understand that the coaching services
+              provided by Become Your Creator LTD. are for informational and
+              educational purposes only. The company does not guarantee specific
+              outcomes or results, as success depends on individual effort and
+              commitment. Clients are solely responsible for applying the
+              coaching techniques and strategies in their lives to achieve their
+              desired outcomes.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              It is crucial to note that coaching is not a substitute for
+              professional advice, therapy, or medical treatment. Clients are
+              encouraged to seek appropriate guidance from qualified
+              professionals for specific circumstances such as mental health
+              issues, medical conditions, or legal matters. While Become Your
+              Creator LTD. strives to provide valuable information and support,
+              clients should exercise their own judgment and discretion in
+              applying the advice and techniques provided.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              The company also does not warrant the completeness, accuracy, or
+              reliability of their coaching services. While every effort is made
+              to provide valuable and accurate information, clients should
+              understand that they assume full responsibility for their actions,
+              decisions, and outcomes resulting from their participation in
+              coaching.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              In cases where signs of mental illness are identified, Become Your
+              Creator LTD. reserves the right to refuse coaching services. The
+              well-being and safety of clients are of utmost importance, and
+              appropriate professional assistance should be sought in such
+              situations.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              Pregnant women and individuals under 18 are not suitable
+              candidates for the coaching services provided by Become Your
+              Creator LTD. The company believes in providing tailored support
+              and guidance to individuals who are of legal age and in
+              appropriate physical and emotional states to benefit from the
+              coaching process.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              By participating in coaching with Become Your Creator LTD.,
+              clients acknowledge and agree to these terms and conditions. They
+              understand the importance of seeking professional advice when
+              necessary and take full responsibility for their own actions and
+              decisions. The company remains committed to providing personalized
+              support, ensuring safety, and striving for the effectiveness of
+              each coaching experience.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              These guidelines are in place to ensure the safety and well-being
+              of all individuals. We deeply care about providing the most
+              appropriate and effective support tailored to each client's unique
+              circumstances.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+              }}
+            >
+              Thank you for your understanding and agreement to these terms. We
+              appreciate your commitment to your own well-being and the
+              importance of seeking appropriate professional advice when needed.
+              If you have any further questions or concerns, please feel free to
+              reach out to us via email at
+            </Typography>
+            <Typography
+              sx={{
+                overflow: "hidden",
+              }}
+            >
+              <Link
+                sx={{
+                  fontSize: { md: "18px", xs: "15px" },
+                  color: "#671d63",
+                  textDecoration: "underline",
+                }}
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=support@becomeyourcreator.com"
+                target="_blank"
+              >
+                support@becomeyourcreator.com
+              </Link>
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { md: "18px", xs: "15px" },
+                paddingBottom: "15px",
+              }}
+            >
+              We are here to assist you.
             </Typography>
           </DialogContent>
         </Box>

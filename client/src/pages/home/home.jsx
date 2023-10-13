@@ -53,8 +53,10 @@ const Home = () => {
         }}
       />
       <HeroBanner
-        header={"Discover what is blocking you from"}
-        title={"Manifesting and living life you desire !"}
+        header={
+          "Uncover the Hidden Blocks to Manifestation and Create Your Dream Life in Just 30 Days!"
+        }
+        title={"Transform Your Dreams Into Reality!"}
         imageUrl="./heroBg2.jpg"
         listItems={heroListItems}
         buttonText="Book Now"

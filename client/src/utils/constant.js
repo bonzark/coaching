@@ -81,11 +81,11 @@ export const aboutTemplateData = [
     image: "/about.JPG",
     title: "Hi, I'm Rita",
     content: [
-      "Hi, My Name is Rita S A de Castro and I'm your mindset, sprituality, and energy reader & coach.",
-      "I help people transform their lives and live with purpose because everyone has the power to create the life they desire.",
-      "In this<strong> Become Your Creator Guide, </strong> my goal will be to turn you into a master creator of your own life by helping depict the reasons why you've been failing at manifesting the life your truly desire and how to fix that.",
-      "You'll also be able to see significant results <strong>in just 30 days or even less!</strong>",
-      "Start living the life you desire. Click below to download your <strong>Free</strong> copy and <strong>Become a Master Creator.</strong>",
+      "Hello, I'm Rita Castro, and I'm here to guide you on a journey towards transforming your life and finding your true purpose.",
+      "As the co-founder of Become Your Creator, I have created a proven system that aligns and organizes your energies to attract endless opportunities and manifest your dreams into reality.",
+      "With our programs, designed to help you unlock your full potential and achieve your goals, my aim is to empower you to become the ultimate creator of your own life. ",
+      "Together, we will discover the underlying factors that may be stopping you from manifesting the life you desire.",
+      "Are you ready to embark on this transformative journey? Let's commence! Click below for an exclusive FREE Energy & Life Path Reading with me.",
     ],
     linkText: "Know More About Rita",
     reverse: true,
@@ -95,11 +95,12 @@ export const aboutTemplateData = [
     image: "/program.jpg",
     title: "Become your creator",
     content: [
-      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
-      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
-      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
-      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
-      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+      "It's time to unleash your inner creator...",
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities. ",
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
     ],
     reverse: false,
   },
@@ -108,11 +109,12 @@ export const aboutTemplateData = [
     image: "/becomeYourCreator.jpeg",
     title: "Become Your Creator",
     content: [
-      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
-      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
-      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
-      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
-      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+      "It's time to unleash your inner creator...",
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities. ",
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
     ],
     reverse: true,
   },
@@ -314,19 +316,19 @@ export const coachesData = [
 
 export const heroListItems = [
   {
-    name: "Learn why you've been unsuccessful at manifesting the life you want and What to do about it Fix your manifestation methods and learn how to become your creator the proper way",
+    name: "Enhance your manifestation techniques.",
     key: 1,
   },
   {
-    name: "Become Conscious Aware Of Your Creation in Less Than 30 Days",
+    name: "Become a Conscious Creator in Less Than 30 Days",
     key: 2,
   },
   {
-    name: "Ditch all the theories and practices that just don t work",
+    name: "Let go of all the theories and practices that simply do not work.",
     key: 3,
   },
   {
-    name: "Be able to attract endless opportunities, relationships and wealth with minimal but effective effort",
+    name: "Unlock a world of boundless opportunities, meaningful connections, and abundant prosperity effortlessly!",
     key: 4,
   },
 ];
@@ -633,18 +635,19 @@ export const privacyPolicyData = [
 ];
 
 export const eventsData = [
+  // {
+  //   title: "3 DAY CONSCIOUS CREATION WITH RITA",
+  //   host: "Become Your Creator",
+  //   subtitle: "MASTER THE POEWR OF CONSCIOUS CREATION",
+  //   shortDescription:
+  //     "JOIN RITA ON A TRANSFORMATIVE JOURNEY TO ALIGN YOUR ENERGIES, BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES",
+  //   dateTime: "October 5th, 6th, 7th @ 8PM BST",
+  //   imageUrl: "./coach2.jpg",
+  //   eventUrl:
+  //     "https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485",
+  // },
   {
-    title: "3 DAY CONSCIOUS CREATION WITH RITA",
-    host: "Become Your Creator",
-    subtitle: "MASTER THE POEWR OF CONSCIOUS CREATION",
-    shortDescription:
-      "JOIN RITA ON A TRANSFORMATIVE JOURNEY TO ALIGN YOUR ENERGIES, BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES",
-    dateTime: "October 5th, 6th, 7th @ 8PM BST",
-    imageUrl: "./coach2.jpg",
-    eventUrl:
-      "https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485",
-  },
-  {
+    id: "1",
     title: "The Complete 4 Steps To Abundance Activation",
     host: "Become Your Creator",
     subtitle: "THE MIND AND THE BODY MANIFESTS",
@@ -656,6 +659,7 @@ export const eventsData = [
       "https://allevents.in/online/the-complete-4-steps-to-abundance-activation-dec-1st-2nd-3rd-4th-7pm-gmt-2pm-est/80001142719496",
   },
   {
+    id: "2",
     title:
       "Harness the Infinite Power of Manifestation to Attract Your One True Love!",
     host: "Become Your Creator",
@@ -668,6 +672,7 @@ export const eventsData = [
       "https://allevents.in/online/harness-the-infinite-power-of-manifestation-to-attract-your-one-true-love/80002109305023",
   },
   {
+    id: "3",
     title:
       "Energy & Pathline Coaching (One To One) - Your Secret Weapon To Manifestation Mastery",
     host: "Become Your Creator",
@@ -682,45 +687,40 @@ export const eventsData = [
 ];
 
 export const becomeYourCreatorData = [
-  {
-    type: "para",
-    content:
-      "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work.",
-  },
-  { type: "header", content: "£19.99 PER MONTH." },
+  // {
+  //   type: "para",
+  //   content:
+  //     "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work.",
+  // },
+  // // { type: "header", content: "£19.99 PER MONTH." },
   {
     type: "header",
-    content: "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
+    content: "It's time to unleash your inner creator...",
   },
   {
     type: "content",
     content:
-      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you.",
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
   },
   {
     type: "content",
     content:
-      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way.",
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
   },
   {
     type: "content",
     content:
-      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well-being over the relentless hustle.",
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities.",
   },
   {
     type: "content",
     content:
-      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another.Together, we create a space that nourishes and encourages growth.",
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
   },
   {
     type: "content",
     content:
-      "You thrive on the invigorating energy of new beginnings, whether it's a Monday, a fresh month, or a new season. These moments excite and inspire you, fuelling your motivation to transform your life.",
-  },
-  {
-    type: "content",
-    content:
-      "As a big dreamer, you're prepared to confront the shadows within yourself and engage in the necessary inner work to bring about positive change. You're ready to break free from your own excuses and design a life that you genuinely love.",
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
   },
 ];
 export const testimonialHomeData = [

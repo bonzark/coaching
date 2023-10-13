@@ -49,14 +49,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
       ))}
       <Box sx={{ display: "flex", gap: { xs: "12px", md: "25px" } }}>
         <BookSessionBtn
-          defaultText={
-            <>
-              <>
-                <span>DOWNLOAD NOW FOR FREE</span>
-                Gain Awareness Of Your Creation in less than 30 days
-              </>
-            </>
-          }
+          defaultText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
           freeSessionText={
             <>
               <span>BOOK A FREE SESSION</span>

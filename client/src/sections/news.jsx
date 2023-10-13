@@ -1,7 +1,11 @@
 import { Box, Link, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import EventTemplate from "../components/EventTemplate";
+import { eventsData } from "../utils/constant";
 
 const News = () => {
+  const filteredEvent = eventsData.filter((event) => event.id === "1")[0];
+
   return (
     <Box
       sx={{ padding: { xs: "2rem", md: "5rem" }, backgroundColor: "#f2effb" }}
@@ -56,27 +60,115 @@ const News = () => {
               textAlign: { xs: "left", sm: "justify" },
             }}
           >
-            Here's Your Chance To Start Getting Everything You'll Ever Need To
-            Live A Life Of Abundance, Attract Endless Happiness And
-            Fulfilment...
+            Discover the latest updates on Become Your Creator! This is your
+            golden opportunity to access all the resources and tools you require
+            to make your dreams a reality.
           </Typography>
         </Box>
-        <a
-          href="https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485"
+        {/* <Link
+          sx={{ textDecoration: "none" }}
+          href="https://allevents.in/online/the-complete-4-steps-to-abundance-activation-6th-7th-8th-and-9th-feb-2024-7pm-bst-2pm-est/80001142719496"
           target="_blank"
           rel="noreferrer"
+        > */}
+        <Box
+          sx={{
+            paddingX: { xs: "0", lg: "5rem", xl: "7rem" },
+            scale: "0.8",
+          }}
         >
-          <Box
-            sx={{
-              background: "url('./eventBanner.webp')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              borderRadius: "30px",
-              minHeight: "50vh",
-            }}
-          />
-        </a>
+          <EventTemplate
+            id={filteredEvent.id}
+            image={filteredEvent.imageUrl}
+            title={filteredEvent.title}
+            subtitle={filteredEvent.subtitle}
+            eventUrl={filteredEvent.eventUrl}
+          >
+            <Box>
+              <Typography
+                variant="h6"
+                sx={{
+                  display: "block",
+                  fontSize: {
+                    xs: "0.9rem",
+                    sm: "1.2rem",
+                    md: "1rem",
+                    lg: "1.4rem",
+                  },
+                  fontWeight: 100,
+                  textAlign: "center",
+                  color: "#888",
+                  fontStyle: "italic",
+                  marginBottom: { xs: "1rem", md: "2rem" },
+                }}
+              >
+                {filteredEvent.host}
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  display: "block",
+                  fontSize: {
+                    xs: "1rem",
+                    sm: "1.2rem",
+                    md: "1.1rem",
+                    lg: "1.2rem",
+                  },
+                  fontWeight: 800,
+                  textAlign: "center",
+                  color: "#5b6897",
+                  marginBottom: { xs: "1rem", md: "2rem" },
+                }}
+              >
+                {filteredEvent.subtitle}
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  display: "block",
+                  fontSize: {
+                    xs: "1rem",
+                    sm: "1.2rem",
+                    md: "1.1rem",
+                    lg: "1.2rem",
+                  },
+                  fontWeight: 100,
+                  textAlign: "center",
+                  color: "#364064",
+                  margin: "0 auto",
+                  marginBottom: { xs: "1rem", md: "2rem" },
+                  maxWidth: "500px",
+                }}
+              >
+                {filteredEvent.shortDescription}
+              </Typography>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    display: "block",
+                    fontSize: {
+                      xs: "1rem",
+                      sm: "1.2rem",
+                      md: "1.1rem",
+                      lg: "1.2rem",
+                    },
+                    fontWeight: 900,
+                    textAlign: "center",
+                    color: "#2a3763",
+                    transition: "all 250ms linear",
+                    "&:hover": {
+                      textShadow: "0 0 15px #2a376344",
+                    },
+                  }}
+                >
+                  {filteredEvent.dateTime}
+                </Typography>
+              </Link>
+            </Box>
+          </EventTemplate>
+        </Box>
+        {/* </Link> */}
       </Box>
       <Link
         component={NavLink}
