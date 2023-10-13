@@ -11,7 +11,11 @@ const OurCoachesCard = () => {
   useEffect(() => {
     const getData = async () => {
       const coachesData = await getCoaches();
-      setCoachesData(coachesData?.data?.coaches.reverse());
+      setCoachesData(
+        coachesData?.data?.coaches
+          .reverse()
+          .filter((coach) => coach.order !== 1)
+      );
       setIsLoading(false);
     };
     getData();
