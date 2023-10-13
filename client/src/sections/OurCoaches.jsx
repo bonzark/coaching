@@ -58,11 +58,11 @@ const OurCoaches = () => {
           textAlignLast: { xs: "left", sm: "center" },
         }}
       >
-        We brings you the world's best teachers in every category of your
-        transformation. Whether it's creative problem solving, emotional
-        intelligence, human literacy or career readiness - we seek out the top
-        trainers in the world and bring them into our ecosystem so you always
-        learn from the very best in the field.
+        At Become Your Creator, we have an exceptional team of coaches who
+        specialize in various aspects of personal, spiritual, and consciousness
+        growth. Experience the difference that working with the absolute best
+        can make in creating the life you truly desire, including specific
+        outcomes.
       </Typography>
       <Container>
         <Carousel

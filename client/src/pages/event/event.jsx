@@ -11,9 +11,10 @@ const Event = () => {
         imgSrc="./events.jpg"
         description="Join Rita on a transformative journey to align your energies, become conscious aware of your vibrational state, and empower yourself to consciously create by altering your energies."
       />
-      {eventsData.map((event, index) => (
-        <Box sx={{ maxWidth: "1500px", margin: "0 auto" }} key={index}>
+      {eventsData.map((event, id) => (
+        <Box sx={{ maxWidth: "1500px", margin: "0 auto" }} key={id}>
           <EventTemplate
+            id={event.id}
             image={event.imageUrl}
             title={event.title}
             eventUrl={event.eventUrl}

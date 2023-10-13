@@ -20,7 +20,7 @@ const OurCoachesCard = () => {
   return (
     <Box
       sx={{
-        paddingY: "80px",
+        paddingBottom: "80px",
         position: "relative",
         display: "grid",
         gap: "15px",

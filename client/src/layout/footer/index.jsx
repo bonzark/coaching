@@ -93,12 +93,13 @@ const Footer = () => {
                 textAlign: { xs: "left", sm: "justify" },
               }}
             >
-              Become Your Creator LTD. offers coaching services for
-              informational and educational purposes only. While our sessions
-              are personalized, it is the individual's responsibility to apply
-              the coaching to achieve desired outcomes. We provide guidance,
-              support, and encouragement, but clients are accountable for their
-              actions and decisions resulting from our coaching.
+              Coaching services offered by Become Your Creator LTD. are designed
+              to provide information and education to clients. The company
+              focuses on empowering individuals to take control of their lives,
+              set goals, and work towards achieving them. However, it is
+              important to understand and acknowledge certain guidelines and
+              disclaimers to ensure the safety and well-being of all individuals
+              involved.
               <DisclaimerModelBtn text={"Read More..."} />
             </Typography>
           </Box>

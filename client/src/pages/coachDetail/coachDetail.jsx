@@ -142,12 +142,7 @@ const CoachDetail = () => {
                 <>
                   <BookSessionBtn
                     defaultText={
-                      <>
-                        <>
-                          <span>DOWNLOAD NOW FOR FREE</span>
-                          Gain Awareness Of Your Creation in less than 30 days
-                        </>
-                      </>
+                      <>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>
                     }
                     freeSessionText={
                       <>
@@ -355,14 +350,7 @@ const CoachDetail = () => {
           {!isLoading && (
             <>
               <BookSessionBtn
-                defaultText={
-                  <>
-                    <>
-                      <span>DOWNLOAD NOW FOR FREE</span>
-                      Gain Awareness Of Your Creation in less than 30 days
-                    </>
-                  </>
-                }
+                defaultText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
                 freeSessionText={
                   <>
                     <span>BOOK A FREE SESSION</span>
