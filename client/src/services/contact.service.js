@@ -12,4 +12,15 @@ const contact = (values) => {
     });
 };
 
-export { contact };
+const freeMeditation = (values) => {
+  return axios
+    .post(`${baseUrl}/contact-us/free-meditation`, values)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export { contact, freeMeditation };

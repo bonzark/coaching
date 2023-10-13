@@ -49,7 +49,7 @@ app.use("/payment", paymentRoutes);
 
 // app.use("/webhook", webhookRoutes);
 
-// setInterval(consumedSession, 3600000);
+setInterval(consumedSession, 3600000);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

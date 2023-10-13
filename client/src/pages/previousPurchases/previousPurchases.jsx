@@ -22,14 +22,12 @@ const PreviousPurchases = () => {
         getSessionsByCoachID(coachId)
           .then((res) => {
             purchaseSession(userDetail, res?.data?.sessions);
-            // bookedSession(userDetail, res?.data?.sessions);
           })
           .catch((err) => console.log(err));
       } else {
         getAllSessions()
           .then((res) => {
             purchaseSession(userDetail, res?.data?.sessions);
-            // bookedSession(userDetail, res?.data?.sessions);
           })
           .catch((err) => console.log(err));
       }
@@ -94,7 +92,6 @@ const PreviousPurchases = () => {
       getAllSessions()
         .then((res) => {
           purchaseSession(userDetail, res?.data?.sessions);
-          // bookedSession(userDetail, res?.data?.sessions);
           window.location.reload();
         })
         .catch((err) => console.log(err));
