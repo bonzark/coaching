@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
-import { getUserDetails, setUserDetails } from '../../utils/auth';
-import { PopupModal } from 'react-calendly';
-import { getuserById } from '../../services/user.service';
-import { getAllSessions } from '../../services/session.service';
-import SessionCard from '../../components/SessionCard';
-import PageBanner from '../../sections/PageBanner';
+import { useEffect, useState } from "react";
+import { Box } from "@mui/material";
+import { getUserDetails, setUserDetails } from "../../utils/auth";
+import { PopupModal } from "react-calendly";
+import { getuserById } from "../../services/user.service";
+import { getAllSessions } from "../../services/session.service";
+import SessionCard from "../../components/SessionCard";
+import PageBanner from "../../sections/PageBanner";
 
 const PreviousPurchases = () => {
   const [sessionLinks, setSessionLinks] = useState({});
   const [popup, setPopup] = useState(false);
-  const [popupLink, setPopupLink] = useState('');
+  const [popupLink, setPopupLink] = useState("");
   const [myOwnSessions, setMyOwnSessions] = useState([]);
-  const [selectedBookedId, setSelectedBookedId] = useState('');
+  const [selectedBookedId, setSelectedBookedId] = useState("");
   const userDetail = getUserDetails();
 
   useEffect(() => {
     if (userDetail) {
-      if (window.location.pathname === '/our-coaches') {
+      if (window.location.pathname === "/our-coaches") {
         setIsCoachPage(true);
         getSessionsByCoachID(coachId)
           .then((res) => {
@@ -67,14 +67,16 @@ const PreviousPurchases = () => {
         for (let j = 0; j < data.length; j++) {
           if (data[j].session._id === apiSessionList[i]._id) {
             apiSessionList[i].isPurchased = true;
-            if (data[j].session.sessionType !== 'freeReading') {
+            if (data[j].session.sessionType !== "freeReading") {
               apiSessionList[i].count = count++;
             }
             apiSessionList[i].bookedSessionId = data[j]._id;
           }
         }
       }
-      setMyOwnSessions(apiSessionList.filter((i) => i.sessionType !== 'freeReading'));
+      setMyOwnSessions(
+        apiSessionList.filter((i) => i.sessionType !== "freeReading")
+      );
     }
   };
 
@@ -102,19 +104,19 @@ const PreviousPurchases = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '#f2effb',
+        backgroundColor: "#f2effb",
       }}
     >
       <PageBanner imgSrc="./prevPurchase.jpg" heading="Previous Purchases" />
       <Box
         sx={{
-          padding: '5rem 15px',
-          margin: '0 auto',
-          maxWidth: '1366px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '35px 15px',
-          justifyContent: 'center',
+          padding: "5rem 15px",
+          margin: "0 auto",
+          maxWidth: "1366px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "35px 15px",
+          justifyContent: "center",
         }}
       >
         {myOwnSessions &&
@@ -122,21 +124,23 @@ const PreviousPurchases = () => {
           myOwnSessions.map(
             (session, index) =>
               (session.isBooked === true || session.isPurchased === true) && (
-                <Box key={session?._id} sx={{ maxWidth: '400px' }}>
+                <Box key={session?._id} sx={{ maxWidth: "400px" }}>
                   <SessionCard
                     key={session?._id + index}
                     title={session?.title}
                     detail={session?.details}
-                    quntity={session?.count}
-                    sessionLink={sessionLinks[session?._id] && session?.sessionLink}
+                    quantity={session?.count}
+                    sessionLink={
+                      sessionLinks[session?._id] && session?.sessionLink
+                    }
                     btnText={
                       !sessionLinks[session._id]
                         ? session.isBooked
-                          ? 'Get Link'
+                          ? "Get Link"
                           : session.isPurchased
-                          ? 'Book Now'
-                          : 'Purchase'
-                        : ''
+                          ? "Book Now"
+                          : "Purchase"
+                        : ""
                     }
                     onClick={
                       session?.isBooked
@@ -162,7 +166,7 @@ const PreviousPurchases = () => {
           }}
           onModalClose={popupCloseHandler}
           open={popup}
-          rootElement={document.getElementById('root')}
+          rootElement={document.getElementById("root")}
           utm={{
             utmContent: selectedBookedId,
           }}

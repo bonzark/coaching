@@ -175,6 +175,7 @@ const SessionCard = ({
               borderRadius: "8px",
               color: "#fff",
               fontWeight: 700,
+              fontSize: { xs: "14px", md: "18px" },
               mb: 1,
             }}
           >
