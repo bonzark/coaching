@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import SessionCard from "../../components/SessionCard";
 import PageBanner from "../../sections/PageBanner";
+import { getDateAndTimeHandler } from "../../utils/getDateAndTime";
 const Dashboard = () => {
   const [upcomingSessions, setUpcomingSessions] = useState([]);
   const [linkVisible, setLinkVisible] = useState(false);
@@ -28,8 +29,12 @@ const Dashboard = () => {
           <Grid key={session?._id} item xs={12} sm={6} lg={4}>
             <SessionCard
               price={session?.session?.price}
-              date={session?.date}
-              time={session?.time}
+              date={
+                getDateAndTimeHandler(session?.sessionStartDate).formattedDate
+              }
+              time={
+                getDateAndTimeHandler(session?.sessionStartDate).formattedTime
+              }
               detail={session?.session?.details}
               coachName={session?.session?.coach?.firstName}
               title={session?.session?.title}

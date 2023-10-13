@@ -4,25 +4,24 @@ const consumedSession = async () => {
   try {
     const currentUTCDate = new Date();
 
-    const conditions = [
-      { status: "booked" },
-      { sessionEndDate: { $lt: currentUTCDate } },
-    ];
-
-    const updateQuery = { $and: conditions };
+    const conditions = {
+      $and: [
+        { sessionEndDate: { $lt: currentUTCDate.toISOString() } },
+        { status: "booked" },
+      ],
+    };
 
     const updateFields = {
-      $set: { status: "booked" },
+      $set: { status: "consumed" },
     };
-    const data = await BookedSession.find(updateQuery);
-    // await BookedSession.updateMany(updateQuery, updateFields)
-    //   .then((result) => {
-    //     console.log(`documents updated to "consumed"`);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error updating consumed documents:", err);
-    //   });
-    return data;
+    // const data = await BookedSession.find(conditions);
+    await BookedSession.updateMany(conditions, updateFields)
+      .then((result) => {
+        console.log(`documents updated to "consumed"`);
+      })
+      .catch((err) => {
+        console.error("Error updating consumed documents:", err);
+      });
   } catch (error) {
     return error;
   }

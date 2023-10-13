@@ -22,14 +22,12 @@ const PreviousPurchases = () => {
         getSessionsByCoachID(coachId)
           .then((res) => {
             purchaseSession(userDetail, res?.data?.sessions);
-            // bookedSession(userDetail, res?.data?.sessions);
           })
           .catch((err) => console.log(err));
       } else {
         getAllSessions()
           .then((res) => {
             purchaseSession(userDetail, res?.data?.sessions);
-            // bookedSession(userDetail, res?.data?.sessions);
           })
           .catch((err) => console.log(err));
       }
@@ -62,8 +60,8 @@ const PreviousPurchases = () => {
     const apiSessionList = data;
     if (userDetails && apiSessionList) {
       const data = userDetails?.purchasedSession;
-      let count = 1;
       for (let i = 0; i < apiSessionList.length; i++) {
+        let count = 1;
         for (let j = 0; j < data.length; j++) {
           if (data[j].session._id === apiSessionList[i]._id) {
             apiSessionList[i].isPurchased = true;
@@ -94,7 +92,6 @@ const PreviousPurchases = () => {
       getAllSessions()
         .then((res) => {
           purchaseSession(userDetail, res?.data?.sessions);
-          // bookedSession(userDetail, res?.data?.sessions);
           window.location.reload();
         })
         .catch((err) => console.log(err));
