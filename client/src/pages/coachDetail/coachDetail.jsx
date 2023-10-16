@@ -165,7 +165,7 @@ const CoachDetail = () => {
                       }
                       props
                     >
-                      Purchase
+                      Book Your Coaching
                       {/* Book Your Coaching */}
                     </PrimaryBtn>
                   </Box>
@@ -377,7 +377,7 @@ const CoachDetail = () => {
                   onClick={() => navigate("/packages/" + coachDetail[0]._id)}
                   props
                 >
-                  Purchase
+                  Book Your Coaching
                   {/* Book Your Coaching */}
                 </PrimaryBtn>
               </Box>

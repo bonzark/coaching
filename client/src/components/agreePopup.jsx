@@ -93,7 +93,7 @@ const AgreePopup = ({ open, handleClose, submit, checked, setChecked }) => {
             disabled={!checked}
             onClick={submit}
           >
-            Purchase
+            Book Your Coaching
           </Button>
         </Box>
       </MainModal>

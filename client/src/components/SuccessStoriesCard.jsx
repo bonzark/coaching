@@ -212,7 +212,7 @@ const SuccessStories = ({
                       onClick={() => navigate("/packages/" + id)}
                       props
                     >
-                      Purchase
+                      Book Your Coaching
                     </PrimaryBtn>
                   </Box>
                 )}

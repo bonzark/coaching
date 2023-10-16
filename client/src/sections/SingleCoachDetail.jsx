@@ -67,7 +67,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
         />
         <Box sx={{ margin: "1rem 0", display: "flex" }}>
           <PrimaryBtn onClick={() => navigate("/packages/" + id)} props>
-            Purchase
+            Book Your Coaching
           </PrimaryBtn>
         </Box>
       </Box>

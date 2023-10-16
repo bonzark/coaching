@@ -195,7 +195,7 @@ export default function SelectSmall() {
                         ? "Get Link"
                         : session.isPurchased
                         ? "Book Now"
-                        : "Purchase"
+                        : "Book Your Coaching"
                       : ""
                   }
                   onClick={
@@ -280,7 +280,7 @@ export default function SelectSmall() {
                         ? "Get Link"
                         : session.isPurchased
                         ? "Book Now"
-                        : "Purchase"
+                        : "Book Your Coaching"
                       : ""
                   }
                   onClick={
