@@ -7,6 +7,8 @@ const CryptoJS = require("crypto-js");
 const sendEmail = require("../utils/sendEmail");
 const Session = require("../models/session");
 const BookedSession = require("../models/bookedSession");
+const resetPasswordTemplate = require("../templates/Resetpassword");
+const verifyUserTemplate = require("../templates/verifyUser");
 
 const authController = {
   register: [
@@ -42,6 +44,7 @@ const authController = {
             to: email,
             subject: "Email Verification",
             text: `Click the following link to verify your email: ${verificationLink}`,
+            html: verifyUserTemplate({ verificationLink })
           };
 
           await sendEmail(emailOptions);
@@ -163,7 +166,7 @@ const authController = {
       const emailOptions = {
         to: email,
         subject: "Password Reset Request",
-        text: `Click the following link to reset your password: ${process.env.HOST_URL}/reset-password/${resetToken}`,
+        html: resetPasswordTemplate({ link: resetToken })
       };
 
       await sendEmail(emailOptions);

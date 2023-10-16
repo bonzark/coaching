@@ -1,6 +1,6 @@
 const { validate } = require("../middlewares/validation");
+const freeMeditationTemplate = require("../templates/freeMeditation");
 const sendEmail = require("../utils/sendEmail");
-
 const freeMeditationController = [
   validate,
   async (req, res) => {
@@ -10,6 +10,7 @@ const freeMeditationController = [
       const emailOptions = {
         to: email,
         subject: "Enjoy your free meditaion session!",
+        html: freeMeditationTemplate(),
         attachments: [
           {
             filename: "free meditation session.m4a",
