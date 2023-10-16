@@ -6,7 +6,7 @@ export const getDateAndTimeHandler = (utcString) => {
   const year = utcDate.getUTCFullYear();
   const month = utcDate.getUTCMonth() + 1; // Months are 0-based, so add 1
   const day = utcDate.getUTCDate();
-  const hours = utcDate.getUTCHours();
+  let hours = utcDate.getUTCHours();
   const minutes = utcDate.getUTCMinutes();
 
   let amPmIndicator = "AM";

@@ -399,7 +399,7 @@ const BookSession = ({
                                 ? "Get Link"
                                 : i.isPurchased
                                 ? "Book Now"
-                                : "Purchase"
+                                : "Book Your Coaching"
                               : ""
                           }
                           quantity={i?.count}
@@ -493,7 +493,7 @@ const BookSession = ({
                                   ? "Get Link"
                                   : i.isPurchased
                                   ? "Book Now"
-                                  : "Purchase"
+                                  : "Book Your Coaching"
                                 : ""
                             }
                             quantity={i?.count}
@@ -568,7 +568,7 @@ const BookSession = ({
                               ? "Get Link"
                               : i.isPurchased
                               ? "Book Now"
-                              : "Purchase"
+                              : "Book Your Coaching"
                           }
                           onClick={
                             i.isBooked

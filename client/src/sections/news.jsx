@@ -73,8 +73,8 @@ const News = () => {
         <Box
           sx={{
             paddingX: { xs: 0, lg: "5rem", xl: "7rem" },
-            scale: "0.8",
-            marginY: { xs: "-185px", md: "-80px" },
+            scale: { xs: "1",  md:"0.8"},
+            marginY: { xs: "-50px", md: "-80px" },
           }}
         >
           <EventTemplate

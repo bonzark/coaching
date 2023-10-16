@@ -133,8 +133,8 @@ const AboutTemplate2 = (props) => {
             <BookSessionBtn
               defaultText={
                 <>
-                  <h2 style={{ margin: "0" }}>Access now for free</h2>
-                  <h2 style={{ margin: "0" }}>Instant download</h2>
+                  <h2 style={{ margin: "0" }}>BOOK YOUR FREE ENERGY AND LIFE PATH READING</h2>
+                  {/* <h2 style={{ margin: "0" }}>Instant download</h2> */}
                 </>
               }
               freeSessionText={<span>Redeem your free session</span>}
