@@ -73,7 +73,11 @@ const PreviousPurchases = () => {
         }
       }
       setMyOwnSessions(
-        apiSessionList.filter((i) => i.sessionType !== "freeReading")
+        apiSessionList.filter((i) => {
+          if (i.sessionType !== "freeReading" && (i.isBooked === true || i.isPurchased === true)) {
+            return i
+          }
+        })
       );
     }
   };
@@ -117,10 +121,10 @@ const PreviousPurchases = () => {
         }}
       >
         {myOwnSessions &&
-          myOwnSessions.length > 0 &&
+          myOwnSessions.length > 0 ?
           myOwnSessions.map(
             (session, index) =>
-              (session.isBooked === true || session.isPurchased === true) && (
+              (
                 <Box key={session?._id} sx={{ maxWidth: "400px" }}>
                   <SessionCard
                     key={session?._id + index}
@@ -152,6 +156,34 @@ const PreviousPurchases = () => {
                   />
                 </Box>
               )
+          ): (
+            <Box
+                  sx={{
+                    height: {
+                      xs: "350px",
+                      sm: "400px",
+                      md: "450px",
+                      lg: "500px",
+                    },
+                    width: {
+                      xs: "350px",
+                      sm: "400px",
+                      md: "450px",
+                      lg: "500px",
+                    },
+                    margin: "0 auto",
+                  }}
+                >
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                    src="./no-data-found.png"
+                    alt="no-data-found"
+                  />
+                </Box>
           )}
       </Box>
       {popupLink && (
