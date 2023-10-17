@@ -44,6 +44,19 @@ const freeMeditationTemplate = () => {
         width: 100%;
         max-width: 400px;
       }
+      .mail{
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        text-align: center;
+      }
+      .mail-link {
+        color: #671d63;
+        padding-left: 6px;
+        font-weight: 700;
+        color: #671d63 !important;
+        text-decoration: none !important;
+      }
     </style>
   </head>
   <body>
@@ -61,6 +74,11 @@ const freeMeditationTemplate = () => {
                 <p>
                   Relax and unwind with our free meditation. Click the play button below to begin your meditation session:
                 </p>
+                <p class="mail">If you have any questions, please email us at
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@becomeyourcreator.com" class="mail-link">
+                support@becomeyourcreator.com
+              </a>
+            </p>
               </td>
             </tr>
           </table>

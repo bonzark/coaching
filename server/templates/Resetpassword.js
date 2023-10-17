@@ -63,6 +63,19 @@ const resetPasswordTemplate = ({ link }) => {
         text-align: center;
         color: #999;
       }
+      .mail{
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        text-align: center;
+      }
+      .mail-link {
+        color: #671d63;
+        padding-left: 6px;
+        font-weight: 700;
+        color: #671d63 !important;
+        text-decoration: none !important;
+      }
     </style>
   </head>
   <body>
@@ -89,6 +102,13 @@ const resetPasswordTemplate = ({ link }) => {
               <td class="footer">
                 This email was sent to you in response to a password reset request. If you did not initiate this request, please ignore this message.
               </td>
+            </tr>
+            <tr>
+            <p class="mail">If you have any questions, please email us at
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@becomeyourcreator.com" class="mail-link">
+                support@becomeyourcreator.com
+              </a>
+            </p>
             </tr>
           </table>
         </td>
