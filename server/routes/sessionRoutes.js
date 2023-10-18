@@ -23,6 +23,7 @@ router.put(
 router.delete("/:sessionId/delete", sessionController.deleteSession);
 
 router.get("/", sessionController.getAllSessions);
+router.get("/free/:userId", sessionController.getBookedFreeSession);
 router.get("/testApi", sessionController.testApi);
 
 router.get(

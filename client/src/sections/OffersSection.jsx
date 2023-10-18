@@ -36,7 +36,7 @@ const OfferSection = () => {
               <h2 style={{ margin: "0" }}>BOOK YOUR FREE ENERGY AND LIFE PATH READING</h2>
             </>
           }
-          freeSessionText={<span>Redeem your free session</span>}
+          freeSessionText={<span>BOOK YOUR FREE ENERGY AND LIFE PATH READING</span>}
           bookText={<span>Book A Sessions</span>}
         />
       </Grid>

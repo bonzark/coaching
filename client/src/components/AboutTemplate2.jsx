@@ -137,7 +137,7 @@ const AboutTemplate2 = (props) => {
                   {/* <h2 style={{ margin: "0" }}>Instant download</h2> */}
                 </>
               }
-              freeSessionText={<span>Redeem your free session</span>}
+              freeSessionText={<span>BOOK YOUR FREE ENERGY AND LIFE PATH READING</span>}
               bookText={<span>Book A Session</span>}
             />
           </Grid>
