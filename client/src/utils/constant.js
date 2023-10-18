@@ -4,6 +4,10 @@ export const navItems = [
     link: "/",
   },
   {
+    name: "Coaching With Rita",
+    link: "/coaching-with-rita",
+  },
+  {
     name: "Our Coaches",
     link: "/our-coaches",
   },
@@ -12,16 +16,12 @@ export const navItems = [
     link: "/events",
   },
   {
-    name: "Wealth Creation",
-    link: "/wealth-creation",
-  },
-  {
-    name: "Coaching With Rita",
-    link: "/coaching-with-rita",
-  },
-  {
     name: "Become Your Creator",
     link: "/become-your-creator",
+  },
+  {
+    name: "Wealth Creation",
+    link: "/wealth-creation",
   },
   {
     name: "Contact Us",
@@ -658,19 +658,19 @@ export const eventsData = [
     eventUrl:
       "https://allevents.in/online/the-complete-4-steps-to-abundance-activation-dec-1st-2nd-3rd-4th-7pm-gmt-2pm-est/80001142719496",
   },
-  {
-    id: "2",
-    title:
-      "Harness the Infinite Power of Manifestation to Attract Your One True Love!",
-    host: "Become Your Creator",
-    subtitle: "Unlock the Extraordinary",
-    shortDescription:
-      "Are you ready to embark on a journey that will transform your life and open the doors to a love that exceeds your wildest dreams? Look no further for Jacqueline the unrivalled love and relationship expert is here to reveal the secrets that will manifest true love in your life.",
-    dateTime: "Sun Oct 15, 2023",
-    imageUrl: "./Jacqueline.jpg",
-    eventUrl:
-      "https://allevents.in/online/harness-the-infinite-power-of-manifestation-to-attract-your-one-true-love/80002109305023",
-  },
+  // {
+  //   id: "2",
+  //   title:
+  //     "Harness the Infinite Power of Manifestation to Attract Your One True Love!",
+  //   host: "Become Your Creator",
+  //   subtitle: "Unlock the Extraordinary",
+  //   shortDescription:
+  //     "Are you ready to embark on a journey that will transform your life and open the doors to a love that exceeds your wildest dreams? Look no further for Jacqueline the unrivalled love and relationship expert is here to reveal the secrets that will manifest true love in your life.",
+  //   dateTime: "Sun Oct 15, 2023",
+  //   imageUrl: "./Jacqueline.jpg",
+  //   eventUrl:
+  //     "https://allevents.in/online/harness-the-infinite-power-of-manifestation-to-attract-your-one-true-love/80002109305023",
+  // },
   {
     id: "3",
     title:

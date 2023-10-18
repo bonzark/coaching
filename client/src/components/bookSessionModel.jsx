@@ -75,12 +75,14 @@ const BookSession = ({
   };
 
   const finalDisplaySessionList = (sessions) => {
-    const paidSession = sessions.filter((i) => i.sessionType !== "freeReading");
+    const paidSession = sessions.filter(
+      (i) => i?.sessionType !== "freeReading"
+    );
     var result = sessions.reduce((unique, o) => {
       if (
-        !unique.some((obj) => obj.sessionType === "freeReading") &&
-        o.sessionType === "freeReading" &&
-        (o.isBooked || o.isPurchased)
+        !unique.some((obj) => obj?.sessionType === "freeReading") &&
+        o?.sessionType === "freeReading" &&
+        (o?.isBooked || o?.isPurchased)
       ) {
         unique.push(o);
       }
@@ -96,7 +98,7 @@ const BookSession = ({
       const data = userDetails?.bookedSession;
       for (let i = 0; i < apiSessionList.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j]._id === apiSessionList[i]._id) {
+          if (data[j]?._id === apiSessionList[i]?._id) {
             apiSessionList[i].isBooked = true;
           }
         }
@@ -112,7 +114,7 @@ const BookSession = ({
       for (let i = 0; i < apiSessionList.length; i++) {
         let count = 1;
         for (let j = 0; j < data.length; j++) {
-          if (data[j].session._id === apiSessionList[i]._id) {
+          if (data[j]?.session?._id === apiSessionList[i]?._id) {
             apiSessionList[i].isPurchased = true;
             if (data[j].session.sessionType !== "freeReading") {
               apiSessionList[i].count = count++;
@@ -128,7 +130,7 @@ const BookSession = ({
 
   const getPurchasedCount = () => {
     setPurchasedCount(
-      userDetails?.purchasedSession?.filter((i) => i.status === "purchased")
+      userDetails?.purchasedSession?.filter((i) => i?.status === "purchased")
         ?.length
     );
   };
@@ -178,7 +180,7 @@ const BookSession = ({
       if (window.location.pathname === "/our-coaches") {
         getCoachById(coachId)
           .then((res) => {
-            setCoachDetail(res.data.coach);
+            setCoachDetail(res?.data?.coach);
           })
           .catch((err) => console.log(err));
       }
@@ -202,7 +204,7 @@ const BookSession = ({
 
       getCoachById(coachId)
         .then((res) => {
-          setCoachDetail(res.data.coach);
+          setCoachDetail(res?.data?.coach);
         })
         .catch((err) => console.log(err));
 
@@ -236,7 +238,7 @@ const BookSession = ({
   const agreePopupHandler = (data) => {
     setAgreePopupPayload({
       id: data._id,
-      stripePriceId: data.stripePriceId,
+      stripePriceId: data?.stripePriceId,
     });
     setAgreePopup(true);
   };
@@ -339,8 +341,8 @@ const BookSession = ({
                     >
                       {coachList.length > 0 &&
                         coachList?.map((coachItem) => (
-                          <MenuItem key={coachItem?._id} value={coachItem._id}>
-                            {coachItem.firstName}
+                          <MenuItem key={coachItem?._id} value={coachItem?._id}>
+                            {coachItem?.firstName}
                           </MenuItem>
                         ))}
                     </Select>
@@ -390,37 +392,37 @@ const BookSession = ({
                     {bookedSessionList?.map((i) => (
                       <Grid key={i?._id} item xs={12} md={6}>
                         <SessionCard
-                          title={i.session.title}
-                          detail={i.session.details}
-                          sessionLink={hasLink[i._id] && i?.link}
+                          title={i?.session?.title}
+                          detail={i?.session?.details}
+                          sessionLink={hasLink[i?._id] && i?.link}
                           btnText={
-                            !hasLink[i._id]
-                              ? i.isBooked
+                            !hasLink[i?._id]
+                              ? i?.isBooked
                                 ? "Get Link"
-                                : i.isPurchased
+                                : i?.isPurchased
                                 ? "Book Now"
                                 : "Book Your Coaching"
                               : ""
                           }
                           quantity={i?.count}
                           date={
-                            getDateAndTimeHandler(i.sessionStartDate)
-                              .formattedDate
+                            getDateAndTimeHandler(i?.sessionStartDate)
+                              ?.formattedDate
                           }
                           time={
-                            getDateAndTimeHandler(i.sessionStartDate)
-                              .formattedTime
+                            getDateAndTimeHandler(i?.sessionStartDate)
+                              ?.formattedTime
                           }
                           onClick={
-                            i.isBooked
+                            i?.isBooked
                               ? () => {
                                   setHasLink((prev) => ({
                                     ...prev,
-                                    [i._id]: true,
+                                    [i?._id]: true,
                                   }));
                                 }
                               : () =>
-                                  i.isPurchased
+                                  i?.isPurchased
                                     ? bookHandler(i)
                                     : agreePopupHandler(i)
                           }
@@ -459,10 +461,10 @@ const BookSession = ({
               {!isPurchaseModel &&
                 (sessionList?.filter(
                   (i) =>
-                    (i.sessionType === "freeReading" &&
-                      (i.isPurchased || i.isBooked)) ||
-                    i.isPurchased ||
-                    i.isBooked
+                    (i?.sessionType === "freeReading" &&
+                      (i?.isPurchased || i?.isBooked)) ||
+                    i?.isPurchased ||
+                    i?.isBooked
                 )?.length > 0 ? (
                   <Grid
                     spacing={3}
@@ -476,37 +478,37 @@ const BookSession = ({
                     {sessionList
                       ?.filter(
                         (i) =>
-                          (i.sessionType === "freeReading" &&
-                            (i.isPurchased || i.isBooked)) ||
-                          i.isPurchased ||
-                          i.isBooked
+                          (i?.sessionType === "freeReading" &&
+                            (i?.isPurchased || i?.isBooked)) ||
+                          i?.isPurchased ||
+                          i?.isBooked
                       )
                       ?.map((i) => (
                         <Grid key={i?._id} item xs={12} md={6}>
                           <SessionCard
-                            title={i.title}
-                            detail={i.details}
-                            sessionLink={hasLink[i._id] && i?.sessionLink}
+                            title={i?.title}
+                            detail={i?.details}
+                            sessionLink={hasLink[i?._id] && i?.sessionLink}
                             btnText={
-                              !hasLink[i._id]
-                                ? i.isBooked
+                              !hasLink[i?._id]
+                                ? i?.isBooked
                                   ? "Get Link"
-                                  : i.isPurchased
+                                  : i?.isPurchased
                                   ? "Book Now"
                                   : "Book Your Coaching"
                                 : ""
                             }
                             quantity={i?.count}
                             onClick={
-                              i.isBooked
+                              i?.isBooked
                                 ? () => {
                                     setHasLink((prev) => ({
                                       ...prev,
-                                      [i._id]: true,
+                                      [i?._id]: true,
                                     }));
                                   }
                                 : () =>
-                                    i.isPurchased
+                                    i?.isPurchased
                                       ? bookHandler(i)
                                       : agreePopupHandler(i)
                             }
