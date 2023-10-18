@@ -103,7 +103,7 @@ const WealthCreationSection = () => {
             <strong>
               <Link
                 sx={{
-                  fontSize: { xs: "1.1rem", md: "1.5rem" },
+                  fontSize: { xs: "1.1rem", md: "1.4rem" },
                   color: "#671d63",
                   textDecoration: "none",
                   pl: "5px",
