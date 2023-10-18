@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { wealthCardItems } from "../utils/constant";
 import PageBanner from "./PageBanner";
 
@@ -100,7 +100,20 @@ const WealthCreationSection = () => {
           >
             For any inquiries or assistance, don't hesitate to reach out to our
             dedicated team at
-            <strong> support@becomeyourcreator.com</strong>
+            <strong>
+              <Link
+                sx={{
+                  fontSize: { xs: "1.1rem", md: "1.4rem" },
+                  color: "#671d63",
+                  textDecoration: "none",
+                  pl: "5px",
+                }}
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=support@becomeyourcreator.com"
+                target="_blank"
+              >
+                support@becomeyourcreator.com
+              </Link>
+            </strong>
           </Typography>
         </Box>
       </Box>
