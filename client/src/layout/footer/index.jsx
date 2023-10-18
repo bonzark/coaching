@@ -9,7 +9,6 @@ import {
   Button,
 } from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Link } from "react-router-dom";
 import { footerItems } from "../../utils/constant";
@@ -177,53 +176,48 @@ const Footer = () => {
               gap: "20px",
             }}
           >
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
+            <Link
+              to="https://www.facebook.com/becomeyourcreator?mibextid=LQQJ4d"
+              target="_blank"
             >
-              <FacebookRoundedIcon
-                sx={{ fontSize: "2rem", cursor: "pointer" }}
-              />
-            </Box>
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
+              <Box
+                sx={{
+                  color: "#671d63",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "0.15rem",
+                  border: "1px solid #671d63",
+                }}
+              >
+                <FacebookRoundedIcon
+                  sx={{ fontSize: "2rem", cursor: "pointer" }}
+                />
+              </Box>
+            </Link>
+            <Link
+              to="https://www.instagram.com/becomeyourcreator/"
+              target="_blank"
             >
-              <TwitterIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
-            </Box>
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
-            >
-              <InstagramIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
-            </Box>
+              <Box
+                sx={{
+                  color: "#671d63",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "0.15rem",
+                  border: "1px solid #671d63",
+                }}
+              >
+                <InstagramIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
+              </Box>
+            </Link>
           </Box>
         </Box>
       </Box>
