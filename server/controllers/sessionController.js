@@ -312,6 +312,19 @@ exports.getSessionsByCoachId = async (req, res) => {
   }
 };
 
+exports.getBookedFreeSession = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const sessions = await Session.find({ sessionType: "freeReading" }).populate("coach");
+
+    const bookedSession = await BookedSession.find({user : `${userId}`, session: sessions[0]._id }).populate('session')
+    return res.status(200).json({ bookedSession });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 exports.getAllBookedSessions = async (req, res) => {
   try {
     const bookedSessions = await BookedSession.find()

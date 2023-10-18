@@ -144,8 +144,7 @@ const HeroBanner = ({
               }
               freeSessionText={
                 <>
-                  <span>BOOK A FREE SESSION</span>
-                  Gain Awareness Of Your Creation in less than 30 days
+                  BOOK YOUR FREE ENERGY AND LIFE PATH READING
                 </>
               }
               bookText={"Book A Session"}

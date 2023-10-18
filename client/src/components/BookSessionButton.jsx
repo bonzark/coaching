@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getUserDetails, getAuthToken } from "../utils/auth";
+import { getUserDetails, getAuthToken, setUserDetails } from "../utils/auth";
 import EventEmitter from "reactjs-eventemitter";
 import { PrimaryBtn } from "./PrimaryBtn";
 import { Box } from "@mui/material";
 import FormModal from "../sections/FormModal";
 import BookSession from "./bookSessionModel";
+import { PopupModal } from "react-calendly";
+import { getBookedFreeSession } from "../services/session.service";
+import { getuserById } from "../services/user.service";
 
 const BookSessionBtn = ({
   defaultText = (
@@ -27,6 +30,27 @@ const BookSessionBtn = ({
   const handlePopupClose = () => {
     setLoginOpen(false);
   };
+  const [popup, setPopup] = useState(false);
+  const [popupLink, setPopupLink] = useState("");
+  const [selectedBookedId, setSelectedBookedId] = useState("");
+
+
+  const handleFreeReadingBooking = (data) => {
+    setPopupLink(data?.calendlyLink);
+    setSelectedBookedId(data?.bookedSessionId);
+    setPopup(true);
+    handleClose();
+  }
+
+  const popupCloseHandler = async () => {
+    setPopup(false);
+    if (userDetails) {
+      const { data } = await getuserById(userDetails?._id);
+      setUserDetails(data);
+      window.location.reload();
+    }
+  };
+
 
   useEffect(() => {
     EventEmitter.subscribe("loginSuccess", (event) => {
@@ -51,7 +75,18 @@ const BookSessionBtn = ({
   };
 
   let btnText = defaultText;
-  let onClickEvent = () => setBookingOpen(true);
+  let onClickEvent = async () => {
+    if (!userDetails.isFreeReadingBooked) {
+      const freeSession = await getBookedFreeSession(userDetails?._id)
+      const data = {
+        calendlyLink : freeSession?.data?.bookedSession[0]?.session?.calendlyLink,
+        bookedSessionId : freeSession?.data?.bookedSession[0]?._id
+      }
+      handleFreeReadingBooking(data)
+    } else {
+      setBookingOpen(true)
+    }
+  };
   if (userDetails) {
     if (userDetails.isFreeReadingBooked) {
       btnText = bookText;
@@ -85,6 +120,19 @@ const BookSessionBtn = ({
               </PrimaryBtn>
             </Box>
           )}
+          <PopupModal
+        url={`${popupLink}`}
+        prefill={{
+          email: userDetails?.email,
+          name: userDetails?.name,
+        }}
+        onModalClose={popupCloseHandler}
+        open={popup}
+        rootElement={document.getElementById("root")}
+        utm={{
+          utmContent: selectedBookedId,
+        }}
+      />
         </>
       )}
     </>
