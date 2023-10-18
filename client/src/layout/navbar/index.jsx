@@ -100,12 +100,16 @@ const Navbar = () => {
       </Box>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding onClick={handleDrawerToggle}>
+        {navItems?.map((item) => (
+          <ListItem
+            key={item?.name}
+            disablePadding
+            onClick={handleDrawerToggle}
+          >
             <ListItemButton sx={{ textAlign: "center", color: "#673d67" }}>
               <Button
                 component={Link}
-                to={item.link}
+                to={item?.link}
                 onClick={() => {
                   window.scroll({
                     top: 0,
@@ -117,7 +121,7 @@ const Navbar = () => {
                   margin: "0 auto",
                 }}
               >
-                {item.name}
+                {item?.name}
               </Button>
             </ListItemButton>
           </ListItem>
@@ -238,10 +242,10 @@ const Navbar = () => {
                 marginRight: { md: "15px" },
               }}
             >
-              {navItems.map((item) => (
+              {navItems?.map((item) => (
                 <Button
-                  key={item.name}
-                  to={item.link}
+                  key={item?.name}
+                  to={item?.link}
                   component={Link}
                   onClick={() => {
                     window.scroll({
@@ -260,7 +264,7 @@ const Navbar = () => {
                     },
                   }}
                 >
-                  {item.name}
+                  {item?.name}
                 </Button>
               ))}
             </Box>
