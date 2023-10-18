@@ -136,8 +136,6 @@ const HeroBanner = ({
               defaultText={
                 <>
                   <>
-                    {/* <span>DOWNLOAD NOW FOR FREE</span>
-                    Gain Awareness Of Your Creation in less than 30 days */}
                     BOOK YOUR FREE ENERGY AND LIFE PATH READING
                   </>
                 </>

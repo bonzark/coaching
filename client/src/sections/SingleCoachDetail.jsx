@@ -52,14 +52,12 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
           defaultText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
           freeSessionText={
             <>
-              <span>BOOK A FREE SESSION</span>
-              Gain Awareness Of Your Creation in less than 30 days
+              BOOK YOUR FREE ENERGY AND LIFE PATH READING
             </>
           }
           bookText={
             <>
-              <span>BOOK A SESSION</span>
-              Gain Awareness Of Your Creation in less than 30 days
+              BOOK YOUR FREE ENERGY AND LIFE PATH READING
             </>
           }
           isPurchaseModel={false}
