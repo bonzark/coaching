@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { createProxyMiddleware } = require("http-proxy-middleware");
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -36,6 +37,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "./public/uploads/")));
+const options = {
+  target: "https://www.becomeyourcreator.com/offers", // Your funnel website URL
+  changeOrigin: true,
+};
+
+const offersProxy = createProxyMiddleware("/offers", options);
+app.use(offersProxy);
 
 app.use("/public", express.static("public"));
 
