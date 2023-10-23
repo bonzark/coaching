@@ -3,34 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import SuccessStories from "../components/SuccessStoriesCard";
 import { Box, Typography } from "@mui/material";
 
-const items = [
-  {
-    imgSrc: "./successStories.jpg",
-    title: "TESTIMONIAL FROM N.O. 1",
-    content:
-      "I was referred to Rita by a very close friend of mine, and so happy she did. I had a lovely reading. She was very intuitive and experienced a lot that I was very confused about. I highly recommend this reading to anyone working on their spiritual journey and if you are questioning your twin flame relationship. Thank you so much Rita! 😀",
-  },
-  {
-    imgSrc: "./successStories.jpg",
-    title: "TESTIMONIAL FROM N.O. 2",
-    content:
-      "I was referred to Rita by a very close friend of mine, and so happy she did. I had a lovely reading. She was very intuitive and experienced a lot that I was very confused about. I highly recommend this reading to anyone working on their spiritual journey and if you are questioning your twin flame relationship. Thank you so much Rita! 😀",
-  },
-  {
-    imgSrc: "./successStories.jpg",
-    title: "TESTIMONIAL FROM N.O. 3",
-    content:
-      "I was referred to Rita by a very close friend of mine, and so happy she did. I had a lovely reading. She was very intuitive and experienced a lot that I was very confused about. I highly recommend this reading to anyone working on their spiritual journey and if you are questioning your twin flame relationship. Thank you so much Rita! 😀",
-  },
-  {
-    imgSrc: "./successStories.jpg",
-    title: "TESTIMONIAL FROM N.O. 4",
-    content:
-      "I was referred to Rita by a very close friend of mine, and so happy she did. I had a lovely reading. She was very intuitive and experienced a lot that I was very confused about. I highly recommend this reading to anyone working on their spiritual journey and if you are questioning your twin flame relationship. Thank you so much Rita! 😀",
-  },
-];
-
-const SuccessCarousel = () => {
+const SuccessCarousel = ({ testimonials }) => {
   return (
     <Box
       sx={{
@@ -40,7 +13,7 @@ const SuccessCarousel = () => {
       <Box
         sx={{
           background: "linear-gradient(#EFE6EF, #F1E2F0)",
-          py: "100px",
+          py: "50px",
         }}
       >
         <Typography
@@ -69,13 +42,13 @@ const SuccessCarousel = () => {
         >
           Success Stories
         </Typography>
-        <Carousel>
-          {items.map((item, index) => (
+        <Carousel duration={10}>
+          {testimonials.map((item, index) => (
             <SuccessStories
               key={index}
-              imgSrc={item.imgSrc}
-              content={item.content}
-              title={item.title}
+              imgSrc="./successStories.jpg"
+              content={item?.review}
+              title=""
             />
           ))}
         </Carousel>

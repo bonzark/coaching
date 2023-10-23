@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const coachController = require("../controllers/coachController");
-const multer = require("multer");
 const { validateCoach } = require("../middlewares/validation");
 const upload = require("../middlewares/imageUpload");
 
@@ -15,5 +14,6 @@ router.put("/update/:coachId", validateCoach, coachController.updateCoach);
 router.delete("/:coachId", coachController.deleteCoach);
 
 router.get("/:coachId", coachController.getCoachById);
+router.get("/name/:name", coachController.getCoachByName);
 
 module.exports = router;

@@ -13,10 +13,6 @@ router.post(
   validateGetSessionDate,
   sessionController.getSessionsByDateAndCoach
 );
-router.post(
-  "/invitee-created",
-  sessionController.inviteeCreated
-);
 
 router.put(
   "/:sessionId/update",
@@ -27,6 +23,9 @@ router.put(
 router.delete("/:sessionId/delete", sessionController.deleteSession);
 
 router.get("/", sessionController.getAllSessions);
+router.get("/free/:userId", sessionController.getBookedFreeSession);
+router.get("/testApi", sessionController.testApi);
+
 router.get(
   "/scheduled_events_calendly",
   sessionController.scheduledEventsCalendly

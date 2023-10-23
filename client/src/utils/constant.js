@@ -1,5 +1,13 @@
 export const navItems = [
   {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Coaching With Rita",
+    link: "/coaching-with-rita",
+  },
+  {
     name: "Our Coaches",
     link: "/our-coaches",
   },
@@ -8,16 +16,12 @@ export const navItems = [
     link: "/events",
   },
   {
-    name: "Wealth Creation",
-    link: "/wealth-creation",
-  },
-  {
-    name: "Coaching With Rita",
-    link: "/coaching-with-rita",
-  },
-  {
     name: "Become Your Creator",
     link: "/become-your-creator",
+  },
+  {
+    name: "Wealth Creation",
+    link: "/wealth-creation",
   },
   {
     name: "Contact Us",
@@ -77,11 +81,11 @@ export const aboutTemplateData = [
     image: "/about.JPG",
     title: "Hi, I'm Rita",
     content: [
-      "Hi, My Name is Rita S A de Castro and I'm your mindset, sprituality, and energy reader & coach.",
-      "I help people transform their lives and live with purpose because everyone has the power to create the life they desire.",
-      "In this<strong> Become Your Creator Guide, </strong> my goal will be to turn you into a master creator of your own life by helping depict the reasons why you've been failing at manifesting the life your truly desire and how to fix that.",
-      "You'll also be able to see significant results <strong>in just 30 days or even less!</strong>",
-      "Start living the life you desire. Click below to download your <strong>Free</strong> copy and <strong>Become a Master Creator.</strong>",
+      "Hello, I'm Rita Castro, and I'm here to guide you on a journey towards transforming your life and finding your true purpose.",
+      "As the co-founder of Become Your Creator, I have created a proven system that aligns and organizes your energies to attract endless opportunities and manifest your dreams into reality.",
+      "With our programs, designed to help you unlock your full potential and achieve your goals, my aim is to empower you to become the ultimate creator of your own life. ",
+      "Together, we will discover the underlying factors that may be stopping you from manifesting the life you desire.",
+      "Are you ready to embark on this transformative journey? Let's commence! Click below for an exclusive FREE Energy & Life Path Reading with me.",
     ],
     linkText: "Know More About Rita",
     reverse: true,
@@ -91,11 +95,12 @@ export const aboutTemplateData = [
     image: "/program.jpg",
     title: "Become your creator",
     content: [
-      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
-      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
-      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
-      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
-      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+      "It's time to unleash your inner creator...",
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities. ",
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
     ],
     reverse: false,
   },
@@ -104,11 +109,12 @@ export const aboutTemplateData = [
     image: "/becomeYourCreator.jpeg",
     title: "Become Your Creator",
     content: [
-      "IF YOU'RE READY TO EMBRACE YOUR INNER CREATOR...",
-      "If you're passionate about manifesting your desires and nurturing a positive mindset, while also exploring spirituality, soulfulness, strategy, and a touch of science, then the BecomeYourCreator Membership is tailor-made for you. ",
-      "No longer will you idly watch opportunities slip through your fingers. It's time to step up and take action in your life, seizing every chance that comes your way. ",
-      "While you appreciate setting goals, you also understand the value of a more gentle approach to life. Here in The BecomeYourCreator, we prioritize balance and well- being over the relentless hustle. ",
-      "Join us and become an integral part of a warm and supportive community that uplifts and empowers one another. Together, we create a space that nourishes and encourages growth. ",
+      "It's time to unleash your inner creator...",
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities. ",
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
     ],
     reverse: true,
   },
@@ -206,13 +212,17 @@ export const sidebarItems = [
     name: "Session",
     path: "/session",
   },
-  {
-    name: "Subscription",
-    path: "/subscription",
-  },
+  // {
+  //   name: 'Subscription',
+  //   path: '/subscription',
+  // },
   {
     name: "Previous Purchases",
     path: "/previous-purchases",
+  },
+  {
+    name: "Our Packages",
+    path: "/packages",
   },
 ];
 export const coachesData = [
@@ -279,7 +289,7 @@ export const coachesData = [
       "One of the key aspects of my approach is empowering you to change your mindset and develop self-awareness. I will provide you with the necessary skills and tools to challenge negative beliefs and thinking patterns that may be holding you back. Together, we will set personal goals that align with your aspirations, and I will guide you in achieving them step by step.",
       "In our sessions, we will also explore your past experiences to gain insight into any underlying issues that may be contributing to your current difficulties. This deeper understanding will enable us to address these issues and make lasting positive changes in your life.",
       "To ensure your progress between sessions, I will assign tasks and homework that are designed to reinforce our work and help you integrate new strategies into your daily life. Additionally, I offer regular check-ins to provide you with extra support and guidance whenever needed.",
-      "As a qualified mindset counsellor and coach, I hold several qualifications and memberships that attest to my expertise and commitment to delivering high-quality care. I am a registered member of the British Association for Counselling and Psychotherapy (BACP) and the coaching division. I am also an Anxiety UK Approved Therapist. My educational background includes a diploma in counselling and psychosocial studies, a first-class BSc degree in counselling and coaching, and I am currently pursuing an MSc in Psychology.",
+      "As a qualified mindset counsellor and coach, I hold several qualifications and memberships that atest to my expertise and commitment to delivering high-quality care. I am a registered member of the British Association for Counselling and Psychotherapy (BACP) and the coaching division. I am also an Anxiety UK Approved Therapist. My educational background includes a diploma in counselling and psychosocial studies, a first-class BSc degree in counselling and coaching, and I am currently pursuing an MSc in Psychology.",
       "Furthermore, I have extensive experience working for the NHS (Improving Access to Psychological Services) and providing both short-term and long-term therapy for adults. This experience has allowed me to witness the transformative power of therapy and coaching in improving individuals' lives.",
       "In summary, my approach is rooted in building a strong connection with you, working collaboratively to address your specific goals and aspirations, and ultimately helping you achieve the success and fulfillment you deserve. I am here to support you on your journey towards a happier and more fulfilling life.",
       "My philosophy for achieving success for my clients is simple:",
@@ -306,19 +316,19 @@ export const coachesData = [
 
 export const heroListItems = [
   {
-    name: "Learn why you've been unsuccessful at manifesting the life you want and What to do about it Fix your manifestation methods and learn how to become your creator the proper way",
+    name: "Enhance your manifestation techniques.",
     key: 1,
   },
   {
-    name: "Become Conscious Aware Of Your Creation in Less Than 30 Days",
+    name: "Become a Conscious Creator in Less Than 30 Days",
     key: 2,
   },
   {
-    name: "Ditch all the theories and practices that just don t work",
+    name: "Let go of all the theories and practices that simply do not work.",
     key: 3,
   },
   {
-    name: "Be able to attract endless opportunities, relationships and wealth with minimal but effective effort",
+    name: "Unlock a world of boundless opportunities, meaningful connections, and abundant prosperity effortlessly!",
     key: 4,
   },
 ];
@@ -621,5 +631,217 @@ export const privacyPolicyData = [
       `Monitoring or recording of your calls, emails, text messages and other communications may take place in accordance with UK law, and in particular for business purposes, such as for quality control and training, to prevent unauthorised use of “BYC’s” websites, to ensure effective systems operation and in order to prevent or detect crime.`,
     ],
     key: 11,
+  },
+];
+
+export const eventsData = [
+  // {
+  //   title: "3 DAY CONSCIOUS CREATION WITH RITA",
+  //   host: "Become Your Creator",
+  //   subtitle: "MASTER THE POEWR OF CONSCIOUS CREATION",
+  //   shortDescription:
+  //     "JOIN RITA ON A TRANSFORMATIVE JOURNEY TO ALIGN YOUR ENERGIES, BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES",
+  //   dateTime: "October 5th, 6th, 7th @ 8PM BST",
+  //   imageUrl: "./coach2.jpg",
+  //   eventUrl:
+  //     "https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485",
+  // },
+  {
+    id: "1",
+    title: "The Complete 4 Steps To Abundance Activation",
+    host: "Become Your Creator",
+    subtitle: "THE MIND AND THE BODY MANIFESTS",
+    shortDescription:
+      "Introducing the Abundance Activation Workshop - an extraordinary program meticulously designed to unlock the boundless abundance that is rightfully yours. Prepare to embark on a transformative journey towards a life overflowing with prosperity, purpose, and triumph. This ground breaking program spans four days, each dedicated to a specific facet of manifesting abundance.",
+    dateTime: "December 2nd, 3rd, 4h, 5th @ 7PM GMT/ 2PM EST",
+    imageUrl: "./coach3.webp",
+    eventUrl:
+      "https://allevents.in/online/the-complete-4-steps-to-abundance-activation-dec-1st-2nd-3rd-4th-7pm-gmt-2pm-est/80001142719496",
+  },
+  // {
+  //   id: "2",
+  //   title:
+  //     "Harness the Infinite Power of Manifestation to Attract Your One True Love!",
+  //   host: "Become Your Creator",
+  //   subtitle: "Unlock the Extraordinary",
+  //   shortDescription:
+  //     "Are you ready to embark on a journey that will transform your life and open the doors to a love that exceeds your wildest dreams? Look no further for Jacqueline the unrivalled love and relationship expert is here to reveal the secrets that will manifest true love in your life.",
+  //   dateTime: "Sun Oct 15, 2023",
+  //   imageUrl: "./Jacqueline.jpg",
+  //   eventUrl:
+  //     "https://allevents.in/online/harness-the-infinite-power-of-manifestation-to-attract-your-one-true-love/80002109305023",
+  // },
+  {
+    id: "3",
+    title:
+      "Energy & Pathline Coaching (One To One) - Your Secret Weapon To Manifestation Mastery",
+    host: "Become Your Creator",
+    subtitle: "Benefits: Manifest Specific Outcomes ...",
+    shortDescription:
+      "Unlock the extraordinary power of your energies and effortlessly manifest your desired outcomes with the guidance of Rita, an exceptional transformative coach. Rita's coaching style goes beyond the ordinary, focusing on creating a harmonious balance between the mind, body, and spirit, ultimately leading to fulfillment and inner peace.",
+    dateTime: "September 18th, 2023 - October 31st, 2023",
+    imageUrl: "./rita.jpg",
+    eventUrl:
+      "https://allevents.in/online/energy-and-pathline-coaching-one-to-one-your-secret-weapon-to-manifestation-mastery/80002596870303",
+  },
+];
+
+export const becomeYourCreatorData = [
+  // {
+  //   type: "para",
+  //   content:
+  //     "A transformative membership for individuals, irrespective of gender, who aspire to manifest their dream life. Embrace the vibrant community of kindred souls, where the power co-creation with proven mindset techniques and personal development work.",
+  // },
+  // // { type: "header", content: "£19.99 PER MONTH." },
+  {
+    type: "header",
+    content: "It's time to unleash your inner creator...",
+  },
+  {
+    type: "content",
+    content:
+      "Unlock the boundless potential that lies within you. Become your own creator by taking control of your own destiny and shaping your life in the way that you desire.",
+  },
+  {
+    type: "content",
+    content:
+      "If you're passionate about manifesting your desires and cultivating a positive mindset, while exploring your spirituality, soulfulness, strategy, and consciousness growth, then our Membership is tailor-made for you.",
+  },
+  {
+    type: "content",
+    content:
+      "No longer will you passively watch opportunities slip by. It's time to step into your power and actively pursue a life filled with endless possibilities.",
+  },
+  {
+    type: "content",
+    content:
+      "Here, we prioritize the utmost importance of the alignment of body, mind, and spirit as the fundamental elements to manifest your specific goals.",
+  },
+  {
+    type: "content",
+    content:
+      "Join us and become an essential part of a welcoming and supportive community that uplifts and empowers each other. Together, we can achieve greatness.",
+  },
+];
+export const testimonialHomeData = [
+  {
+    review: `I absolutely love Rita! She is the real deal. Rita has helped me expand and grow spiritually and continue to do so. I feel like I am growing in ways that I never expected and seeing things in a healthier, positive light rather than being in the dark all the time. I’d rather heal through a spiritual aspect than clinical. I’m continuing my sessions and I’m really and truly thankful for coming to them for more of a spiritual awakening.`,
+  },
+  {
+    review: `I highly recommend Rita and grateful to receive your insights and guidance, in these times of great upheaval and challenging times of transformation integration of deep soul lessons. Tears of relieve listening to your words resonate with the words spoken by spirit what gives comfort and power to keep going. Finding peace within and letting go of the past. Embody my inner strength and seeing my greatness!`,
+  },
+  {
+    review: `Absolutely spot on! Genuine and authentic ladies, compassionate and understanding. They are truly gifted and following that path- I look forward to doing the courses after the assistance and reading she was able to do for me. She picked up on soooo much and gave great advice. I can’t thank them enough so far.. amazing.`,
+  },
+  {
+    review: `This is the greatest investment I have made in life. So impressive the way Rita trained me specially in respect of manifestation. She always went out of her way to help me out and was always available for me to clarify any issues and challenges I faced till I get my expected outcome. I am happy to say that I am now blessed with all what I have manifested with the kind guidance with Rita. I just have to say wow. Excellent services. Highly Recommended. Thank you so much Rita!`,
+  },
+  {
+    review: `The best thing I've ever chosen to do is develop and have mental freedom for myself. But I couldn't have been the person I am right now without the tools that Rita has gifted me. If I'm honest, I couldn't escape being a prisoner to my mind and the trauma I never asked for, but the teachings, wisdom, &amp; tools that these two incredibly gifted &amp; authentic women give you are priceless. After going through their course, I can say I'm present in life; after 33 years, I finally figured out how to show up for myself and started to love myself and see the endless possibilities that the universe has to offer you. This experience has been a breakthrough for me, and every day I see the change in me, and every day I take my power back and own what’s mine, which is me and seek what truly fulfils me.`,
+  },
+];
+
+export const testimonialCoachingWithRitaData = [
+  {
+    review: `With Rita’s help, I've been able to summon amazing things into my life, like reconciling with a lost love. I am beyond astonished by what I've obtained, and I'm left wondering if this is all too good to be true. It's as if my ex was a rusty lock, and I had been unable to open it until you showed me how to align the key to fit the lock - now, the door is unlocked and I'm able to access the wealth that had been hidden away. Your teachings are like a golden key, life changing. Thank you I wasn't expecting to manifest this quantity of money now. I'm shocked I am so thankful for the best reader I have ever encountered! Rita has an uncanny ability to accurately predict my future and to make me feel so much more uplifted and positive. I am truly grateful that the universe has brought them into my life!`,
+  },
+  {
+    review: `I recently had my 3rd spiritual reading with Rita, and I was astounded of the accuracy predictions of future events. I decided to follow spirit guidance to reconnect with an ex- partner, that I missed dearly for almost 2 years. To my surprise, my ex-partner was more than happy to reconnect, and we are now happily together. This experience has convinced me that spiritual readings with the right people are incredibly powerful and accurate. I will not look anywhere else for readings. You are gifted and your kindness brings tears to my eyes. Forever grateful`,
+  },
+  {
+    review: `I just love Rita’s energy…she is the best I have ever met and will always go back to her…I have been on a few courses, and she amazes me every time, She is very knowledgeable, understanding but straight to the point. I love this as she doesn’t mess around and help you on your path. She is magical and everything I have done with them is purposeful, enlightening, and truthful… She has gifts beyond what I have known. thank you for helping me grow and become consciously aware…Life changing experience!`,
+  },
+  {
+    review: `I absolutely love Rita! She is the real deal. Rita has helped me expand and grow spiritually and continue to do so. I feel like I am growing in ways that I never expected and seeing things in a healthier, positive light rather than being in the dark all the time. I’d rather heal through a spiritual aspect than clinical. I’m continuing my sessions and I’m really and truly thankful for coming to them for more of a spiritual awakening.`,
+  },
+  {
+    review: `I have had readings with Rita in the past and have to say that I was blown away with how connected she was…her abilities took me by surprise, and she exceeded my expectations. I have since enrolled in a course with Rita helped me expand my consciousness as I needed some guidance. I have grown so much in a short space of time and learned a lot from these women, it’s truly life changing. Every session (2 per week) moves you a huge step forward and you see and feel results Which I love about the course`,
+  },
+  {
+    review: `Rita truly goes above and beyond. She is so amazingly gifted that there are things she picks up. A lot of things she says is scarily accurate. There is no need for you to give her any information because she picks up on anything and everything. I really enjoy my sessions with Rita because she takes her time and never rushes. She even gives you opportunities to ask any questions you may have during the session. She has definitely been my go-to from the start and I highly recommend her. She truly is a beautiful soul. Don’t hesitate to purchase a session with her because she is the truth. She is the real deal. Thank you for all that you do Rita. You are a beautiful soul- inside and out.`,
+  },
+];
+
+export const testimonialOurCoachesData = [
+  {
+    review: `I am in the middle of doing the morning rituals and within hours and days of the success/Money ritual I received 6 different amounts of unexpected money! I was amazed and so happy. Just wow…I went from 0-100 within hours after just one ritual as there is two for this…can’t wait to do the second one. My partner also got a fantastic job with the money he asked for over those days so abundance and success all round. Amazing and so powerful. I will update with a review at the end of the course. The love ritual was also powerful…but I won’t go into that! I would highly recommend this course; it would be a good investment for anyone to make…the returns are amazing`,
+  },
+  {
+    review: `I absolutely love the coaching sessions I do. They have helped me raise my vibration and increase my awareness and bring in the manifestations I have always wanted to. Highly recommend!`,
+  },
+  { review: `I loved this course! Now I know how to REALLY manifest` },
+];
+
+export const productDescriptionData = {
+  title: "Product Description",
+  data: [
+    {
+      type: "para",
+      content: `Our one-on-one manifestation and alignment program is a personalized coaching program designed to help you align with your manifestation and become the creator of your own life. The program is conducted through a series of one-on-one sessions for a period of 3 months.`,
+    },
+    {
+      type: "para",
+      content: `During the program, we will work closely with you to identify your goals and desires, and then develop a customized program to help you manifest those desires. We use a variety of techniques to read your energy and lifelines, and identify your exact blockages, so we can align you, so you become a magnet to your creation.`,
+    },
+    {
+      type: "para",
+      content: `In addition to helping you manifest your desires, the program also focuses on alignment. This means helping you align with their true purpose and values, so you can live a more authentic and fulfilling life. We will work with you to identify any limiting beliefs or patterns that may be holding you back, and help you shift your mindset to one of abundance and prosperity.`,
+    },
+    {
+      type: "para",
+      content: `On top of the One-One sessions, and to accelerate your journey, you will also receive the following:`,
+    },
+    {
+      type: "bullet",
+      content: [
+        `Grounding & Alignment Sessions`,
+        `Dissolve Karma and Remove Blockages- Hypnosis`,
+        `Conscious Awareness & Energy Release`,
+        `Conscious Creation & Energy Alteration To Start Manifesting`,
+      ],
+    },
+    {
+      type: "para",
+      content: `Overall, a One-One manifestation and alignment program is a powerful tool for anyone looking to manifest anything they desire. We provide personalized support and guidance, and help individuals become the creators of their own life!`,
+    },
+  ],
+};
+
+export const packagesData = [
+  {
+    coach: "rita",
+    once: 5000,
+    twice: 10000,
+    image: "./rita.jpg",
+  },
+  {
+    coach: "sarah",
+    once: 3000,
+    twice: 6000,
+    image: "./Sarah.jpg",
+  },
+  {
+    coach: "brandi",
+    once: 3000,
+    twice: 6000,
+    image: "./Brandi.jpg",
+  },
+  {
+    coach: "maggie",
+    once: 2000,
+    twice: 4000,
+    image: "./Maggie.jpg",
+  },
+  {
+    coach: "jacqueline",
+    once: 2000,
+    twice: 4000,
+    image: "./Jacqueline.jpg",
+  },
+  {
+    coach: "helen",
+    once: 2000,
+    twice: 4000,
+    image: "HELEN.jpg",
   },
 ];

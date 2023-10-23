@@ -4,6 +4,7 @@ const BookedSession = require("../models/bookedSession");
 const Session = require("../models/session");
 const User = require("../models/user");
 const axios = require("axios");
+const consumedSession = require("../utils/consumedSession");
 
 exports.bookSession = async (req, res) => {
   try {
@@ -131,8 +132,7 @@ exports.scheduledEventsCalendly = async (req, res) => {
       },
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjk1MjAxNjY0LCJqdGkiOiI3MDZjOGFmNy1jM2EyLTQ5ODAtOTZiNC1jZjcxZWM0MzNjYmQiLCJ1c2VyX3V1aWQiOiJjYTU5YzUwNS0xYzQ1LTRhZGMtOTI0MS1jNWIyOWRmZGNjMTgifQ.UEjNlxVzHBA3GtK-uLuPZYgdjtNdPxcADGZyKkxpXy0Tycl6hwEozDYZwDDrlWSfVlghreqIr7XGWYqbSXfsVg",
+        Authorization: `Bearer ${process.env.CALENDLY_TOKEN}`,
       },
     };
 
@@ -151,83 +151,89 @@ exports.scheduledEventsCalendly = async (req, res) => {
   }
 };
 exports.inviteeCreated = async (req, res) => {
-
-  //Webhook payload when invitee created
-
-  // {
-  //   "created_at": "2020-11-23T17:51:19.000000Z",
-  //   "created_by": "https://api.calendly.com/users/AAAAAAAAAAAAAAAA",
-  //   "event": "invitee.created",
-  //   "payload": {
-  //     "cancel_url": "https://calendly.com/cancellations/AAAAAAAAAAAAAAAA",
-  //     "created_at": "2020-11-23T17:51:18.327602Z",
-  //     "email": "test@example.com",
-  //     "event": "https://api.calendly.com/scheduled_events/AAAAAAAAAAAAAAAA",
-  //     "name": "John Doe",
-  //     "new_invitee": null,
-  //     "old_invitee": null,
-  //     "questions_and_answers": [],
-  //     "reschedule_url": "https://calendly.com/reschedulings/AAAAAAAAAAAAAAAA",
-  //     "rescheduled": false,
-  //     "status": "active",
-  //     "text_reminder_number": null,
-  //     "timezone": "America/New_York",
-  //     "tracking": {
-  //       "utm_campaign": null,
-  //       "utm_source": null,
-  //       "utm_medium": null,
-  //       "utm_content": null,
-  //       "utm_term": null,
-  //       "salesforce_uuid": null
-  //     },
-  //     "updated_at": "2020-11-23T17:51:18.341657Z",
-  //     "uri": "https://api.calendly.com/scheduled_events/AAAAAAAAAAAAAAAA/invitees/AAAAAAAAAAAAAAAA",
-  //     "scheduled_event": {
-  //       "uri": "https://api.calendly.com/scheduled_events/GBGBDCAADAEDCRZ2",
-  //       "name": "15 Minute Meeting",
-  //       "status": "active",
-  //       "start_time": "2019-08-24T14:15:22.123456Z",
-  //       "end_time": "2019-08-24T14:15:22.123456Z",
-  //       "event_type": "https://api.calendly.com/event_types/GBGBDCAADAEDCRZ2",
-  //       "location": {
-  //         "type": "physical",
-  //         "location": "string"
-  //       },
-  //       "invitees_counter": {
-  //         "total": 0,
-  //         "active": 0,
-  //         "limit": 0
-  //       },
-  //       "created_at": "2019-01-02T03:04:05.678123Z",
-  //       "updated_at": "2019-01-02T03:04:05.678123Z",
-  //       "event_memberships": [
-  //         {
-  //           "user": "https://api.calendly.com/users/GBGBDCAADAEDCRZ2",
-  //           "user_email": "user@example.com"
-  //         }
-  //       ],
-  //       "event_guests": [
-  //         {
-  //           "email": "user@example.com",
-  //           "created_at": "2019-08-24T14:15:22.123456Z",
-  //           "updated_at": "2019-08-24T14:15:22.123456Z"
-  //         }
-  //       ]
-  //     }
-  //   }
-  // }
-
-  //TODO: Change status of bookedSession table. find entry with status purchased and with this user email and change that session to --> booked, populate other fields as well invite link(zoom or any), from and to dateTimes
-  //TODO: Please update user flag isFreeReadingBooked to true if freeReading Is Booked  
   try {
-      console.log(res);
-      return res
-      .status(201)
-      .json({ message: "Coaching session created successfully", session });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
+    const email = req.body.payload.email;
+    const bookedSessionId = req?.body?.payload?.tracking?.utm_content;
+
+    const user = await User.findOne({ email }).populate("purchasedSession");
+    const bookedSession = await BookedSession.findOne({
+      _id: bookedSessionId,
+      user: user._id,
+    });
+
+    if (!user) {
+      res.status(404).json({ error: "User Not Found" });
     }
+
+    if (!bookedSession) {
+      res.status(404).json({ error: "Boooked Session Not Found" });
+    }
+    if (user && bookedSession) {
+      await BookedSession.updateOne(
+        { _id: bookedSessionId, user: user._id },
+        {
+          $set: {
+            status: "booked",
+            bookedDate: req?.body?.created_at,
+            sessionStartDate: req?.body?.payload?.scheduled_event?.start_time,
+            sessionEndDate: req?.body?.payload?.scheduled_event?.end_time,
+            link: req?.body?.payload?.scheduled_event?.location?.join_url,
+          },
+        },
+        { upsert: true }
+      );
+
+      const updatedBookedSession = await BookedSession.findOne({
+        _id: bookedSessionId,
+        user: user._id,
+      });
+
+      const session = await Session.findOne({
+        _id: updatedBookedSession?.session,
+      });
+
+      if (!session) {
+        res.status(404).json({ error: "Session Not Found" });
+      }
+
+      if (session.sessionType === "freeReading") {
+        const filter = {
+          $and: [
+            { user: user._id },
+            { session: { $ne: session._id } },
+            { sessionType: "freeReading" },
+          ],
+        };
+
+        await BookedSession.deleteMany(filter);
+
+        const newData = user.purchasedSession.filter(
+          (i) => i.sessionType !== "freeReading"
+        );
+        user.purchasedSession = newData;
+        user.isFreeReadingBooked = true;
+      } else {
+        const newData = user.purchasedSession.filter((i) => {
+          if (i._id.toString() !== bookedSessionId) {
+            return i;
+          }
+        });
+
+        user.purchasedSession = newData;
+      }
+      user.bookedSession.push(bookedSession);
+      await user.save();
+
+      const coach = await Coach.findOne({ _id: session.coach });
+      coach.bookedSession.push(bookedSession);
+      await coach.save();
+
+      res.status(200).json({ message: "Session Booked Successfully" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 exports.getSessionById = async (req, res) => {
@@ -249,7 +255,16 @@ exports.getSessionById = async (req, res) => {
 
 exports.createSessionByCoach = async (req, res) => {
   try {
-    const { coachId, price, title, details, sessionType } = req.body;
+    const {
+      coachId,
+      title,
+      details,
+      sessionType,
+      calendlyLink,
+      stripePriceId,
+    } = req.body;
+
+    const coach = await Coach.findById(coachId);
 
     const existingSession = await Session.findOne({
       coach: coachId,
@@ -265,13 +280,16 @@ exports.createSessionByCoach = async (req, res) => {
     // Create a new session
     const session = new Session({
       coach: coachId,
-      price,
       title,
       details,
       sessionType,
+      calendlyLink,
+      stripePriceId,
     });
 
     await session.save();
+    coach.sessions.push(session);
+    await coach.save();
 
     return res
       .status(201)
@@ -288,6 +306,19 @@ exports.getSessionsByCoachId = async (req, res) => {
     const sessions = await Session.find({ coach: coachId }).populate("coach");
 
     return res.status(200).json({ sessions });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getBookedFreeSession = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const sessions = await Session.find({ sessionType: "freeReading" }).populate("coach");
+
+    const bookedSession = await BookedSession.find({user : `${userId}`, session: sessions[0]._id }).populate('session')
+    return res.status(200).json({ bookedSession });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -341,7 +372,10 @@ exports.getAllBookedSessionsByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    const bookedSessions = await BookedSession.find({ user: userId }).populate({
+    const bookedSessions = await BookedSession.find({
+      user: userId,
+      status: "booked",
+    }).populate({
       path: "session",
       populate: {
         path: "coach",
@@ -378,22 +412,16 @@ exports.getSessionsByDateAndCoach = [
 ];
 
 exports.updateSession = [
-  validate,
   async (req, res) => {
     try {
       const { sessionId } = req.params;
-      const { coachId, date, time, price, title, details } = req.body;
+      const { stripePrice } = req.body;
 
       // Find the session by ID
       const session = await Session.findByIdAndUpdate(
         sessionId,
         {
-          coach: coachId,
-          date,
-          time,
-          price,
-          title,
-          details,
+          stripePrice,
         },
         { new: true }
       );
@@ -424,6 +452,16 @@ exports.deleteSession = async (req, res) => {
     }
 
     return res.status(200).json({ message: "Session deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.testApi = async (req, res) => {
+  try {
+    const data = await consumedSession();
+    res.status(200);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

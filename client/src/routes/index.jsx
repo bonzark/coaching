@@ -23,6 +23,9 @@ import SessionsPage from "../pages/Sessions";
 import ResetPassword from "../pages/resetPassword/resetPassword";
 import TermsAndConditions from "../pages/termsAndConditions/termsAndConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import SuccessModal from "../components/SuccessModal";
+import PreviousPurchases from "../pages/previousPurchases/previousPurchases";
+import Packages from "../pages/packages/packages";
 
 const Routers = () => {
   return (
@@ -30,24 +33,16 @@ const Routers = () => {
       <Navbar />
       <SmoothScroll>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/our-coaches" element={<AllCoaches />} />
-          <Route exact path="/online-courses" element={<OnlineCourses />} />
-          <Route exact path="/coaching-with-rita" element={<CoachDetail />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/?success=true" element={<SuccessModal />} />
+          <Route path="/our-coaches" element={<AllCoaches />} />
+          {/* <Route path="/online-courses" element={<OnlineCourses />} /> */}
+          <Route path="/coaching-with-rita" element={<CoachDetail />} />
+          <Route path="/become-your-creator" element={<BecomeYourCreator />} />
+          <Route path="/wealth-creation" element={<WealthCreationSection />} />
+          <Route path="/events" element={<Event />} />
+          <Route path="/contact" element={<Contact />} />
           <Route
-            exact
-            path="/become-your-creator"
-            element={<BecomeYourCreator />}
-          />
-          <Route
-            exact
-            path="/wealth-creation"
-            element={<WealthCreationSection />}
-          />
-          <Route exact path="/events" element={<Event />} />
-          <Route exact path="/contact" element={<Contact />} />
-          <Route
-            exact
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
@@ -58,8 +53,11 @@ const Routers = () => {
           <Route path="/ourCoachesDetail/:id" element={<OurCoachesDetail />} />
           <Route element={<PrivateRoute />}>
             <Route path="/session" element={<SessionsPage />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
             <Route path="/sessions" element={<SessionsPage />} />
+            <Route path="/previous-purchases" element={<PreviousPurchases />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/:id" element={<Packages />} />
           </Route>
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/not-found" />} />

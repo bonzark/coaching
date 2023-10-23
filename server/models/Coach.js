@@ -1,37 +1,5 @@
 const mongoose = require("mongoose");
 
-const availabilitySchema = new mongoose.Schema({
-  day: {
-    type: String,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    required: true,
-  },
-  timeSlots: [
-    {
-      start: {
-        type: String,
-        required: true,
-      },
-      end: {
-        type: String,
-        required: true,
-      },
-      maxClients: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
-});
-
 const coachSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -47,7 +15,10 @@ const coachSchema = new mongoose.Schema({
     unique: true,
   },
   about: {
-    type: String,
+    type: Array,
+  },
+  order: {
+    type: Number,
   },
   intro: {
     type: String,
@@ -62,16 +33,7 @@ const coachSchema = new mongoose.Schema({
   availableTo: {
     type: String,
   },
-  sessionFees: {
-    oneToOnePrice: {
-      type: String,
-      required: true,
-    },
-    groupPrice: {
-      type: String,
-      required: true,
-    },
-  },
+  sessionFees: mongoose.Schema.Types.Mixed,
   availableDays: [
     {
       type: String,
@@ -93,7 +55,22 @@ const coachSchema = new mongoose.Schema({
       required: true,
     },
   ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
+  bookedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
   // availability: [availabilitySchema],
 });
 
-module.exports = mongoose.model("coaches", coachSchema);
+const Coach = mongoose.model("coaches", coachSchema);
+module.exports = Coach;

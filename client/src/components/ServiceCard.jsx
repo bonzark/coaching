@@ -1,3 +1,5 @@
+import React from "react";
+import { PrimaryBtn } from "./PrimaryBtn";
 import {
   Card,
   CardContent,
@@ -6,8 +8,6 @@ import {
   CardActions,
   Box,
 } from "@mui/material";
-import React from "react";
-import { PrimaryBtn } from "./PrimaryBtn";
 
 const ServiceCard = (props) => {
   return (

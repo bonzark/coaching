@@ -64,6 +64,11 @@ const FormModal = ({ open, handleClose }) => {
               enqueueSnackbar(res?.response?.data?.message, {
                 variant: "error",
               });
+            } else if (res.response.status === 500) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
+                variant: "error",
+              });
             }
           })
           .catch((error) => {
@@ -97,6 +102,16 @@ const FormModal = ({ open, handleClose }) => {
             } else if (res.response.status === 401) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.message, {
+                variant: "error",
+              });
+            } else if (res.response.status === 403) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data, {
+                variant: "error",
+              });
+            } else if (res.response.status === 500) {
+              setIsLogin(false);
+              enqueueSnackbar(res?.response?.data?.error, {
                 variant: "error",
               });
             }
@@ -202,6 +217,7 @@ const FormModal = ({ open, handleClose }) => {
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "4px",

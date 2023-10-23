@@ -1,7 +1,6 @@
-import React from 'react'
-import { sidebarItems } from "../../utils/constant"
-import { Link } from 'react-router-dom'
-import { Box, Drawer, List, ListItem, ListItemText } from '@mui/material'
+import React from "react";
+import { sidebarItems } from "../../utils/constant";
+import { Drawer, List, ListItem, ListItemText } from "@mui/material";
 
 const Sidebar = () => {
   return (
@@ -10,9 +9,9 @@ const Sidebar = () => {
       sx={{
         width: 240,
         flexShrink: 0,
-        '& .MuiDrawer-paper': {
+        "& .MuiDrawer-paper": {
           width: 240,
-          boxSizing: 'border-box',
+          boxSizing: "border-box",
         },
       }}
     >
@@ -21,9 +20,9 @@ const Sidebar = () => {
           <ListItem
             key={item.path}
             sx={{
-              '&:hover': {
-                backgroundColor: '#f0f0f0', // Add your desired hover background color
-                transition: 'background-color 0.3s', // Add a smooth transition effect
+              "&:hover": {
+                backgroundColor: "#f0f0f0", // Add your desired hover background color
+                transition: "background-color 0.3s", // Add a smooth transition effect
               },
             }}
           >
@@ -32,7 +31,7 @@ const Sidebar = () => {
         ))}
       </List>
     </Drawer>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

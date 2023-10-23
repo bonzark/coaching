@@ -3,7 +3,6 @@ const {
   validateRegistration,
   validateLogin,
   validateEmail,
-  validatePassword,
 } = require("../middlewares/validation");
 const authController = require("../controllers/authController");
 

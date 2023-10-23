@@ -7,6 +7,10 @@ body {
   font-family: "Poppins";
 }
 
+div[data-component="question"]{
+  display: none !important;
+}
+
 .about-wrapper {
   background: #c6d7ec;
 }

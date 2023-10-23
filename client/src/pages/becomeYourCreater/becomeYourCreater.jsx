@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { AccordionDetails, Box, Typography } from "@mui/material";
-import { aboutTemplateData, lineUpsData } from "../../utils/constant";
+import {
+  AccordionDetails,
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  Typography,
+} from "@mui/material";
+import { becomeYourCreatorData, lineUpsData } from "../../utils/constant";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import PageBanner from "../../sections/PageBanner";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -42,10 +50,49 @@ const BecomeYourCreator = () => {
 
   return (
     <Box>
-      <PageBanner heading={"Become Your Creator"} imgSrc="./creator.jpg" />
+      <PageBanner heading={"Become Your Creator"} imgSrc="./heroBg2.jpg" />
       <Box
         sx={{ padding: { xs: "1rem", sm: "2rem", md: "3.5rem", lg: "5rem" } }}
       >
+        <Box
+          sx={{
+            paddingBottom: { lg: "55px" },
+          }}
+        >
+          <List sx={{ paddingBottom: "1rem", px: { xs: 0, md: "1rem" } }}>
+            {becomeYourCreatorData?.map((item, key) => (
+              <ListItem
+                sx={{ display: "flex", alignItems: "start", px: 0 }}
+                key={key}
+              >
+                {item?.type === "header" && (
+                  <ListItemIcon
+                    sx={{
+                      minWidth: { xs: "12px", sm: "18px", lg: "30px" },
+                      paddingRight: { xs: "5px", md: "12px" },
+                    }}
+                  >
+                    <CheckCircleIcon sx={{ color: "#671d63", width: "100%" }} />
+                  </ListItemIcon>
+                )}
+                <Typography
+                  sx={{
+                    fontSize: {
+                      xs: item?.type === "header" ? "1.25rem" : "1rem",
+                      sm: item?.type === "header" ? "1.30rem" : "1.05rem",
+                      md: item?.type === "header" ? "1.35rem" : "1.10rem",
+                    },
+                    textAlign: "justify",
+                    fontWeight: item?.type === "content" ? 100 : 400,
+                    paddingLeft: item?.type === "content" && { md: "42px" },
+                  }}
+                >
+                  {item?.content}
+                </Typography>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
         <Box
           sx={{
             display: "flex",

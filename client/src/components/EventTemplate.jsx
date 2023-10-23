@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { Fragment } from "react";
+import { PrimaryBtn } from "./PrimaryBtn";
 
-const EventTemplate = ({ image, children }) => {
+const EventTemplate = ({ image, children, title, eventUrl, id }) => {
   return (
     <Box
+      key={id}
       sx={{
         margin: { xs: "5rem 1rem", sm: "5rem 2rem" },
         boxShadow: "0 5px 12px 2px #00000019",
@@ -35,6 +37,9 @@ const EventTemplate = ({ image, children }) => {
       </Box>
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
           padding: {
             xs: "1.5rem",
             sm: "3rem",
@@ -45,20 +50,32 @@ const EventTemplate = ({ image, children }) => {
           background: "linear-gradient(to bottom right, #e5e9f8, #d4d8e7)",
         }}
       >
-        <Typography
-          varient="h1"
+        <Box>
+          <Typography
+            varient="h1"
+            sx={{
+              fontSize: { xs: "2rem", sm: "3rem", md: "2.5rem", lg: "3.5rem" },
+              lineHeight: { xs: "40px", sm: "50px", md: "55px", lg: "60px" },
+              fontWeight: 600,
+              textAlign: "center",
+              marginBottom: { xs: "1rem", md: "2rem" },
+              color: "#671d63",
+            }}
+          >
+            {title}
+          </Typography>
+          <Fragment>{children}</Fragment>
+        </Box>
+        <Box
           sx={{
-            fontSize: { xs: "2rem", sm: "3rem", md: "2.5rem", lg: "3.5rem" },
-            lineHeight: { xs: "30px", sm: "45px", md: "40px", lg: "50px" },
-            fontWeight: 600,
             textAlign: "center",
-            marginBottom: { xs: "1rem", md: "2rem" },
-            color: "#671d63",
+            pt: "3vh",
           }}
         >
-          3 DAY CONSCIOUS CREATION WITH RITA
-        </Typography>
-        <Fragment>{children}</Fragment>
+          <PrimaryBtn fullWidth row href={eventUrl} target="_blank">
+            Get Tickets
+          </PrimaryBtn>
+        </Box>
       </Box>
     </Box>
   );

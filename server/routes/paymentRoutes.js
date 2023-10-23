@@ -1,9 +1,12 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const paymentController = require('../controllers/paymentController')
-const bodyParser = require('body-parser');
+const paymentController = require("../controllers/paymentController");
 
 // Route to payment
-router.post('/', paymentController.paymentSession)
-router.post('/stripe/webhook/payment-completed', paymentController.paymentCompleted)
+router.post("/", paymentController.paymentSession);
+router.post(
+  "/stripe/webhook/payment-completed",
+  paymentController.paymentCompleted
+);
+
 module.exports = router;

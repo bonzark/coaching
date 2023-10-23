@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
-import { Box, Typography, Paper } from "@mui/material";
-import { Link } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import { Box, Typography, Paper, Button } from "@mui/material";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { PrimaryBtn } from "./PrimaryBtn";
+import BookSessionBtn from "./BookSessionButton";
+import { getCoachByName } from "../services/session.service";
 
 const SuccessStories = ({
   id,
@@ -12,7 +14,22 @@ const SuccessStories = ({
   descriptionArr,
   wholeContent,
   isDetailPage,
+  isOurCoachCard = false,
 }) => {
+  const [coachDetail, setCoachDetail] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const getRita = async () => {
+      await getCoachByName("rita")
+        .then((res) => {
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    getRita();
+  }, []);
+
   return (
     <Box sx={{ paddingTop: 6, position: "relative" }}>
       <Box
@@ -120,8 +137,8 @@ const SuccessStories = ({
                     variant="h6"
                     sx={{
                       color: "#575757",
-                      fontSize: { xs: "15px", sm: "20px" },
-                      lineHeight: { xs: "20px", sm: "25px" },
+                      fontSize: { xs: "15px", sm: "16px" },
+                      lineHeight: { xs: "20px", sm: "18px" },
                       px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
                       mb: { xs: "8px", md: "10px", lg: "15px" },
                     }}
@@ -135,8 +152,8 @@ const SuccessStories = ({
                       paragraph
                       sx={{
                         color: "#575757",
-                        fontSize: { xs: "15px", sm: "20px" },
-                        lineHeight: { xs: "20px", sm: "25px" },
+                        fontSize: { xs: "15px", sm: "16px" },
+                        lineHeight: { xs: "20px", sm: "18px" },
                         px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
                         mb: { xs: "8px", md: "10px", lg: "15px" },
                         textAlign: { xs: "left", sm: "justify" },
@@ -147,24 +164,60 @@ const SuccessStories = ({
                   </Fragment>
                 ))}
 
-            {descriptionArr ? (
-              !wholeContent ? (
-                <Box
+            {isOurCoachCard && (
+              <Box
+                sx={{
+                  margin: "0.5rem 0",
+                  px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
+                }}
+              >
+                <Typography
+                  to={
+                    id === coachDetail[0]?._id
+                      ? `/coaching-with-rita`
+                      : `/ourCoachesDetail/${id}`
+                  }
+                  component={Link}
                   sx={{
-                    margin: "0 auto",
-                    paddingY: "10px",
+                    color: "#671d63",
+                    textDecoration: "none",
+                    fontSize: "16px",
                   }}
                 >
-                  <PrimaryBtn
-                    component={Link}
-                    to={`/ourCoachesDetail/${id}`}
-                    state={{ name: id }}
-                  >
-                    Read More...
-                  </PrimaryBtn>
-                </Box>
-              ) : null
-            ) : null}
+                  Read More...
+                </Typography>
+              </Box>
+            )}
+
+            {descriptionArr && !wholeContent && (
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: "1rem",
+                  px: { xs: "1.2rem", md: "2.2rem", lg: "3.2rem" },
+                }}
+              >
+                {isOurCoachCard && (
+                  <BookSessionBtn
+                    defaultText={"Book a session now"}
+                    freeSessionText={"Book a free session"}
+                    bookText={"Book a session now"}
+                    coachId={id}
+                  />
+                )}
+
+                {isOurCoachCard && (
+                  <Box sx={{ margin: "1rem 0" }}>
+                    <PrimaryBtn
+                      onClick={() => navigate("/packages/" + id)}
+                      props
+                    >
+                      Book Your Coaching
+                    </PrimaryBtn>
+                  </Box>
+                )}
+              </Box>
+            )}
             {content && (
               <Typography
                 paragraph

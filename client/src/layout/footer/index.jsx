@@ -1,9 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+  Button,
+} from "@mui/material";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Link } from "react-router-dom";
 import { footerItems } from "../../utils/constant";
+import { MainModal } from "../../components/MainModal";
+import DisclaimerModelBtn from "../../components/DisclaimerModelBtn";
 
 const Footer = () => {
   return (
@@ -19,14 +29,22 @@ const Footer = () => {
           padding: "40px 0",
           margin: "0 auto",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: { xs: "space-between", md: "space-between" },
           borderBottom: "1px solid #671d63",
           gap: { xs: "15px", md: "30px" },
           flexWrap: "wrap",
         }}
       >
-        <Box sx={{ maxWidth: "532px" }}>
+        <Box
+          sx={{
+            maxWidth: { md: "50%", xs: "100%" },
+            display: { md: "flex", xs: "block" },
+            gap: "50px",
+            alignItems: "center",
+            marginBottom: { xs: "50px", md: "0" },
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -52,23 +70,40 @@ const Footer = () => {
               </Link>
             </Box>
           </Box>
-          <Typography
-            paragraph
-            sx={{
-              color: "#671d63",
-              margin: 0,
-              lineHeight: "1.3rem",
-              textAlign: { xs: "left", sm: "justify" },
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-            magnam facere ad perferendis amet tenetur reiciendis placeat et
-            neque quo. Odio aspernatur maxime itaque facilis quos excepturi iste
-            minima? Quae tempora deleniti porro dolores perferendis similique
-            est dignissimos quod unde.
-          </Typography>
+          <Box>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#671d63",
+                fontSize: "1.2rem",
+                fontWeight: 900,
+                paddingBottom: { xs: "10px", md: "30px" },
+                margin: 0,
+              }}
+            >
+              Become Your Creator LTD.
+            </Typography>
+            <Typography
+              paragraph
+              sx={{
+                color: "#671d63",
+                margin: 0,
+                lineHeight: "1.3rem",
+                textAlign: { xs: "left", sm: "justify" },
+              }}
+            >
+              Coaching services offered by Become Your Creator LTD. are designed
+              to provide information and education to clients. The company
+              focuses on empowering individuals to take control of their lives,
+              set goals, and work towards achieving them. However, it is
+              important to understand and acknowledge certain guidelines and
+              disclaimers to ensure the safety and well-being of all individuals
+              involved.
+              <DisclaimerModelBtn text={"Read More..."} />
+            </Typography>
+          </Box>
         </Box>
-        <Box>
+        <Box sx={{ maxWidth: { md: "25%", xs: "50%" } }}>
           <Typography
             variant="h3"
             sx={{
@@ -114,14 +149,20 @@ const Footer = () => {
             })}
           </Box>
         </Box>
-        <Box sx={{ marginTop: { xs: "1rem", md: "2rem" }, alignSelf: "start" }}>
+        <Box
+          sx={{
+            marginTop: { xs: "1rem", md: "0" },
+            alignSelf: "start",
+            maxWidth: { md: "25%", xs: "50%" },
+          }}
+        >
           <Typography
             variant="h3"
             sx={{
               color: "#671d63",
               fontSize: "1.2rem",
               fontWeight: 900,
-              paddingBottom: "8px",
+              paddingBottom: { xs: "10px", md: "30px" },
               margin: 0,
             }}
           >
@@ -135,53 +176,48 @@ const Footer = () => {
               gap: "20px",
             }}
           >
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
+            <Link
+              to="https://www.facebook.com/becomeyourcreator?mibextid=LQQJ4d"
+              target="_blank"
             >
-              <FacebookRoundedIcon
-                sx={{ fontSize: "2rem", cursor: "pointer" }}
-              />
-            </Box>
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
+              <Box
+                sx={{
+                  color: "#671d63",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "0.15rem",
+                  border: "1px solid #671d63",
+                }}
+              >
+                <FacebookRoundedIcon
+                  sx={{ fontSize: "2rem", cursor: "pointer" }}
+                />
+              </Box>
+            </Link>
+            <Link
+              to="https://www.instagram.com/becomeyourcreator/"
+              target="_blank"
             >
-              <TwitterIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
-            </Box>
-            <Box
-              sx={{
-                color: "#671d63",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                padding: "0.15rem",
-                border: "1px solid #671d63",
-              }}
-            >
-              <InstagramIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
-            </Box>
+              <Box
+                sx={{
+                  color: "#671d63",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  padding: "0.15rem",
+                  border: "1px solid #671d63",
+                }}
+              >
+                <InstagramIcon sx={{ fontSize: "2rem", cursor: "pointer" }} />
+              </Box>
+            </Link>
           </Box>
         </Box>
       </Box>

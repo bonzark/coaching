@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: false,
   },
   email: {
     type: String,
@@ -18,8 +19,14 @@ const userSchema = new mongoose.Schema({
   isVerified: Boolean,
   verificationToken: String,
   resetToken: String,
-  //Changed it to BookedSessions as sessions not make any sense
-  sessions: [
+  purchasedSession: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BookedSession",
+      required: true,
+    },
+  ],
+  bookedSession: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "BookedSession",

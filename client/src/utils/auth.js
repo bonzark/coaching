@@ -6,8 +6,9 @@ export const setUserDetails = (details) => {
   localStorage.setItem("user", JSON.stringify(details));
 };
 
-export const getUserDetails = (details) => {
-  localStorage.getItem("user", JSON.stringify(details));
+export const getUserDetails = () => {
+  const userData = localStorage.getItem("user");
+  return JSON.parse(userData);
 };
 
 export const getAuthToken = () => {

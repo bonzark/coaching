@@ -1,11 +1,16 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import BookSessionBtn from "../components/BookSessionButton";
+import { PrimaryBtn } from "../components/PrimaryBtn";
+import { useNavigate } from "react-router-dom";
 
-const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
+const SingleCoachDetail = ({ name, imgSrc, descriptionArr, id }) => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
         maxWidth: "1200px",
-        margin: "2rem auto",
+        margin: "2rem auto 3rem",
         boxShadow: "0 3px 12px 1px #dfdfdf",
         borderRadius: "8px",
         overflow: "hidden",
@@ -20,6 +25,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
           borderRadius: "8px",
           overflow: "hidden",
           display: "flex",
+          width: { xs: "auto", md: "50%" },
         }}
       >
         <img
@@ -32,7 +38,7 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
         />
       </Box>
       <Typography paragraph>{name},</Typography>
-      {descriptionArr.map((para, index) => (
+      {descriptionArr?.map((para, index) => (
         <Typography
           paragraph
           key={index}
@@ -41,6 +47,28 @@ const SingleCoachDetail = ({ name, imgSrc, descriptionArr }) => {
           {para}
         </Typography>
       ))}
+      <Box sx={{ display: "flex", gap: { xs: "12px", md: "25px" } }}>
+        <BookSessionBtn
+          defaultText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
+          freeSessionText={
+            <>
+              BOOK YOUR FREE ENERGY AND LIFE PATH READING
+            </>
+          }
+          bookText={
+            <>
+              BOOK YOUR FREE ENERGY AND LIFE PATH READING
+            </>
+          }
+          isPurchaseModel={false}
+          coachId={id}
+        />
+        <Box sx={{ margin: "1rem 0", display: "flex" }}>
+          <PrimaryBtn onClick={() => navigate("/packages/" + id)} props>
+            Book Your Coaching
+          </PrimaryBtn>
+        </Box>
+      </Box>
     </Box>
   );
 };

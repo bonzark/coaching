@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SuccessCarousel from "../../sections/SuccessCarousel";
 import FAQAccordion from "../../components/FAQAccordion";
-import { heroListItems } from "../../utils/constant";
+import {
+  heroListItems,
+  testimonialCoachingWithRitaData,
+} from "../../utils/constant";
 import PageBanner from "../../sections/PageBanner";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
+import BookSessionBtn from "../../components/BookSessionButton";
+import { getCoachByName } from "../../services/session.service";
+import { useNavigate } from "react-router-dom";
+import { PrimaryBtn } from "../../components/PrimaryBtn";
 
 const CoachDetail = () => {
+  const navigate = useNavigate();
+  const [coachDetail, setCoachDetail] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const getRita = async () => {
+      setIsLoading(true);
+      await getCoachByName("rita")
+        .then((res) => {
+          setCoachDetail(res.data.coach);
+        })
+        .catch((err) => console.log(err));
+      setIsLoading(false);
+    };
+
+    getRita();
+  }, []);
+
   const accordionData = [
     {
       summary: "Collapsible Group Item #1",
@@ -34,19 +59,13 @@ const CoachDetail = () => {
     },
   ];
 
-  const btnText = (
-    <>
-      <span>Book Session</span>
-    </>
-  );
-
   return (
     <>
       <PageBanner
         heading={"Coaching with Rita"}
         imgSrc="successStories.jpg"
         listItems={heroListItems}
-        buttonText={btnText}
+        buttonText={<span>Purchase Session</span>}
       />
       <Box sx={{ margin: "5rem 0" }}>
         <Box
@@ -112,6 +131,45 @@ const CoachDetail = () => {
               mb: { xs: "8px", md: "10px", lg: "15px" },
             }}
           >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "25px",
+              }}
+            >
+              {!isLoading && (
+                <>
+                  <BookSessionBtn
+                    defaultText={
+                      <>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>
+                    }
+                    freeSessionText={
+                      <>
+                        BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                      </>
+                    }
+                    bookText={
+                      <>
+                        BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                      </>
+                    }
+                    coachId={coachDetail ? coachDetail[0]?._id : ""}
+                  />
+                  <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                    <PrimaryBtn
+                      onClick={() =>
+                        navigate("/packages/" + coachDetail[0]._id)
+                      }
+                      props
+                    >
+                      Book Your Coaching
+                      {/* Book Your Coaching */}
+                    </PrimaryBtn>
+                  </Box>
+                </>
+              )}
+            </Box>
             <List>
               <ListItem
                 sx={{
@@ -281,8 +339,47 @@ const CoachDetail = () => {
             </List>
           </Typography>
         </Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "25px",
+          }}
+        >
+          {!isLoading && (
+            <>
+              <BookSessionBtn
+                defaultText={
+                  <>
+                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                  </>
+                }
+                freeSessionText={
+                  <>
+                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                  </>
+                }
+                bookText={
+                  <>
+                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                  </>
+                }
+                coachId={coachDetail ? coachDetail[0]?._id : ""}
+              />
+              <Box sx={{ margin: "1rem 0", display: "flex" }}>
+                <PrimaryBtn
+                  onClick={() => navigate("/packages/" + coachDetail[0]._id)}
+                  props
+                >
+                  Book Your Coaching
+                  {/* Book Your Coaching */}
+                </PrimaryBtn>
+              </Box>
+            </>
+          )}
+        </Box>
       </Box>
-      <SuccessCarousel />
+      <SuccessCarousel testimonials={testimonialCoachingWithRitaData} />
       <FAQAccordion data={accordionData} />
     </>
   );

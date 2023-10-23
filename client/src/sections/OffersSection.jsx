@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography, Button, Paper, Box } from "@mui/material";
-import { PrimaryBtn } from "../components/PrimaryBtn";
+import BookSessionBtn from "../components/BookSessionButton";
 
 const OfferSection = () => {
   return (
@@ -30,26 +30,15 @@ const OfferSection = () => {
           Here's Your Chance To Start Getting Everything You'll Ever Need To
           Live A Life Of Abundance, Attract Endless Happiness And Fulfilment...
         </Typography>
-        <PrimaryBtn>
-          <Box sx={{ padding: "0 40px" }}>
-            <Typography
-              component={"span"}
-              sx={{
-                fontSize: { fontWeight: 900 },
-              }}
-            >
-              Aceess Now For Free
-            </Typography>
-            <Typography
-              component={"span"}
-              sx={{
-                fontSize: { fontWeight: 900 },
-              }}
-            >
-              Instant Download.
-            </Typography>
-          </Box>
-        </PrimaryBtn>
+        <BookSessionBtn
+          defaultText={
+            <>
+              <h2 style={{ margin: "0" }}>BOOK YOUR FREE ENERGY AND LIFE PATH READING</h2>
+            </>
+          }
+          freeSessionText={<span>BOOK YOUR FREE ENERGY AND LIFE PATH READING</span>}
+          bookText={<span>Book A Sessions</span>}
+        />
       </Grid>
       <Grid
         item

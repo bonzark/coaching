@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import {
   Box,
-  Container,
   List,
   ListItem,
   ListItemIcon,
@@ -8,11 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useEffect, useState } from "react";
-import { PrimaryBtn } from "../components/PrimaryBtn";
 import FormModal from "./FormModal";
 import { getAuthToken } from "../utils/auth";
 import EventEmitter from "reactjs-eventemitter";
+import BookSessionBtn from "../components/BookSessionButton";
 
 const HeroBanner = ({
   title,
@@ -133,30 +132,21 @@ const HeroBanner = ({
                 })}
               </List>
             )}
-            {!isLoggedIn ? (
-              <Box sx={{ margin: "1rem 0" }}>
-                <PrimaryBtn onClick={handleOpen}>
+            <BookSessionBtn
+              defaultText={
+                <>
                   <>
-                    <span>DOWNLOAD NOW FOR FREE</span>
-                    Gain Awareness Of Your Creation in less than 30 days
+                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
                   </>
-                </PrimaryBtn>
-              </Box>
-            ) : (
-              buttonText && (
-                <PrimaryBtn
-                  onClick={() => {
-                    Calendly.showPopupWidget(
-                      "https://calendly.com/b7-bonzark/testing-dev"
-                    );
-
-                    return false;
-                  }}
-                >
-                  {buttonText}
-                </PrimaryBtn>
-              )
-            )}
+                </>
+              }
+              freeSessionText={
+                <>
+                  BOOK YOUR FREE ENERGY AND LIFE PATH READING
+                </>
+              }
+              bookText={"Book A Session"}
+            />
           </Box>
           <Box sx={{ width: { xs: "auto  ", md: "100%", lg: "60%" } }}>
             <img

@@ -1,12 +1,11 @@
+import { useState } from "react";
 import { InputBox } from "../components/InputBox";
 import { MainModal } from "../components/MainModal";
 import { useSnackbar } from "notistack";
-import { PrimaryBtn } from "../components/PrimaryBtn";
 import { validationForgotSchema } from "../utils/validation";
 import { Button, CircularProgress, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { requestReset } from "../services/auth.service";
-import { useState } from "react";
 
 const ForgotPassword = ({
   isOpen,
@@ -71,6 +70,18 @@ const ForgotPassword = ({
           }}
         >
           Forgot Password
+        </Typography>
+        <Typography
+          component={"p"}
+          sx={{
+            fontSize: "16px",
+            fontWeight: "400",
+            textAlign: "center",
+            color: "#000",
+            marginBottom: "10px",
+          }}
+        >
+          Please enter registered email address you'd like to reset password
         </Typography>
         <InputBox
           fullWidth

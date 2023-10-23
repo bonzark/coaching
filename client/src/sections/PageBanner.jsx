@@ -1,20 +1,15 @@
-import { Box, Container, Typography } from "@mui/material";
 import React from "react";
-const PageBanner = ({
-  heading,
-  imgSrc,
-  description,
-  align,
-  //   TODO: Can make component such that it will expect height as props
-  //   minHeight,
-}) => {
+import { Box, Container, Typography } from "@mui/material";
+const PageBanner = ({ heading, imgSrc, bgColor, align }) => {
   return (
     <>
       <Box
         sx={{
+          backgroundColor: bgColor ? bgColor : "transparent",
           backgroundImage: `url(${imgSrc})`,
           backgroundSize: { xs: "100%", md: "100%" },
           backgroundRepeat: "no-repeat",
+          height: { xs: "350px", md: "auto" },
           backgroundPosition: { xs: "center center", md: "top center" },
           position: "relative",
           "::after": {
@@ -32,6 +27,7 @@ const PageBanner = ({
       >
         <Container
           sx={{
+            height: "100%",
             display: "flex",
             alignItems: "center",
             position: "relative",
@@ -54,9 +50,9 @@ const PageBanner = ({
                 component={"p"}
                 sx={{
                   fontSize: { xs: "32px", md: "42px", lg: "72px" },
+                  textAlign: align ? align : "center",
                   color: "#671d63",
                   fontWeight: "bold",
-                  textAlign: "center",
                   lineHeight: { xs: "27px", md: "36px", lg: "62px" },
                   textTransform: "capitalize",
                   fontFamily: "'montserrat', cursive",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { PrimaryBtn } from "./PrimaryBtn";
 import { Link } from "react-router-dom";
+import BookSessionBtn from "./BookSessionButton";
 
 const AboutTemplate2 = (props) => {
   const { reverse, image, linkText, content, title, id, to } = props;
@@ -130,16 +130,16 @@ const AboutTemplate2 = (props) => {
             >
               {linkText}
             </Typography>
-            <PrimaryBtn>
-              <Box sx={{ padding: "0 40px" }}>
-                <Typography sx={{ fontSize: "16px", fontWeight: 900 }}>
-                  Access Now For Free
-                </Typography>
-                <Typography sx={{ fontSize: "16px", fontWeight: 900 }}>
-                  Instant Download
-                </Typography>
-              </Box>
-            </PrimaryBtn>
+            <BookSessionBtn
+              defaultText={
+                <>
+                  <h2 style={{ margin: "0" }}>BOOK YOUR FREE ENERGY AND LIFE PATH READING</h2>
+                  {/* <h2 style={{ margin: "0" }}>Instant download</h2> */}
+                </>
+              }
+              freeSessionText={<span>BOOK YOUR FREE ENERGY AND LIFE PATH READING</span>}
+              bookText={<span>Book A Session</span>}
+            />
           </Grid>
         </Grid>
       </Box>

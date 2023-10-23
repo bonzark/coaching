@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
 import { privacyPolicyData } from "../../utils/constant";
 
 const PrivacyPolicy = () => {
@@ -49,16 +49,16 @@ const PrivacyPolicy = () => {
                 {data?.title}
               </Typography>
             )}
-            <Box sx={{ padding: "10px 0" }}>
+            <Box>
               {data?.content?.map((para) => (
                 <Typography
                   paragraph
                   key={para}
                   sx={{
-                    fontSize: { xs: "12px", sm: "16px" },
-                    padding: "10px 0",
+                    fontSize: "1rem",
                     textAlign: { xs: "left", sm: "justify" },
                     fontWeight: "100",
+                    marginBottom: "16px",
                   }}
                 >
                   {para}
