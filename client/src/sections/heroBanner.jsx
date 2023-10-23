@@ -112,7 +112,7 @@ const HeroBanner = ({
                   return (
                     <ListItem
                       sx={{ padding: "0", alignItems: "flex-start" }}
-                      key={item.key}
+                      key={item?.key}
                     >
                       <ListItemIcon
                         sx={{ minWidth: "30px", paddingTop: "5px" }}
@@ -135,16 +135,10 @@ const HeroBanner = ({
             <BookSessionBtn
               defaultText={
                 <>
-                  <>
-                    BOOK YOUR FREE ENERGY AND LIFE PATH READING
-                  </>
+                  <>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>
                 </>
               }
-              freeSessionText={
-                <>
-                  BOOK YOUR FREE ENERGY AND LIFE PATH READING
-                </>
-              }
+              freeSessionText={<>BOOK YOUR FREE ENERGY AND LIFE PATH READING</>}
               bookText={"Book A Session"}
             />
           </Box>

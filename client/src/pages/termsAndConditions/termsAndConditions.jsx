@@ -30,13 +30,13 @@ const TermsAndConditions = () => {
           padding: { xs: "20px", sm: "50px", md: "120px", lg: "0 22%" },
         }}
       >
-        {termsAndConditionsData.map((section, index) => (
+        {termsAndConditionsData?.map((section, index) => (
           <TermOrCondition
-            title={section.title}
+            title={section?.title}
             key={index}
             bigHead={index === 0}
           >
-            {section.content}
+            {section?.content}
           </TermOrCondition>
         ))}
       </Box>

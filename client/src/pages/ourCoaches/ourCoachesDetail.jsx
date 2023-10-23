@@ -16,8 +16,8 @@ const OurCoachesDetail = () => {
     getCoaches()
       .then((res) => {
         if (res?.status === 200) {
-          const data = res?.data?.coaches?.filter((coach) => coach._id === id);
-          if (data && data.length > 0) {
+          const data = res?.data?.coaches?.filter((coach) => coach?._id === id);
+          if (data && data?.length > 0) {
             setCoachesData(data[0]);
             setIsLoading(false);
           }

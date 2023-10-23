@@ -86,7 +86,7 @@ const FAQAccordion = ({ data }) => {
             "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
         }}
       >
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <Accordion
             expanded={expanded === `panel${index + 1}`}
             onChange={handleChange(`panel${index + 1}`)}
@@ -103,10 +103,10 @@ const FAQAccordion = ({ data }) => {
                 color: "#671d63",
               }}
             >
-              <Typography>{item.summary}</Typography>
+              <Typography>{item?.summary}</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ backgroundColor: "#fff", color: "#000" }}>
-              <Typography>{item.details}</Typography>
+              <Typography>{item?.details}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}

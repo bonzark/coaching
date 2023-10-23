@@ -70,16 +70,16 @@ const Packages = () => {
     setModeValue(
       pack.sessions
         ?.filter((session) => session?.sessionType !== "freeReading")[0]
-        ?.stripePrice.filter((i) => i.priceId === event.target.value)[0].mode
+        ?.stripePrice?.filter((i) => i?.priceId === event.target.value)[0]?.mode
     );
   };
   const handleCoachChange = (event) => {
     setCurrentCoach(event.target.value);
-    setPack(coachList?.filter((coach) => coach._id === event.target.value)[0]);
+    setPack(coachList?.filter((coach) => coach?._id === event.target.value)[0]);
     setCurrentSession(
       coachList
-        ?.filter((coach) => coach._id === event.target.value)[0]
-        .sessions?.filter(
+        ?.filter((coach) => coach?._id === event.target.value)[0]
+        ?.sessions?.filter(
           (session) => session?.sessionType !== "freeReading"
         )[0]?._id
     );
@@ -94,53 +94,53 @@ const Packages = () => {
         setCoachList(res?.data?.coaches);
         if (!id) {
           setCurrentCoach(
-            res?.data?.coaches?.filter((coach) => coach.order === 1)[0]._id
+            res?.data?.coaches?.filter((coach) => coach?.order === 1)[0]?._id
           );
           setCurrentSession(
             res?.data?.coaches
-              ?.filter((coach) => coach.order === 1)[0]
-              .sessions?.filter(
+              ?.filter((coach) => coach?.order === 1)[0]
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?._id
           );
-          setPack(res?.data?.coaches?.filter((coach) => coach.order === 1)[0]);
+          setPack(res?.data?.coaches?.filter((coach) => coach?.order === 1)[0]);
           setRadioValue(
             res?.data?.coaches
-              ?.filter((coach) => coach.order === 1)[0]
-              .sessions?.filter(
+              ?.filter((coach) => coach?.order === 1)[0]
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.priceId
           );
           setModeValue(
             res?.data?.coaches
               ?.filter((coach) => coach.order === 1)[0]
-              .sessions?.filter(
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.mode
           );
         } else {
           setCurrentCoach(
-            res?.data?.coaches?.filter((coach) => coach._id === id)[0]._id
+            res?.data?.coaches?.filter((coach) => coach?._id === id)[0]?._id
           );
           setCurrentSession(
             res?.data?.coaches
-              ?.filter((coach) => coach._id === id)[0]
-              .sessions?.filter(
+              ?.filter((coach) => coach?._id === id)[0]
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?._id
           );
-          setPack(res?.data?.coaches?.filter((coach) => coach._id === id)[0]);
+          setPack(res?.data?.coaches?.filter((coach) => coach?._id === id)[0]);
           setRadioValue(
             res?.data?.coaches
-              ?.filter((coach) => coach._id === id)[0]
-              .sessions?.filter(
+              ?.filter((coach) => coach?._id === id)[0]
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.priceId
           );
           setModeValue(
             res?.data?.coaches
-              ?.filter((coach) => coach._id === id)[0]
-              .sessions?.filter(
+              ?.filter((coach) => coach?._id === id)[0]
+              ?.sessions?.filter(
                 (session) => session?.sessionType !== "freeReading"
               )[0]?.stripePrice[0]?.mode
           );
@@ -272,7 +272,7 @@ const Packages = () => {
                     onChange={handleCoachChange}
                     input={<OutlinedInput label="Choose Your Coach" />}
                   >
-                    {coachList.length > 0 &&
+                    {coachList?.length > 0 &&
                       coachList?.map((coachItem) => (
                         <MenuItem key={coachItem?._id} value={coachItem?._id}>
                           {coachItem?.firstName}
@@ -511,11 +511,11 @@ const Packages = () => {
                             onChange={handleRadioChange}
                           >
                             {pack?.sessions?.filter(
-                              (session) => session._id === currentSession
+                              (session) => session?._id === currentSession
                             )[0]?.stripePrice?.length &&
                               pack?.sessions
                                 ?.filter(
-                                  (session) => session._id === currentSession
+                                  (session) => session?._id === currentSession
                                 )[0]
                                 ?.stripePrice?.map((plan, index) => (
                                   <Box
@@ -601,7 +601,7 @@ const Packages = () => {
                   fontWeight: 700,
                 }}
               >{`No sessions available for ${
-                coachList?.filter((coach) => coach._id === currentCoach)[0]
+                coachList?.filter((coach) => coach?._id === currentCoach)[0]
                   ?.firstName
               } at the moment.`}</Typography>
             )}

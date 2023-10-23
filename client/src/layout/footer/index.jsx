@@ -127,7 +127,7 @@ const Footer = () => {
             {footerItems?.map((item) => {
               return (
                 <Typography
-                  key={item.name}
+                  key={item?.name}
                   component={Link}
                   onClick={() => {
                     window.scroll({
@@ -135,7 +135,7 @@ const Footer = () => {
                       behavior: "smooth",
                     });
                   }}
-                  to={item.href}
+                  to={item?.href}
                   sx={{
                     color: "#671d63",
                     lineHeight: "1.5rem",
@@ -143,7 +143,7 @@ const Footer = () => {
                     textDecoration: "none",
                   }}
                 >
-                  {item.name}
+                  {item?.name}
                 </Typography>
               );
             })}

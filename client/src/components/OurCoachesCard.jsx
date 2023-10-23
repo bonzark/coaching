@@ -13,8 +13,8 @@ const OurCoachesCard = () => {
       const coachesData = await getCoaches();
       setCoachesData(
         coachesData?.data?.coaches
-          .reverse()
-          .filter((coach) => coach.order !== 1)
+          ?.reverse()
+          ?.filter((coach) => coach?.order !== 1)
       );
       setIsLoading(false);
     };
@@ -31,9 +31,9 @@ const OurCoachesCard = () => {
       }}
     >
       {!isLoading ? (
-        coachesData.length > 0 &&
+        coachesData?.length > 0 &&
         coachesData
-          ?.sort((a, b) => (a.order > b.order ? 1 : -1))
+          ?.sort((a, b) => (a?.order > b?.order ? 1 : -1))
           ?.map((data) => (
             <SuccessStories
               key={data?._id}

@@ -73,9 +73,12 @@ const PreviousPurchases = () => {
         }
       }
       setMyOwnSessions(
-        apiSessionList.filter((i) => {
-          if (i.sessionType !== "freeReading" && (i.isBooked === true || i.isPurchased === true)) {
-            return i
+        apiSessionList?.filter((i) => {
+          if (
+            i?.sessionType !== "freeReading" &&
+            (i?.isBooked === true || i?.isPurchased === true)
+          ) {
+            return i;
           }
         })
       );
@@ -91,7 +94,7 @@ const PreviousPurchases = () => {
   const popupCloseHandler = async () => {
     setPopup(false);
     if (userDetail) {
-      const { data } = await getuserById(userDetail._id);
+      const { data } = await getuserById(userDetail?._id);
       setUserDetails(data);
       getAllSessions()
         .then((res) => {
@@ -120,71 +123,66 @@ const PreviousPurchases = () => {
           justifyContent: "center",
         }}
       >
-        {myOwnSessions &&
-          myOwnSessions.length > 0 ?
-          myOwnSessions.map(
-            (session, index) =>
-              (
-                <Box key={session?._id} sx={{ maxWidth: "400px" }}>
-                  <SessionCard
-                    key={session?._id + index}
-                    title={session?.title}
-                    detail={session?.details}
-                    quantity={session?.count}
-                    sessionLink={
-                      sessionLinks[session?._id] && session?.sessionLink
-                    }
-                    btnText={
-                      !sessionLinks[session._id]
-                        ? session.isBooked
-                          ? "Get Link"
-                          : session.isPurchased
-                          ? "Book Now"
-                          : "Book Your Coaching"
-                        : ""
-                    }
-                    onClick={
-                      session?.isBooked
-                        ? () => {
-                            setSessionLinks((prev) => ({
-                              ...prev,
-                              [session._id]: true,
-                            }));
-                          }
-                        : () => session?.isPurchased && bookHandler(session)
-                    }
-                  />
-                </Box>
-              )
-          ): (
-            <Box
-                  sx={{
-                    height: {
-                      xs: "350px",
-                      sm: "400px",
-                      md: "450px",
-                      lg: "500px",
-                    },
-                    width: {
-                      xs: "350px",
-                      sm: "400px",
-                      md: "450px",
-                      lg: "500px",
-                    },
-                    margin: "0 auto",
-                  }}
-                >
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                    }}
-                    src="./no-data-found.png"
-                    alt="no-data-found"
-                  />
-                </Box>
-          )}
+        {myOwnSessions && myOwnSessions?.length > 0 ? (
+          myOwnSessions?.map((session, index) => (
+            <Box key={session?._id} sx={{ maxWidth: "400px" }}>
+              <SessionCard
+                key={session?._id + index}
+                title={session?.title}
+                detail={session?.details}
+                quantity={session?.count}
+                sessionLink={sessionLinks[session?._id] && session?.sessionLink}
+                btnText={
+                  !sessionLinks[session?._id]
+                    ? session?.isBooked
+                      ? "Get Link"
+                      : session?.isPurchased
+                      ? "Book Now"
+                      : "Book Your Coaching"
+                    : ""
+                }
+                onClick={
+                  session?.isBooked
+                    ? () => {
+                        setSessionLinks((prev) => ({
+                          ...prev,
+                          [session?._id]: true,
+                        }));
+                      }
+                    : () => session?.isPurchased && bookHandler(session)
+                }
+              />
+            </Box>
+          ))
+        ) : (
+          <Box
+            sx={{
+              height: {
+                xs: "350px",
+                sm: "400px",
+                md: "450px",
+                lg: "500px",
+              },
+              width: {
+                xs: "350px",
+                sm: "400px",
+                md: "450px",
+                lg: "500px",
+              },
+              margin: "0 auto",
+            }}
+          >
+            <img
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
+              src="./no-data-found.png"
+              alt="no-data-found"
+            />
+          </Box>
+        )}
       </Box>
       {popupLink && (
         <PopupModal

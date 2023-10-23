@@ -4,7 +4,7 @@ import EventTemplate from "../components/EventTemplate";
 import { eventsData } from "../utils/constant";
 
 const News = () => {
-  const filteredEvent = eventsData.filter((event) => event.id === "1")[0];
+  const filteredEvent = eventsData?.filter((event) => event?.id === "1")[0];
 
   return (
     <Box
@@ -73,7 +73,7 @@ const News = () => {
         <Box
           sx={{
             paddingX: { xs: 0, lg: "5rem", xl: "7rem" },
-            scale: { xs: "1",  md:"0.8"},
+            scale: { xs: "1", md: "0.8" },
             marginY: { xs: "-50px", md: "-80px" },
           }}
         >
