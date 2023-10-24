@@ -4,8 +4,8 @@ import { aboutTemplateData } from "../utils/constant";
 import AboutTemplate from "../components/AboutTemplate";
 
 const AboutSection = () => {
-  const aboutTemplate1Data = aboutTemplateData.find(
-    (item) => item.id === "rita"
+  const aboutTemplate1Data = aboutTemplateData?.find(
+    (item) => item?.id === "rita"
   );
 
   return (

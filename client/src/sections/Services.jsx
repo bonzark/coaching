@@ -46,13 +46,13 @@ const Services = () => {
             you!
           </Typography>
           <Grid container spacing={4} marginTop={5}>
-            {cradData.map((card) => (
+            {cradData?.map((card) => (
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <ServiceCard
-                  key={card.id}
-                  image={card.image}
-                  title={card.title}
-                  content={card.content}
+                  key={card?.id}
+                  image={card?.image}
+                  title={card?.title}
+                  content={card?.content}
                 />
               </Grid>
             ))}

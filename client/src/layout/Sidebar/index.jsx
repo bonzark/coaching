@@ -16,9 +16,9 @@ const Sidebar = () => {
       }}
     >
       <List>
-        {sidebarItems.map((item) => (
+        {sidebarItems?.map((item) => (
           <ListItem
-            key={item.path}
+            key={item?.path}
             sx={{
               "&:hover": {
                 backgroundColor: "#f0f0f0", // Add your desired hover background color
@@ -26,7 +26,7 @@ const Sidebar = () => {
               },
             }}
           >
-            <ListItemText primary={item.name} />
+            <ListItemText primary={item?.name} />
           </ListItem>
         ))}
       </List>

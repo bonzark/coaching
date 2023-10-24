@@ -119,8 +119,13 @@ const OurCoaches = () => {
             },
           }}
         >
+<<<<<<< HEAD
           {coachList?.length > 0 && coachList
             ?.sort((a, b) => (a.order > b.order ? 1 : -1))
+=======
+          {coachList
+            ?.sort((a, b) => (a?.order > b?.order ? 1 : -1))
+>>>>>>> origin/main
             ?.map((item) => {
               return (
                 <CoachCarouselCard

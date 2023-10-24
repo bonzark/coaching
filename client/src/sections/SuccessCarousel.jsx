@@ -43,7 +43,7 @@ const SuccessCarousel = ({ testimonials }) => {
           Success Stories
         </Typography>
         <Carousel duration={10}>
-          {testimonials.map((item, index) => (
+          {testimonials?.map((item, index) => (
             <SuccessStories
               key={index}
               imgSrc="./successStories.jpg"

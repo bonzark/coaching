@@ -123,19 +123,19 @@ export default function SelectSmall() {
     //       !filteredSession?.isPurchased && !filteredSession?.isBooked
     //   );
 
-    const filteredFreeSessions = bought.filter(
-      (session) => session.sessionType === "freeReading"
+    const filteredFreeSessions = bought?.filter(
+      (session) => session?.sessionType === "freeReading"
     );
 
     const lowestOrder = Math.min(
-      ...filteredFreeSessions.map((session) => session?.coach?.order)
+      ...filteredFreeSessions?.map((session) => session?.coach?.order)
     );
-    const sessionWithLowestOrder = filteredFreeSessions.filter(
+    const sessionWithLowestOrder = filteredFreeSessions?.filter(
       (session) => session?.coach?.order === lowestOrder
     );
-    const paidSession = bought.filter((i) => i.sessionType !== "freeReading");
+    const paidSession = bought?.filter((i) => i?.sessionType !== "freeReading");
 
-    const finalDisplaySessionList = sessionWithLowestOrder.concat(paidSession);
+    const finalDisplaySessionList = sessionWithLowestOrder?.concat(paidSession);
 
     return (
       <>
@@ -160,7 +160,7 @@ export default function SelectSmall() {
           rowGap={"15px"}
         >
           {bookedSessionList && bookedSessionList?.length ? (
-            bookedSessionList.map((session) => (
+            bookedSessionList?.map((session) => (
               <Grid
                 key={session?._id}
                 spacing={1}
@@ -178,7 +178,7 @@ export default function SelectSmall() {
               >
                 <SessionCard
                   coachName={session?.session?.coach?.firstName}
-                  sessionLink={hasLink[session._id] && session?.link}
+                  sessionLink={hasLink[session?._id] && session?.link}
                   date={
                     getDateAndTimeHandler(session?.sessionStartDate)
                       .formattedDate
@@ -190,10 +190,10 @@ export default function SelectSmall() {
                   detail={session?.session?.details}
                   title={session?.session?.title}
                   btnText={
-                    !hasLink[session._id]
-                      ? session.isBooked
+                    !hasLink[session?._id]
+                      ? session?.isBooked
                         ? "Get Link"
-                        : session.isPurchased
+                        : session?.isPurchased
                         ? "Book Now"
                         : "Book Your Coaching"
                       : ""
@@ -203,7 +203,7 @@ export default function SelectSmall() {
                       ? () => {
                           setHasLink((prev) => ({
                             ...prev,
-                            [session._id]: true,
+                            [session?._id]: true,
                           }));
                         }
                       : () =>
@@ -248,7 +248,7 @@ export default function SelectSmall() {
           rowGap={"15px"}
         >
           {finalDisplaySessionList && finalDisplaySessionList?.length ? (
-            finalDisplaySessionList.map((session) => (
+            finalDisplaySessionList?.map((session) => (
               <Grid
                 key={session?._id}
                 spacing={1}
@@ -266,7 +266,7 @@ export default function SelectSmall() {
               >
                 <SessionCard
                   coachName={session?.coach?.firstName}
-                  sessionLink={hasLink[session._id] && session?.sessionLink}
+                  sessionLink={hasLink[session?._id] && session?.sessionLink}
                   date={session?.date}
                   time={session?.time}
                   sessionImg={session?.coach?.coachImg}
@@ -275,10 +275,10 @@ export default function SelectSmall() {
                   title={session?.title}
                   quantity={session?.count}
                   btnText={
-                    !hasLink[session._id]
-                      ? session.isBooked
+                    !hasLink[session?._id]
+                      ? session?.isBooked
                         ? "Get Link"
-                        : session.isPurchased
+                        : session?.isPurchased
                         ? "Book Now"
                         : "Book Your Coaching"
                       : ""
@@ -288,7 +288,7 @@ export default function SelectSmall() {
                       ? () => {
                           setHasLink((prev) => ({
                             ...prev,
-                            [session._id]: true,
+                            [session?._id]: true,
                           }));
                         }
                       : () =>

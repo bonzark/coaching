@@ -75,28 +75,28 @@ const BookSession = ({
   };
 
   const finalDisplaySessionList = (sessions) => {
-    const paidSession = sessions.filter(
+    const paidSession = sessions?.filter(
       (i) => i?.sessionType !== "freeReading"
     );
-    var result = sessions.reduce((unique, o) => {
+    var result = sessions?.reduce((unique, o) => {
       if (
-        !unique.some((obj) => obj?.sessionType === "freeReading") &&
+        !unique?.some((obj) => obj?.sessionType === "freeReading") &&
         o?.sessionType === "freeReading" &&
         (o?.isBooked || o?.isPurchased)
       ) {
-        unique.push(o);
+        unique?.push(o);
       }
       return unique;
     }, []);
 
-    setSessionList(result.concat(paidSession));
+    setSessionList(result?.concat(paidSession));
   };
 
   const bookedSession = (userDetails, data) => {
     const apiSessionList = data;
     if (userDetails && apiSessionList) {
       const data = userDetails?.bookedSession;
-      for (let i = 0; i < apiSessionList.length; i++) {
+      for (let i = 0; i < apiSessionList?.length; i++) {
         for (let j = 0; j < data.length; j++) {
           if (data[j]?._id === apiSessionList[i]?._id) {
             apiSessionList[i].isBooked = true;

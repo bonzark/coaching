@@ -146,7 +146,7 @@ const SuccessStories = ({
                     {para}
                   </Typography>
                 ))
-              : descriptionArr?.slice(0, 2).map((para) => (
+              : descriptionArr?.slice(0, 2)?.map((para) => (
                   <Fragment key={para}>
                     <Typography
                       paragraph

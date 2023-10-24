@@ -66,13 +66,13 @@ const WealthCreationSection = () => {
           </Typography>
         </Box>
         <Box>
-          {wealthCardItems.map((cardItem, index) => (
+          {wealthCardItems?.map((cardItem, index) => (
             <Box key={index} sx={{ margin: "2.5rem 0" }}>
               <Typography
                 variant="h6"
                 sx={{ fontSize: { xs: "1.4rem", md: "1.8rem" } }}
               >
-                {cardItem.title}
+                {cardItem?.title}
               </Typography>
               <Typography
                 paragraph
@@ -82,7 +82,7 @@ const WealthCreationSection = () => {
                   textAlign: { xs: "left", sm: "justify" },
                 }}
               >
-                {cardItem.description}
+                {cardItem?.description}
               </Typography>
             </Box>
           ))}

@@ -4,8 +4,8 @@ import { aboutTemplateData } from "../utils/constant";
 import AboutTemplate2 from "../components/AboutTemplate2";
 
 const OurProgram = ({}) => {
-  const aboutTemplate2Data = aboutTemplateData.find(
-    (item) => item.id === "become-your-creator"
+  const aboutTemplate2Data = aboutTemplateData?.find(
+    (item) => item?.id === "become-your-creator"
   );
 
   return (
