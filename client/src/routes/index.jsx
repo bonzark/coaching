@@ -26,6 +26,7 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import SuccessModal from "../components/SuccessModal";
 import PreviousPurchases from "../pages/previousPurchases/previousPurchases";
 import Packages from "../pages/packages/packages";
+import NotFound from "../pages/notFound/NotFound";
 
 const Routers = () => {
   return (
@@ -61,6 +62,7 @@ const Routers = () => {
           </Route>
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
+          <Route path="/not-found" element={<NotFound />} />
         </Routes>
       </SmoothScroll>
       <Footer />
