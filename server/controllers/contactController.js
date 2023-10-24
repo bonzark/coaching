@@ -7,7 +7,7 @@ const contactController = [
   async (req, res) => {
     try {
       const { name, email, contactNo, message } = req.body;
-
+	console.log("req==============",req.body)
       const emailOptions = {
         to: process.env.EMAIL_SERVICE_MAIL_ID,
         subject: "A new contact has arrived",

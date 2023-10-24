@@ -159,7 +159,7 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {bookedSessionList && bookedSessionList.length ? (
+          {bookedSessionList && bookedSessionList?.length ? (
             bookedSessionList.map((session) => (
               <Grid
                 key={session?._id}
@@ -247,7 +247,7 @@ export default function SelectSmall() {
           }}
           rowGap={"15px"}
         >
-          {finalDisplaySessionList && finalDisplaySessionList.length ? (
+          {finalDisplaySessionList && finalDisplaySessionList?.length ? (
             finalDisplaySessionList.map((session) => (
               <Grid
                 key={session?._id}
@@ -500,7 +500,7 @@ export default function SelectSmall() {
                 input={<OutlinedInput label="Choose Your Coach" />}
                 sx={{ mb: { xs: "25px", sm: 0 } }}
               >
-                {coachList?.map((singleCoach) => {
+                {coachList?.length > 0 && coachList?.map((singleCoach) => {
                   return (
                     <MenuItem
                       key={singleCoach?._id}

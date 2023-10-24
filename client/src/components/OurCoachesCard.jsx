@@ -31,7 +31,7 @@ const OurCoachesCard = () => {
       }}
     >
       {!isLoading ? (
-        coachesData.length > 0 &&
+        coachesData?.length > 0 &&
         coachesData
           ?.sort((a, b) => (a.order > b.order ? 1 : -1))
           ?.map((data) => (

@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 const OurCoachesDetail = () => {
   const { id } = useParams();
 
-  const [coachesData, setCoachesData] = useState([]);
+  const [coachesData, setCoachesData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

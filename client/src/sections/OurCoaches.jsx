@@ -119,7 +119,7 @@ const OurCoaches = () => {
             },
           }}
         >
-          {coachList
+          {coachList?.length > 0 && coachList
             ?.sort((a, b) => (a.order > b.order ? 1 : -1))
             ?.map((item) => {
               return (

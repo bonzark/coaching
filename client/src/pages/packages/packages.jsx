@@ -272,7 +272,7 @@ const Packages = () => {
                     onChange={handleCoachChange}
                     input={<OutlinedInput label="Choose Your Coach" />}
                   >
-                    {coachList.length > 0 &&
+                    {coachList?.length > 0 &&
                       coachList?.map((coachItem) => (
                         <MenuItem key={coachItem?._id} value={coachItem?._id}>
                           {coachItem?.firstName}
