@@ -66,11 +66,6 @@ app.use('/payment', paymentRoutes);
 
 setInterval(consumedSession, 3600000);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
 cloudinary.config({
   cloud_name: 'dnwy9adyc',
   api_key: '445762993667882',
@@ -92,6 +87,11 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'static', 'index.html'));
+});
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
 });
 
 module.exports = app;
