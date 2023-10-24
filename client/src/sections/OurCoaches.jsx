@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Box, Container, Link, Typography } from "@mui/material";
-import Carousel from "react-multi-carousel";
-import CoachCarouselCard from "../components/CoachCarouselCard";
-import { NavLink } from "react-router-dom";
-import { getCoaches } from "../services/session.service";
+import React, { useEffect, useState } from 'react';
+import { Box, Container, Link, Typography } from '@mui/material';
+import Carousel from 'react-multi-carousel';
+import CoachCarouselCard from '../components/CoachCarouselCard';
+import { NavLink } from 'react-router-dom';
+import { getCoaches } from '../services/session.service';
 const OurCoaches = () => {
   const [coachList, setCoachList] = useState([]);
 
@@ -18,30 +18,30 @@ const OurCoaches = () => {
   return (
     <Box
       sx={{
-        paddingY: "30px",
-        backgroundColor: "whitesmoke",
+        paddingY: '30px',
+        backgroundColor: 'whitesmoke',
       }}
     >
       <Typography
         className="borderTitle"
         variant="span"
         sx={{
-          position: "relative",
-          fontSize: { xs: "32px", sm: "48px" },
-          color: "#671d63",
-          lineHeight: "48px",
+          position: 'relative',
+          fontSize: { xs: '32px', sm: '48px' },
+          color: '#671d63',
+          lineHeight: '48px',
           fontFamily: "'montserrat', sans-serif",
-          display: "flex",
-          marginTop: "30px",
-          marginBottom: { xs: "40px", md: "75px" },
-          justifyContent: "center",
-          "::before": {
+          display: 'flex',
+          marginTop: '30px',
+          marginBottom: { xs: '40px', md: '75px' },
+          justifyContent: 'center',
+          '::before': {
             content: `""`,
-            position: "absolute",
-            bottom: { xs: "-10px", md: "-40px" },
-            height: "3px",
-            width: "110px",
-            backgroundColor: "#671d63",
+            position: 'absolute',
+            bottom: { xs: '-10px', md: '-40px' },
+            height: '3px',
+            width: '110px',
+            backgroundColor: '#671d63',
           },
         }}
       >
@@ -50,19 +50,18 @@ const OurCoaches = () => {
       <Typography
         paragraph
         sx={{
-          fontSize: "20px",
-          width: { md: "60%", xs: "90%" },
-          mx: "auto",
-          marginBottom: "50px",
-          textAlign: { xs: "left", sm: "justify" },
-          textAlignLast: { xs: "left", sm: "center" },
+          fontSize: '20px',
+          width: { md: '60%', xs: '90%' },
+          mx: 'auto',
+          marginBottom: '50px',
+          textAlign: { xs: 'left', sm: 'justify' },
+          textAlignLast: { xs: 'left', sm: 'center' },
         }}
       >
-        At Become Your Creator, we have an exceptional team of coaches who
-        specialize in various aspects of personal, spiritual, and consciousness
-        growth. Experience the difference that working with the absolute best
-        can make in creating the life you truly desire, including specific
-        outcomes.
+        At Become Your Creator, we have an exceptional team of coaches who specialize in various
+        aspects of personal, spiritual, and consciousness growth. Experience the difference that
+        working with the absolute best can make in creating the life you truly desire, including
+        specific outcomes.
       </Typography>
       <Container>
         <Carousel
@@ -119,32 +118,28 @@ const OurCoaches = () => {
             },
           }}
         >
-<<<<<<< HEAD
-          {coachList?.length > 0 && coachList
-            ?.sort((a, b) => (a.order > b.order ? 1 : -1))
-=======
-          {coachList
-            ?.sort((a, b) => (a?.order > b?.order ? 1 : -1))
->>>>>>> origin/main
-            ?.map((item) => {
-              return (
-                <CoachCarouselCard
-                  id={item?._id}
-                  key={item?._id}
-                  title={item?.firstName}
-                  subtitle={item?.intro}
-                  imgSrc={item?.image}
-                />
-              );
-            })}
+          {coachList?.length > 0 &&
+            coachList
+              ?.sort((a, b) => (a?.order > b?.order ? 1 : -1))
+              ?.map((item) => {
+                return (
+                  <CoachCarouselCard
+                    id={item?._id}
+                    key={item?._id}
+                    title={item?.firstName}
+                    subtitle={item?.intro}
+                    imgSrc={item?.image}
+                  />
+                );
+              })}
         </Carousel>
       </Container>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "1rem",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '1rem',
         }}
       >
         <Link
@@ -152,20 +147,20 @@ const OurCoaches = () => {
           to="/our-coaches"
           variant="button"
           sx={{
-            color: "#671d63",
-            width: "max-content",
-            textDecoration: "none",
-            fontWeight: "bolder",
-            border: "none",
-            padding: "10px 20px",
-            marginTop: "2.75rem",
-            borderRadius: "10px",
-            transition: "all 0.25s linear",
-            backgroundColor: "#EFE6EF",
-            "&:hover": {
-              backgroundColor: "#671d63",
-              color: "white",
-              border: "none",
+            color: '#671d63',
+            width: 'max-content',
+            textDecoration: 'none',
+            fontWeight: 'bolder',
+            border: 'none',
+            padding: '10px 20px',
+            marginTop: '2.75rem',
+            borderRadius: '10px',
+            transition: 'all 0.25s linear',
+            backgroundColor: '#EFE6EF',
+            '&:hover': {
+              backgroundColor: '#671d63',
+              color: 'white',
+              border: 'none',
             },
           }}
         >
