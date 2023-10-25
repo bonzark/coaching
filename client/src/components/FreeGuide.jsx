@@ -1,7 +1,41 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const FreeGuide = () => {
-  return <Box></Box>;
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        padding: "2rem 20px",
+        backgroundColor: "#efdaf0",
+      }}
+    >
+      <Link to="/">
+        <Button
+          sx={{
+            fontSize: {
+              xs: "16px",
+              md: "22px",
+            },
+            color: "#fff",
+            padding: { xs: "1rem 1.5rem", md: "1.5rem 4rem" },
+            borderRadius: "8px",
+            maxWidth: "700px",
+            backgroundColor: "#631d67",
+            textTransform: "capitalize",
+            "&:hover": {
+              backgroundColor: "#631d67",
+            },
+          }}
+        >
+          Download our free guide for 3 reasons why you're failing to menifest
+          your desires
+        </Button>
+      </Link>
+    </Box>
+  );
 };
 
 export default FreeGuide;
