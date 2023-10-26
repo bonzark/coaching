@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   AccordionDetails,
   Box,
+  Button,
   List,
   ListItem,
   ListItemIcon,
@@ -14,6 +15,7 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import PageBanner from "../../sections/PageBanner";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Link } from "react-router-dom";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -201,6 +203,58 @@ const BecomeYourCreator = () => {
               </AccordionDetails>
             </Accordion>
           ))}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            backgroundColor: "#f9f6f9",
+            maxWidth: "1000px",
+            mx: "auto",
+            padding: { xs: "1.5rem 1rem", md: "1.5rem 4rem" },
+            border: "2px solid #671d63",
+            borderRadius: "8px",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              color: "#671d63",
+              textAlign: "center",
+              maxWidth: "700px",
+              textTransform: "capitalize",
+              fontSize: {
+                xs: "16px",
+                md: "22px",
+              },
+              padding: "0 1rem 1.5rem",
+            }}
+          >
+            To view all of become your creator's offers, click below:
+          </Typography>
+          <Link to="/offers">
+            <Button
+              sx={{
+                fontSize: {
+                  xs: "14px",
+                  md: "18px",
+                },
+                mx: "auto",
+                color: "#fff",
+                padding: { xs: "1rem 1.5rem", md: "1.5rem 2rem" },
+                borderRadius: "8px",
+                backgroundColor: "#631d67",
+                textTransform: "capitalize",
+                "&:hover": {
+                  backgroundColor: "#631d67",
+                },
+              }}
+            >
+              View all offers
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

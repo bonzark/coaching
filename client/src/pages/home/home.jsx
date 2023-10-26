@@ -11,6 +11,7 @@ import { heroListItems, testimonialHomeData } from "../../utils/constant";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../../components/SuccessModal";
 import FormModal from "../../sections/FormModal";
+import FreeGuide from "../../components/FreeGuide";
 
 const Home = () => {
   const { search } = useLocation();
@@ -87,6 +88,7 @@ const Home = () => {
       <OurProgram />
       <SuccessCarousel testimonials={testimonialHomeData} />
       <OfferSection />
+      <FreeGuide />
       <FreeMeditation />
     </>
   );
