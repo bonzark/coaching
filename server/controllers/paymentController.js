@@ -3,6 +3,7 @@ const PaymentDetail = require("../models/paymentDetails");
 const BookedSession = require("../models/bookedSession");
 const User = require("../models/user");
 const Session = require("../models/session");
+const sendEmail = require("../utils/sendEmail");
 
 const CLIENT_URL = process.env.HOST_URL;
 
@@ -175,6 +176,14 @@ exports.paymentCompleted = async (req, res) => {
       }
 
       await paymentDetail.save();
+      const emailOptions = {
+        to: user.email,
+        subject: "Successful Payment",
+        text: `Your payment is done successfully:`,
+        html: "<h1>Tada!!</h1>",
+      };
+
+      await sendEmail(emailOptions);
     }
     res.sendStatus(200);
   } catch (error) {

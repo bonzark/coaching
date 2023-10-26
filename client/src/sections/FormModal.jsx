@@ -61,9 +61,27 @@ const FormModal = ({ open, handleClose }) => {
               });
             } else if (res.response.status === 401) {
               setIsLogin(false);
-              enqueueSnackbar(res?.response?.data?.message, {
-                variant: "error",
-              });
+              enqueueSnackbar(
+                <Box
+                  sx={{
+                    span: {
+                      fontSize: { sm: "10px", md: "12px" },
+                      color: "#fff",
+                      padding: "1px 5px 1px 0",
+                      borderRadius: "2px",
+                      fontWeight: 900,
+                    },
+                  }}
+                >
+                  {res?.response?.data?.message}
+                  <br />
+                  <span>NOTE: {res?.response?.data?.note}</span>
+                </Box>,
+                {
+                  variant: "error",
+                  autoHideDuration: 7000,
+                }
+              );
             } else if (res.response.status === 500) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.error, {
@@ -91,7 +109,24 @@ const FormModal = ({ open, handleClose }) => {
           .then((res) => {
             if (res?.status === 201) {
               setIsLogin(false);
-              enqueueSnackbar(res?.data, { variant: "success" });
+              enqueueSnackbar(
+                <Box
+                  sx={{
+                    span: {
+                      fontSize: { sm: "10px", md: "12px" },
+                      color: "#fff",
+                      padding: "1px 5px 1px 0",
+                      borderRadius: "2px",
+                      fontWeight: 900,
+                    },
+                  }}
+                >
+                  {res?.data?.message}
+                  <br />
+                  <span>NOTE: {res?.data?.note}</span>
+                </Box>,
+                { variant: "success", autoHideDuration: 7000 }
+              );
               formik.resetForm();
               handleClose();
             } else if (res?.response?.data?.error) {
@@ -106,9 +141,27 @@ const FormModal = ({ open, handleClose }) => {
               });
             } else if (res.response.status === 403) {
               setIsLogin(false);
-              enqueueSnackbar(res?.response?.data, {
-                variant: "error",
-              });
+              enqueueSnackbar(
+                <Box
+                  sx={{
+                    span: {
+                      fontSize: { sm: "10px", md: "12px" },
+                      color: "#fff",
+                      padding: "1px 5px 1px 0",
+                      borderRadius: "2px",
+                      fontWeight: 900,
+                    },
+                  }}
+                >
+                  {res?.response?.data?.message}
+                  <br />
+                  <span>NOTE: {res?.response?.data?.note}</span>
+                </Box>,
+                {
+                  variant: "error",
+                  autoHideDuration: 7000,
+                }
+              );
             } else if (res.response.status === 500) {
               setIsLogin(false);
               enqueueSnackbar(res?.response?.data?.error, {

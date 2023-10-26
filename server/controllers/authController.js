@@ -44,14 +44,20 @@ const authController = {
             to: email,
             subject: "Email Verification",
             text: `Click the following link to verify your email: ${verificationLink}`,
-            html: verifyUserTemplate({ verificationLink })
+            html: verifyUserTemplate({ verificationLink }),
           };
 
           await sendEmail(emailOptions);
 
-          res.status(201).send("Verification email sent.");
+          res.status(201).json({
+            message: "Verification email sent.",
+            note: "Please check spams if you can't find the mail in inbox.",
+          });
         } else {
-          res.status(403).send("User already exists with this email.");
+          res.status(403).json({
+            message: "User already exists with this email.",
+            note: "Please check spams if you can't find the mail in inbox.",
+          });
         }
       } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
@@ -87,6 +93,7 @@ const authController = {
           return res.status(401).json({
             message:
               "Email verification is panding!! Check your email inbox and complete your Registration.",
+            note: "Please check spams if you can't find the mail in inbox.",
           });
         } else {
           var bytes = CryptoJS.AES.decrypt(
@@ -154,6 +161,11 @@ const authController = {
 
       if (!user) {
         return res.status(400).json({ message: "User not found" });
+      } else if (user.resetToken) {
+        return res.status(403).json({
+          message: "Password reset email already sent.",
+          note: "Please check spams if you can't find the mail in inbox.",
+        });
       }
 
       // Generate a reset token
@@ -166,12 +178,15 @@ const authController = {
       const emailOptions = {
         to: email,
         subject: "Password Reset Request",
-        html: resetPasswordTemplate({ link: resetToken })
+        html: resetPasswordTemplate({ link: resetToken }),
       };
 
       await sendEmail(emailOptions);
 
-      res.status(200).json({ message: "Password reset email sent" });
+      res.status(200).json({
+        message: "Password reset email sent.",
+        note: "Please check spams if you can't find the mail in inbox.",
+      });
     },
   ],
   resetPassword: [

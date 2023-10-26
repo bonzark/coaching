@@ -28,12 +28,27 @@ const FreeMeditation = () => {
       await freeMeditation({ email: values.email })
         .then((res) => {
           if (res?.status === 200) {
-            enqueueSnackbar(res?.data, {
-              variant: "success",
-            });
+            enqueueSnackbar(
+              <Box
+                sx={{
+                  span: {
+                    fontSize: { sm: "10px", md: "12px" },
+                    color: "#fff",
+                    padding: "1px 5px 1px 0",
+                    borderRadius: "2px",
+                    fontWeight: 900,
+                  },
+                }}
+              >
+                {res?.data?.message}
+                <br />
+                <span>NOTE: {res?.data?.note}</span>
+              </Box>,
+              { variant: "success", autoHideDuration: 7000 }
+            );
           } else {
             enqueueSnackbar(res?.message, {
-              variant: "warning",
+              variant: "error",
             });
           }
         })

@@ -635,17 +635,18 @@ export const privacyPolicyData = [
 ];
 
 export const eventsData = [
-  // {
-  //   title: "3 DAY CONSCIOUS CREATION WITH RITA",
-  //   host: "Become Your Creator",
-  //   subtitle: "MASTER THE POEWR OF CONSCIOUS CREATION",
-  //   shortDescription:
-  //     "JOIN RITA ON A TRANSFORMATIVE JOURNEY TO ALIGN YOUR ENERGIES, BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES",
-  //   dateTime: "October 5th, 6th, 7th @ 8PM BST",
-  //   imageUrl: "./coach2.jpg",
-  //   eventUrl:
-  //     "https://allevents.in/online/3-day-conscious-creation-with-rita-october-5th-6th-7th-8pm-gmt/80001529046485",
-  // },
+  {
+    id: "0",
+    title: "3 DAY CONSCIOUS CREATION WITH RITA",
+    host: "Become Your Creator",
+    subtitle: "MASTER THE POWER OF CONSCIOUS CREATION AND MANIFEST NOW!",
+    shortDescription:
+      "JOIN RITA ON A TRANSFORMATIVE JOURNEY TO ALIGN YOUR ENERGIES, BECOME CONSCIOUS AWARE OF YOUR VIBRATIONAL STATE, AND EMPOWER YOURSELF TO CONSCIOUSLY CREATE BY ALTERING YOUR ENERGIES",
+    dateTime: "December 1st, 2nd, 3rd @ 8PM BST",
+    imageUrl: "./coach2.jpg",
+    eventUrl:
+      "https://allevents.in/online/3-day-conscious-creation-with-rita-dec-1st-2nd-3rd-8pm-bst-3pm-est/80002505782409?ref=smdl",
+  },
   {
     id: "1",
     title: "The Complete 4 Steps To Abundance Activation",
@@ -653,7 +654,7 @@ export const eventsData = [
     subtitle: "THE MIND AND THE BODY MANIFESTS",
     shortDescription:
       "Introducing the Abundance Activation Workshop - an extraordinary program meticulously designed to unlock the boundless abundance that is rightfully yours. Prepare to embark on a transformative journey towards a life overflowing with prosperity, purpose, and triumph. This ground breaking program spans four days, each dedicated to a specific facet of manifesting abundance.",
-    dateTime: "December 2nd, 3rd, 4h, 5th @ 7PM GMT/ 2PM EST",
+    dateTime: "February 6th, 7th, 8th, 9th @ 7PM GMT/ 2PM EST",
     imageUrl: "./coach3.webp",
     eventUrl:
       "https://allevents.in/online/the-complete-4-steps-to-abundance-activation-dec-1st-2nd-3rd-4th-7pm-gmt-2pm-est/80001142719496",

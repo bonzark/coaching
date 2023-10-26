@@ -31,7 +31,7 @@ app.use(cors());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(express.static("static"));
+app.use(express.static("client"));
 
 app.use(logger("dev"));
 app.use(function (req, res, next) {
@@ -66,10 +66,10 @@ app.use("/contact-us", contactRouter);
 app.use("/coaches", coachRoutes);
 app.use("/payment", paymentRoutes);
 
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "client")));
 
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "static", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
 // app.use("/webhook", webhookRoutes);
