@@ -4,7 +4,7 @@ import EventTemplate from "../components/EventTemplate";
 import { eventsData } from "../utils/constant";
 
 const News = () => {
-  const filteredEvent = eventsData?.filter((event) => event?.id === "1")[0];
+  const filteredEvent = eventsData?.filter((event) => event?.id === "0")[0];
 
   return (
     <Box

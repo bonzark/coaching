@@ -21,11 +21,11 @@ const freeMeditationController = [
 
       await sendEmail(emailOptions);
 
-      res
-        .status(200)
-        .send(
-          "Hooray! Please check your email, and enjoy your free meditation session!"
-        );
+      res.status(200).json({
+        message:
+          "Hooray! Please check your email, and enjoy your free meditation session!",
+        note: "Please check spams if you can't find the mail in inbox.",
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "Internal Server Error" });

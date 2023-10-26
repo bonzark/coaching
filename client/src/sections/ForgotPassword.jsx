@@ -3,7 +3,7 @@ import { InputBox } from "../components/InputBox";
 import { MainModal } from "../components/MainModal";
 import { useSnackbar } from "notistack";
 import { validationForgotSchema } from "../utils/validation";
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { requestReset } from "../services/auth.service";
 
@@ -28,7 +28,24 @@ const ForgotPassword = ({
         .then((res) => {
           if (res?.status === 200) {
             setIsSending(false);
-            enqueueSnackbar(res?.data?.message, { variant: "success" });
+            enqueueSnackbar(
+              <Box
+                sx={{
+                  span: {
+                    fontSize: { sm: "10px", md: "12px" },
+                    color: "#fff",
+                    padding: "1px 5px 1px 0",
+                    borderRadius: "2px",
+                    fontWeight: 900,
+                  },
+                }}
+              >
+                {res?.data?.message}
+                <br />
+                <span>NOTE: {res?.data?.note}</span>
+              </Box>,
+              { variant: "success", autoHideDuration: 7000 }
+            );
             formik.resetForm();
             onResetClose();
             closeAllModal();
@@ -46,6 +63,29 @@ const ForgotPassword = ({
             enqueueSnackbar(res?.response?.data?.message, {
               variant: "error",
             });
+          } else if (res?.response?.status === 403) {
+            setIsSending(false);
+            enqueueSnackbar(
+              <Box
+                sx={{
+                  span: {
+                    fontSize: { sm: "10px", md: "12px" },
+                    color: "#fff",
+                    padding: "1px 5px 1px 0",
+                    borderRadius: "2px",
+                    fontWeight: 900,
+                  },
+                }}
+              >
+                {res?.response?.data?.message}
+                <br />
+                <span>NOTE: {res?.response?.data?.note}</span>
+              </Box>,
+              { variant: "warning", autoHideDuration: 7000 }
+            );
+            formik.resetForm();
+            onResetClose();
+            closeAllModal();
           }
         })
         .catch((error) => {

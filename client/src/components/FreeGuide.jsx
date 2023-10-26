@@ -29,7 +29,7 @@ const FreeGuide = () => {
             },
           }}
         >
-          Download our free guide for 3 reasons why you're failing to menifest
+          Download our free guide for 3 reasons why you're failing to manifest
           your desires
         </Button>
       </Link>
