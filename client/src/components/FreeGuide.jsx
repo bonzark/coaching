@@ -12,7 +12,7 @@ const FreeGuide = () => {
         backgroundColor: "#efdaf0",
       }}
     >
-      <Link to="/">
+      <Link to="/free-guide">
         <Button
           sx={{
             fontSize: {
