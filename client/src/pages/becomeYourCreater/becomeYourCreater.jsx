@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
   AccordionDetails,
   Box,
+  Button,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -201,6 +203,58 @@ const BecomeYourCreator = () => {
               </AccordionDetails>
             </Accordion>
           ))}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            backgroundColor: "#f9f6f9",
+            maxWidth: "1000px",
+            mx: "auto",
+            padding: { xs: "1.5rem 1rem", md: "1.5rem 4rem" },
+            border: "2px solid #671d63",
+            borderRadius: "8px",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              color: "#671d63",
+              textAlign: "center",
+              maxWidth: "700px",
+              textTransform: "capitalize",
+              fontSize: {
+                xs: "16px",
+                md: "22px",
+              },
+              padding: "0 1rem 1.5rem",
+            }}
+          >
+            To view all of become your creator's offers, click below:
+          </Typography>
+          <Link href={`${import.meta.env.VITE_BASE_URL}/offers`}>
+            <Button
+              sx={{
+                fontSize: {
+                  xs: "14px",
+                  md: "18px",
+                },
+                mx: "auto",
+                color: "#fff",
+                padding: { xs: "1rem 1.5rem", md: "1.5rem 2rem" },
+                borderRadius: "8px",
+                backgroundColor: "#631d67",
+                textTransform: "capitalize",
+                "&:hover": {
+                  backgroundColor: "#631d67",
+                },
+              }}
+            >
+              View all offers
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>
