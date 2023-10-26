@@ -3,6 +3,7 @@ import {
   AccordionDetails,
   Box,
   Button,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -15,7 +16,6 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
 import PageBanner from "../../sections/PageBanner";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Link } from "react-router-dom";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -234,7 +234,7 @@ const BecomeYourCreator = () => {
           >
             To view all of become your creator's offers, click below:
           </Typography>
-          <Link to="/offers">
+          <Link href={`${import.meta.env.VITE_BASE_URL}/offers`}>
             <Button
               sx={{
                 fontSize: {

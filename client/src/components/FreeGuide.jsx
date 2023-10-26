@@ -1,5 +1,4 @@
-import { Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Button, Link } from "@mui/material";
 
 const FreeGuide = () => {
   return (
@@ -12,7 +11,7 @@ const FreeGuide = () => {
         backgroundColor: "#efdaf0",
       }}
     >
-      <Link to="/free-guide">
+      <Link href={`${import.meta.env.VITE_BASE_URL}/free-guide`}>
         <Button
           sx={{
             fontSize: {
